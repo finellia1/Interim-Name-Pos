@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="../css/inventoryStyle.css">
+</head>
+<body>
+    <h1>Inventory Page</h1>
+    <div id = "editPopup">
+        <form name="edit">
+            <table class = "dropShadow">
+                <tr>
+                    <td class = "alignLeft">
+                        <label for="itemName">Item Name:</label></td>
+                    <td class = "alignLeft">
+                        <input type="text" id="itemName" name="itemName" value="Item Name"><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td class = "alignLeft">
+                        <label for="itemName">Description:</label></td>
+                    <td class = "alignLeft">
+                        <input type="text" id="Description" name="Description" value="Description"><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td class = "alignLeft">
+                        <label for="itemName">Model Number:</label></td>
+                    <td class = "alignLeft">
+                        <input type="text" id="mNumber" name="mNumber" value="Model Number"><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td class = "alignLeft">
+                        <label for="itemName">Regular Price:</label></td>
+                    <td class = "alignLeft">
+                        <input type="text" id="price" name="price" value="Regular Price"><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td class = "alignLeft">
+                        <label for="itemName">Quantity In Stock:</label></td>
+                    <td class = "alignLeft">
+                        <input type="text" id="quantity" name="quantity" value="Quantity in Stock"><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value = "Submit!"></button>
+                    </td>
+                    <td>
+                        <button type="button" onclick="exitEditPane()">Cancel!</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <table>
+        <tr>
+            <th>Item Name</th>
+            <th>Product ID</th>
+            <th>Description</th>
+            <th>Model Number</th>
+            <th>Regular Price</th>
+            <th>Quantity In Stock</th>
+            <th>Edit</th>
+        </tr>
+        <tr>
+            <td>Microphoneeee</td>
+            <td>00001</td>
+            <td>Device to capture sound!</td>
+            <td>095028450</td>
+            <td>$29.99</td>
+            <td>5</td>
+            <td>
+                <button type = "button" onclick="editPane()">EDIT</button>
+            </td>
+            
+        </tr>
+        <tr>
+            <td>Microphoneeee</td>
+            <td>00001</td>
+            <td>Device to capture sound!</td>
+            <td>095028450</td>
+            <td>$29.99</td>
+            <td>5</td>
+            <td>
+                <button type = "button" onclick="editPane()">EDIT</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Microphoneeee</td>
+            <td>00001</td>
+            <td>Device to capture sound!</td>
+            <td>095028450</td>
+            <td>$29.99</td>
+            <td>5</td>
+            <td>
+                <button type = "button" onclick="editPane()">EDIT</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Microphoneeee</td>
+            <td>00001</td>
+            <td>Device to capture sound!</td>
+            <td>095028450</td>
+            <td>$29.99</td>
+            <td>5</td>
+            <td>
+                <button type = "button" onclick="editPane()">EDIT</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Microphoneeee</td>
+            <td>00001</td>
+            <td>Device to capture sound!</td>
+            <td>095028450</td>
+            <td>$29.99</td>
+            <td>5</td>
+            <td>
+                <button type = "button" onclick="editPane()">EDIT</button>
+            </td>
+        </tr>
+    </table>
+
+    
+    <script type="text/javascript" src="../js/inventory.js"></script>
+
+</body>
+
+</html>
