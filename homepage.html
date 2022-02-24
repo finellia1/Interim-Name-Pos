@@ -1,0 +1,86 @@
+<head>
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+        .wrap {
+            height: 100vh;
+            display: flex;
+        }
+        main{
+            flex: 1;
+            display: flex;
+        }
+        .left-panel{
+            flex: 0.5;
+            background-color: blueviolet;
+            
+        }
+        .nav-bar{
+            margin: auto;
+
+        }
+        .nav-bar div{
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .middlePanel{
+            flex: 3;
+            background-color: #C4C4C4;
+        }
+        .rightPanel{
+            flex: 1.5;
+            background-color: aquamarine;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class = "wrap">
+        <main>
+            <div class = "left-panel">
+                <div class = "nav-bar">
+                    <div class = "home">
+                        <img src="\Assets\home.png" height= 30px  width= 30px alt="home-icon">
+                        <p>Home</p>
+                    </div>
+                    <div class = "history">
+                        <img src="\Assets\history.png" height = 30px width = 30px alt = "history-icon">
+                        <p>History</p> 
+                    </div>
+                    <div>
+                        <img src="\Assets\wallet.png" height = 30px width = 30px alt = "wallet-icon">
+                        <p>Money</p>
+                    </div>
+                    <div>
+                        <img src="\Assets\setting.png" height = 30px width = 30px alt = "settings-icon">
+                        <p>Settings</p>
+                    </div> 
+                    <div>
+                        <img src="\Assets\calendar.png" height = 30px width = 30px alt = "calendar-icon">
+                        <p>Calendar</p>
+                    </div>
+                    <div>
+                        <img src="\Assets\logout.png" height = 30px width = 30px alt = "logout-icon">
+                        <p>Logout</p>
+                    </div>
+                </div>
+            </div>
+            <div class = "middlePanel">
+                <h1> Middle Panel</h1>
+                <p>
+                    lipsum...
+                </p>
+            </div>
+            <div class = "rightPanel">
+                <h1> Right Panel </h1>
+                <p>
+                    lipsum...
+                </p>
+            </div>
+        </main>
+    </div>
+
+</body>     
