@@ -1,71 +1,38 @@
 <head>
-    <style>
-        html,
-        body {
-            height: 100%;
-        }
-        .wrap {
-            height: 100vh;
-            display: flex;
-        }
-        main{
-            flex: 1;
-            display: flex;
-        }
-        .left-panel{
-            flex: 0.5;
-            background-color: blueviolet;
-            
-        }
-        .nav-bar{
-            margin: auto;
-
-        }
-        .nav-bar div{
-            display: inline-block;
-            text-align: center;
-        }
-        
-        .middlePanel{
-            flex: 3;
-            background-color: #C4C4C4;
-        }
-        .rightPanel{
-            flex: 1.5;
-            background-color: aquamarine;
-        }
-        
-    </style>
-</head>
+    <link rel="stylesheet" href="homepageStyle.css">
 <body>
     <div class = "wrap">
         <main>
             <div class = "left-panel">
                 <div class = "nav-bar">
-                    <div class = "home">
+                    <a class = "logo" href="reloads page">
+                        <img src="\Assets\logo-placeholder-image.png" height = 60px width = 60px alt="logo">
+                    </a>
+                    <a class = "home" href="link to home">
                         <img src="\Assets\home.png" height= 30px  width= 30px alt="home-icon">
-                        <p>Home</p>
-                    </div>
-                    <div class = "history">
-                        <img src="\Assets\history.png" height = 30px width = 30px alt = "history-icon">
-                        <p>History</p> 
-                    </div>
-                    <div>
-                        <img src="\Assets\wallet.png" height = 30px width = 30px alt = "wallet-icon">
-                        <p>Money</p>
-                    </div>
-                    <div>
-                        <img src="\Assets\setting.png" height = 30px width = 30px alt = "settings-icon">
-                        <p>Settings</p>
-                    </div> 
-                    <div>
+                        <div class="caption"> Home</div>
+                    </a>
+                    <a class = "calendar" href="link to calendar page">
                         <img src="\Assets\calendar.png" height = 30px width = 30px alt = "calendar-icon">
-                        <p>Calendar</p>
-                    </div>
-                    <div>
+                        <div class = "caption">Calendar</div>
+                    </a>
+                    <a class = "money" href="link to money tab">
+                        <img src="\Assets\wallet.png" height = 30px width = 30px alt = "wallet-icon">
+                        <div class = "caption">Money</div>
+                    </a>
+                     
+                    <a class = "history" href="link to history tab">
+                        <img src="\Assets\history.png" height = 30px width = 30px alt = "history-icon">
+                        <div class = "caption">History</div>
+                    </a>
+                    <a class = "settings" href="link to settings tab">
+                        <img src="\Assets\setting.png" height = 30px width = 30px alt = "settings-icon">
+                        <div class = "caption">Settings</div> 
+                    </a> 
+                    <a class = "logout" href="link to signin page">
                         <img src="\Assets\logout.png" height = 30px width = 30px alt = "logout-icon">
-                        <p>Logout</p>
-                    </div>
+                        <div class = "caption">Logout</div>
+                    </a>
                 </div>
             </div>
             <div class = "middlePanel">
