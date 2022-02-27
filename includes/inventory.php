@@ -166,14 +166,6 @@ session::start();
     <div id="addPopup" class = "popup">
         <form name="add" action="../includes/addProduct.inc.php" method="post">
             <table class="dropShadow">
-            <tr>
-                    <td class="alignLeft">
-                        <label for="itemName">Product ID:</label></td>
-                    <td class="alignLeft">
-                        <input type="text" name="product_ID" value="product_ID"><br>
-                    </td>
-                </tr>
-            <tr>
                     <td class="alignLeft">
                         <label for="itemName">Item Name:</label></td>
                     <td class="alignLeft">
