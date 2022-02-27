@@ -1,0 +1,57 @@
+html,
+body {
+  height: 100%;
+}
+.wrap {
+  height: 100vh;
+  display: flex;
+}
+main {
+  flex: 1;
+  display: flex;
+}
+.left-panel {
+  flex: 0.25;
+}
+.nav-bar {
+  height: 100%;
+  width: 5.625rem;
+  text-align: center;
+}
+.nav-bar a {
+  padding-top: 4.688rem;
+  display: block;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: black;
+}
+.nav-bar .logout {
+  padding-top: 9.375rem;
+}
+.nav-bar .logo {
+  padding-top: 3.125rem;
+}
+.nav-bar image {
+  text-align: center;
+  margin: 3.125rem auto;
+}
+.nav-bar .circle {
+  background: #ff7a59;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: block;
+}
+
+.nav-bar a:hover {
+}
+
+.middlePanel {
+  flex: 3;
+  background-color: rgba(196, 196, 196, 0.16);
+}
+
+.rightPanel {
+  flex: 1.5;
+  background-color: aquamarine;
+}

@@ -18,25 +18,55 @@ main {
   width: 5.625rem;
   text-align: center;
 }
-.nav-bar a {
-  padding-top: 4.688rem;
-  display: block;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  color: black;
+.nav-bar ul {
+  list-style-type: none;
 }
-.nav-bar .logout {
-  padding-top: 9.375rem;
-}
-.nav-bar .logo {
-  padding-top: 3.125rem;
-}
-.nav-bar image {
+.nav-bar li {
+  width: 80px;
+  height: 80px;
+  position: absolute;
   text-align: center;
-  margin: 3.125rem auto;
+  border-radius: 50%;
+  background-color: white;
+}
+.nav-bar li:nth-child(1) {
+  top: 60px;
+  left: 12px;
+}
+.nav-bar li:nth-child(2) {
+  top: 170px;
+  left: 12px;
+}
+.nav-bar li:nth-child(3) {
+  top: 290px;
+  left: 12px;
+}
+.nav-bar li:nth-child(4) {
+  top: 410px;
+  left: 13px;
+}
+.nav-bar li:nth-child(5) {
+  top: 530px;
+  left: 15px;
+}
+.nav-bar li:nth-child(6) {
+  top: 650px;
+  left: 12px;
+}
+.nav-bar li:nth-child(7) {
+  top: 845px;
+  left: 12px;
 }
 
-.nav-bar a:hover {
+.nav-bar li img {
+  padding-top: 23px;
+}
+.nav-bar li img :hover {
+  transform: scale(1.5);
+}
+
+.nav-bar li:nth-child(1) img {
+  padding-top: 0px;
 }
 
 .middlePanel {
