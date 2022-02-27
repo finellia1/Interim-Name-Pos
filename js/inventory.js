@@ -13,3 +13,8 @@ function deleteItem(){
 function addItem(){
     document.getElementById('addPopup').style.visibility = 'visible';
 }
+
+function searchItem(){
+    document.getElementById('searchPopup').style.visibility = 'visible';
+    console.log("asdassad");
+}

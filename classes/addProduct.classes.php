@@ -2,13 +2,13 @@
 
 class AddProduct extends Dbh {
 
-    protected function setProduct($product_ID, $product_type, $name, $description, $model_no, $regular_price, $quantity_in_stock) {
-        $stmt = $this->connect()->prepare('INSERT INTO product (product_ID, product_type, name_, description_, model_no, regular_price, quantity_in_stock) VALUES (?,?,?,?,?,?,?);');
+    protected function setProduct($product_ID, $name, $description, $product_type, $make, $model_no, $quantity_unit, $quantity_in_stock,$isPromotional,$regular_price,$discounted_price,$num_rented,$num_broken) {
+        $stmt = $this->connect()->prepare('INSERT INTO product (product_ID, product_name, product_description, product_type, make, model, qty_unit,qty_in_stock,is_promotional,reg_price,discounted_price,num_rented,num_broken) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);');
 
 
-        if(!$stmt->execute(array($product_ID, $product_type, $name, $description, $model_no, $regular_price, $quantity_in_stock))) {
+        if(!$stmt->execute(array($product_ID, $name, $description, $product_type, $make, $model_no, $quantity_unit, $quantity_in_stock,$isPromotional,$regular_price,$discounted_price,$num_rented,$num_broken))) {
             $stmt = null;
-            header('location: ../index.php?error=stmtfailed1');
+            header('location: ../includes/inventory.php');
             exit();
         }
         $stmt = null;
@@ -16,10 +16,11 @@ class AddProduct extends Dbh {
 
     // check if the product or name are already in use
     protected function checkProduct($product_ID, $name) {
-        $stmt = $this->connect()->prepare('SELECT product_ID FROM product WHERE product_ID = ? OR name_ = ?;');
+        
+        $stmt = $this->connect()->prepare('SELECT product_ID FROM product WHERE product_ID = ? OR product_name = ?;');
         if(!$stmt->execute(array($product_ID, $name))) {
             $stmt = null;
-            header("location: ../index.php?error=stmtfailed2");
+            header("location: ../includes/inventory.php");
             exit();
         }
 
