@@ -1,10 +1,7 @@
 <?php
-
-if(isset($_POST["submit"])) 
-{
+    
     // grab the data from signup form
-    $product_ID = $_POST["product_ID"];
-
+    $product_ID = $_POST["deleteID"];
     // instantiate signupContr class
     include "../classes/dbh.classes.php";
     include "../classes/removeProduct.classes.php";
@@ -13,5 +10,4 @@ if(isset($_POST["submit"]))
     // running error handlers and Product signup
     $removeProduct-> checkProduct();
     // going back to front page
-    header("location: ../index.php?error=PRODUCT REMOVED");
-}
+    header("location: ../includes/inventory.php");

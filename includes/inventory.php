@@ -177,6 +177,7 @@ session::start();
                     <td class="alignLeft">
                         <label for="itemName">Item Name:</label></td>
                     <td class="alignLeft">
+                        <!-- Different value and name --> 
                         <input type="text" name="product_name" value="itemName"><br>
                     </td>
                 </tr>
@@ -280,75 +281,76 @@ session::start();
             </tr>
         </table>
     <div id = "inventoryWrapper">
+            <table id="inventory">
+                <tr>
+                    <th>Product ID</th>
+                    <th>Product Type</th>
+                    <th>Product Name</th>
+                    <th>Description</th>
+                    <th>Make</th>
+                    <th>Model Number</th>
+                    <th>Quantity Unit</th>
+                    <th>Quantity In Stock</th>
+                    <th>Promotional</th>
+                    <th>Regular Price</th>
+                    <th>Discounted Price</th>
+                    <th>Number Rented</th>
+                    <th>Number Broken</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    <th>Add to Cart</th>
+                </tr>
+                <?php
+                    $host='127.0.0.1';
+                    $db = 'hv_audio_visual';
+                    $user = 'root';
+                    $pass = '';
+                    $charset = 'utf8mb4';
+                    //https://phpdelusions.net/pdo#dsn
+                    
 
-        <table id="inventory">
-            <tr>
-                <th>Product ID</th>
-                <th>Product Type</th>
-                <th>Product Name</th>
-                <th>Description</th>
-                <th>Make</th>
-                <th>Model Number</th>
-                <th>Quantity Unit</th>
-                <th>Quantity In Stock</th>
-                <th>Promotional</th>
-                <th>Regular Price</th>
-                <th>Discounted Price</th>
-                <th>Number Rented</th>
-                <th>Number Broken</th>
-                <th>Edit</th>
-                <th>Delete</th>
-                <th>Add to Cart</th>
-            </tr>
-            <?php
-                $host='127.0.0.1';
-                $db = 'hv_audio_visual';
-                $user = 'root';
-                $pass = '';
-                $charset = 'utf8mb4';
-                //https://phpdelusions.net/pdo#dsn
-                
-
-                $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-                $options = [
-                    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                    PDO::ATTR_EMULATE_PREPARES   => false,
-                ];
-                try {
-                    $pdo = new PDO($dsn, $user, $pass, $options);
-                    if(!isset($_SESSION["searchTypeInput"])){
+                    $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+                    $options = [
+                        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+                        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                        PDO::ATTR_EMULATE_PREPARES   => false,
+                    ];
+                    try {
+                        $pdo = new PDO($dsn, $user, $pass, $options);
+                        if(!isset($_SESSION["searchTypeInput"])){
+                            $_SESSION["searchTypeInput"] = "select * from product";
+                        }
+                        $getData = $pdo->query($_SESSION["searchTypeInput"]);
+                        foreach($getData as $row){
+                            echo "<tr>"; 
+                            echo "<td> {$row['product_ID']} </td>";
+                            echo "<td> {$row['product_type']} </td>";
+                            echo "<td> {$row['product_name']} </td>";
+                            echo "<td> {$row['product_description']} </td>";
+                            echo "<td> {$row['make']} </td>";
+                            echo "<td> {$row['model']} </td>";
+                            echo "<td> {$row['qty_unit']} </td>";
+                            echo "<td> {$row['qty_in_stock']} </td>";
+                            echo "<td> {$row['is_promotional']} </td>";
+                            echo "<td> {$row['reg_price']} </td>";
+                            echo "<td> {$row['discounted_price']} </td>";
+                            echo "<td> {$row['num_rented']} </td>";
+                            echo "<td> {$row['num_broken']} </td>";
+                            echo "<td><button type='button' onclick='addItem()'>Edit</button>";
+                            echo "<form name='remove' action='../includes/removeProduct.inc.php' method='post'>";
+                            echo "<td><button type='submit' name='submit' value='submit'>Delete</button>";
+                            echo "<td><button type='button'>Cart</button>";
+                            echo "<td> <input type='hidden' name='deleteID' id='deleteID' value='{$row['product_ID']}'> </td>";
+                            echo "</form>";
+                            echo "</tr>";
+                        }
+                    } catch (\PDOException $e) {
                         $_SESSION["searchTypeInput"] = "select * from product";
+                        throw new \PDOException($e->getMessage(), (int)$e->getCode());
                     }
-                    $getData = $pdo->query($_SESSION["searchTypeInput"]);
-                    foreach($getData as $row){
-                        echo "<tr>"; 
-                        echo "<td> {$row['product_ID']} </td>";
-                        echo "<td> {$row['product_type']} </td>";
-                        echo "<td> {$row['product_name']} </td>";
-                        echo "<td> {$row['product_description']} </td>";
-                        echo "<td> {$row['make']} </td>";
-                        echo "<td> {$row['model']} </td>";
-                        echo "<td> {$row['qty_unit']} </td>";
-                        echo "<td> {$row['qty_in_stock']} </td>";
-                        echo "<td> {$row['is_promotional']} </td>";
-                        echo "<td> {$row['reg_price']} </td>";
-                        echo "<td> {$row['discounted_price']} </td>";
-                        echo "<td> {$row['num_rented']} </td>";
-                        echo "<td> {$row['num_broken']} </td>";
-                        echo "<td><button type='button' onclick='addItem()'>Edit</button>";
-                        echo "<td><button type='button' onclick='deleteItem()'>Delete</button>";
-                        echo "<td><button type='button'>Cart+</button>";
-                        echo "</tr>";
+                ?>
 
-                    }
-                } catch (\PDOException $e) {
-                    $_SESSION["searchTypeInput"] = "select * from product";
-                    throw new \PDOException($e->getMessage(), (int)$e->getCode());
-                }
-            ?>
-
-        </table>
+            </table>
     </div>
 
     <script type="text/javascript" src="../js/inventory.js"></script>
