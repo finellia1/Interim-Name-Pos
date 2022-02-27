@@ -55,7 +55,7 @@ session::start();
     }else{
         $_SESSION["searchTypeInput"] = "select * from product";
     }
-    header("location: ../includes/inventory.php");
+    header("location: ../homepage.php");
 
 
 ?>
