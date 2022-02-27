@@ -11,14 +11,17 @@ class LoginContr extends Login {
     }
 
     public function loginUser() {
+        /*
         if($this->emptyInput() == false) {
             header("location: ../index.php?error=emptyinput");
             exit();
         }
+        */
 
         $this->getUser($this->employee_ID, $this->pwd);
     }
 
+    /*
     private function emptyInput() {
         $result;
         if(empty($this->employee_ID) || empty($this->pwd)) {
@@ -28,4 +31,7 @@ class LoginContr extends Login {
         }
         return $result;
     }
+    */
+
+
 }

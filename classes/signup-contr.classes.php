@@ -1,5 +1,11 @@
 <?php
-
+session_start();
+if (isset($_SESSION["addUserFlag"])){
+    $_SESSION["addUserFlag"] = 0;
+}
+if (isset($_SESSION["addUserErrorMsg"])){
+    $_SESSION["addUserErrorMsg"] = "";
+}
 class SignupContr extends Signup {
     // create the properties inside the class
     private $employee_ID;
@@ -27,24 +33,35 @@ class SignupContr extends Signup {
 
     public function signupUser() {
         if($this->emptyInput() == false) {
+            $_SESSION["addUserFlag"] = "1";
+            $_SESSION["addUserErrorMsg"] = "Empty Input";
             header("location: ../index.php?error=emptyinput");
             exit();
         }
         if($this->invalidemployee_ID() == false) {
+            $_SESSION["addUserFlag"] = "1";
+            $_SESSION["addUserErrorMsg"] = "Invalid employee ID";
             header("location: ../index.php?error=username");
             exit();
         }
         if($this->invalidEmail() == false) {
+            $_SESSION["addUserFlag"] = "1";
+            $_SESSION["addUserErrorMsg"] = "Invalid Email";
             header("location: ../index.php?error=email");
             exit();
         }
         if($this->pwdMatch() == false) {
+            $_SESSION["addUserFlag"] = "1";
+            $_SESSION["addUserErrorMsg"] = "Invalid Password";
             header("location: ../index.php?error=passwordmatch");
             exit();
         }
         if($this->duplicateUser() == false) {
+            $_SESSION["addUserFlag"] = "1";
+            $_SESSION["addUserErrorMsg"] = "Duplicate username or email";
             header("location: ../index.php?error=useroremailtaken");
             exit();
+            //Should this be separate?
         }
 
         $this->setUser($this->employee_ID, $this->pwd, $this->confirmpwd, $this->email, $this->first_name, $this->last_name, $this->phone_number, $this->employee_type);

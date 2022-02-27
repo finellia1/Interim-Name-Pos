@@ -1,7 +1,9 @@
 <?php 
-require 'classes/session.classes.php';
-session::start();
-// session_start();
+    include 'classes/session.classes.php';
+    include 'includes/flagInit.php';
+    session::start();
+    resetFlags();
+
 ?>
 
 <!DOCTYPE html>
@@ -12,8 +14,17 @@ session::start();
     </head>
     <body>
         <section>
+
+
             <div>
                 <h4>Add User</h4>
+                <?php
+                    if ($_SESSION["addUserFlag"] = 1){
+                        echo "<h4 style = 'color: red; 
+                        '>{$_SESSION["addUserErrorMsg"]}</h4>
+                        ";
+                    }
+                ?>
                     <form action="includes/signup.inc.php" method="post">
                         <input type="text" name="employee_ID" placeholder="Employee ID">
                         <input type="password" name="pwd" placeholder="Password">
@@ -29,6 +40,13 @@ session::start();
             </div>
             <div>
                 <h4>LOGIN</h4>
+                <?php
+                    if ($_SESSION["loginErrorFlag"] = 1){
+                        echo "<h4 style = 'color: red; 
+                        '>{$_SESSION["loginErrorMsg"]}</h4>
+                        ";
+                    }
+                ?>
                 <form action="includes/login.inc.php" method="post">
                         <input type="text" name="employee_ID" placeholder="Employee ID">
                         <input type="password" name="pwd" placeholder="Password">
