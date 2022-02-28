@@ -10,19 +10,18 @@ class removeProductContr extends removeProduct {
         // reference this property in this class
         $this->product_ID = $product_ID;
     }
-    //checks if empty, emoves product
+
     public function checkProduct() {
         if($this->emptyInput() == false) {
-            header("location: ../index.php?error=emptyinput");
+            header("location: ../homepage.php?error=emptyinput");
             exit();
         }
-        //removes product
         $this->removeProduct($this->product_ID);
     }
 
     // error handling using methods
 
-    // bool
+    // check if any of the fields are empty
     private function emptyInput() {
         $result;
 

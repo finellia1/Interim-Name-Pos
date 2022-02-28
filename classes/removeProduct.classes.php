@@ -1,8 +1,7 @@
 <?php
-//functions to remove product
+
 class removeProduct extends Dbh {
 
-    //connects to db, prepares and executes $stmt, removes entry from db
     protected function removeProduct($product_ID) {
         $stmt = $this->connect()->prepare('DELETE FROM product WHERE product_ID = ?;');
 
