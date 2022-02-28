@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="navBar.css">
     <script>
             let img = document.querySelector('img');
             let start = img.src;
@@ -20,7 +20,7 @@
                 <div class = "nav-bar">
                     <ul>
                         <li>
-                            <a class = "logo" href="historyPage.php">
+                            <a class = "logo" href="settingsPage.php">
                                     <img src=".\Assets\logo-placeholder-image.png" height = 60px width = 60px alt="logo">
                             </a>
                         </li>

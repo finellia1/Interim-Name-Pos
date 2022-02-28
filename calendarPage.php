@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="navBar.css">
     <script>
             let img = document.querySelector('img');
             let start = img.src;
