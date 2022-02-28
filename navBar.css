@@ -31,23 +31,23 @@ main {
 }
 .nav-bar li:nth-child(1) {
   top: 60px;
-  left: 12px;
+  left: 10px;
 }
 .nav-bar li:nth-child(2) {
   top: 170px;
-  left: 12px;
+  left: 10px;
 }
 .nav-bar li:nth-child(3) {
   top: 290px;
-  left: 12px;
+  left: 10px;
 }
 .nav-bar li:nth-child(4) {
   top: 410px;
-  left: 13px;
+  left: 10px;
 }
 .nav-bar li:nth-child(5) {
   top: 530px;
-  left: 15px;
+  left: 10px;
 }
 .nav-bar li:nth-child(6) {
   top: 650px;
@@ -55,16 +55,12 @@ main {
 }
 .nav-bar li:nth-child(7) {
   top: 845px;
-  left: 12px;
+  left: 10px;
 }
 
 .nav-bar li img {
   padding-top: 23px;
 }
-.nav-bar li img :hover {
-  transform: scale(1.5);
-}
-
 .nav-bar li:nth-child(1) img {
   padding-top: 0px;
 }
