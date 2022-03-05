@@ -38,11 +38,11 @@ class AddProductContr extends AddProduct {
 
     public function addProduct() {
         if($this->emptyInput() == false) {
-            header("location: ../includes/inventory.php");
+            header("location: ../homepage.php?error='emptyInput'");
             exit();
         }
         if($this->duplicateProduct() == false) {
-            header("location: ../includes/inventory.php");
+            header("location: ../homepage.php?error='duplicateProduct");
             exit();
         }
 
