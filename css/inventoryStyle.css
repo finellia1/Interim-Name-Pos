@@ -1,0 +1,113 @@
+html{
+    font-family: sans-serif;
+}
+
+.inventoryItem{
+    margin:25px;
+}
+
+.inline{
+    display: inline;
+}
+
+td, th{
+    padding:8px;
+    text-align: center;
+}
+
+th{
+    border-bottom: 2px black solid;
+}
+
+.invView{
+    text-align: center;
+}
+
+label{
+    margin: 10px;
+    padding: 10px;
+}
+
+.editParam{
+    margin: 15px;
+}
+
+.alignLeft{
+    text-align: left;
+}
+
+
+.dropShadow{
+    box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+
+}
+button{
+    text-align: center;
+}
+
+.popup{
+    visibility: hidden;
+    /*Found on https://css-tricks.com/quick-css-trick-how-to-center-an-object-exactly-in-the-center/*/
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+    z-index: 25;
+    background-color: white;
+}
+
+#inventoryWrapper{
+    height:1000px;
+    overflow: scroll;
+}
+
+#addItemBtnTH{
+    border: none;
+}
+
+#searchBtn{
+    border: none;
+}
+
+#searchType{
+    border: none;
+}
+
+.noBorder{
+    border: none;
+}
+
+button{
+    border: none;
+    padding: 15px;
+    border-radius: 100px;
+    background: linear-gradient(135.76deg, #FF0F7B 7.5%, #F89B29 88.59%);
+    color: white;
+    box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.15);
+}
+
+input[type=submit]{
+    border: none;
+    padding: 15px;
+    border-radius: 100px;
+    background: linear-gradient(135.76deg, #FF0F7B 7.5%, #F89B29 88.59%);
+    color: white;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.15);
+}
+
+input[type=text]{
+    border: none;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.15);
+    padding:5px;
+    border-radius: 15px;
+}
+
+#searchTypeInput{
+    border: none;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.15);
+    padding:5px;
+    border-radius: 15px;
+}
+
