@@ -1,4 +1,7 @@
 <?php
+
+    
+
     session_start();       //session is used to get cart from previous page.
     $cart = $_SESSION['cartArray'];
     // print_r($cart);
@@ -7,20 +10,43 @@
 
     $totalcost= 0;
     $tax = 1.08;
-    
 
-    $stmt = $conn ->query('SELECT invoice_ID FROM invoice');
-    $ids = $stmt -> fetchALL(PDO::FETCH_COLUMN);
-    $newID =array_pop($ids);
-    $newID++;
-
-    // $sql = "INSERT INTO INVOICE(invoice_ID, event_order_ID_fk, client_ID_fk, invoice_date, total_due) VALUES(?,?,?,?,?)" ;  //adding new invoice to database.
-    // $pdo->prepare($sql)->execute([$newID,otherstuff]);
-
-    for($i = 0; $i<6 ; $i++){
+    for($i = 0; $i<6 ; $i++){                   //for testing
         $quant[$i]=random_int(1,3);
     }
+
+    for($i =0; $i<count($cart); $i++){
+        
+        $totalcost = $totalcost + $cart[$i]['reg_price'] *$quant[$i];
+
+    }
+  
+
+    $stmt = $conn ->query('SELECT invoice_ID FROM invoice');  //gets all invoice_ID numbers to figure out current invoiceID
+    $ids = $stmt -> fetchALL(PDO::FETCH_COLUMN);
+    $newID =array_pop($ids);                                  //gets most recent id and increments it.
+    $newID++;
+
+    $stmt2 = $conn ->query('SELECT * FROM client');            //gets all client info, that will be used display info on invoice, see if tax exempt,
+    $clients = $stmt2 -> fetchALL(PDO::FETCH_ASSOC);
+    $currentClient= $clients[2];                                // index 0-4 to check each client in the current database.
     
+    if ($currentClient['tax_exempt'] == 0){
+        
+        $totalcost = $totalcost * $tax;
+
+    }
+    
+    
+    // the index can be changed to change the invoice based on the client.(for testing purposes)
+    // print_r($currentClient);
+    
+    //// Adding new invoice info into database. It works, but its currently commented out to make testing easier. 
+
+    // $timeNow=date("Y-m-d");
+    // $query= 'INSERT INTO invoice(invoice_ID, event_order_ID_fk, client_ID_fk, invoice_date, total_due) VALUES (?,?,?,?,?)';
+    // $statement = $conn->prepare($query)->execute([$newID, 1, $currentClient['client_ID'],$timeNow,$totalcost]);
+
 ?>
 
 <!DOCTYPE html>
@@ -93,9 +119,8 @@
         /* Add shadows to create the "card" effect */
         box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.06);
         transition: 0.3s;
-        border-radius: 10px;
+        border-radius: 25px;
         font-family: roboto-black;
-        width: 40%;
         margin-left: auto;
         margin-right: auto;
 
@@ -130,8 +155,8 @@
         }
 
         .dot {
-            height: 100px;
-            width: 100px;
+            height: 70px;
+            width: 70px;
             background-image:linear-gradient(135.76deg, #FF0F7B 7.5%, #F89B29 88.59%);
             border-radius: 50%;
             display: inline-block;
@@ -145,7 +170,8 @@
 
             font-family:roboto-black ;
             padding-left: 10px;
-            font-size: 70px;
+            font-size: 60px;
+            line-height: 39px;
 
             background-image:linear-gradient(135.76deg, #FF0F7B 7.5%, #F89B29 88.59%);
             -webkit-background-clip: text;
@@ -161,7 +187,7 @@
             background-image:linear-gradient(135.76deg, #FF0F7B 7.5%, #F89B29 88.59%) ;
             border: none;
             color: white;
-            border-radius: 10px;
+            border-radius: 100px;
             padding: 20px;
             text-align: center;
             text-decoration: none;
@@ -170,7 +196,25 @@
             margin: 4px 2px;
             position: absolute;
             right: 50px;
+
+
         }
+
+        .parent {
+            margin: 1rem;
+            padding-top: 1rem 1rem;
+            text-align: center;
+        }
+        .child {
+            display: inline-block;
+            padding-top: 1rem 1rem;
+            vertical-align: middle;
+            text-align: left;
+        }
+        html, body {
+            min-height: 100%;
+        }
+
 
     </style>
 
@@ -178,14 +222,46 @@
 <body>
 
     <div class="container">
-       <div class="container" style="padding-top:50px"> 
+       <div class="container" style="padding-top:10px"> 
            <span class="dot"></span>
-        <h1>Invoice #<?php echo $newID ?></h1>
+        <h1>Invoice #<?php echo $newID ?></h1>     
+        </div>
+       <div class="topright">
+       <h1 id="title"> HVAV</h1>
+       </div>
     </div>
-       <div class="topright"><h1 id="title"> HVAV</h1></div>
-    </div>
-        
     
+        
+    <div class="parent">
+
+        <div class="child">
+        <!--Displays all shop information in a card -->
+          <div class="card" style="width: 100%;">
+              <h2 style="padding: 10px;">HVAV</h2>
+              <h3 style="padding-left: 10px; padding-right: 10px;">845-797-7000</h3>
+              <h3 style="padding: 10px;">1914 US-44, Modena, NY, 12548</h3>
+          </div>
+        </div>
+        <div class="child"> 
+
+            <div class="card" style="width: 100%;">        <!--Displays all client information in a card -->
+
+                <h2 style="padding: 10px;"><?php echo $currentClient['company'];?></h2>
+                <h3 style="padding-left: 10px; padding-right: 10px;"><?php echo $currentClient['phone']; ?></h3>
+                <h3 style="padding: 10px;">
+                <?php
+
+                    echo $currentClient['address_line1']. ", " . $currentClient['city']. ", " . $currentClient['state']. ", " . $currentClient['zip_code'];
+
+                ?>
+                </h3>
+
+            </div>
+
+        </div>
+
+    </div>
+       
 
         <table>
             <tr>
@@ -203,7 +279,7 @@
                 
 
             <?php
-                for($i =0; $i<count($cart); $i++){
+                for($i =0; $i<count($cart); $i++){          //displays all items to be purchased in the invoice.
 
                     echo '<tr><td>'. $cart[$i]['product_ID'].'</td>';
                     echo '<td>'. $cart[$i]['product_description'].'</td>';
@@ -211,7 +287,6 @@
                     echo '<td>'. "$". $cart[$i]['reg_price'].'</td>';
                     echo '<td>'. "$". sprintf("%.2f",$cart[$i]['reg_price'] *$quant[$i]).'</td>';
 
-                    $totalcost = $totalcost + $cart[$i]['reg_price'] *$quant[$i];
 
                 }
             
@@ -222,8 +297,17 @@
         
             <div class="card" style="width: 40%;">
                     
-                <h2 style="padding-left: 4px;">SubTotal : <?php echo "$".sprintf("%.2f", ($totalcost * $tax)); ?></h1>
-                <h4 style="padding-left: 4px;"> Tax: 8.0% </h4>
+                <h2 style="padding-left: 4px;">SubTotal : <?php echo "$".sprintf("%.2f", ($totalcost)); ?></h1>
+                <h4 style="padding-left: 4px;"> 
+                <?php
+                if($currentClient['tax_exempt'] == 1){ //checks if client is tax exempt or not, and changes the invoice accordingly
+                    echo "Text Exempt";
+                }
+                else{
+                    echo "Tax: 8%";
+                }
+                ?>
+                </h4>
                 <h1 style="position: relative;">Balance(USD):</h1>
                            
             </div>  
