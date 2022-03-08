@@ -10,7 +10,7 @@ main {
   flex: 1;
   display: flex;
 }
-.left-panel {
+.leftPanel {
   flex: 0.25;
 }
 .nav-bar {
@@ -68,9 +68,14 @@ main {
 .middlePanel {
   flex: 3;
   background-color: rgba(196, 196, 196, 0.16);
+  width: 100%;
+  height: 100%;
+}
+.inventory {
+  height: inherit;
 }
 
 .rightPanel {
   flex: 1.5;
-  background-color: aquamarine;
+  background-color: white;
 }
