@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POS</title>
 
-    <link rel="stylesheet" href="calendarPage.css">
+    <link rel="stylesheet" href=".\css\calendarPage.css">
     <script>
             let img = document.querySelector('img');
             let start = img.src;
@@ -105,7 +105,7 @@
                         </div>
 
                         <div id="modalBackDrop"></div>
-                        <script src="calendarScript.js"></script>
+                        <script src=".\js\calendarScript.js"></script>
             </div>
             <div class = "rightPanel">
                 <h1> Right Panel </h1>
