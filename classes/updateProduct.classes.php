@@ -2,7 +2,7 @@
 //functions for updating products
 class UpdateProduct extends Dbh {
     //for each field passed, connects to db, prepares and executes $stmt, updates entry in db
-    protected function setProduct($product_ID, $product_type, $name, $description, $model_no, $regular_price, $quantity_in_stock) {
+    protected function setProduct($product_ID, $name, $description, $product_type, $make, $model_no, $quantity_unit, $quantity_in_stock,$isPromotional,$regular_price,$discounted_price,$num_rented,$num_broken) {
         if(!empty($product_type)) {
             $stmt = $this->connect()->prepare("UPDATE product SET product_type = $product_type WHERE product_ID = $product_ID" );
 

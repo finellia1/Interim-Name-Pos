@@ -3,25 +3,39 @@
 class UpdateProductContr extends UpdateProduct {
     // create the properties inside the class
     private $product_ID;
-    private $product_type;
     private $name;
     private $description;
+    private $product_type;
+    private $make;
     private $model_no;
-    private $regular_price;
+    private $quantity_unit;
     private $quantity_in_stock;
+    private $isPromotional;
+    private $regular_price;
+    private $discounted_price;
+    private $num_rented;
+    private $num_broken;
 
     // pass through the variables from the form
-    public function __construct($product_ID, $product_type, $name, $description, $model_no, $regular_price,  $quantity_in_stock)
+    public function __construct($product_ID, $name, $description, $product_type, $make, $model_no, $quantity_unit, $quantity_in_stock,$isPromotional,$regular_price,$discounted_price,$num_rented,$num_broken)
     {
+        echo($product_ID);
         // reference this property in this class
         $this->product_ID = $product_ID;
-        $this->product_type = $product_type;
         $this->name = $name;
         $this->description = $description;
-        $this->model_no =$model_no;
-        $this->regular_price = $regular_price;
+        $this->product_type = $product_type;
+        $this->make =$make;
+        $this->model_no = $model_no;
+        $this->quantity_unit = $quantity_unit;
         $this->quantity_in_stock = $quantity_in_stock;
+        $this->isPromotional = $isPromotional;
+        $this->regular_price = $regular_price;
+        $this->discounted_price = $discounted_price;
+        $this->num_rented =$num_rented;
+        $this->num_broken =$num_broken;
     }
+
     //updates product
     public function updateProduct() {
         if(empty($this->product_ID)) {
@@ -29,6 +43,6 @@ class UpdateProductContr extends UpdateProduct {
             exit();
         }
         //sets product
-        $this->setProduct($this->product_ID, $this->product_type, $this->name, $this->description, $this->model_no, $this->regular_price, $this->quantity_in_stock);
+        $this->setProduct($this->product_ID,$this->name,$this->description,$this->product_type,$this->make,$this->model_no,$this->quantity_unit,$this->quantity_in_stock,$this->isPromotional,$this->regular_price,$this->discounted_price,$this->num_rented,$this->num_broken);
     }
 }

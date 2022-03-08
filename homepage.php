@@ -70,7 +70,7 @@
                     <h1>Inventory Page</h1>
                     <br><br>
                     <div id = "searchPopup" class = "popup">
-                        <form name="edit" action="../test/includes/inventory.inc.php" method="POST">
+                        <form name="search" action="../interim-name-pos/includes/inventory.inc.php" method="POST">
                             <table class="dropShadow">
                                 <tr>
                                     <td class="alignLeft">
@@ -401,14 +401,31 @@
                                         echo "<td> {$row['discounted_price']} </td>";
                                         echo "<td> {$row['num_rented']} </td>";
                                         echo "<td> {$row['num_broken']} </td>";
-                                        echo "<td><button type='button' onclick='addItem()'>Edit</button>";
-                                        echo "<form name='remove' action='../test/includes/removeProduct.inc.php' method='post'>";
+
+                                        $p_id = "'".$row['product_ID']."'";
+                                        $p_type = "'".$row['product_type']."'";
+                                        $p_name = "'".$row['product_name']."'";
+                                        $p_description = "'".$row['product_description']."'";
+                                        $p_make = "'".$row['make']."'";
+                                        $p_model = "'".$row['model']."'";
+                                        $p_qty_unit = "'".$row['qty_unit']."'";
+                                        $p_qty_in_stock = "'".$row['qty_in_stock']."'";
+                                        $p_is_promotional = "'".$row['is_promotional']."'";
+                                        $p_reg_price = "'".$row['reg_price']."'";
+                                        $p_discounted_price = "'".$row['discounted_price']."'";
+                                        $p_num_rented = "'".$row['num_rented']."'";
+                                        $p_num_broken = "'".$row['num_broken']."'";
+
+                                        printf('<td><button type="button" onclick="editPane(%s, %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)">Edit</button>',$p_id,$p_type, $p_name, $p_description, $p_make, $p_model, $p_qty_unit, $p_qty_in_stock, $p_is_promotional, $p_reg_price, $p_discounted_price, $p_num_rented, $p_num_broken);
+
+                                        echo "<form name='remove' action='../interim-name-pos/includes/removeProduct.inc.php' method='post'>";
                                         echo "<td><button type='submit' name='submit' value='submit'>Delete</button>";
                                         echo "<td><button type='button'>Cart</button>";
                                         echo "<td> <input type='hidden' name='deleteID' id='deleteID' value='{$row['product_ID']}'> </td>";
                                         echo "</form>";
                                         echo "</tr>";
                                     }
+
                                 } catch (\PDOException $e) {
                                         $_SESSION["searchTypeInput"] = "select * from product";
                                         throw new \PDOException($e->getMessage(), (int)$e->getCode());
