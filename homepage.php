@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="homePage.css">
+    <link rel="stylesheet" href=".\css\homePage.css">
     <script>
             let img = document.querySelector('img');
             let start = img.src;
