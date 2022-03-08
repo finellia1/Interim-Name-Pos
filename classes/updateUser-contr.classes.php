@@ -1,4 +1,13 @@
 <?php
+session_start();
+
+if (isset($_SESSION["updateUserErrorFlag"])){
+    $_SESSION["updateUserErrorFlag"] = 0;
+}
+if (isset($_SESSION["updateUserErrorMsg"])){
+    $_SESSION["updateUserErrorMsg"] = "";
+}
+
 
 class UpdateUserContr extends UpdateUser {
     // create the properties inside the class
@@ -25,6 +34,8 @@ class UpdateUserContr extends UpdateUser {
     //updates user
     public function updateUser() {
         if(empty($this->employee_ID)) {
+            $_SESSION["loginErrorFlag"] = 1;
+            $_SESSION["loginErrorMsg"] = "Empty User!";
             header("location: ../index.php?error=emptyUSER");
             exit();
         }

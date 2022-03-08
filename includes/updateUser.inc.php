@@ -1,4 +1,5 @@
 <?php
+
 //gets data from form, creates updateUser Object, passes to updateUser()
 if(isset($_POST["submit"])) 
 {

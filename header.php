@@ -2,6 +2,10 @@
     require 'classes/session.classes.php';
     session::start(); // starts session
     session::display();  // test
+    session_start();
+    include 'includes/flagInit.php';
+    resetFlags();
+
 ?>
 
 <!DOCTYPE html>
@@ -15,6 +19,13 @@
         <section>
             <div>
                 <h4>Add User</h4>
+                    <?php
+                        if ($_SESSION["addUserFlag"] = 1){
+                            echo "<h4 style = 'color: red; 
+                            '>{$_SESSION["addUserErrorMsg"]}</h4>
+                            ";
+                        }
+                    ?>
                     <form action="includes/signup.inc.php" method="post">
                         <input type="text" name="employee_ID" placeholder="Employee ID">
                         <input type="password" name="pwd" placeholder="Password">
@@ -88,6 +99,13 @@
                     </form>
             </div>
             <div>
+                <?php
+                    if ($_SESSION["updateUserErrorFlag"] = 1){
+                        echo "<h4 style = 'color: red; 
+                        '>{$_SESSION["updateUserErrorMsg"]}</h4>
+                        ";
+                    }
+                ?>
                 <h4>Update User</h4>
                     <form action="includes/updateUser.inc.php" method="post">
                         <input type="text" name="employee_ID" placeholder="Employee ID">

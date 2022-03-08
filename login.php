@@ -1,3 +1,10 @@
+<?php 
+    include 'classes/session.classes.php';
+    include 'includes/flagInit.php';
+    session::start();
+    resetFlags();
+?>
+
 <!DOCTYPE html>    
 <html>    
   <head>    
@@ -10,6 +17,13 @@
       <p></p><br>    
       <div class="center">    
         <form id="login" method="POST" action="includes/login.inc.php">    
+         <?php
+              if ($_SESSION["loginErrorFlag"] = 1){
+                  echo "<h4 style = 'color: red; 
+                  '>{$_SESSION["loginErrorMsg"]}</h4>
+                  ";
+              }
+            ?>
           <h1 class="loginWord "><b>Login:</h1>   
           <input type="text" name="employee_ID" id="ip1" placeholder="Employee ID">    
           <br><br>    
@@ -22,7 +36,7 @@
           Click <a href="#">here</a> to register</h3>
         </form>   
       </div>
-    </div>                             <!--Second Side of Page-->
+    </div>                             <!--Right Side of Page-->
     <div class="rightSideLogin brandGradient">
       <div class="center">
         <h1 class="posText"> Internim POS </h1> 

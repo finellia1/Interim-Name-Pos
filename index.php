@@ -1,7 +1,9 @@
 <?php
     require 'header.php';
     //header hides code
+
 ?>
+
 
 <main> 
     <?php //test

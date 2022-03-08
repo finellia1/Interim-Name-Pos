@@ -21,3 +21,4 @@ if(isset($_POST["submit"]))
     header("location: ../index.php?error=LOGGED IN");
     // going back to front page
 }
+             

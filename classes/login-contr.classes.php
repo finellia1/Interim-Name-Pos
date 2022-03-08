@@ -1,5 +1,13 @@
 <?php
 
+session_start();
+if (isset($_SESSION["loginErrorFlag"])){
+    $_SESSION["loginErrorFlag"] = 0;
+}
+if (isset($_SESSION["loginErrorMsg"])){
+    $_SESSION["loginErrorMsg"] = "";
+}
+
 class LoginContr extends Login {
     // create the properties inside the class
     private $employee_ID;
@@ -15,7 +23,9 @@ class LoginContr extends Login {
     //logs in
     public function loginUser() {
         if($this->emptyInput() == false) {
-            header("location: ../index.php?error=emptyinput");
+            $_SESSION["loginErrorFlag"] = 1;
+            $_SESSION["loginErrorMsg"] = "Please fill in all fields";
+            header("location: ../login.php?error=emptyinput");
             exit();
         }
         //gets user

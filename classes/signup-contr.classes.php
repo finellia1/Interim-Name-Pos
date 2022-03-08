@@ -1,4 +1,11 @@
 <?php
+session_start();
+if (isset($_SESSION["loginErrorFlag"])){
+    $_SESSION["loginErrorFlag"] = 0;
+}
+if (isset($_SESSION["loginErrorMsg"])){
+    $_SESSION["loginErrorMsg"] = "";
+}
 
 class SignupContr extends Signup {
     // create the properties inside the class
@@ -27,22 +34,32 @@ class SignupContr extends Signup {
     //error handling, sets user
     public function signupUser() {
         if($this->emptyInput() == false) {
+            $_SESSION["addUserFlag"] = "1";
+            $_SESSION["addUserErrorMsg"] = "Empty Input";
             header("location: ../index.php?error=emptyinput");
             exit();
         }
         if($this->invalidemployee_ID() == false) {
+            $_SESSION["addUserFlag"] = "1";
+            $_SESSION["addUserErrorMsg"] = "Invalid employee ID";
             header("location: ../index.php?error=username");
             exit();
         }
         if($this->invalidEmail() == false) {
+            $_SESSION["addUserFlag"] = "1";
+            $_SESSION["addUserErrorMsg"] = "Invalid Email";
             header("location: ../index.php?error=email");
             exit();
         }
         if($this->pwdMatch() == false) {
+            $_SESSION["addUserFlag"] = "1";
+            $_SESSION["addUserErrorMsg"] = "Passwords do not match";
             header("location: ../index.php?error=passwordmatch");
             exit();
         }
         if($this->duplicateUser() == false) {
+            $_SESSION["addUserFlag"] = "1";
+            $_SESSION["addUserErrorMsg"] = "User already exists! Use a unique employee ID or email";
             header("location: ../index.php?error=useroremailtaken");
             exit();
         }

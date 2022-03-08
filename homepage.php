@@ -232,7 +232,7 @@
                                     </td>
                                     <td class="alignLeft">
                                         <!-- Different value and name --> 
-                                        <input type="text" name="product_name" value="itemName"><br>
+                                        <input type="text" name="product_name" placeholder="itemName"><br>
                                     </td>
                                 </tr>
                                 <tr>
@@ -240,7 +240,7 @@
                                         <label for="itemName">Product Type:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="product_type" value="productType"><br>
+                                        <input type="text" name="product_type" placeholder="productType"><br>
                                     </td>
                                 </tr>
                                 <tr>
@@ -248,7 +248,7 @@
                                         <label for="itemName">Description:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="product_description" value="description"><br>
+                                        <input type="text" name="product_description" placeholder="description"><br>
                                     </td>
                                 </tr>
                                 <tr>
@@ -256,7 +256,7 @@
                                         <label for="itemName">Make:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text"  name="make" value="make"><br>
+                                        <input type="text"  name="make" placeholder="make"><br>
                                     </td>
                                 </tr>
                                 <tr>
@@ -264,7 +264,7 @@
                                         <label for="itemName">Model:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="model" value="model"><br>
+                                        <input type="text" name="model" placeholder="model"><br>
                                     </td>
                                 </tr>
                                 <tr>
@@ -272,7 +272,7 @@
                                         <label for="itemName">Quantity_Unit:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="qty_unit" value="quantity"><br>
+                                        <input type="text" name="qty_unit" placeholder="quantity"><br>
                                     </td>
                                 </tr>
                                 <tr>
@@ -280,7 +280,7 @@
                                         <label for="itemName">Quantity In Stock:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="qty_in_stock" value="quantityInStock"><br>
+                                        <input type="text" name="qty_in_stock" placeholder="quantityInStock"><br>
                                     </td>
                                 </tr>
                                 <tr>
@@ -296,7 +296,7 @@
                                         <label for="itemName">Regular Price</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="reg_price" value="regularPrice"><br>
+                                        <input type="text" name="reg_price" placeholder="regularPrice"><br>
                                     </td>
                                 </tr>
                                 <tr>
@@ -304,7 +304,7 @@
                                         <label for="itemName">Discounted Price:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="discounted_price" value="discountedPrice"><br>
+                                        <input type="text" name="discounted_price" placeholder="discountedPrice"><br>
                                     </td>
                                 </tr>
                                 <tr>
@@ -312,7 +312,7 @@
                                         <label for="itemName">Number Rented:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="num_rented" value="numberRented"><br>
+                                        <input type="text" name="num_rented" placeholder="numberRented"><br>
                                     </td>
                                 </tr>
                                 <tr>
@@ -320,12 +320,12 @@
                                         <label for="itemName">Number Broken</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="num_broken" value="numberBroken"><br>
+                                        <input type="text" name="num_broken" placeholder="numberBroken"><br>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input type="submit" name = "submit" value="submit"></button>
+                                        <input type="submit" name = "submit" placeholder="submit"></button>
                                     </td>
                                     <td>
                                         <button type="button" onclick="exitPane('addPopup')">Cancel!</button>

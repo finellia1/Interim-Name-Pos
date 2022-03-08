@@ -1,4 +1,11 @@
 <?php
+session_start();
+if (isset($_SESSION["loginErrorFlag"])){
+    $_SESSION["loginErrorFlag"] = 0;
+}
+if (isset($_SESSION["loginErrorMsg"])){
+    $_SESSION["loginErrorMsg"] = "";
+}
 //functions for login
 class Login extends Dbh {
 
@@ -8,13 +15,17 @@ class Login extends Dbh {
 
         if(!$stmt->execute(array($employee_ID))) {
             $stmt = null;
-            header('location: ../index.php?error=stmtfailed3');
+            $_SESSION["loginErrorFlag"] = 1;
+            $_SESSION["loginErrorMsg"] = "Failed login;";
+            header('location: ../login.php?error=stmtfailed3');
             exit();
         }
 
         if($stmt->rowCount() == 0) {
             $stmt = null;
-            header("location: ../index.php?error=usernotfound1");
+            $_SESSION["loginErrorFlag"] = 1;
+            $_SESSION["loginErrorMsg"] = "Username not found; Please try again";
+            header("location: ../login.php?error=usernotfound1");
             exit();
         }
 
@@ -23,20 +34,27 @@ class Login extends Dbh {
         //checks if pwd and pwdHashed match
         if($checkPwd == False) {
             $stmt = null;
-            header("location: ../index.php?error=wrongpassword");
+            $_SESSION["loginErrorFlag"] = 1;
+            $_SESSION["loginErrorMsg"] = "Wrong password; Please try again";
+            header("location: ../login.php?error=wrongpassword");
             exit();
         } elseif($checkPwd == true) {
             $stmt = $this->connect()->prepare('SELECT * FROM employee WHERE employee_ID = ? and pwd = ?;');
             //checks db for matching login info
             if(!$stmt->execute(array($employee_ID, $pwdHashed[0]["pwd"]))) {
                 $stmt = null;
-                header("location: ../index.php?error=stmtfailed4");
+                $_SESSION["loginErrorFlag"] = 1;
+                $_SESSION["loginErrorMsg"] = "Something went wrong, please try again";
+                //Come back, this might be wrong
+                header("location: ../login.php?error=stmtfailed4");
                 exit();
             }
 
             if($stmt->rowCount() == 0) {
                 $stmt = null;
-                header("location: ../index.php?error=usernotfound2");
+                $_SESSION["loginErrorFlag"] = 1;
+                $_SESSION["loginErrorMsg"] = "Username not found; Please try again";
+                header("location: ../login.php?error=usernotfound2");
                 exit();
             }
 

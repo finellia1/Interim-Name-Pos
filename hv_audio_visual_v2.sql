@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2022 at 05:12 PM
+-- Generation Time: Mar 06, 2022 at 09:55 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -20,22 +20,18 @@ SET time_zone = "+00:00";
 --
 -- Database: `hv_audio_visual`
 --
-CREATE DATABASE IF NOT EXISTS `hv_audio_visual` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `hv_audio_visual`;
 
--- --------------------------------------------------------
+----------------------------------------------------------
 
---
--- Table structure for table `client`
---
+-- Create 'client' Table
 
 CREATE TABLE `client` (
   `client_ID` int(11) NOT NULL,
   `client_type` varchar(25) NOT NULL,
+  `company` varchar(50) NOT NULL,
   `first_name` varchar(25) NOT NULL,
   `last_name` varchar(25) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `company` varchar(50) NOT NULL,
   `address_line1` varchar(50) NOT NULL,
   `address_line2` varchar(50) NOT NULL,
   `city` varchar(50) NOT NULL,
@@ -45,63 +41,48 @@ CREATE TABLE `client` (
   `client_notes` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `client`
---
 
-INSERT INTO `client` (`client_ID`, `client_type`, `first_name`, `last_name`, `email`, `company`, `address_line1`, `address_line2`, `city`, `state`, `zip_code`, `phone`, `client_notes`) VALUES
-(1, 'corporate', 'Eloise', 'Parker', 'jonesgrill@email', 'Jones Grill', '49 Baker St.', '', 'Modena', 'NY', '12515', '845-555-2000', 'Add client notes here'),
-(2, 'corporate', 'Mary', 'Franklin', 'mfranklin@email', 'HV Desserts', '68 Main St.', '', 'Kingston', 'NY', '12401', '845-555-2001', 'Add client notes here'),
-(3, 'small business', 'Gerald', 'Davis', 'artistshaven@email', 'Artists Haven', '127 Rte. 44', '', 'Poughkeepsie', 'NY', '12401', '845-555-2002', 'Add client notes here'),
-(4, 'corporate', 'Megan', 'Smith', 'msmith@email', 'Ulster County Realtors', '14 Albany Ave.', '', 'Kingston', 'NY', '12401', '845-555-2003', 'Add client notes here'),
-(5, 'family', 'Derrick', 'Wilson', 'dwilson@email', '', '5 Water St.', '', 'New Paltz', 'NY', '12561', '845-555-2004', 'Add client notes here');
+-- Insert Test Data into 'client' Table
 
--- --------------------------------------------------------
+INSERT INTO `client` (`client_ID`, `client_type`, `company`, `first_name`, `last_name`, `email`, `address_line1`, `address_line2`, `city`, `state`, `zip_code`, `phone`, `client_notes`) VALUES
+(6, 'corporate', 'Jones Grill', 'Eloise', 'Parker', 'jonesgrill@email', '49 Baker St.', '', 'Modena', 'NY', '12515', '845-555-2000', 'Add client notes here.'),
+(7, 'corporate', 'HV Desserts', 'Mary', 'Franklin', 'mfranklin@email.com', '68 Main St.', '', 'Kingston', 'NY', '12401', '845-555-2001', ''),
+(8, 'small business', 'Artists Haven', 'Gerald', 'Davis', 'gdavis@email.com', '127 Rte. 44', '', 'Poughkeepsie', 'NY', '12601', '845-555-2003', ''),
+(9, 'corporate', 'Ulster County Realtors', 'Megan', 'Smith', 'msmith@email.com', '14 Albany Ave.', '', 'Kingston', 'NY', '12401', '845-555-2004', ''),
+(10, 'family', 'none', 'Derrick', 'Wilson', 'dwilson@email.com', '5 Water St.', 'Apt. 2A', 'New Paltz', 'NY', '12561', '845-555-2006', '');
 
---
--- Table structure for table `employee`
---
+----------------------------------------------------------
+
+-- Create 'employee' Table
 
 CREATE TABLE `employee` (
   `employee_ID` int(15) NOT NULL,
-  `security_level_ID_fk` int(11) NOT NULL,
-  `employee_type` varchar(50) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `first_name` varchar(25) NOT NULL,
-  `last_name` varchar(25) NOT NULL,
-  `address_line1` varchar(50) NOT NULL,
-  `address_line2` varchar(50) NOT NULL,
-  `city` varchar(50) NOT NULL,
-  `state` varchar(2) NOT NULL,
-  `zip_code` varchar(10) NOT NULL,
-  `phone` varchar(15) NOT NULL
+  `security_ID_fk` int(11) NOT NULL,
+  `job_title` varchar(25) NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `employee`
---
 
-INSERT INTO `employee` (`employee_ID`, `security_level_ID_fk`, `employee_type`, `email`, `first_name`, `last_name`, `address_line1`, `address_line2`, `city`, `state`, `zip_code`, `phone`) VALUES
-(1, 1, 'Systems Adminis', 'sysadmin@hvav', 'Sarah', 'Jones', '21 Main St.', 'Apt. 3B', 'Modena', 'NY', '12515', '845-555-1000'),
-(2, 2, 'Manger', 'mgr@hvav', 'John', 'Smith', '27 Elm Dr.', '', 'Kingston', 'NY', '12401', '845-555-1001'),
-(3, 3, 'Technician', 'tech1@hvav', 'Amy', 'Baker', '217 Mountain Rd.', '', 'Gardiner', 'NY', '12525', '845-555-1002'),
-(4, 3, 'Warehouse', 'warehouse1@hvav', 'Dan', 'Arnold', '49 Main St.', 'Apt. 2A', 'Gardiner', 'NY', '12525', '845-555-1003'),
-(5, 3, 'Warehouse', 'warehouse2@hvav', 'Bill', 'Miller', '139 Smith St.', '', 'Poughkeepsie', 'NY', '12601', '845-555-1004');
+-- Insert Data into 'employee' Table
 
--- --------------------------------------------------------
+INSERT INTO `employee` (`employee_ID`, `security_ID_fk`, `job_title`, `first_name`, `last_name`, `email`) VALUES
+(1, 1, 'Systems Adminis', 'Sarah', 'Smith', 'ssmith@email.com'),
+(2, 2, 'Manger', 'John', 'Jones', 'jjones@email.com'),
+(3, 3, 'Technician', 'Amy', 'Baker', 'abaker@email.com'),
+(4, 3, 'Warehouse', 'Amy', 'Baker', 'abaker@email.com'),
+(5, 3, 'Warehouse', 'Dan', 'Arnold', 'darnold@email.com');
 
---
--- Table structure for table `event_order`
---
+----------------------------------------------------------
+
+-- Create 'event_order' Table
 
 CREATE TABLE `event_order` (
   `event_order_ID` int(11) NOT NULL,
-  `client_ID_fk` int(11) NOT NULL,
   `venue_ID_fk` int(11) NOT NULL,
   `product_ID_fk` int(11) NOT NULL,
-  `package_ID_fk` int(11) NOT NULL,
-  `service_ID_fk` int(11) NOT NULL,
-  `employee_ID_fk` int(11) NOT NULL,
+  `client_ID_fk` int(11) NOT NULL,
   `event_type` varchar(25) NOT NULL,
   `is_nonprofit` tinyint(1) NOT NULL,
   `order_date` date NOT NULL,
@@ -120,124 +101,92 @@ CREATE TABLE `event_order` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `event_order`
+-- Insert Data for 'event_order' Table
 --
 
-INSERT INTO `event_order` (`event_order_ID`, `client_ID_fk`, `venue_ID_fk`, `product_ID_fk`, `package_ID_fk`, `service_ID_fk`, `employee_ID_fk`, `event_type`, `is_nonprofit`, `order_date`, `event_date_start`, `event_date_end`, `event_time_start`, `event_time_end`, `num_trucks_needed`, `num_techs_needed`, `setup_date`, `load_in_time`, `on_site_time`, `breakdown_date`, `created_by`, `event_notes`) VALUES
-(1, 1, 3, 40, 3, 2, 3, 'Wedding', 0, '2001-01-07', '2005-05-03', '2005-05-03', '14:00:00', '17:00:00', 2, 2, '2005-05-02', '10:00:00', '12:00:00', '2005-05-04', 'S. Jones', 'Add event notes here.'),
-(2, 2, 2, 4, 1, 2, 3, 'Conference', 0, '2022-03-11', '2022-03-07', '2022-03-11', '09:00:00', '17:00:00', 2, 1, '2022-03-06', '06:00:00', '07:00:00', '2022-03-12', 'S.Jones', ''),
-(3, 3, 4, 29, 2, 1, 4, 'Party', 0, '2022-02-01', '2022-03-17', '2022-03-17', '13:00:00', '16:00:00', 1, 1, '2022-03-16', '09:00:00', '11:00:00', '2022-03-18', 'J. Smith', ''),
-(4, 1, 1, 14, 3, 2, 4, 'Corporate Training', 0, '2022-02-02', '2022-04-04', '2022-04-04', '10:00:00', '16:00:00', 2, 1, '2022-04-03', '10:00:00', '11:00:00', '2022-04-05', 'S. Jones', ''),
-(5, 2, 4, 38, 1, 4, 3, 'Party', 1, '2022-02-05', '2022-04-24', '2022-04-24', '12:00:00', '19:00:00', 1, 2, '2022-04-23', '09:00:00', '10:00:00', '2022-04-25', 'J. Smith', '');
+INSERT INTO `event_order` (`event_order_ID`, `venue_ID_fk`, `product_ID_fk`, `client_ID_fk`, `event_type`, `is_nonprofit`, `order_date`, `event_date_start`, `event_date_end`, `event_time_start`, `event_time_end`, `num_trucks_needed`, `num_techs_needed`, `setup_date`, `load_in_time`, `on_site_time`, `breakdown_date`, `created_by`, `event_notes`) VALUES
+(8, 3, 40, 6, 'wedding', 0, '2022-01-07', '2022-05-03', '2022-05-03', '14:00:00', '17:00:00', 2, 2, '2022-05-02', '10:00:00', '12:00:00', '2022-05-04', 'S. Jones', 'Add event notes here.'),
+(9, 2, 25, 7, 'Conference', 0, '2022-01-28', '2022-03-07', '2022-03-11', '09:00:00', '17:00:00', 2, 1, '2022-03-06', '06:00:00', '19:00:00', '2022-03-12', 'S. Jones', ''),
+(10, 4, 25, 8, 'Party', 0, '2022-02-01', '2022-03-17', '2022-03-17', '13:00:00', '16:00:00', 1, 1, '2022-03-16', '09:00:00', '11:00:00', '2022-03-16', 'J. Smith', ''),
+(11, 1, 6, 9, 'Corporate Training', 1, '2022-02-02', '2022-04-04', '2022-03-04', '10:00:00', '16:00:00', 2, 1, '2022-04-03', '10:00:00', '11:00:00', '2022-04-05', 'S. Jones', ''),
+(12, 4, 18, 10, 'Party', 0, '2022-02-05', '2022-04-24', '2022-04-24', '13:00:00', '19:00:00', 1, 2, '2022-04-23', '09:00:00', '10:00:00', '2022-04-25', 'J. Smith', '');
 
--- --------------------------------------------------------
+----------------------------------------------------------
 
---
--- Table structure for table `invoice`
---
+-- Create 'invoice' Table
 
 CREATE TABLE `invoice` (
   `invoice_ID` int(11) NOT NULL,
-  `event_order_ID_fk` int(11) NOT NULL,
   `client_ID_fk` int(11) NOT NULL,
+  `event_order_ID_fk` int(11) NOT NULL,
   `invoice_date` date NOT NULL,
+  `invoice_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `is_tax_exempt` tinyint(4) NOT NULL,
+  `payment_terms` text NOT NULL,
+  `date_due` date NOT NULL,
+  `payment_type` varchar(15) NOT NULL,
+  `amount_due` decimal(10,2) NOT NULL,
+  `sales_tax` decimal(10,2) NOT NULL,
   `total_due` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `invoice`
---
 
-INSERT INTO `invoice` (`invoice_ID`, `event_order_ID_fk`, `client_ID_fk`, `invoice_date`, `total_due`) VALUES
-(1, 1, 1, '2022-01-07', '1015.00'),
-(2, 2, 2, '2022-01-28', '765.00'),
-(3, 3, 3, '2022-02-01', '1375.00'),
-(4, 4, 1, '2022-02-02', '1285.00'),
-(5, 5, 2, '2022-02-02', '525.00');
+-- Insert Data into 'invoice' Table
 
--- --------------------------------------------------------
+INSERT INTO `invoice` (`invoice_ID`, `client_ID_fk`, `event_order_ID_fk`, `invoice_date`, `invoice_time`, `is_tax_exempt`, `payment_terms`, `date_due`, `payment_type`, `amount_due`, `sales_tax`, `total_due`) VALUES
+(1, 6, 8, '2022-01-07', '2022-03-07 02:33:28', 0, '', '2022-02-07', 'check', '1015.00', '91.35', '1106.35'),
+(2, 7, 9, '2022-01-28', '2022-03-07 02:27:07', 0, '', '2022-01-28', 'check', '765.00', '68.85', '833.85'),
+(3, 8, 10, '2022-02-01', '2022-03-07 02:27:57', 0, '', '2022-02-01', 'credit card', '1375.00', '123.75', '1498.75'),
+(4, 9, 11, '2022-02-02', '2022-03-07 02:28:51', 0, '', '2022-02-02', 'credit card', '1285.00', '115.65', '1400.65'),
+(5, 10, 12, '2022-02-05', '2022-03-07 02:50:45', 1, '', '2022-02-05', 'cash', '525.00', '47.25', '527.25');
 
---
--- Table structure for table `package`
---
+----------------------------------------------------------
 
-CREATE TABLE `package` (
-  `package_ID` int(11) NOT NULL,
-  `product_ID_fk` int(11) NOT NULL,
-  `package_type` varchar(25) NOT NULL,
-  `package_description` varchar(255) NOT NULL,
-  `package_name` varchar(50) NOT NULL,
-  `package_price` decimal(10,2) NOT NULL
+-- Create iinvoice_product_list' Table
+
+CREATE TABLE `invoice_product_list` (
+  `invoice_product_list_ID` int(11) NOT NULL,
+  `invoice_ID_fk` int(11) NOT NULL,
+  `product_ID_fk` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `package`
---
+-- Insert Data into `invoice_product_list` Table
 
-INSERT INTO `package` (`package_ID`, `product_ID_fk`, `package_type`, `package_description`, `package_name`, `package_price`) VALUES
-(1, 6, 'Sound', 'Anchor Liberty 2 Sound System: 2 speakers on stands, aux connection, Bluetooth connection, wireless mic', 'Sound package (small)', '75.00'),
-(2, 7, 'Sound', 'Pair of Anchor Bigfoot Speakers with Wireless Handheld Microphone, Aux Connection, and Bluetooth Connection.', 'Sound package (medium)', '375.00'),
-(3, 3, 'Sound', 'Pair of JBL EON 615 Speakers, Mackie 8 Channel Mixer, Shure Wireless Microphone, Speaker Cable.', 'Sound package (large)', '495.00');
+INSERT INTO `invoice_product_list` (`invoice_product_list_ID`, `invoice_ID_fk`, `product_ID_fk`) VALUES
+(8, 4, 6),
+(10, 5, 10),
+(7, 3, 14),
+(5, 2, 25),
+(9, 4, 34),
+(4, 1, 39),
+(6, 2, 39),
+(3, 1, 40);
 
--- --------------------------------------------------------
+----------------------------------------------------------
 
---
--- Table structure for table `packing_list`
---
-
-CREATE TABLE `packing_list` (
-  `packing_list_ID` int(11) NOT NULL,
-  `client_ID_fk` int(11) NOT NULL,
-  `venue_ID_fk` int(11) NOT NULL,
-  `product_ID_fk` int(11) NOT NULL,
-  `package_ID_fk` int(11) NOT NULL,
-  `service_ID_fk` int(11) NOT NULL,
-  `employee_ID_fk` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `packing_list`
---
-
-INSERT INTO `packing_list` (`packing_list_ID`, `client_ID_fk`, `venue_ID_fk`, `product_ID_fk`, `package_ID_fk`, `service_ID_fk`, `employee_ID_fk`) VALUES
-(1, 1, 3, 40, 3, 2, 3),
-(2, 2, 2, 4, 1, 2, 3),
-(3, 3, 4, 29, 2, 1, 4),
-(4, 1, 1, 14, 3, 2, 4),
-(5, 2, 4, 38, 1, 4, 3);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `payment`
---
+-- Create `payment` Table
 
 CREATE TABLE `payment` (
   `payment_ID` int(11) NOT NULL,
   `invoice_ID_fk` int(11) NOT NULL,
-  `payment_date` date NOT NULL,
-  `payment_method` varchar(25) NOT NULL,
   `amount_paid` decimal(10,2) NOT NULL,
-  `is_preauth` tinyint(1) NOT NULL,
+  `payment_date` date NOT NULL,
+  `payment_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `balance_due` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `payment`
---
+-- Insert Data into `payment` Table
 
-INSERT INTO `payment` (`payment_ID`, `invoice_ID_fk`, `payment_date`, `payment_method`, `amount_paid`, `is_preauth`, `balance_due`) VALUES
-(1, 1, '2022-01-07', 'Credit Card', '1015.00', 1, '0.00'),
-(2, 2, '2022-01-28', 'Credit Card', '785.00', 0, '0.00'),
-(3, 3, '2022-02-01', 'Credit Card', '1375.00', 1, '0.00'),
-(4, 4, '2022-02-02', 'Credit Card', '1285.00', 1, '0.00'),
-(5, 5, '2022-02-05', 'Check', '525.00', 0, '0.00');
+INSERT INTO `payment` (`payment_ID`, `invoice_ID_fk`, `amount_paid`, `payment_date`, `payment_time`, `balance_due`) VALUES
+(1, 1, '1106.35', '2022-01-07', '2022-03-07 02:37:42', '0.00'),
+(2, 2, '833.85', '2022-01-28', '2022-03-07 02:38:08', '0.00'),
+(3, 3, '1498.75', '2022-02-01', '2022-03-07 02:38:40', '0.00'),
+(4, 4, '1400.65', '2022-02-02', '2022-03-07 02:39:09', '0.00'),
+(5, 5, '527.25', '2022-02-05', '2022-03-07 02:39:30', '0.00');
 
--- --------------------------------------------------------
+----------------------------------------------------------
 
---
--- Table structure for table `product`
---
+-- Create `product` Table
 
 CREATE TABLE `product` (
   `product_ID` int(11) NOT NULL,
@@ -255,9 +204,7 @@ CREATE TABLE `product` (
   `num_broken` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `product`
---
+-- Insert Products into `product` Table
 
 INSERT INTO `product` (`product_ID`, `product_type`, `product_name`, `product_description`, `make`, `model`, `qty_unit`, `qty_in_stock`, `is_promotional`, `reg_price`, `discounted_price`, `num_rented`, `num_broken`) VALUES
 (1, 'Audio', 'Speaker', 'AN130 Speaker', 'Anchor', 'AN130', 'each', 2, 0, '75.00', '75.00', 0, 0),
@@ -315,58 +262,53 @@ INSERT INTO `product` (`product_ID`, `product_type`, `product_name`, `product_de
 (53, 'Bluetooth Connection', 'Bluetooth Connection', 'Bluetooth Connection. Promotional product. Add to packages at no charge.', '', '', 'each', 5, 1, '0.00', '0.00', 0, 0),
 (54, 'Speaker Cable', 'Speaker Cable', 'Speaker Cable. Promotional product. Add to packages at no charge.', '', '', 'each', 5, 1, '0.00', '0.00', 0, 0);
 
--- --------------------------------------------------------
+----------------------------------------------------------
 
---
--- Table structure for table `security_level`
---
+-- Create `security` Table
 
-CREATE TABLE `security_level` (
-  `security_level_ID` int(11) NOT NULL,
+CREATE TABLE `security` (
+  `security_ID` int(11) NOT NULL,
   `security_type` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `security_level`
---
 
-INSERT INTO `security_level` (`security_level_ID`, `security_type`) VALUES
+-- Insert Data for `security` Table
+
+
+INSERT INTO `security` (`security_ID`, `security_type`) VALUES
 (1, 'administrator'),
 (2, 'manager'),
 (3, 'staff'),
 (4, 'user');
 
--- --------------------------------------------------------
+----------------------------------------------------------
 
---
--- Table structure for table `service`
---
+-- Create `vendor` Table
 
-CREATE TABLE `service` (
-  `service_ID` int(11) NOT NULL,
-  `service_type` varchar(25) NOT NULL,
-  `service_description` varchar(255) NOT NULL,
-  `service_name` varchar(25) NOT NULL,
-  `num_techs_needed` int(2) NOT NULL,
-  `num_onsite_techs` int(2) NOT NULL,
-  `service_price` decimal(10,2) NOT NULL
+CREATE TABLE `vendor` (
+  `vendor_ID` int(11) NOT NULL,
+  `company_name` varchar(100) NOT NULL,
+  `website` varchar(100) NOT NULL,
+  `salesrep` varchar(50) DEFAULT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone` varchar(15) NOT NULL,
+  `vendor_notes` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `service`
---
 
-INSERT INTO `service` (`service_ID`, `service_type`, `service_description`, `service_name`, `num_techs_needed`, `num_onsite_techs`, `service_price`) VALUES
-(1, 'Setup/Breakdown', '1 tech for setup/breakdown at event less than or equal to 90 minutes from Modena', 'Service Package (small)', 1, 0, '195.00'),
-(2, 'Setup/Breakdown', '1 tech for setup/breakdown at event farther than 90 minutes from Modena ', 'Service Package medium)', 1, 0, '295.00'),
-(3, 'Staging, 2 Tech', 'Jobs that require 2 techs', 'Service Package (large)', 2, 0, '295.00'),
-(4, 'Onsite AV Tech-Base Rate', '1 on-site audio visual tech at $75/hour for a minimum of 4 hours', 'Service (Onsite Tech)', 0, 1, '300.00');
+-- Insert Data for `vendor` Table
 
--- --------------------------------------------------------
+INSERT INTO `vendor` (`vendor_ID`, `company_name`, `website`, `salesrep`, `email`, `phone`, `vendor_notes`) VALUES
+(1, 'Amazon', 'amazon.com', 'Margaret Smith', 'msmith@email.com', '845-555-3009', 'online vendor'),
+(2, 'B&H Video', 'bandh.com', 'David Harris', 'dharris@email.com', '845-555-3012', ''),
+(3, 'Pro AV Warehouse', 'proavwarehouse.com', 'Sarah Jones', 'sjones@email.com', '845-555-3017', ''),
+(4, 'Grainger', 'grainger.com', 'Betty Davis', 'bdavis@email.com', '845-555-3014', ''),
+(5, 'Canon', 'canon.com', 'Bill Parker', 'bparker.com', '845-555-3016', '');
 
---
--- Table structure for table `venue`
---
+----------------------------------------------------------
+
+-- Create `venue` Table
+
 
 CREATE TABLE `venue` (
   `venue_ID` int(11) NOT NULL,
@@ -384,9 +326,8 @@ CREATE TABLE `venue` (
   `venue_notes` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `venue`
---
+
+-- Insert Data for `venue` Table
 
 INSERT INTO `venue` (`venue_ID`, `venue_type`, `venue_name`, `contact_first_name`, `contact_last_name`, `contact_email`, `address_line1`, `address_line2`, `city`, `state`, `zip_code`, `venue_phone`, `venue_notes`) VALUES
 (1, 'Business', 'New Haven Inn', 'Liam', 'Jones', 'nhaveninn@email', '217 Park Lane', '', 'New Haven', 'NY', '12345', '845-555-3004', 'Add venue notes here'),
@@ -395,210 +336,177 @@ INSERT INTO `venue` (`venue_ID`, `venue_type`, `venue_name`, `contact_first_name
 (4, 'Business', 'The Chateau', 'George', 'Wright', 'chateau@email', '260 E. Blvd', '', 'Kingston', 'NY', '12401', '845-555-3007', 'Add venue notes here'),
 (5, 'Private Residence', 'Wilson Residence', 'Derrick', 'Wilson', 'dwilson@email', '139 Smith St.', '', 'Poughkeepsie', 'NY', '12601', '845-555-2004', 'Add venue notes here');
 
---
--- Indexes for dumped tables
+----------------------------------------------------------
+-- Table Indexes
 --
 
 --
--- Indexes for table `client`
+-- Indexes for `client` Table
 --
 ALTER TABLE `client`
   ADD PRIMARY KEY (`client_ID`);
 
 --
--- Indexes for table `employee`
+-- Indexes for `employee` Table
 --
 ALTER TABLE `employee`
   ADD PRIMARY KEY (`employee_ID`),
-  ADD KEY `security_level_ID_fk` (`security_level_ID_fk`);
+  ADD KEY `security_ID_fk` (`security_ID_fk`);
 
 --
--- Indexes for table `event_order`
+-- Indexes for `event_order` Table
 --
 ALTER TABLE `event_order`
   ADD PRIMARY KEY (`event_order_ID`),
-  ADD KEY `client_ID_fk` (`client_ID_fk`),
   ADD KEY `venue_ID_fk` (`venue_ID_fk`),
   ADD KEY `product_ID_fk` (`product_ID_fk`),
-  ADD KEY `employee_ID_fk` (`employee_ID_fk`),
-  ADD KEY `service_ID_fk` (`service_ID_fk`),
-  ADD KEY `package_ID_fk` (`package_ID_fk`);
-
---
--- Indexes for table `invoice`
---
-ALTER TABLE `invoice`
-  ADD PRIMARY KEY (`invoice_ID`),
-  ADD KEY `event_order_ID_fk` (`event_order_ID_fk`),
   ADD KEY `client_ID_fk` (`client_ID_fk`);
 
 --
--- Indexes for table `package`
+-- Indexes for `invoice` Table
 --
-ALTER TABLE `package`
-  ADD PRIMARY KEY (`package_ID`),
-  ADD KEY `product_ID_fk` (`product_ID_fk`);
-
---
--- Indexes for table `packing_list`
---
-ALTER TABLE `packing_list`
-  ADD PRIMARY KEY (`packing_list_ID`),
+ALTER TABLE `invoice`
+  ADD PRIMARY KEY (`invoice_ID`),
   ADD KEY `client_ID_fk` (`client_ID_fk`),
-  ADD KEY `venue_ID_fk` (`venue_ID_fk`),
-  ADD KEY `product_ID_fk` (`product_ID_fk`),
-  ADD KEY `service_ID_fk` (`service_ID_fk`),
-  ADD KEY `employee_ID_fk` (`employee_ID_fk`),
-  ADD KEY `package_ID_fk` (`package_ID_fk`);
+  ADD KEY `event_order_ID_fk` (`event_order_ID_fk`);
 
 --
--- Indexes for table `payment`
+-- Indexes for `invoice_product_list` Table
+--
+ALTER TABLE `invoice_product_list`
+  ADD PRIMARY KEY (`invoice_product_list_ID`) USING BTREE,
+  ADD KEY `product_ID_fk` (`product_ID_fk`,`invoice_ID_fk`),
+  ADD KEY `invoice_ID_fk` (`invoice_ID_fk`);
+
+--
+-- Indexes for `payment` Table
 --
 ALTER TABLE `payment`
   ADD PRIMARY KEY (`payment_ID`),
   ADD KEY `invoice_ID_fk` (`invoice_ID_fk`);
 
 --
--- Indexes for table `product`
+-- Indexes for `product` Table
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`product_ID`);
 
 --
--- Indexes for table `security_level`
+-- Indexes for `security` Table
 --
-ALTER TABLE `security_level`
-  ADD PRIMARY KEY (`security_level_ID`);
+ALTER TABLE `security`
+  ADD PRIMARY KEY (`security_ID`) USING BTREE;
 
 --
--- Indexes for table `service`
+-- Indexes for `vendor` Table
 --
-ALTER TABLE `service`
-  ADD PRIMARY KEY (`service_ID`);
+ALTER TABLE `vendor`
+  ADD PRIMARY KEY (`vendor_ID`);
 
 --
--- Indexes for table `venue`
+-- Indexes for `venue` Table
 --
 ALTER TABLE `venue`
   ADD PRIMARY KEY (`venue_ID`);
 
---
--- AUTO_INCREMENT for dumped tables
+----------------------------------------------------------
+-- AUTO_INCREMENT for Tables
 --
 
 --
--- AUTO_INCREMENT for table `client`
+-- AUTO_INCREMENT for `client` Table
 --
 ALTER TABLE `client`
-  MODIFY `client_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `client_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `employee`
+-- AUTO_INCREMENT for `employee` Table
 --
 ALTER TABLE `employee`
   MODIFY `employee_ID` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `event_order`
+-- AUTO_INCREMENT for `event_order` Table
 --
 ALTER TABLE `event_order`
-  MODIFY `event_order_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `event_order_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `invoice`
+-- AUTO_INCREMENT for `invoice` Table
 --
 ALTER TABLE `invoice`
-  MODIFY `invoice_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `invoice_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `package`
+-- AUTO_INCREMENT for `invoice_product_list` Table
 --
-ALTER TABLE `package`
-  MODIFY `package_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+ALTER TABLE `invoice_product_list`
+  MODIFY `invoice_product_list_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `packing_list`
---
-ALTER TABLE `packing_list`
-  MODIFY `packing_list_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `payment`
+-- AUTO_INCREMENT for `payment` Table
 --
 ALTER TABLE `payment`
   MODIFY `payment_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `product`
+-- AUTO_INCREMENT for `product` Table
 --
 ALTER TABLE `product`
   MODIFY `product_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
--- AUTO_INCREMENT for table `security_level`
+-- AUTO_INCREMENT for `security` Table
 --
-ALTER TABLE `security_level`
-  MODIFY `security_level_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `security`
+  MODIFY `security_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `service`
+-- AUTO_INCREMENT for `vendor` Table
 --
-ALTER TABLE `service`
-  MODIFY `service_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `vendor`
+  MODIFY `vendor_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `venue`
+-- AUTO_INCREMENT for `venue` Table
 --
 ALTER TABLE `venue`
   MODIFY `venue_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
---
--- Constraints for dumped tables
+----------------------------------------------------------
+-- TAble Constraints
 --
 
 --
--- Constraints for table `employee`
+-- Constraints for `employee` Table
 --
 ALTER TABLE `employee`
-  ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`security_level_ID_fk`) REFERENCES `security_level` (`security_level_ID`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`security_ID_fk`) REFERENCES `security` (`security_ID`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `event_order`
+-- Constraints for `event_order` Table
 --
 ALTER TABLE `event_order`
-  ADD CONSTRAINT `event_order_ibfk_1` FOREIGN KEY (`client_ID_fk`) REFERENCES `client` (`client_ID`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `event_order_ibfk_2` FOREIGN KEY (`venue_ID_fk`) REFERENCES `venue` (`venue_ID`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `event_order_ibfk_4` FOREIGN KEY (`product_ID_fk`) REFERENCES `product` (`product_ID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `event_order_ibfk_5` FOREIGN KEY (`service_ID_fk`) REFERENCES `service` (`service_ID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `event_order_ibfk_6` FOREIGN KEY (`employee_ID_fk`) REFERENCES `employee` (`employee_ID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `event_order_ibfk_7` FOREIGN KEY (`package_ID_fk`) REFERENCES `package` (`package_ID`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `event_order_ibfk_5` FOREIGN KEY (`client_ID_fk`) REFERENCES `client` (`client_ID`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `invoice`
+-- Constraints for `invoice` Table
 --
 ALTER TABLE `invoice`
-  ADD CONSTRAINT `invoice_ibfk_1` FOREIGN KEY (`event_order_ID_fk`) REFERENCES `event_order` (`event_order_ID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `invoice_ibfk_2` FOREIGN KEY (`client_ID_fk`) REFERENCES `client` (`client_ID`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `invoice_ibfk_1` FOREIGN KEY (`client_ID_fk`) REFERENCES `client` (`client_ID`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `invoice_ibfk_2` FOREIGN KEY (`event_order_ID_fk`) REFERENCES `event_order` (`event_order_ID`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `package`
+-- Constraints for `invoice_product_list` Table
 --
-ALTER TABLE `package`
-  ADD CONSTRAINT `package_ibfk_1` FOREIGN KEY (`product_ID_fk`) REFERENCES `product` (`product_ID`) ON DELETE NO ACTION ON UPDATE CASCADE;
+ALTER TABLE `invoice_product_list`
+  ADD CONSTRAINT `invoice_product_list_ibfk_1` FOREIGN KEY (`product_ID_fk`) REFERENCES `product` (`product_ID`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `invoice_product_list_ibfk_2` FOREIGN KEY (`invoice_ID_fk`) REFERENCES `invoice` (`invoice_ID`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `packing_list`
---
-ALTER TABLE `packing_list`
-  ADD CONSTRAINT `packing_list_ibfk_1` FOREIGN KEY (`client_ID_fk`) REFERENCES `client` (`client_ID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `packing_list_ibfk_2` FOREIGN KEY (`venue_ID_fk`) REFERENCES `venue` (`venue_ID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `packing_list_ibfk_3` FOREIGN KEY (`product_ID_fk`) REFERENCES `product` (`product_ID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `packing_list_ibfk_5` FOREIGN KEY (`service_ID_fk`) REFERENCES `service` (`service_ID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `packing_list_ibfk_6` FOREIGN KEY (`employee_ID_fk`) REFERENCES `employee` (`employee_ID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `packing_list_ibfk_7` FOREIGN KEY (`package_ID_fk`) REFERENCES `package` (`package_ID`) ON DELETE NO ACTION ON UPDATE CASCADE;
-
---
--- Constraints for table `payment`
+-- Constraints for `payment` Table
 --
 ALTER TABLE `payment`
   ADD CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`invoice_ID_fk`) REFERENCES `invoice` (`invoice_ID`) ON DELETE NO ACTION ON UPDATE CASCADE;
