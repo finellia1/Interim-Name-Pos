@@ -114,17 +114,10 @@
                         </form>
                     </div>
                     <div id="editPopup" class = "popup">
-                        <form name="edit">
+                        <form name="edit" action="../interim-name-pos/includes/updateProduct.inc.php" method="POST">
                             <table class="dropShadow">
-                                <tr>
-                                    <td class="alignLeft">
-                                        <label for="itemName">Item Name:</label>
-                                    </td>
-                                    <td class="alignLeft">
-                                        <input type="text" id="itemName" name="product_name" value="itemName"><br>
-                                    </td>
-                                </tr>
-                                <tr>
+                            <input type='hidden' name='deleteID_edit' id='deleteID_edit'>
+                            <tr>
                                     <td class="alignLeft">
                                         <label for="itemName">Product Type:</label>
                                     </td>
@@ -132,6 +125,16 @@
                                         <input type="text" id="productType" name="product_type" value="productType"><br>
                                     </td>
                                 </tr>
+                            
+                            <tr>
+                                    <td class="alignLeft">
+                                        <label for="itemName">Item Name:</label>
+                                    </td>
+                                    <td class="alignLeft">
+                                        <input type="text" id="itemName" name="product_name" value="itemName"><br>
+                                    </td>
+                                </tr>
+
                                 <tr>
                                     <td class="alignLeft">
                                         <label for="itemName">Description:</label>
@@ -161,7 +164,7 @@
                                         <label for="itemName">Quantity_Unit:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="quantity" name="qty_unit" value="quantity"><br>
+                                        <input type="text" id="quantity" name="qty_unit_edit" value="quantity"><br>
                                     </td>
                                 </tr>
                                 <tr>
@@ -416,7 +419,7 @@
                                         $p_num_rented = "'".$row['num_rented']."'";
                                         $p_num_broken = "'".$row['num_broken']."'";
 
-                                        printf('<td><button type="button" onclick="editPane(%s, %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)">Edit</button>',$p_id,$p_type, $p_name, $p_description, $p_make, $p_model, $p_qty_unit, $p_qty_in_stock, $p_is_promotional, $p_reg_price, $p_discounted_price, $p_num_rented, $p_num_broken);
+                                        printf('<td><button type="button" onclick="editPane(%s,%s, %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)">Edit</button>',$p_id,$p_name,$p_type,$p_description, $p_make, $p_model, $p_qty_unit, $p_qty_in_stock, $p_is_promotional, $p_reg_price, $p_discounted_price, $p_num_rented, $p_num_broken);
 
                                         echo "<form name='remove' action='../interim-name-pos/includes/removeProduct.inc.php' method='post'>";
                                         echo "<td><button type='submit' name='submit' value='submit'>Delete</button>";

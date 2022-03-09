@@ -39,7 +39,7 @@ class UpdateProductContr extends UpdateProduct {
     //updates product
     public function updateProduct() {
         if(empty($this->product_ID)) {
-            header("location: ../index.php?error=emptyPRODUCT ID");
+            header("location: ../homepage.php?error=emptyPRODUCT ID");
             exit();
         }
         //sets product

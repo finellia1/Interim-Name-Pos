@@ -7,13 +7,13 @@ class removeProduct extends Dbh {
 
         if(!$stmt->execute(array($product_ID))) {
             $stmt = null;
-            header('location: ../index.php?error=stmtfailed');
+            header('location: ../homepage.php?error=stmtfailed');
             exit();
         }
 
         if($stmt->rowCount() == 0) {
             $stmt = null;
-            header("location: ../index.php?error=Productnotfound");
+            header("location: ../homepage.php?error=Productnotfound");
             exit();
         }
 

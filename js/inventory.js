@@ -1,17 +1,19 @@
-function editPane(id,type,name,description, make, model, quanitity, quantityInStock, promotional, discountedPrice, numRented, numBroken){
+function editPane(id,name,type,description, make, model, quanitity, quantityInStock, promotional,regularPrice, discountedPrice, numRented, numBroken){
     document.getElementById('editPopup').style.visibility = 'visible';    
-    document.getElementById('itemName').value = id;
+    document.getElementById('itemName').value = name;
     document.getElementById('productType').value = type;
-    document.getElementById('description').value = name;
-    document.getElementById('make').value = description;
-    document.getElementById('model').value = make;
-    document.getElementById('quantity').value = model;
-    document.getElementById('quantityInStock').value = quanitity;
-    document.getElementById('isPromotional').value = quantityInStock;
-    document.getElementById('regularPrice').value = promotional;
+    document.getElementById('description').value = description;
+    document.getElementById('make').value = make;
+    document.getElementById('model').value = model;
+    document.getElementById('quantity').value = quanitity;
+    document.getElementById('quantityInStock').value = quantityInStock;
+    document.getElementById('isPromotional').value = promotional;
+    document.getElementById('regularPrice').value = regularPrice;
     document.getElementById('discountedPrice').value = discountedPrice;
     document.getElementById('numberRented').value = numRented;
     document.getElementById('numberBroken').value = numBroken;
+    document.getElementById('deleteID_edit').value = id;
+
 }
 
 function exitPane(ID){
