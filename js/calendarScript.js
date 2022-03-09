@@ -9,7 +9,15 @@ const backDrop = document.getElementById('modalBackDrop');
 const eventTitleInput = document.getElementById('eventTitleInput');
 const eventDescriptionInput = document.getElementById('eventDescriptionInput');
 const eventInfo = document.getElementById('eventInfo');
+const eventTitle = document.getElementById('eventTitle');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const employee1 = document.getElementById('employee1');
+const employee2 = document.getElementById('employee2');
+const working1 = document.getElementById('working1');
+const working2 = document.getElementById('working2');
+
+
+
 
 function openModal(date) {
   clicked = date;
@@ -19,12 +27,17 @@ function openModal(date) {
   if (eventForDay) {
     document.getElementById('eventText').innerText = eventForDay.title;
     document.getElementById('eventInfo').innerText = eventForDay.description;
+    document.getElementById('eventTitle').innerText = eventForDay.title;
+    document.getElementById('working1').innerText = eventForDay.employee1;
+    document.getElementById('working2').innerText = eventForDay.employee2;
     deleteEventModal.style.display = 'block';
     eventInfo.style.display = 'block';
+    eventTitle.style.display = 'block';
+    working1.style.display = 'block';
+    working2.style.display = 'block';
   } else {
     newEventModal.style.display = 'block';
   }
-
   backDrop.style.display = 'block';
 }
 
@@ -97,6 +110,11 @@ function closeModal() {
   eventTitleInput.value = '';
   eventDescriptionInput.value='';
   eventInfo.style.display = 'none';
+  eventTitle.style.display = 'none';
+  working1.style.display = 'none';
+  working2.style.display = 'none';
+
+
   clicked = null;
   load();
 }
@@ -109,6 +127,8 @@ function saveEvent() {
       date: clicked,
       title: eventTitleInput.value,
       description: eventDescriptionInput.value,
+      employee1: employee1.options[employee1.selectedIndex].value,
+      employee2: employee2.options[employee2.selectedIndex].value,
     });
 
     localStorage.setItem('events', JSON.stringify(events));
