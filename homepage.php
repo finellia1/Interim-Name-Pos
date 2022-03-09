@@ -70,7 +70,7 @@
                     <h1>Inventory Page</h1>
                     <br><br>
                     <div id = "searchPopup" class = "popup">
-                        <form name="search" action="../interim-name-pos/includes/inventory.inc.php" method="POST">
+                        <form name="search" action="../midtermpull/includes/inventory.inc.php" method="POST">
                             <table class="dropShadow">
                                 <tr>
                                     <td class="alignLeft">
@@ -114,7 +114,7 @@
                         </form>
                     </div>
                     <div id="editPopup" class = "popup">
-                        <form name="edit" action="../interim-name-pos/includes/updateProduct.inc.php" method="POST">
+                        <form name="edit" action="../midtermpull/includes/updateProduct.inc.php" method="POST">
                             <table class="dropShadow">
                             <input type='hidden' name='deleteID_edit' id='deleteID_edit'>
                             <tr>
@@ -180,7 +180,7 @@
                                         <label for="itemName">isPromotional</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="checkbox" id="isPromotional" name="isPromotional" ><br>
+                                        <input type="checkbox" id="isPromotional" name="isPromotional_edit" ><br>
                                     </td>
                                 </tr>
                                 <tr>
@@ -421,7 +421,7 @@
 
                                         printf('<td><button type="button" onclick="editPane(%s,%s, %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)">Edit</button>',$p_id,$p_name,$p_type,$p_description, $p_make, $p_model, $p_qty_unit, $p_qty_in_stock, $p_is_promotional, $p_reg_price, $p_discounted_price, $p_num_rented, $p_num_broken);
 
-                                        echo "<form name='remove' action='../interim-name-pos/includes/removeProduct.inc.php' method='post'>";
+                                        echo "<form name='remove' action='../midtermpull/includes/removeProduct.inc.php' method='post'>";
                                         echo "<td><button type='submit' name='submit' value='submit'>Delete</button>";
                                         echo "<td><button type='button'>Cart</button>";
                                         echo "<td> <input type='hidden' name='deleteID' id='deleteID' value='{$row['product_ID']}'> </td>";
