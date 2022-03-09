@@ -1,8 +1,8 @@
 <?php
-//gets data from form, creates signup Object, passes to signupUser()
+
 if(isset($_POST["submit"])) 
 {
-    // grab the data from form
+    // grab the data from signup form
     $employee_ID = $_POST["employee_ID"];
     $pwd = $_POST["pwd"];
     $confirmpwd = $_POST["confirmpwd"];
@@ -12,13 +12,12 @@ if(isset($_POST["submit"]))
     $phone_number = $_POST["phone_number"];
     $employee_type = $_POST["employee_type"];
 
-    // instantiate classes
+    // instantiate signupContr class
     include "../classes/dbh.classes.php";
     include "../classes/signup.classes.php";
     include "../classes/signup-contr.classes.php";
-        //create object
     $signup = new SignupContr($employee_ID, $pwd, $confirmpwd, $email, $first_name, $last_name, $phone_number, $employee_type);
-    // signing up user
+    // running error handlers and user signup
     $signup-> signupUser();
     // going back to front page
     header("location: ../index.php?error=EMPLOYEE ADDED");

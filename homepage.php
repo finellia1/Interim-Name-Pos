@@ -68,6 +68,9 @@
                     // session_start();
                     ?>
                     <h1>Inventory Page</h1>
+                    <?php
+                        echo "<h4 style = 'color: red;'>{$_SESSION["addProductErrorMsg"]}</h4>"
+                    ?>
                     <br><br>
                     <div id = "searchPopup" class = "popup">
                         <form name="edit" action="../test/includes/inventory.inc.php" method="POST">

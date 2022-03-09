@@ -20,6 +20,9 @@ session::start();
 
     <h1>Inventory Page</h1>
     <br><br>
+    <?php
+            echo "<h4 style = 'color: red;'>{$_SESSION["addProductErrorMsg"]}</h4>"
+    ?>
     <div id = "searchPopup" class = "popup">
         <form name="edit" action="../includes/inventory.inc.php" method="POST">
             <table class="dropShadow">

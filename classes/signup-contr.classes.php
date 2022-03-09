@@ -1,12 +1,11 @@
 <?php
 session_start();
-if (isset($_SESSION["loginErrorFlag"])){
-    $_SESSION["loginErrorFlag"] = 0;
+if (isset($_SESSION["addUserFlag"])){
+    $_SESSION["addUserFlag"] = 0;
 }
-if (isset($_SESSION["loginErrorMsg"])){
-    $_SESSION["loginErrorMsg"] = "";
+if (isset($_SESSION["addUserErrorMsg"])){
+    $_SESSION["addUserErrorMsg"] = "";
 }
-
 class SignupContr extends Signup {
     // create the properties inside the class
     private $employee_ID;
@@ -31,7 +30,7 @@ class SignupContr extends Signup {
         $this->phone_number = $phone_number;
         $this->employee_type = $employee_type;
     }
-    //error handling, sets user
+
     public function signupUser() {
         if($this->emptyInput() == false) {
             $_SESSION["addUserFlag"] = "1";
@@ -53,23 +52,24 @@ class SignupContr extends Signup {
         }
         if($this->pwdMatch() == false) {
             $_SESSION["addUserFlag"] = "1";
-            $_SESSION["addUserErrorMsg"] = "Passwords do not match";
+            $_SESSION["addUserErrorMsg"] = "Invalid Password";
             header("location: ../index.php?error=passwordmatch");
             exit();
         }
         if($this->duplicateUser() == false) {
             $_SESSION["addUserFlag"] = "1";
-            $_SESSION["addUserErrorMsg"] = "User already exists! Use a unique employee ID or email";
+            $_SESSION["addUserErrorMsg"] = "Duplicate username or email";
             header("location: ../index.php?error=useroremailtaken");
             exit();
+            //Should this be separate?
         }
-        //sets user
+
         $this->setUser($this->employee_ID, $this->pwd, $this->confirmpwd, $this->email, $this->first_name, $this->last_name, $this->phone_number, $this->employee_type);
     }
 
     // error handling using methods
 
-    // bool
+    // check if any of the fields are empty
     private function emptyInput() {
         $result;
 
@@ -82,7 +82,7 @@ class SignupContr extends Signup {
         return $result;
     }
 
-    // bool
+    // check that the username is valid
     private function invalidemployee_ID() {
         $result;
         if(!preg_match("/^[a-zA-Z0-9]*$/", $this->employee_ID)){
@@ -94,7 +94,7 @@ class SignupContr extends Signup {
         return $result;
     }
 
-    // bool
+    // checks for valid email
     private function invalidEmail() {
         $result;
         if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
@@ -106,7 +106,7 @@ class SignupContr extends Signup {
         return $result;
     }
 
-    // checks that the pwd and confirmpwd match, bool
+    // checks that the pwd and confirmpwd match
     private function pwdMatch() {
         $result;
         if ($this->pwd !== $this->confirmpwd) {
@@ -118,7 +118,6 @@ class SignupContr extends Signup {
         return $result;
     }
 
-        //bool
     private function duplicateUser() {
         $result;
         if(!$this->checkUser($this->employee_ID, $this->email)) {

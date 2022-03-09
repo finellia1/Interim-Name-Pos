@@ -1,11 +1,12 @@
 <?php
 
 // $_SESSION[$key] = $value; ''''''
-class session {
+class Session {
 
     private static $_sessionStart = false;
 
     public static function start() {
+        
         if(empty($_SESSION)) {
             if(self::$_sessionStart == false) {
                 session_start();
@@ -13,7 +14,7 @@ class session {
             }
         }
     }
- 
+    
     public static function set($key, $value) {
         $_SESSION[$key] = $value;
     }
@@ -38,15 +39,11 @@ class session {
     }
 
     public static function destroy() {
-        if (ini_get("session.use_cookies")) {     //deletes cookie
-            $params = session_get_cookie_params();
-            setcookie(session_name(), '', time() - 86400,
-                $params["path"], $params["domain"],
-                $params["secure"], $params["httponly"]
-            );
-        }
+        if(self::$_sessionStart == true) {
             session_unset();
             session_destroy();
+        }
     }
+
 }
 

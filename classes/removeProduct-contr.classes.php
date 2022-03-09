@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 class removeProductContr extends removeProduct {
     // create the properties inside the class
     private $product_ID;
@@ -13,7 +13,12 @@ class removeProductContr extends removeProduct {
 
     public function checkProduct() {
         if($this->emptyInput() == false) {
+<<<<<<< Updated upstream
+            header("location: ../includes/inventory.php?error=emptyinput");
+=======
+            $_SESSION["removeProductErrorMsg"] = "Empty Input!";
             header("location: ../homepage.php?error=emptyinput");
+>>>>>>> Stashed changes
             exit();
         }
         $this->removeProduct($this->product_ID);

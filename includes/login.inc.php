@@ -1,5 +1,5 @@
 <?php
-///gets data from form, creates login Object, passes to loginUser(), sets session
+
 if(isset($_POST["submit"])) 
 {
     // grab the data from login form
@@ -7,18 +7,12 @@ if(isset($_POST["submit"]))
     $pwd = $_POST["pwd"];
 
     // instantiate loginContr class
-    require "../classes/dbh.classes.php";
-    require "../classes/login.classes.php";
-    require "../classes/login-contr.classes.php";
-    require "../classes/session.classes.php";
-        //create object
+    include "../classes/dbh.classes.php";
+    include "../classes/login.classes.php";
+    include "../classes/login-contr.classes.php";
     $login = new LoginContr($employee_ID, $pwd);
-    // logging in
+    // running error handlers and user login
     $login-> loginUser();
-    //set session
-    session::set("loggedInID", $employee_ID);
-
-    header("location: ../index.php?error=LOGGED IN");
     // going back to front page
+    header("location: ../index.php?error=LOGGED IN");
 }
-             

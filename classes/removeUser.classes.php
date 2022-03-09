@@ -1,8 +1,7 @@
 <?php
-//functions to remove user
+
 class removeUser extends Dbh {
 
-        //connects to db, prepares and executes $stmt, removes entry from db
     protected function removeUser($employee_ID) {
         $stmt = $this->connect()->prepare('DELETE FROM employee WHERE employee_ID = ?;');
 
@@ -14,6 +13,7 @@ class removeUser extends Dbh {
 
         if($stmt->rowCount() == 0) {
             $stmt = null;
+            $_SESSION["removeUserErrorMsg"] = "This employee ID was not found!";
             header("location: ../index.php?error=usernotfound");
             exit();
         }

@@ -1,5 +1,11 @@
 <?php
-
+session_start();
+if (isset($_SESSION["addProductErrorFlag"])){
+    $_SESSION["addProductErrorFlag"] = 0;
+}
+if (isset($_SESSION["addProductErrorMsg"])){
+    $_SESSION["addProductErrorMsg"] = "";
+}
 class AddProduct extends Dbh {
 
     protected function setProduct($product_ID, $name, $description, $product_type, $make, $model_no, $quantity_unit, $quantity_in_stock,$isPromotional,$regular_price,$discounted_price,$num_rented,$num_broken) {
@@ -8,7 +14,7 @@ class AddProduct extends Dbh {
 
         if(!$stmt->execute(array($product_ID, $name, $description, $product_type, $make, $model_no, $quantity_unit, $quantity_in_stock,$isPromotional,$regular_price,$discounted_price,$num_rented,$num_broken))) {
             $stmt = null;
-            header('location: ../homepage.php');
+            header('location: ../includes/inventory.php');
             exit();
         }
         $stmt = null;
@@ -20,8 +26,13 @@ class AddProduct extends Dbh {
         $stmt = $this->connect()->prepare('SELECT product_ID FROM product WHERE product_ID = ? OR product_name = ?;');
         if(!$stmt->execute(array($product_ID, $name))) {
             $stmt = null;
-            header("location: ../homepage.php");
+<<<<<<< Updated upstream
+            header("location: ../includes/inventory.php");
             exit();
+=======
+            header("location: ../homepage.php");
+            exit(); 
+>>>>>>> Stashed changes
         }
 
         $resultcheck;
