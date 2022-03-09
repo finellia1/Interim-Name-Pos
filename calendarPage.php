@@ -12,7 +12,7 @@
             let hover = img.getAttribute('data-hover'); //specified in img tag
             console.log(start);
 
-            img.onmouseover = () => { img.src = hover; }
+            img.onmouseover = () => { img.src = hover; } 
             img.onmouseout = () => { img.src = start; } //to revert back to start
     </script>
 </head>
@@ -63,6 +63,9 @@
                 </div>
             </div>
             <div class = "middlePanel"> 
+                    <div id="banner">
+                        <h1>Calendar</h1>
+                    </div>
                     <div id="container">
                         <div id="header">
                             <div id="monthDisplay"></div>
@@ -90,9 +93,25 @@
 
                         <input id="eventTitleInput" placeholder="Event Title"/>
                         <textarea id="eventDescriptionInput" placeholder="Event Description" ></textarea>
-
+                        <select id= "employee1" name="employees" id="employees">
+                            <option value="none" selected disabled hidden>Select an Employee</option>
+                            <option value="Reed">Reed</option>
+                            <option value="Taimur">Taimur</option>
+                            <option value="Jorge">Jorge</option>
+                            <option value="Ben">Ben</option>
+                        </select>
+                        <br></br>
+                        <select id= "employee2" name="employees" id="employees">
+                            <option value="none" selected disabled hidden>Select an Employee</option>
+                            <option value="Reed">Reed</option>
+                            <option value="Taimur">Taimur</option>
+                            <option value="Jorge">Jorge</option>
+                            <option value="Ben">Ben</option>
+                        </select>
+                        <br></br>
                         <button id="saveButton">Save</button>
                         <button id="cancelButton">Cancel</button>
+                        
                         </div>
 
                         <div id="deleteEventModal">
@@ -102,14 +121,17 @@
 
                         <button id="deleteButton">Delete</button>
                         <button id="closeButton">Close</button>
+                        
                         </div>
 
                         <div id="modalBackDrop"></div>
                         <script src=".\js\calendarScript.js"></script>
             </div>
             <div class = "rightPanel">
-                <h1> Right Panel </h1>
-                <div id="eventInfo"></div>
+                <p id ="eventTitle"></p>
+                <p id="eventInfo"></p>
+                <p id="working1"></p>
+                <p id="working2"></p>
             </div>
         </main>
     </div>
