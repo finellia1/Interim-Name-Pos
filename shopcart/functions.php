@@ -1,10 +1,11 @@
 <?php
+//pdo style
 function pdo_connect_mysql() {
     // Update the details below with your MySQL details
     $DATABASE_HOST = 'localhost';
     $DATABASE_USER = 'root';
     $DATABASE_PASS = '';
-    $DATABASE_NAME = 'shoppingcart';
+    $DATABASE_NAME = 'hv_audio_visual';
     try {
     	return new PDO('mysql:host=' . $DATABASE_HOST . ';dbname=' . $DATABASE_NAME . ';charset=utf8', $DATABASE_USER, $DATABASE_PASS);
     } catch (PDOException $exception) {
@@ -13,7 +14,7 @@ function pdo_connect_mysql() {
     }
 }
 
-function template_header($title) {
+function template_header($title) { // used to keep consistencty of header through page to page allows for links to be found easy No need to style yet
 echo <<<EOT
 <!DOCTYPE html>
 <html>
@@ -34,7 +35,7 @@ echo <<<EOT
         <main>
 EOT;
 }
-
+                        // used to keep consistencty of footer through page to page allows for links to be found easy No need to style yet
 function template_footer() {
 $year = date('Y');
 echo <<<EOT

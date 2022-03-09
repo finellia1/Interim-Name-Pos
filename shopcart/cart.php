@@ -4,7 +4,7 @@ if (isset($_POST['product_ID'], $_POST['quantity']) && is_numeric($_POST['produc
     $product_ID = (int)$_POST['product_ID']; //int check and post to identigy
     $quantity = (int)$_POST['quantity'];
     // checking if the product exists in our database
-    $stmt = $pdo->prepare('SELECT * FROM products WHERE ID = ?');
+    $stmt = $pdo->prepare('SELECT * FROM product WHERE Product_ID = ?');
     $stmt->execute([$_POST['product_ID']]);
     // Fetch the product from the database and return the result as an Array
     $product = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -44,13 +44,13 @@ $subtotal = 0.00;
 if ($products_in_cart) {
     // There are products in the cart so we need to select those products from the database
     $array_to_question_marks = implode(',', array_fill(0, count($products_in_cart), '?'));
-    $stmt = $pdo->prepare('SELECT * FROM products WHERE ID IN (' . $array_to_question_marks . ')');
+    $stmt = $pdo->prepare('SELECT * FROM product WHERE product_ID IN (' . $array_to_question_marks . ')');
     // We only need the 'list' keys, not the values, the keys are the ID's of the products
     $stmt->execute(array_keys($products_in_cart));
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     // Calculate the subtotal from here we can also figure the total with tax add a taxed total with tax information later on
     foreach ($products as $product) {
-        $subtotal += (float)$product['price'] * (int)$products_in_cart[$product['ID']];
+        $subtotal += (float)$product['reg_price'] * (int)$products_in_cart[$product['product_ID']];
     }
 }
 ?>
@@ -81,15 +81,15 @@ if ($products_in_cart) {
                 <?php foreach ($products as $product): ?>
                 <tr>
                     <td>
-                        <a href="index.php?page=product&ID=<?=$product['ID']?>"><?=$product['name']?></a>
+                        <a href="index.php?page=product&ID=<?=$product['product_ID']?>"><?=$product['product_description']?></a>
                         <br>
-                        <a href="index.php?page=cart&remove=<?=$product['ID']?>" >Remove</a>
+                        <a href="index.php?page=cart&remove=<?=$product['product_ID']?>" >Remove</a>
                     </td>
-                    <td>&dollar;<?=$product['price']?></td>
+                    <td>&dollar;<?=$product['reg_price']?></td>
                     <td>
-                        <input type="number" name="quantity-<?=$product['ID']?>" value="<?=$products_in_cart[$product['ID']]?>" min="1" max="<?=$product['quantity']?>" placeholder="Quantity" required>
+                        <input type="number" name="quantity-<?=$product['product_ID']?>" value="<?=$products_in_cart[$product['product_ID']]?>" min="1" max="<?=$product['qty_in_stock']?>" placeholder="Quantity" required>
                     </td>
-                    <td>&dollar;<?=$product['price'] * $products_in_cart[$product['ID']]?></td>
+                    <td>&dollar;<?=$product['reg_price'] * $products_in_cart[$product['product_ID']]?></td>
                 </tr>
                 <?php endforeach; ?>
                 <?php endif; ?>
