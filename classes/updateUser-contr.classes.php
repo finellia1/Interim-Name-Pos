@@ -34,11 +34,44 @@ class UpdateUserContr extends UpdateUser {
     //updates user
     public function updateUser() {
         if(empty($this->employee_ID)) {
-            $_SESSION["loginErrorFlag"] = 1;
-            $_SESSION["loginErrorMsg"] = "Empty User!";
+            $_SESSION["updateUserErrorFlag"] = 1;
+            $_SESSION["updateUserErrorMsg"] = "Empty User!";
             header("location: ../index.php?error=emptyUSER");
             exit();
-        }
+        } else if(empty($this->pwd)) {
+            $_SESSION["updateUserErrorFlag"] = 1;
+            $_SESSION["updateUserErrorMsg"] = "Empty Password!";
+            header("location: ../index.php?error=emptyPassword");
+            exit();
+        } else if(empty($this->email)) {
+            $_SESSION["updateUserErrorFlag"] = 1;
+            $_SESSION["updateUserErrorMsg"] = "Empty Email!";
+            header("location: ../index.php?error=emptyEmail");
+            exit();
+        } else if(empty($this->first_name)) {
+            $_SESSION["updateUserErrorFlag"] = 1;
+            $_SESSION["updateUserErrorMsg"] = "Empty First Name!";
+            header("location: ../index.php?error=emptyFirstName");
+            exit();
+        } else if(empty($this->last_name)) {
+            $_SESSION["updateUserErrorFlag"] = 1;
+            $_SESSION["updateUserErrorMsg"] = "Empty Last Name!";
+            header("location: ../index.php?error=emptyLastName");
+            exit();
+        } else if(empty($this->phone_number)) {
+            $_SESSION["updateUserErrorFlag"] = 1;
+            $_SESSION["updateUserErrorMsg"] = "Empty Phone Number!";
+            header("location: ../index.php?error=emptyPhoneNumber");
+            exit();
+        } else if(empty($this->employee_type)) {
+            $_SESSION["updateUserErrorFlag"] = 1;
+            $_SESSION["updateUserErrorMsg"] = "Empty Employee Type!";
+            header("location: ../index.php?error=emptyEmployeeType");
+            exit();
+        } 
+
+
+
         //sets user
         $this->setUser($this->employee_ID, $this->pwd, $this->email, $this->first_name, $this->last_name, $this->phone_number, $this->employee_type);
     }   
