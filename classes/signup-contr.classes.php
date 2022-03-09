@@ -33,31 +33,26 @@ class SignupContr extends Signup {
 
     public function signupUser() {
         if($this->emptyInput() == false) {
-            $_SESSION["addUserFlag"] = "1";
-            $_SESSION["addUserErrorMsg"] = "Empty Input";
+            //$_SESSION["addUserErrorMsg"] = "Empty Input";
             header("location: ../index.php?error=emptyinput");
             exit();
         }
         if($this->invalidemployee_ID() == false) {
-            $_SESSION["addUserFlag"] = "1";
             $_SESSION["addUserErrorMsg"] = "Invalid employee ID";
             header("location: ../index.php?error=username");
             exit();
         }
         if($this->invalidEmail() == false) {
-            $_SESSION["addUserFlag"] = "1";
             $_SESSION["addUserErrorMsg"] = "Invalid Email";
             header("location: ../index.php?error=email");
             exit();
         }
         if($this->pwdMatch() == false) {
-            $_SESSION["addUserFlag"] = "1";
             $_SESSION["addUserErrorMsg"] = "Invalid Password";
             header("location: ../index.php?error=passwordmatch");
             exit();
         }
         if($this->duplicateUser() == false) {
-            $_SESSION["addUserFlag"] = "1";
             $_SESSION["addUserErrorMsg"] = "Duplicate username or email";
             header("location: ../index.php?error=useroremailtaken");
             exit();
@@ -74,6 +69,14 @@ class SignupContr extends Signup {
         $result;
 
         if(empty($this->employee_ID) || empty($this->pwd) || empty($this->confirmpwd) || empty($this->email) || empty($this->first_name) || empty($this->last_name) || empty($this->phone_number) || empty($this->employee_type)) {
+            if(empty($this->employee_ID)) {$_SESSION["addUserErrorMsg"] = "Empty Employee ID";}
+            else if(empty($this->pwd)) {$_SESSION["addUserErrorMsg"] = "Empty Password";}
+            else if(empty($this->confirmpwd)) {$_SESSION["addUserErrorMsg"] = "Empty Confirm Password";}
+            else if(empty($this->email)) {$_SESSION["addUserErrorMsg"] = "Empty Email";}
+            else if(empty($this->first_name)) {$_SESSION["addUserErrorMsg"] = "Empty First Name";}
+            else if(empty($this->last_name)) {$_SESSION["addUserErrorMsg"] = "Empty Last Name";}
+            else if(empty($this->phone_number)) {$_SESSION["addUserErrorMsg"] = "Empty Phone Number";}
+            else if(empty($this->employee)) {$_SESSION["addUserErrorMsg"] = "Empty Employee";}
             $result = false;
         } else {
             $result = true;

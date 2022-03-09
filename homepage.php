@@ -124,7 +124,7 @@
                                         <label for="itemName">Item Name:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="itemName" name="product_name" value="itemName"><br>
+                                        <input type="text" id="itemName" name="product_name" placeholder="itemName"><br>
                                     </td>
                                 </tr>
                                 <tr>
@@ -132,7 +132,7 @@
                                         <label for="itemName">Product Type:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="productType" name="product_type" value="productType"><br>
+                                        <input type="text" id="productType" name="product_type" placeholder="productType"><br>
                                     </td>
                                 </tr>
                                 <tr>
@@ -140,7 +140,7 @@
                                         <label for="itemName">Description:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="description" name="product_description" value="description"><br>
+                                        <input type="text" id="description" name="product_description" placeholder="description"><br>
                                     </td>
                                 </tr>
                                 <tr>

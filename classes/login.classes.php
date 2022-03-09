@@ -1,16 +1,5 @@
 <?php
 session_start();
-<<<<<<< Updated upstream
-if (isset($_SESSION["loginErrorFlag"])){
-    $_SESSION["loginErrorFlag"] = 0;
-}
-if (isset($_SESSION["loginErrorMsg"])){
-    $_SESSION["loginErrorMsg"] = "";
-}
-=======
-//functions for login
-class Login extends Dbh {
->>>>>>> Stashed changes
 
 class Login extends Dbh {
     protected function getUser($employee_ID, $pwd) {
@@ -24,8 +13,11 @@ class Login extends Dbh {
         }
 
         if(empty($employee_ID) || empty($pwd)){
-            $_SESSION["loginErrorFlag"] = 1;
-            $_SESSION["loginErrorMsg"] = "Please enter username and password";
+            if(empty($employee_ID)){
+                $_SESSION["loginErrorMsg"] = "Please enter username";
+            }else{
+                $_SESSION["loginErrorMsg"] = "Please enter password";
+            }
             header("location: ../index.php?error=emptyInput");
             exit();
         }
@@ -46,17 +38,6 @@ class Login extends Dbh {
             header("location: ../index.php?error=wrongpassword");
             exit();
         } elseif($checkPwd == true) {
-<<<<<<< Updated upstream
-            $stmt = $this->connect()->prepare('SELECT * FROM employee WHERE employee_ID = ? OR email=? AND pwd = ?;');
-
-        if(!$stmt->execute(array($employee_ID, $employee_ID, $pwd))) {
-            $stmt = null;
-            $_SESSION["loginErrorFlag"] = 1;
-            $_SESSION["loginErrorMsg"] = "Failed login;";
-            header("location: ../index.php?error=stmtfailed");
-            exit();
-        }
-=======
             $stmt = $this->connect()->prepare('SELECT * FROM employee WHERE employee_ID = ? and pwd = ?;');
             //checks db for matching login info
             if(!$stmt->execute(array($employee_ID, $pwdHashed[0]["pwd"]))) {
@@ -73,11 +54,9 @@ class Login extends Dbh {
                 header("location: ../login.php?error=usernotfound2");
                 exit();
             }
->>>>>>> Stashed changes
 
         if($stmt->rowCount() == 0) {
             $stmt = null;
-            $_SESSION["loginErrorFlag"] = 1;
             $_SESSION["loginErrorMsg"] = "Username not found; Please try again";
             header("location: ../index.php?error=usernotfound");
             exit();

@@ -27,7 +27,37 @@ class UpdateProductContr extends UpdateProduct {
     public function updateProduct() {
         if(empty($this->product_ID)) {
             $_SESSION["updateProductErrorMsg"] = "Empty Product ID!";
-            header("location: ../index.php?error=emptyPRODUCT ID");
+            header("location: ../index.php?error=emptyProductID");
+            exit();
+        }
+        else if(empty($this->product_type)) {
+            $_SESSION["updateProductErrorMsg"] = "Empty Product Type!";
+            header("location: ../index.php?error=emptyProductType");
+            exit();
+        }
+        else if(empty($this->name)) {
+            $_SESSION["updateProductErrorMsg"] = "Empty Name!";
+            header("location: ../index.php?error=emptyName");
+            exit();
+        }
+        else if(empty($this->description)) {
+            $_SESSION["updateProductErrorMsg"] = "Empty Description!";
+            header("location: ../index.php?error=emptyDescription");
+            exit();
+        }
+        else if(empty($this->model_no)) {
+            $_SESSION["updateProductErrorMsg"] = "Empty Model No!";
+            header("location: ../index.php?error=emptyModelNo");
+            exit();
+        }
+        else if(empty($this->regular_price)) {
+            $_SESSION["updateProductErrorMsg"] = "Empty Regular Price!";
+            header("location: ../index.php?error=emptyRegularPrice");
+            exit();
+        }
+        else if(empty($this->quantity_in_stock)) {
+            $_SESSION["updateProductErrorMsg"] = "Empty Quantity in Stock";
+            header("location: ../index.php?error=emptyQuantityInStock");
             exit();
         }
         $this->setProduct($this->product_ID, $this->product_type, $this->name, $this->description, $this->model_no, $this->regular_price, $this->quantity_in_stock);

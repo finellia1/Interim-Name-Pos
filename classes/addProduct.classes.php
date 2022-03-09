@@ -26,13 +26,8 @@ class AddProduct extends Dbh {
         $stmt = $this->connect()->prepare('SELECT product_ID FROM product WHERE product_ID = ? OR product_name = ?;');
         if(!$stmt->execute(array($product_ID, $name))) {
             $stmt = null;
-<<<<<<< Updated upstream
-            header("location: ../includes/inventory.php");
-            exit();
-=======
             header("location: ../homepage.php");
             exit(); 
->>>>>>> Stashed changes
         }
 
         $resultcheck;

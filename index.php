@@ -15,8 +15,6 @@
     <body>
         <section>
 
-<<<<<<< Updated upstream
-=======
 <main> 
     <?php //test
         //session::display();
@@ -27,7 +25,6 @@
         }
     ?>
 </main>
->>>>>>> Stashed changes
 
             <div>
                 <h4>Add User</h4>
@@ -53,13 +50,7 @@
             </div>
             <div>
                 <h4>LOGIN</h4>
-                <?php
-                    if ($_SESSION["loginErrorFlag"] = 1){
-                        echo "<h4 style = 'color: red; 
-                        '>{$_SESSION["loginErrorMsg"]}</h4>
-                        ";
-                    }
-                ?>
+                <?php echo "<h4 style = 'color: red;'>{$_SESSION["loginErrorMsg"]}</h4>";?>
                 <form action="includes/login.inc.php" method="post">
                         <input type="text" name="employee_ID" placeholder="Employee ID">
                         <input type="password" name="pwd" placeholder="Password">
@@ -75,6 +66,7 @@
             </div>
             <div>
                 <h4>Remove User</h4>
+                <?php echo "<h4 style = 'color: red;'>{$_SESSION["removeUserErrorMsg"]}</h4>";?>
                 <form action="includes/removeUser.inc.php" method="post">
                         <input type="text" name="employee_ID" placeholder="Employee ID">
                         <br>
@@ -97,6 +89,7 @@
             </div>
             <div>
                 <h4>Remove Product</h4>
+                <?php echo "<h4 style = 'color: red;'>{$_SESSION["removeProductErrorMsg"]}</h4>";?>
                 <form action="includes/removeProduct.inc.php" method="post">
                         <input type="text" name="product_ID" placeholder="Product ID">
                         <br>
@@ -105,6 +98,7 @@
             </div>
             <div>
                 <h4>Update Product</h4>
+                <?php echo "<h4 style = 'color: red;'>{$_SESSION["updateProductErrorMsg"]}</h4>";?>
                     <form action="includes/updateProduct.inc.php" method="post">
                         <input type="text" name="product_ID" placeholder="product ID">
                         <input type="text" name="product_type" placeholder="product_type">

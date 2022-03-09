@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 class removeUserContr extends removeUser {
     // create the properties inside the class
     private $employee_ID;
@@ -13,6 +13,7 @@ class removeUserContr extends removeUser {
 
     public function checkUser() {
         if($this->emptyInput() == false) {
+            $_SESSION["removeUserErrorMsg"] = "Please enter an Employee ID!";
             header("location: ../index.php?error=emptyinput");
             exit();
         }
@@ -38,6 +39,7 @@ class removeUserContr extends removeUser {
     private function invalidemployee_ID() {
         $result;
         if(!preg_match("/^[a-zA-Z0-9]*$/", $this->employee_ID)){
+            $_SESSION["removeUserErrorMsg"] = "Please enter an Employee ID!";
             $result = false;
         } else {
             $result = true;

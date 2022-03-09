@@ -1,9 +1,5 @@
 <?php
 
-<<<<<<< Updated upstream
-=======
-session_start();
->>>>>>> Stashed changes
 class LoginContr extends Login {
     private $employee_ID;
     private $pwd;
@@ -17,12 +13,7 @@ class LoginContr extends Login {
     public function loginUser() {
         /*
         if($this->emptyInput() == false) {
-<<<<<<< Updated upstream
             header("location: ../index.php?error=emptyinput");
-=======
-
-            header("location: ../login.php?error=emptyinput");
->>>>>>> Stashed changes
             exit();
         }
         */
