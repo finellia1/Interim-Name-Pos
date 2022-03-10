@@ -1,7 +1,7 @@
 <?php
 
     
-
+    //database_v2
     session_start();       //session is used to get cart from previous page.
     $cart = $_SESSION['cartArray'];
     // print_r($cart);
