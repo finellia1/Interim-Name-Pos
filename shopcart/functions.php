@@ -1,5 +1,5 @@
 <?php
-//pdo style
+//pdo style THIS USES VERSION ONE OF THE DATA BASE
 function pdo_connect_mysql() {
     // Update the details below with your MySQL details
     $DATABASE_HOST = 'localhost';
