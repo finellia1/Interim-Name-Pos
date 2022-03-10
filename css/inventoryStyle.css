@@ -4,14 +4,17 @@ html{
     padding: 0%;
 }
 
+/*Give each item of the inventory some padding*/
 .inventoryItem{
     margin:25px;
 }
 
+/*General use inline tag*/
 .inline{
     display: inline;
 }
 
+/*Style table headings*/
 td, th{
     padding:8px;
     text-align: center;
@@ -21,18 +24,11 @@ th{
     border-bottom: 2px black solid;
 }
 
-.invView{
-    text-align: center;
-}
-
 label{
     margin: 10px;
     padding: 10px;
 }
 
-.editParam{
-    margin: 15px;
-}
 
 .alignLeft{
     text-align: left;

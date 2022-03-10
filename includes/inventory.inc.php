@@ -2,9 +2,11 @@
 require '../classes/session.classes.php';
 
 session::start();
-
-
+    //Search type is populated by form
     $searchType = $_POST["searchTypeInput"];
+    //Search content is populated by form
+
+    //Search content is set to whatever is in search content 
     $searchContent = $_POST["searchContent"];
     if($searchType == "Product ID"){
         $searchType = "product_ID";
@@ -50,6 +52,8 @@ session::start();
         $searchContent=" ";
     }
 
+    //If the search type is not blank, set the search type input.
+    //This search type session variable is used to run the search query to generate the divs in the homepage 
     if($searchType!=""){
         $_SESSION["searchTypeInput"] = "select * from product where {$searchType} like '%{$searchContent}%'";
     }else{

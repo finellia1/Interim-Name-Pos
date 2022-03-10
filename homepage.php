@@ -69,6 +69,7 @@
                     ?>
                     <h1>Inventory Page</h1>
                     <br><br>
+                    <!-- Search Popup, Hidden By Default -->
                     <div id = "searchPopup" class = "popup">
                         <form name="search" action="../midtermpull/includes/inventory.inc.php" method="POST">
                             <table class="dropShadow">
@@ -76,6 +77,7 @@
                                     <td class="alignLeft">
                                         <label for="searchTypeInput">Search Field:</label></td>
                                     <td class="alignLeft">
+                                        <!-- Data list containing all possible search fields -->
                                         <input id = "searchTypeInput" name = "searchTypeInput" list="searchType" placeholder ="Search by...">
                                         <datalist id = "searchType" >
                                         <option value = "Product ID">
@@ -95,6 +97,7 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <!-- Text Input for Search Content -->
                                     <td>
                                         <label for="searchContent">Search Content:</label></td>
                                     </td>
@@ -103,19 +106,23 @@
                                     </td>    
                                 </tr>
                                 <tr>
+                                    <!--Search Submit-->
                                     <td>
                                         <input id = "searchSubmit" type="submit" value="Search!"></button>
                                     </td>
                                     <td>
+                                        <!-- Button to close pane-->
                                         <button type="button" onclick="exitPane('searchPopup')">Close</button>
                                     </td>
                                 </tr>
                              </table>
                         </form>
                     </div>
+                    <!--Edit popup. Hidden by default-->
                     <div id="editPopup" class = "popup">
                         <form name="edit" action="../midtermpull/includes/updateProduct.inc.php" method="POST">
                             <table class="dropShadow">
+                            <!-- Item Name --> 
                             <input type='hidden' name='deleteID_edit' id='deleteID_edit'>
                             <tr>
                                     <td class="alignLeft">
@@ -125,7 +132,7 @@
                                         <input type="text" id="productType" name="product_type" value="productType"><br>
                                     </td>
                                 </tr>
-                            
+                            <!-- Product Type -->
                             <tr>
                                     <td class="alignLeft">
                                         <label for="itemName">Item Name:</label>
@@ -134,7 +141,7 @@
                                         <input type="text" id="itemName" name="product_name" value="itemName"><br>
                                     </td>
                                 </tr>
-
+                            <!-- Item Description -->
                                 <tr>
                                     <td class="alignLeft">
                                         <label for="itemName">Description:</label>
@@ -143,6 +150,7 @@
                                         <input type="text" id="description" name="product_description" value="description"><br>
                                     </td>
                                 </tr>
+                                <!-- Make -->
                                 <tr>
                                     <td class="alignLeft">
                                         <label for="itemName">Make:</label>
@@ -151,6 +159,7 @@
                                         <input type="text" id="make" name="make" value="make"><br>
                                     </td>
                                 </tr>
+                                <!-- Model -->
                                 <tr>
                                     <td class="alignLeft">
                                         <label for="itemName">Model:</label>
@@ -159,6 +168,7 @@
                                         <input type="text" id="model" name="model" value="model"><br>
                                     </td>
                                 </tr>
+                                <!-- Quantity Unit -->
                                 <tr>
                                     <td class="alignLeft">
                                         <label for="itemName">Quantity_Unit:</label>
@@ -167,6 +177,7 @@
                                         <input type="text" id="quantity" name="qty_unit_edit" value="quantity"><br>
                                     </td>
                                 </tr>
+                                <!-- Quantity In Stock -->
                                 <tr>
                                     <td class="alignLeft">
                                         <label for="itemName">Quantity In Stock:</label>
@@ -175,6 +186,7 @@
                                         <input type="text" id="quantityInStock" name="qty_in_stock" value="quantityInStock"><br>
                                     </td>
                                 </tr>
+                                <!-- Promotional -->
                                 <tr>
                                     <td class="alignLeft">
                                         <label for="itemName">isPromotional</label>
@@ -183,6 +195,7 @@
                                         <input type="checkbox" id="isPromotional" name="isPromotional_edit" ><br>
                                     </td>
                                 </tr>
+                                <!--Regular Price -->
                                 <tr>
                                     <td class="alignLeft">
                                         <label for="itemName">Regular Price</label>
@@ -191,6 +204,7 @@
                                         <input type="text" id="regularPrice" name="reg_price" value="regularPrice"><br>
                                     </td>
                                 </tr>
+                                <!--Discounted Price -->
                                 <tr>
                                     <td class="alignLeft">
                                         <label for="itemName">Discounted Price:</label>
@@ -200,6 +214,7 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                <!--Number Rented -->
                                     <td class="alignLeft">
                                         <label for="itemName">Number Rented:</label>
                                     </td>
@@ -207,6 +222,7 @@
                                         <input type="text" id="numberRented" name="num_rented" value="numberRented"><br>
                                     </td>
                                 </tr>
+                                <!-- Number Broken -->
                                 <tr>
                                     <td class="alignLeft">
                                         <label for="itemName">Number Broken</label>
@@ -219,25 +235,29 @@
                                     <td>
                                         <input type="submit" value="Submit!"></button>
                                     </td>
+                                    <!-- Button to close pane-->
                                     <td>
+                                        <!-- Button to submit form -->
                                         <button type="button" onclick="exitPane('editPopup')">Cancel!</button>
                                     </td>
                                 </tr>
                             </table>
                         </form>
                     </div>
+                    <!--Add popup. Hidden by default-->
                     <div id="addPopup" class = "popup">
                         <form name="add" action="./includes/addProduct.inc.php" method="post">
                             <table class="dropShadow">
+                                <!-- Item Name --> 
                                 <tr>
                                     <td class="alignLeft">
                                         <label for="itemName">Item Name:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <!-- Different value and name --> 
                                         <input type="text" name="product_name" value="itemName"><br>
                                     </td>
                                 </tr>
+                                <!-- Product Type -->
                                 <tr>
                                     <td class="alignLeft">
                                         <label for="itemName">Product Type:</label>
@@ -246,6 +266,7 @@
                                         <input type="text" name="product_type" value="productType"><br>
                                     </td>
                                 </tr>
+                                <!-- Item Description -->
                                 <tr>
                                     <td class="alignLeft">
                                         <label for="itemName">Description:</label>
@@ -254,6 +275,7 @@
                                         <input type="text" name="product_description" value="description"><br>
                                     </td>
                                 </tr>
+                                <!-- Make -->
                                 <tr>
                                     <td class="alignLeft">
                                         <label for="itemName">Make:</label>
@@ -262,6 +284,8 @@
                                         <input type="text"  name="make" value="make"><br>
                                     </td>
                                 </tr>
+                                
+                                <!-- Model -->
                                 <tr>
                                     <td class="alignLeft">
                                         <label for="itemName">Model:</label>
@@ -270,6 +294,7 @@
                                         <input type="text" name="model" value="model"><br>
                                     </td>
                                 </tr>
+                                <!-- Quantity Unit -->
                                 <tr>
                                     <td class="alignLeft">
                                         <label for="itemName">Quantity_Unit:</label>
@@ -278,6 +303,7 @@
                                         <input type="text" name="qty_unit" value="quantity"><br>
                                     </td>
                                 </tr>
+                                <!-- Quantity In Stock -->
                                 <tr>
                                     <td class="alignLeft">
                                         <label for="itemName">Quantity In Stock:</label>
@@ -286,6 +312,7 @@
                                         <input type="text" name="qty_in_stock" value="quantityInStock"><br>
                                     </td>
                                 </tr>
+                                <!-- Promotional -->
                                 <tr>
                                     <td class="alignLeft">
                                         <label for="itemName">isPromotional</label>
@@ -294,6 +321,7 @@
                                         <input type="checkbox" name="isPromotional" ><br>
                                     </td>
                                 </tr>
+                                <!--Regular Price -->
                                 <tr>
                                     <td class="alignLeft">
                                         <label for="itemName">Regular Price</label>
@@ -302,6 +330,7 @@
                                         <input type="text" name="reg_price" value="regularPrice"><br>
                                     </td>
                                 </tr>
+                                <!--Discounted Price -->
                                 <tr>
                                     <td class="alignLeft">
                                         <label for="itemName">Discounted Price:</label>
@@ -311,6 +340,7 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                <!--Number Rented -->
                                     <td class="alignLeft">
                                         <label for="itemName">Number Rented:</label>
                                     </td>
@@ -318,6 +348,7 @@
                                         <input type="text" name="num_rented" value="numberRented"><br>
                                     </td>
                                 </tr>
+                                <!-- Number Broken -->
                                 <tr>
                                     <td class="alignLeft">
                                         <label for="itemName">Number Broken</label>
@@ -328,15 +359,18 @@
                                 </tr>
                                 <tr>
                                     <td>
+                                        <!-- Button to submit form -->
                                         <input type="submit" name = "submit" value="submit"></button>
                                     </td>
                                     <td>
+                                        <!-- Button to close pane-->
                                         <button type="button" onclick="exitPane('addPopup')">Cancel!</button>
                                     </td>
                                 </tr>
                             </table>
                         </form>
                     </div>
+                    <!-- Control panel contains buttons for adding and searching for items-->
                     <table id="controlPanel">
                         <tr>
                             <th id="addItemBtnTH">
@@ -348,6 +382,7 @@
                             </th>
                         </tr>
                     </table>
+                    <!--Contains the table-->
                     <div id = "inventoryWrapper">
                         <table id="inventory">
                             <tr>
@@ -369,6 +404,7 @@
                                 <th>Add to Cart</th>
                             </tr>
                             <?php
+                                //Connect to DB
                                 $host='127.0.0.1';
                                 $db = 'hv_audio_visual';
                                 $user = 'root';
@@ -385,11 +421,15 @@
                                 ];
                                 try {
                                     $pdo = new PDO($dsn, $user, $pass, $options);
+                                    //If there is no sessions set, default to selecting every item
                                     if(!isset($_SESSION["searchTypeInput"])){
                                         $_SESSION["searchTypeInput"] = "select * from product";
                                     }
+                                    //Set data to results of search query ran.
+                                    //Search query is session variable set in search popup
                                     $getData = $pdo->query($_SESSION["searchTypeInput"]);
                                     foreach($getData as $row){
+                                        //Echo out table information with row infomration from DB 
                                         echo "<tr>"; 
                                         echo "<td> {$row['product_ID']} </td>";
                                         echo "<td> {$row['product_type']} </td>";
@@ -405,6 +445,8 @@
                                         echo "<td> {$row['num_rented']} </td>";
                                         echo "<td> {$row['num_broken']} </td>";
 
+                                        //Append single quotes to either side the data
+                                        //This is done to be able to pass a string to a js onclick()
                                         $p_id = "'".$row['product_ID']."'";
                                         $p_type = "'".$row['product_type']."'";
                                         $p_name = "'".$row['product_name']."'";
@@ -419,8 +461,10 @@
                                         $p_num_rented = "'".$row['num_rented']."'";
                                         $p_num_broken = "'".$row['num_broken']."'";
 
+                                        //Pass in the p_ variables to button. This way the variables can be accessed in JS
                                         printf('<td><button type="button" onclick="editPane(%s,%s, %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)">Edit</button>',$p_id,$p_name,$p_type,$p_description, $p_make, $p_model, $p_qty_unit, $p_qty_in_stock, $p_is_promotional, $p_reg_price, $p_discounted_price, $p_num_rented, $p_num_broken);
 
+                                        //Create form to handle removing item
                                         echo "<form name='remove' action='../midtermpull/includes/removeProduct.inc.php' method='post'>";
                                         echo "<td><button type='submit' name='submit' value='submit'>Delete</button>";
                                         echo "<td><button type='button'>Cart</button>";
@@ -429,6 +473,7 @@
                                         echo "</tr>";
                                     }
 
+                                    //If an execption is thrown, default the search to select every item in DB
                                 } catch (\PDOException $e) {
                                         $_SESSION["searchTypeInput"] = "select * from product";
                                         throw new \PDOException($e->getMessage(), (int)$e->getCode());
