@@ -1,0 +1,76 @@
+html{
+    font-family: sans-serif;
+}
+
+.inventoryItem{
+    margin:25px;
+}
+
+.inline{
+    display: inline;
+}
+
+td, th{
+    padding:8px;
+    text-align: center;
+}
+
+th{
+    border-bottom: 2px black solid;
+}
+
+.invView{
+    text-align: center;
+}
+
+label{
+    margin: 10px;
+    padding: 10px;
+}
+
+.editParam{
+    margin: 15px;
+}
+
+.alignLeft{
+    text-align: left;
+}
+
+.dropShadow{
+    box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+    z-index: 2;
+}
+button{
+    text-align: center;
+}
+
+#editPopup{
+    visibility: hidden;
+    /*Found on https://css-tricks.com/quick-css-trick-how-to-center-an-object-exactly-in-the-center/*/
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+}
+
+#addPopup{
+    visibility: hidden;
+    /*Found on https://css-tricks.com/quick-css-trick-how-to-center-an-object-exactly-in-the-center/*/
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+}
+
+#centerVAlign{
+    width:auto;
+    margin:auto;
+}
+
+#addItemBtnTH{
+    border: none;
+}
+
