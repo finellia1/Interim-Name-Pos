@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--Connects to hv_audio_visual_v2-->
 <html>
 <head>
     <link rel="stylesheet" href="navBar.css">
