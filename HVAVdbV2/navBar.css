@@ -1,0 +1,78 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.wrap {
+  height: 100vh;
+  display: flex;
+}
+main {
+  flex: 1;
+  display: flex;
+}
+.left-panel {
+  flex: 0.25;
+}
+.nav-bar {
+  height: 100%;
+  width: 5.625rem;
+  text-align: center;
+}
+.nav-bar ul {
+  list-style-type: none;
+}
+.nav-bar li {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  text-align: center;
+  border-radius: 50%;
+  background-color: white;
+}
+.nav-bar li:nth-child(1) {
+  top: 60px;
+  left: 10px;
+}
+.nav-bar li:nth-child(2) {
+  top: 170px;
+  left: 10px;
+}
+.nav-bar li:nth-child(3) {
+  top: 290px;
+  left: 10px;
+}
+.nav-bar li:nth-child(4) {
+  top: 410px;
+  left: 10px;
+}
+.nav-bar li:nth-child(5) {
+  top: 530px;
+  left: 10px;
+}
+.nav-bar li:nth-child(6) {
+  top: 650px;
+  left: 12px;
+}
+.nav-bar li:nth-child(7) {
+  top: 845px;
+  left: 10px;
+}
+
+.nav-bar li img {
+  padding-top: 23px;
+}
+.nav-bar li:nth-child(1) img {
+  padding-top: 0px;
+}
+
+.middlePanel {
+  flex: 3;
+  background-color: rgba(196, 196, 196, 0.16);
+}
+
+.rightPanel {
+  flex: 1.5;
+  background-color: aquamarine;
+}
