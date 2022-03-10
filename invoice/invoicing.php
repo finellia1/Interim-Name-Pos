@@ -22,7 +22,7 @@
     }
   
 
-    $stmt = $conn ->query('SELECT invoice_ID FROM invoice');  //gets all invoice_ID numbers to figure out current invoiceID
+    $stmt = $conn ->query('SELECT invoice_ID FROM invoice ORDER BY invoice_ID ASC');  //gets all invoice_ID numbers to figure out current invoiceID
     $ids = $stmt -> fetchALL(PDO::FETCH_COLUMN);
     $newID =array_pop($ids);                                  //gets most recent id and increments it.
     $newID++;
@@ -301,7 +301,7 @@
                 <h4 style="padding-left: 4px;"> 
                 <?php
                 if($currentClient['tax_exempt'] == 1){ //checks if client is tax exempt or not, and changes the invoice accordingly
-                    echo "Text Exempt";
+                    echo "Tax Exempt";
                 }
                 else{
                     echo "Tax: 8%";
