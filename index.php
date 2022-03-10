@@ -1,3 +1,4 @@
+<!-- Database used is hvav-modified-1.sql !-->
 <?php 
     include 'classes/session.classes.php';
     include 'includes/flagInit.php';
