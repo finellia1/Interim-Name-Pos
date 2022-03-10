@@ -15,7 +15,7 @@ const employee1 = document.getElementById('employee1');
 const employee2 = document.getElementById('employee2');
 const working1 = document.getElementById('working1');
 const working2 = document.getElementById('working2');
-
+const Employees = document.getElementById('Employees');
 
 
 
@@ -35,6 +35,7 @@ function openModal(date) {
     eventTitle.style.display = 'block';
     working1.style.display = 'block';
     working2.style.display = 'block';
+    Employees.innerHTML = 'Employees';
   } else {
     newEventModal.style.display = 'block';
   }
@@ -113,6 +114,7 @@ function closeModal() {
   eventTitle.style.display = 'none';
   working1.style.display = 'none';
   working2.style.display = 'none';
+  Employees.innerHTML = '';
 
 
   clicked = null;
