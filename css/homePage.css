@@ -10,13 +10,11 @@ main {
   flex: 1;
   display: flex;
 }
-.leftPanel {
-  flex: 0.25;
-}
 .nav-bar {
   height: 100%;
   width: 5.625rem;
   text-align: center;
+  padding-right: 0px;
 }
 .nav-bar ul {
   list-style-type: none;
@@ -66,7 +64,7 @@ main {
 }
 
 .middlePanel {
-  flex: 0.25;
+  flex: 2;
   background-color: rgba(196, 196, 196, 0.16);
   width: 100%;
   height: 100%;

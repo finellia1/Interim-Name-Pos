@@ -54,7 +54,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class = "logout" href="link to signin page">
+                            <a class = "logout" href=".\login.php">
                                 <img src=".\Assets\logout.png" height = 30px width = 30px alt = "logout-icon">
                             </a>
                         </li>
@@ -130,6 +130,7 @@
             <div class = "rightPanel">
                 <p id ="eventTitle"></p>
                 <p id="eventInfo"></p>
+                <p id="Employees"></p>
                 <p id="working1"></p>
                 <p id="working2"></p>
             </div>
