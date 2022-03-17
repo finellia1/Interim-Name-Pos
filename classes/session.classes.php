@@ -54,14 +54,6 @@ class session{
         return false;
     }
 
-    public static function search($searchType, $searchContent) {
-            //if passed as get($key)
-        if($searchType!=" "){
-            $_SESSION["searchResult"] = "select * from product where {$searchType} like '%{$searchContent}%'";
-        } else{
-            $_SESSION["searchResult"] = connect()->"select * from product";
-        }
-    }
 
     //bool checks if session is set for single key entries
     public static function isSet($key) {
