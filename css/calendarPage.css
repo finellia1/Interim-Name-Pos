@@ -1,0 +1,262 @@
+html,
+body {
+  height: 100%;
+}
+.wrap {
+  height: 100vh;
+  display: flex;
+}
+main {
+  flex: 1;
+  display: flex;
+}
+.leftPanel {
+  flex: 0.25;
+}
+.nav-bar {
+  height: 100%;
+  width: 5.625rem;
+  text-align: center;
+}
+.nav-bar ul {
+  list-style-type: none;
+}
+.nav-bar li {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  text-align: center;
+  border-radius: 50%;
+  background-color: white;
+}
+.nav-bar li:nth-child(1) {
+  top: 60px;
+  left: 10px;
+}
+.nav-bar li:nth-child(2) {
+  top: 170px;
+  left: 10px;
+}
+.nav-bar li:nth-child(3) {
+  top: 290px;
+  left: 10px;
+}
+.nav-bar li:nth-child(4) {
+  top: 410px;
+  left: 10px;
+}
+.nav-bar li:nth-child(5) {
+  top: 530px;
+  left: 10px;
+}
+.nav-bar li:nth-child(6) {
+  top: 650px;
+  left: 12px;
+}
+.nav-bar li:nth-child(7) {
+  top: 845px;
+  left: 10px;
+}
+
+.nav-bar li img {
+  padding-top: 23px;
+}
+.nav-bar li:nth-child(1) img {
+  padding-top: 0px;
+}
+
+.middlePanel {
+  flex: 3;
+  height: 100%;
+  background-color: rgba(196, 196, 196, 0.16);
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+#banner {
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  background-image: linear-gradient(#f89b29, #ff0f7b);
+}
+#banner h1 {
+  color: white;
+  margin: 0;
+  padding-top: 30px;
+}
+button {
+  width: 75px;
+  cursor: pointer;
+  box-shadow: 0px 0px 2px gray;
+  border: none;
+  outline: none;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+}
+
+#header {
+  padding: 10px;
+  color: #d36c6c;
+  font-size: 26px;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: space-between;
+}
+#header button {
+  background-image: linear-gradient(#f89b29, #ff0f7b);
+}
+#container {
+  width: 770px;
+  padding-left: 213px;
+}
+#weekdays {
+  width: 100%;
+  display: flex;
+  color: #247ba0;
+}
+#weekdays div {
+  width: 100px;
+  padding: 10px;
+}
+#calendar {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+.day {
+  width: 100px;
+  padding: 10px;
+  height: 100px;
+  cursor: pointer;
+  box-sizing: border-box;
+  background-color: white;
+  margin: 5px;
+  box-shadow: 0px 0px 3px #cbd4c2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.day:hover {
+  background-color: #e8faed;
+}
+
+.day + #currentDay {
+  background-color: #e8f4fa;
+}
+.event {
+  font-size: 10px;
+  padding: 3px;
+  background-image: linear-gradient(#f89b29, #ff0f7b);
+  color: white;
+  border-radius: 5px;
+  max-height: 55px;
+  overflow: hidden;
+}
+.padding {
+  cursor: default !important;
+  background-color: #fffcff !important;
+  box-shadow: none !important;
+}
+#newEventModal,
+#deleteEventModal {
+  display: none;
+  z-index: 20;
+  padding: 25px;
+  background-color: #e8f4fa;
+  box-shadow: 0px 0px 3px black;
+  border-radius: 5px;
+  width: 350px;
+  top: 100px;
+  left: calc(50% - 175px);
+  position: absolute;
+  font-family: sans-serif;
+}
+#eventTitleInput {
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 25px;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  box-shadow: 0px 0px 3px gray;
+}
+
+#eventDescriptionInput {
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 30px;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  box-shadow: 0px 0px 3px gray;
+  height: 100px;
+  text-align: start;
+}
+select {
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  box-shadow: 0px 0px 3px gray;
+  text-align: start;
+}
+#eventTitleInput.error {
+  border: 2px solid red;
+}
+#cancelButton,
+#deleteButton {
+  background-image: linear-gradient(#f89b29, #ff0f7b);
+}
+#saveButton,
+#closeButton {
+  background-image: linear-gradient(#f89b29, #ff0f7b);
+}
+#eventText {
+  font-size: 14px;
+}
+#eventTitle {
+  text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+  background-image: linear-gradient(#f89b29, #ff0f7b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+}
+#eventInfo {
+  text-align: center;
+}
+#modalBackDrop {
+  display: none;
+  top: 0px;
+  left: 0px;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.rightPanel {
+  flex: 1.5;
+  background-color: white;
+}
+#working1,
+#working2 {
+  text-align: center;
+  font-size: 18px;
+  padding: 3px;
+  background-image: linear-gradient(#f89b29, #ff0f7b);
+  color: white;
+  border-radius: 5px;
+  max-height: 55px;
+  overflow: hidden;
+}

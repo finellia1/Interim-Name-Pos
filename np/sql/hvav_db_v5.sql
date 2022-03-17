@@ -1,0 +1,517 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Mar 06, 2022 at 09:55 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.2
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `hv_audio_visual`
+--
+
+----------------------------------------------------------
+
+-- Create 'client' Table
+
+CREATE TABLE `client` (
+  `client_ID` int(11) NOT NULL,
+  `client_type` varchar(25) NOT NULL,
+  `company` varchar(50) NOT NULL,
+  `first_name` varchar(25) NOT NULL,
+  `last_name` varchar(25) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `address_line1` varchar(50) NOT NULL,
+  `address_line2` varchar(50) NOT NULL,
+  `city` varchar(50) NOT NULL,
+  `state` varchar(2) NOT NULL,
+  `zip_code` varchar(10) NOT NULL,
+  `phone` varchar(15) NOT NULL,
+  `client_notes` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+-- Insert Test Data into 'client' Table
+
+INSERT INTO `client` (`client_ID`, `client_type`, `company`, `first_name`, `last_name`, `email`, `address_line1`, `address_line2`, `city`, `state`, `zip_code`, `phone`, `client_notes`) VALUES
+(6, 'corporate', 'Jones Grill', 'Eloise', 'Parker', 'jonesgrill@email', '49 Baker St.', '', 'Modena', 'NY', '12515', '845-555-2000', 'Add client notes here.'),
+(7, 'corporate', 'HV Desserts', 'Mary', 'Franklin', 'mfranklin@email.com', '68 Main St.', '', 'Kingston', 'NY', '12401', '845-555-2001', ''),
+(8, 'small business', 'Artists Haven', 'Gerald', 'Davis', 'gdavis@email.com', '127 Rte. 44', '', 'Poughkeepsie', 'NY', '12601', '845-555-2003', ''),
+(9, 'corporate', 'Ulster County Realtors', 'Megan', 'Smith', 'msmith@email.com', '14 Albany Ave.', '', 'Kingston', 'NY', '12401', '845-555-2004', ''),
+(10, 'family', 'none', 'Derrick', 'Wilson', 'dwilson@email.com', '5 Water St.', 'Apt. 2A', 'New Paltz', 'NY', '12561', '845-555-2006', '');
+
+----------------------------------------------------------
+
+-- Create 'employee' Table
+
+CREATE TABLE `employee` (
+  `employee_ID` int(15) NOT NULL,
+  `security_ID_fk` int(11) NOT NULL,
+  `job_title` varchar(25) NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+-- Insert Data into 'employee' Table
+
+INSERT INTO `employee` (`employee_ID`, `security_ID_fk`, `job_title`, `first_name`, `last_name`, `email`) VALUES
+(1, 1, 'Systems Adminis', 'Sarah', 'Smith', 'ssmith@email.com'),
+(2, 2, 'Manger', 'John', 'Jones', 'jjones@email.com'),
+(3, 3, 'Technician', 'Amy', 'Baker', 'abaker@email.com'),
+(4, 3, 'Warehouse', 'Amy', 'Baker', 'abaker@email.com'),
+(5, 3, 'Warehouse', 'Dan', 'Arnold', 'darnold@email.com');
+
+----------------------------------------------------------
+
+-- Create 'event_order' Table
+
+CREATE TABLE `event_order` (
+  `event_order_ID` int(11) NOT NULL,
+  `venue_ID_fk` int(11) NOT NULL,
+  `product_ID_fk` int(11) NOT NULL,
+  `client_ID_fk` int(11) NOT NULL,
+  `event_type` varchar(25) NOT NULL,
+  `is_nonprofit` tinyint(1) NOT NULL,
+  `order_date` date NOT NULL,
+  `event_date_start` date NOT NULL,
+  `event_date_end` date NOT NULL,
+  `event_time_start` time NOT NULL,
+  `event_time_end` time NOT NULL,
+  `num_trucks_needed` int(2) NOT NULL,
+  `num_techs_needed` int(2) NOT NULL,
+  `setup_date` date NOT NULL,
+  `load_in_time` time NOT NULL,
+  `on_site_time` time NOT NULL,
+  `breakdown_date` date NOT NULL,
+  `created_by` varchar(50) NOT NULL,
+  `event_notes` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Insert Data for 'event_order' Table
+--
+
+INSERT INTO `event_order` (`event_order_ID`, `venue_ID_fk`, `product_ID_fk`, `client_ID_fk`, `event_type`, `is_nonprofit`, `order_date`, `event_date_start`, `event_date_end`, `event_time_start`, `event_time_end`, `num_trucks_needed`, `num_techs_needed`, `setup_date`, `load_in_time`, `on_site_time`, `breakdown_date`, `created_by`, `event_notes`) VALUES
+(8, 3, 40, 6, 'wedding', 0, '2022-01-07', '2022-05-03', '2022-05-03', '14:00:00', '17:00:00', 2, 2, '2022-05-02', '10:00:00', '12:00:00', '2022-05-04', 'S. Jones', 'Add event notes here.'),
+(9, 2, 25, 7, 'Conference', 0, '2022-01-28', '2022-03-07', '2022-03-11', '09:00:00', '17:00:00', 2, 1, '2022-03-06', '06:00:00', '19:00:00', '2022-03-12', 'S. Jones', ''),
+(10, 4, 25, 8, 'Party', 0, '2022-02-01', '2022-03-17', '2022-03-17', '13:00:00', '16:00:00', 1, 1, '2022-03-16', '09:00:00', '11:00:00', '2022-03-16', 'J. Smith', ''),
+(11, 1, 6, 9, 'Corporate Training', 1, '2022-02-02', '2022-04-04', '2022-03-04', '10:00:00', '16:00:00', 2, 1, '2022-04-03', '10:00:00', '11:00:00', '2022-04-05', 'S. Jones', ''),
+(12, 4, 18, 10, 'Party', 0, '2022-02-05', '2022-04-24', '2022-04-24', '13:00:00', '19:00:00', 1, 2, '2022-04-23', '09:00:00', '10:00:00', '2022-04-25', 'J. Smith', '');
+
+----------------------------------------------------------
+
+-- Create 'invoice' Table
+
+CREATE TABLE `invoice` (
+  `invoice_ID` int(11) NOT NULL,
+  `client_ID_fk` int(11) NOT NULL,
+  `event_order_ID_fk` int(11) NOT NULL,
+  `invoice_date` date NOT NULL,
+  `invoice_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `is_tax_exempt` tinyint(4) NOT NULL,
+  `payment_terms` text NOT NULL,
+  `date_due` date NOT NULL,
+  `payment_type` varchar(15) NOT NULL,
+  `amount_due` decimal(10,2) NOT NULL,
+  `sales_tax` decimal(10,2) NOT NULL,
+  `total_due` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+-- Insert Data into 'invoice' Table
+
+INSERT INTO `invoice` (`invoice_ID`, `client_ID_fk`, `event_order_ID_fk`, `invoice_date`, `invoice_time`, `is_tax_exempt`, `payment_terms`, `date_due`, `payment_type`, `amount_due`, `sales_tax`, `total_due`) VALUES
+(1, 6, 8, '2022-01-07', '2022-03-07 02:33:28', 0, '', '2022-02-07', 'check', '1015.00', '91.35', '1106.35'),
+(2, 7, 9, '2022-01-28', '2022-03-07 02:27:07', 0, '', '2022-01-28', 'check', '765.00', '68.85', '833.85'),
+(3, 8, 10, '2022-02-01', '2022-03-07 02:27:57', 0, '', '2022-02-01', 'credit card', '1375.00', '123.75', '1498.75'),
+(4, 9, 11, '2022-02-02', '2022-03-07 02:28:51', 0, '', '2022-02-02', 'credit card', '1285.00', '115.65', '1400.65'),
+(5, 10, 12, '2022-02-05', '2022-03-07 02:50:45', 1, '', '2022-02-05', 'cash', '525.00', '47.25', '527.25');
+
+----------------------------------------------------------
+
+-- Create iinvoice_product_list' Table
+
+CREATE TABLE `invoice_product_list` (
+  `invoice_product_list_ID` int(11) NOT NULL,
+  `invoice_ID_fk` int(11) NOT NULL,
+  `product_ID_fk` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Insert Data into `invoice_product_list` Table
+
+INSERT INTO `invoice_product_list` (`invoice_product_list_ID`, `invoice_ID_fk`, `product_ID_fk`) VALUES
+(8, 4, 6),
+(10, 5, 10),
+(7, 3, 14),
+(5, 2, 25),
+(9, 4, 34),
+(4, 1, 39),
+(6, 2, 39),
+(3, 1, 40);
+
+----------------------------------------------------------
+
+-- Create `payment` Table
+
+CREATE TABLE `payment` (
+  `payment_ID` int(11) NOT NULL,
+  `invoice_ID_fk` int(11) NOT NULL,
+  `amount_paid` decimal(10,2) NOT NULL,
+  `payment_date` date NOT NULL,
+  `payment_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `balance_due` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Insert Data into `payment` Table
+
+INSERT INTO `payment` (`payment_ID`, `invoice_ID_fk`, `amount_paid`, `payment_date`, `payment_time`, `balance_due`) VALUES
+(1, 1, '1106.35', '2022-01-07', '2022-03-07 02:37:42', '0.00'),
+(2, 2, '833.85', '2022-01-28', '2022-03-07 02:38:08', '0.00'),
+(3, 3, '1498.75', '2022-02-01', '2022-03-07 02:38:40', '0.00'),
+(4, 4, '1400.65', '2022-02-02', '2022-03-07 02:39:09', '0.00'),
+(5, 5, '527.25', '2022-02-05', '2022-03-07 02:39:30', '0.00');
+
+----------------------------------------------------------
+
+-- Create `product` Table
+
+CREATE TABLE `product` (
+  `product_ID` int(11) NOT NULL,
+  `product_type` varchar(25) NOT NULL,
+  `product_name` varchar(100) NOT NULL,
+  `product_description` varchar(255) NOT NULL,
+  `make` varchar(25) NOT NULL,
+  `model` varchar(100) NOT NULL,
+  `qty_unit` varchar(12) NOT NULL,
+  `qty_in_stock` int(3) NOT NULL,
+  `is_promotional` tinyint(1) NOT NULL,
+  `reg_price` decimal(10,2) NOT NULL,
+  `discounted_price` decimal(10,2) NOT NULL,
+  `num_rented` int(3) NOT NULL,
+  `num_broken` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Insert Products into `product` Table
+
+INSERT INTO `product` (`product_ID`, `product_type`, `product_name`, `product_description`, `make`, `model`, `qty_unit`, `qty_in_stock`, `is_promotional`, `reg_price`, `discounted_price`, `num_rented`, `num_broken`) VALUES
+(1, 'Audio', 'Speaker', 'AN130 Speaker', 'Anchor', 'AN130', 'each', 2, 0, '75.00', '75.00', 0, 0),
+(2, 'Audio', 'Speaker', 'JBL EON 610 Speaker', 'JBL', 'EON 610', 'pair', 1, 0, '175.00', '150.00', 0, 0),
+(3, 'Audio', 'Speaker', 'JBL EON 615 Speaker', 'JBL', 'EON 615', 'pair', 3, 0, '225.00', '200.00', 0, 0),
+(4, 'Audio', 'Subwoofer Speaker', 'JBL EON 518 Powered Subwo', 'JBL', 'EON 518', 'each', 3, 0, '100.00', '100.00', 0, 0),
+(5, 'Audio', 'Loudspeaker', 'Carvin Column Array Loudspeaker', 'Carvin', '', 'pair', 1, 0, '395.00', '300.00', 0, 0),
+(6, 'Audio Set', 'Speaker with Microphone', 'Pair of Anchor Liberty Speakers with Wireless Handheld Microphone', 'Anchor', 'Liberty', 'pair', 2, 0, '275.00', '200.00', 0, 0),
+(7, 'Audio Set', 'Speaker with Microphone', 'Pair of Anchor Bigfoot Speakers with Wireless Handheld Microphone', 'Anchor', 'Bigfoot', 'pair', 1, 0, '375.00', '300.00', 0, 0),
+(8, 'Audio', 'Microphone', 'Shure Wireless Microphone HH or Lavalier Single Pack', 'Shure', '', 'each', 9, 0, '125.00', '75.00', 0, 0),
+(9, 'Audio ', 'Microphone', '4 Pack of Shure Wireless Microphone HH or Lavalier', 'Shure', '', 'each', 1, 0, '450.00', '450.00', 0, 0),
+(10, 'Audio', 'Microphone', 'Shure SM58', 'Shure', 'SM58', 'each', 16, 0, '50.00', '50.00', 0, 0),
+(11, 'Audio', 'Mixer', 'Behringer Xenyx 4 Channel Mixer', 'Behringer', 'Xenyx 4', 'each', 2, 0, '45.00', '45.00', 0, 0),
+(12, 'Audio', 'Mixer', 'Mackie 8 Channel Mixer', 'Mackie', '', 'each', 3, 0, '95.00', '95.00', 0, 0),
+(13, 'Audio', 'Mixer', 'Behringer X32 Mixing Console ', 'Behringer', 'X32', 'each', 1, 0, '345.00', '345.00', 0, 0),
+(14, 'Audio Set', 'Mixing Console with 4 Mic', 'Behringer X32 Mixing Console with 4 Wireless Shure Microphones', 'Behringer, Shure', '', 'kit', 1, 0, '495.00', '400.00', 0, 0),
+(15, 'Audio Set', 'Mixing Console with Microphones', 'Midas M32R Mixing Console with 8 Wireless Shure Microphones', 'Midas, Shure', '', 'set', 1, 0, '695.00', '545.00', 0, 0),
+(16, 'Audio', 'Microphone', 'Shure Wireless Microphone HH or Lavalier Single Pack', 'Shure', '', 'each', 9, 0, '125.00', '75.00', 0, 0),
+(17, 'Audio', 'Microphone', '4 Pack of Shure Wireless Microphone HH or Lavalier', 'Shure', '', 'each', 1, 0, '450.00', '450.00', 0, 0),
+(18, 'Audio', 'Microphone', 'Shure SM58', 'Shure', 'SM58', 'each', 16, 0, '50.00', '50.00', 0, 0),
+(19, 'Video', 'Tripod Screen', 'Tripod Screen (5\')', '', '', 'each', 1, 0, '50.00', '50.00', 0, 0),
+(20, 'Video', 'Tripod Screen', 'Tripod Screen (6\')', '', '', 'each', 1, 0, '50.00', '50.00', 0, 0),
+(21, 'Video', 'Tripod Screen', 'Tripod Screen (8\')', '', '', 'each', 1, 0, '50.00', '50.00', 0, 0),
+(22, 'Video', 'Cradle Screen', 'Cradle Screen (10\')', '', '', 'each', 1, 0, '110.00', '110.00', 0, 0),
+(23, 'Video', 'Fast Fold Screen', 'Fast Fold Screen (7.5 x 10\'). Requires 2 Techs for setup.', '', '', 'each', 2, 0, '225.00', '225.00', 0, 0),
+(24, 'Video', 'Fast Fold Screen', 'Fast Fold Screen (9 x 12\'). Requires 2 Techs for setup.', '', '', 'each', 2, 0, '275.00', '275.00', 0, 0),
+(25, 'Video', 'Inflatable Screen', '16 x 9\' inflatable screen.', '', '', 'each', 0, 0, '495.00', '495.00', 0, 0),
+(26, 'Video', 'Fast Fold Screen', '16 x 9\' Fast Fold Screen (SUBRENTAL). Requires 2 Techs for setup.', '', '', 'each', 0, 0, '495.00', '495.00', 0, 0),
+(27, 'Projector', 'Projector', '3K Lumen Projector', 'Eiki', 'LC-WB200', 'each', 4, 0, '225.00', '225.00', 0, 0),
+(28, 'Projector', 'Projector', '6K Lumen Projector', 'NEC', 'PA622U', 'each', 2, 0, '495.00', '395.00', 0, 0),
+(29, 'Projector', 'Projector', '12K Lumen Projector', 'Eiki, NEC', 'EK-800U, PX1004UL', 'each', 4, 0, '925.00', '795.00', 0, 0),
+(30, 'Monitor', 'Monitor with Skirting', 'Confidence Monitor w/Skirting ', '', '', 'each', 3, 0, '95.00', '95.00', 0, 0),
+(31, 'Monitor with Stand', 'Flat Panel Monitor on Rolling Stand ', '55\" Flat Panel Monitor on Rolling Stand', '', '', 'each', 2, 0, '295.00', '295.00', 0, 0),
+(32, 'Monitor with Stand', 'Flat Panel Monitor on Rolling Stand ', '70\" Flat Panel Monitor on Rolling Stand. (REQUIRES 2 TECHS for setup).', '', '', 'each', 3, 0, '495.00', '395.00', 0, 0),
+(33, 'Monitor', 'Flat Panel Monitor on Rolling Stand ', '86\" Flat Panel Monitor on Rolling Stand. (REQUIRES 2 TECHS for setup). ', '', '', 'each', 6, 0, '695.00', '545.00', 0, 0),
+(34, 'Projector Set', 'Projector with Screen', 'Tripod Screen with 3K Lumen Projector ', '', '', 'each', 0, 0, '275.00', '275.00', 0, 0),
+(35, 'Projector Set', 'Projector with Screen', '7.5\' x 10\' Fast Fold Screen with 6K Lumen Projector.  (REQUIRES 2 TECHS for setup).', '', '', 'each', 0, 0, '720.00', '720.00', 0, 0),
+(36, 'Projector Set', 'Projector with Screen', '9\' x 12\' Fast Fold Screen with 12K Lumen Projector.  (REQUIRES 2 TECHS for setup)..', '', '', 'each', 0, 0, '1200.00', '1200.00', 0, 0),
+(37, 'Switcher', 'Roland Video Switcher', 'Roland Video Switcher', 'Roland', '', 'each', 1, 0, '225.00', '175.00', 0, 0),
+(38, 'Switcher', 'Single Scaled Video Switcher', 'Single Scaled Video Switcher', 'Roland', '', 'each', 2, 0, '150.00', '150.00', 0, 0),
+(39, 'Audio', 'Amplifier', 'HDMI Distribution Amplifier (1->4 or 1->8) ', '', '', 'each', 4, 0, '50.00', '50.00', 0, 0),
+(40, 'Camera', 'Camera on Tripod Stand', 'Canon XA35 (or XA20) Camera on Tripod Stand', 'Canon', 'XA35 or XA20', 'each', 2, 0, '225.00', '225.00', 0, 0),
+(41, 'Switcher', 'Streaming Switcher', 'ATEM mini 4 channel Streaming Switcher', 'ATEM', '', 'each', 1, 0, '200.00', '200.00', 0, 0),
+(42, 'Camera', 'Streaming Set', 'Streaming Rig (Streaming laptop, ATEM streaming switcher and capture card) ', 'ATEM', '', 'each', 1, 0, '400.00', '350.00', 0, 0),
+(43, 'Camera', 'Camera System', 'Vaddio PTZ Camera System with 3 Joystick controlled PTZ cameras', 'Vaddio', '', 'each', 1, 0, '795.00', '695.00', 0, 0),
+(44, 'Lighting', 'Lighting Trees with Dimmer Pack and Lighting Board', 'Pair of Lighting Trees w/ 2 “Leko Source 4” Ellipsoid Lights w/ Dimmer Pack & DMX lighting board', '', '', 'pair', 1, 0, '700.00', '700.00', 0, 0),
+(45, 'Lighting', 'Spots on Tripod Stands with Lighting Board', 'Pair of Chauvet Follow spots on tripod stands w/ DMX Lighting board', '', '', 'pair', 1, 0, '500.00', '500.00', 0, 0),
+(46, 'Lighting', 'Battery Powered Uplights', 'Chauvet Battery Powered Uplights', 'Chauvet', '', 'each', 20, 0, '20.00', '20.00', 0, 0),
+(47, 'Laptop Accessory', 'Laptop Slide Advancer', 'Laptop Slide Advancer', '', '', 'each', 6, 0, '25.00', '25.00', 0, 0),
+(48, 'Laptop', 'Laptop for Powerpoint or Video Playback ', 'Laptop for Powerpoint or Video Playback ', '', '', 'each', 6, 0, '125.00', '125.00', 0, 0),
+(49, 'Drape Panel', 'Pipe and Drape Panel', '15\' Panel of Pipe and Drape (price per panel)', '', '', 'each', 0, 0, '75.00', '75.00', 0, 0),
+(50, 'Podium', 'Plastic Podium', 'Plastic Podium', '', '', 'each', 1, 0, '95.00', '95.00', 0, 0),
+(51, 'Podium', 'Lucite Podium', 'Lucite Podium', '', '', 'each', 1, 0, '195.00', '195.00', 0, 0),
+(52, 'Cable', 'Aux Cable', 'Aux Connection Cable. Promotional product. Add to packages at no charge.', '', '', 'each', 5, 1, '0.00', '0.00', 0, 0),
+(53, 'Bluetooth Connection', 'Bluetooth Connection', 'Bluetooth Connection. Promotional product. Add to packages at no charge.', '', '', 'each', 5, 1, '0.00', '0.00', 0, 0),
+(54, 'Speaker Cable', 'Speaker Cable', 'Speaker Cable. Promotional product. Add to packages at no charge.', '', '', 'each', 5, 1, '0.00', '0.00', 0, 0);
+
+----------------------------------------------------------
+
+-- Create `security` Table
+
+CREATE TABLE `security` (
+  `security_ID` int(11) NOT NULL,
+  `security_type` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+-- Insert Data for `security` Table
+
+
+INSERT INTO `security` (`security_ID`, `security_type`) VALUES
+(1, 'administrator'),
+(2, 'manager'),
+(3, 'staff'),
+(4, 'user');
+
+----------------------------------------------------------
+
+-- Create `vendor` Table
+
+CREATE TABLE `vendor` (
+  `vendor_ID` int(11) NOT NULL,
+  `company_name` varchar(100) NOT NULL,
+  `website` varchar(100) NOT NULL,
+  `salesrep` varchar(50) DEFAULT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone` varchar(15) NOT NULL,
+  `vendor_notes` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+-- Insert Data for `vendor` Table
+
+INSERT INTO `vendor` (`vendor_ID`, `company_name`, `website`, `salesrep`, `email`, `phone`, `vendor_notes`) VALUES
+(1, 'Amazon', 'amazon.com', 'Margaret Smith', 'msmith@email.com', '845-555-3009', 'online vendor'),
+(2, 'B&H Video', 'bandh.com', 'David Harris', 'dharris@email.com', '845-555-3012', ''),
+(3, 'Pro AV Warehouse', 'proavwarehouse.com', 'Sarah Jones', 'sjones@email.com', '845-555-3017', ''),
+(4, 'Grainger', 'grainger.com', 'Betty Davis', 'bdavis@email.com', '845-555-3014', ''),
+(5, 'Canon', 'canon.com', 'Bill Parker', 'bparker.com', '845-555-3016', '');
+
+----------------------------------------------------------
+
+-- Create `venue` Table
+
+
+CREATE TABLE `venue` (
+  `venue_ID` int(11) NOT NULL,
+  `venue_type` varchar(25) NOT NULL,
+  `venue_name` varchar(50) NOT NULL,
+  `contact_first_name` varchar(25) NOT NULL,
+  `contact_last_name` varchar(25) NOT NULL,
+  `contact_email` varchar(100) NOT NULL,
+  `address_line1` varchar(50) NOT NULL,
+  `address_line2` varchar(50) NOT NULL,
+  `city` varchar(50) NOT NULL,
+  `state` varchar(2) NOT NULL,
+  `zip_code` varchar(10) NOT NULL,
+  `venue_phone` varchar(15) NOT NULL,
+  `venue_notes` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+-- Insert Data for `venue` Table
+
+INSERT INTO `venue` (`venue_ID`, `venue_type`, `venue_name`, `contact_first_name`, `contact_last_name`, `contact_email`, `address_line1`, `address_line2`, `city`, `state`, `zip_code`, `venue_phone`, `venue_notes`) VALUES
+(1, 'Business', 'New Haven Inn', 'Liam', 'Jones', 'nhaveninn@email', '217 Park Lane', '', 'New Haven', 'NY', '12345', '845-555-3004', 'Add venue notes here'),
+(2, 'Business', 'Marriott Conference Center', 'Olivia', 'Moore', 'marriott@email', '2641 South Rd.', '', 'Poughkeepsie', 'NY', '12601', '845-555-3005', 'Add venue notes here'),
+(3, 'Business', 'Greenkill Retreat Center', 'Lily', 'Jackson', 'greenkill@email', '300 Pond Rd.', '', 'Huguenot', 'NY', '', '845-555-3006', 'Add venue notes here'),
+(4, 'Business', 'The Chateau', 'George', 'Wright', 'chateau@email', '260 E. Blvd', '', 'Kingston', 'NY', '12401', '845-555-3007', 'Add venue notes here'),
+(5, 'Private Residence', 'Wilson Residence', 'Derrick', 'Wilson', 'dwilson@email', '139 Smith St.', '', 'Poughkeepsie', 'NY', '12601', '845-555-2004', 'Add venue notes here');
+
+----------------------------------------------------------
+-- Table Indexes
+--
+
+--
+-- Indexes for `client` Table
+--
+ALTER TABLE `client`
+  ADD PRIMARY KEY (`client_ID`);
+
+--
+-- Indexes for `employee` Table
+--
+ALTER TABLE `employee`
+  ADD PRIMARY KEY (`employee_ID`),
+  ADD KEY `security_ID_fk` (`security_ID_fk`);
+
+--
+-- Indexes for `event_order` Table
+--
+ALTER TABLE `event_order`
+  ADD PRIMARY KEY (`event_order_ID`),
+  ADD KEY `venue_ID_fk` (`venue_ID_fk`),
+  ADD KEY `product_ID_fk` (`product_ID_fk`),
+  ADD KEY `client_ID_fk` (`client_ID_fk`);
+
+--
+-- Indexes for `invoice` Table
+--
+ALTER TABLE `invoice`
+  ADD PRIMARY KEY (`invoice_ID`),
+  ADD KEY `client_ID_fk` (`client_ID_fk`),
+  ADD KEY `event_order_ID_fk` (`event_order_ID_fk`);
+
+--
+-- Indexes for `invoice_product_list` Table
+--
+ALTER TABLE `invoice_product_list`
+  ADD PRIMARY KEY (`invoice_product_list_ID`) USING BTREE,
+  ADD KEY `product_ID_fk` (`product_ID_fk`,`invoice_ID_fk`),
+  ADD KEY `invoice_ID_fk` (`invoice_ID_fk`);
+
+--
+-- Indexes for `payment` Table
+--
+ALTER TABLE `payment`
+  ADD PRIMARY KEY (`payment_ID`),
+  ADD KEY `invoice_ID_fk` (`invoice_ID_fk`);
+
+--
+-- Indexes for `product` Table
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`product_ID`);
+
+--
+-- Indexes for `security` Table
+--
+ALTER TABLE `security`
+  ADD PRIMARY KEY (`security_ID`) USING BTREE;
+
+--
+-- Indexes for `vendor` Table
+--
+ALTER TABLE `vendor`
+  ADD PRIMARY KEY (`vendor_ID`);
+
+--
+-- Indexes for `venue` Table
+--
+ALTER TABLE `venue`
+  ADD PRIMARY KEY (`venue_ID`);
+
+----------------------------------------------------------
+-- AUTO_INCREMENT for Tables
+--
+
+--
+-- AUTO_INCREMENT for `client` Table
+--
+ALTER TABLE `client`
+  MODIFY `client_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for `employee` Table
+--
+ALTER TABLE `employee`
+  MODIFY `employee_ID` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for `event_order` Table
+--
+ALTER TABLE `event_order`
+  MODIFY `event_order_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for `invoice` Table
+--
+ALTER TABLE `invoice`
+  MODIFY `invoice_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for `invoice_product_list` Table
+--
+ALTER TABLE `invoice_product_list`
+  MODIFY `invoice_product_list_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for `payment` Table
+--
+ALTER TABLE `payment`
+  MODIFY `payment_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for `product` Table
+--
+ALTER TABLE `product`
+  MODIFY `product_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+
+--
+-- AUTO_INCREMENT for `security` Table
+--
+ALTER TABLE `security`
+  MODIFY `security_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for `vendor` Table
+--
+ALTER TABLE `vendor`
+  MODIFY `vendor_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for `venue` Table
+--
+ALTER TABLE `venue`
+  MODIFY `venue_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+----------------------------------------------------------
+-- TAble Constraints
+--
+
+--
+-- Constraints for `employee` Table
+--
+ALTER TABLE `employee`
+  ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`security_ID_fk`) REFERENCES `security` (`security_ID`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Constraints for `event_order` Table
+--
+ALTER TABLE `event_order`
+  ADD CONSTRAINT `event_order_ibfk_2` FOREIGN KEY (`venue_ID_fk`) REFERENCES `venue` (`venue_ID`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `event_order_ibfk_4` FOREIGN KEY (`product_ID_fk`) REFERENCES `product` (`product_ID`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `event_order_ibfk_5` FOREIGN KEY (`client_ID_fk`) REFERENCES `client` (`client_ID`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Constraints for `invoice` Table
+--
+ALTER TABLE `invoice`
+  ADD CONSTRAINT `invoice_ibfk_1` FOREIGN KEY (`client_ID_fk`) REFERENCES `client` (`client_ID`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `invoice_ibfk_2` FOREIGN KEY (`event_order_ID_fk`) REFERENCES `event_order` (`event_order_ID`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Constraints for `invoice_product_list` Table
+--
+ALTER TABLE `invoice_product_list`
+  ADD CONSTRAINT `invoice_product_list_ibfk_1` FOREIGN KEY (`product_ID_fk`) REFERENCES `product` (`product_ID`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `invoice_product_list_ibfk_2` FOREIGN KEY (`invoice_ID_fk`) REFERENCES `invoice` (`invoice_ID`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Constraints for `payment` Table
+--
+ALTER TABLE `payment`
+  ADD CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`invoice_ID_fk`) REFERENCES `invoice` (`invoice_ID`) ON DELETE NO ACTION ON UPDATE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
