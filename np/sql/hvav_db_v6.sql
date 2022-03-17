@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2022 at 01:05 AM
+-- Generation Time: Mar 17, 2022 at 02:20 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `hv_audio_visual`
 --
+CREATE DATABASE IF NOT EXISTS `hv_audio_visual` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `hv_audio_visual`;
 
 -- --------------------------------------------------------
 
@@ -37,7 +39,7 @@ CREATE TABLE `client` (
   `address_line1` varchar(50) NOT NULL,
   `address_line2` varchar(50) NOT NULL,
   `city` varchar(50) NOT NULL,
-  `state` varchar(2) NOT NULL,
+  `state_abbr` varchar(2) NOT NULL,
   `zip_code` varchar(10) NOT NULL,
   `phone` varchar(15) NOT NULL,
   `client_notes` text NOT NULL
@@ -47,50 +49,12 @@ CREATE TABLE `client` (
 -- Dumping data for table `client`
 --
 
-INSERT INTO `client` (`client_ID`, `company`, `client_type`, `first_name`, `last_name`, `email`, `address_line1`, `address_line2`, `city`, `state`, `zip_code`, `phone`, `client_notes`) VALUES
+INSERT INTO `client` (`client_ID`, `company`, `client_type`, `first_name`, `last_name`, `email`, `address_line1`, `address_line2`, `city`, `state_abbr`, `zip_code`, `phone`, `client_notes`) VALUES
 (1, 'Jones Grill', 'corporate', 'Eloise', 'Parker', 'jonesgrill@email', '49 Baker St.', '', 'Modena', 'NY', '12515', '845-555-2000', 'Add client notes here'),
 (2, 'HV Desserts', 'corporate', 'Mary', 'Franklin', 'mfranklin@email', '68 Main St.', '', 'Kingston', 'NY', '12401', '845-555-2001', 'Add client notes here'),
 (3, 'Artists Haven', 'small business', 'Gerald', 'Davis', 'artistshaven@email', '127 Rte. 44', '', 'Poughkeepsie', 'NY', '12401', '845-555-2002', 'Add client notes here'),
 (4, 'Pro AV Warehouse', 'corporate', 'Becky', 'Williams', 'bwilliams@email', '14 Albany Ave.', '', 'Kingston', 'NY', '12401', '845-555-2003', 'Client is also a vendor.'),
 (5, 'none', 'family', 'Bill', 'Miller', 'bmiller@email', '5 Water St.', '', 'New Paltz', 'NY', '12561', '845-555-2004', 'Client is also an employee.');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `client_employee`
---
-
-CREATE TABLE `client_employee` (
-  `client_employee_ID` int(11) NOT NULL,
-  `client_ID_fk` int(11) NOT NULL,
-  `employee_ID_fk` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `client_employee`
---
-
-INSERT INTO `client_employee` (`client_employee_ID`, `client_ID_fk`, `employee_ID_fk`) VALUES
-(1, 5, 5);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `client_vendor`
---
-
-CREATE TABLE `client_vendor` (
-  `client_vendor_ID` int(11) NOT NULL,
-  `client_ID_fk` int(11) NOT NULL,
-  `vendor_ID_fk` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `client_vendor`
---
-
-INSERT INTO `client_vendor` (`client_vendor_ID`, `client_ID_fk`, `vendor_ID_fk`) VALUES
-(1, 4, 3);
 
 -- --------------------------------------------------------
 
@@ -105,19 +69,20 @@ CREATE TABLE `employee` (
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(25) NOT NULL
+  `pwd` varchar(25) NOT NULL,
+  `client_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`employee_ID`, `security_type`, `job_title`, `first_name`, `last_name`, `email`, `password`) VALUES
-(1, 'administrator', 'Systems Adminis', 'Sarah', 'Jones', 'sjones@email.com', 'testpassword1'),
-(2, 'manager', 'Manager', 'John', 'Smith', 'jsmith@email.com', 'testpassword2'),
-(3, 'staff', 'Technician', 'Amy', 'Baker', 'abaker@email.com', 'testpassword3'),
-(4, 'staff', 'Warehouse', 'Dan', 'Arnold', 'darnold@email.com', 'testpassword4'),
-(5, 'user', 'Warehouse Trainee', 'Bill', 'Miller', 'bmiller@email.com', 'testpassword5');
+INSERT INTO `employee` (`employee_ID`, `security_type`, `job_title`, `first_name`, `last_name`, `email`, `pwd`, `client_ID`) VALUES
+(1, 'administrator', 'Systems Adminis', 'Sarah', 'Jones', 'sjones@email.com', 'testpassword1', 0),
+(2, 'manager', 'Manager', 'John', 'Smith', 'jsmith@email.com', 'testpassword2', 0),
+(3, 'staff', 'Technician', 'Amy', 'Baker', 'abaker@email.com', 'testpassword3', 0),
+(4, 'staff', 'Warehouse', 'Dan', 'Arnold', 'darnold@email.com', 'testpassword4', 0),
+(5, 'user', 'Warehouse Trainee', 'Bill', 'Miller', 'bmiller@email.com', 'testpassword5', 0);
 
 -- --------------------------------------------------------
 
@@ -358,6 +323,7 @@ CREATE TABLE `vendor` (
   `salesrep` varchar(50) DEFAULT NULL,
   `email` varchar(100) NOT NULL,
   `phone` varchar(15) NOT NULL,
+  `client_ID` int(11) NOT NULL,
   `vendor_notes` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -365,12 +331,12 @@ CREATE TABLE `vendor` (
 -- Dumping data for table `vendor`
 --
 
-INSERT INTO `vendor` (`vendor_ID`, `company_name`, `website`, `salesrep`, `email`, `phone`, `vendor_notes`) VALUES
-(1, 'Amazon', 'amazon.com', 'Margaret Stevens', 'mstevens@email.com', '845-555-3009', 'online vendor'),
-(2, 'B&H Video', 'bandh.com', 'David Harris', 'dharris@email.com', '845-555-3012', ''),
-(3, 'Pro AV Warehouse', 'proavwarehouse.com', 'Becky Williams', 'bwilliams@email.com', '845-555-3017', 'Vendor is also a client.'),
-(4, 'Grainger', 'grainger.com', 'Betty Davis', 'bdavis@email.com', '845-555-3014', ''),
-(5, 'Canon', 'canon.com', 'Bill Perkins', 'bperkins.com', '845-555-3016', '');
+INSERT INTO `vendor` (`vendor_ID`, `company_name`, `website`, `salesrep`, `email`, `phone`, `client_ID`, `vendor_notes`) VALUES
+(1, 'Amazon', 'amazon.com', 'Margaret Stevens', 'mstevens@email.com', '845-555-3009', 0, 'online vendor'),
+(2, 'B&H Video', 'bandh.com', 'David Harris', 'dharris@email.com', '845-555-3012', 0, ''),
+(3, 'Pro AV Warehouse', 'proavwarehouse.com', 'Becky Williams', 'bwilliams@email.com', '845-555-3017', 0, 'Vendor is also a client.'),
+(4, 'Grainger', 'grainger.com', 'Betty Davis', 'bdavis@email.com', '845-555-3014', 0, ''),
+(5, 'Canon', 'canon.com', 'Bill Perkins', 'bperkins.com', '845-555-3016', 0, '');
 
 -- --------------------------------------------------------
 
@@ -388,7 +354,7 @@ CREATE TABLE `venue` (
   `address_line1` varchar(50) NOT NULL,
   `address_line2` varchar(50) NOT NULL,
   `city` varchar(50) NOT NULL,
-  `state` varchar(2) NOT NULL,
+  `state_abbr` varchar(2) NOT NULL,
   `zip_code` varchar(10) NOT NULL,
   `venue_phone` varchar(15) NOT NULL,
   `venue_notes` text NOT NULL
@@ -398,7 +364,7 @@ CREATE TABLE `venue` (
 -- Dumping data for table `venue`
 --
 
-INSERT INTO `venue` (`venue_ID`, `venue_name`, `venue_type`, `contact_first_name`, `contact_last_name`, `contact_email`, `address_line1`, `address_line2`, `city`, `state`, `zip_code`, `venue_phone`, `venue_notes`) VALUES
+INSERT INTO `venue` (`venue_ID`, `venue_name`, `venue_type`, `contact_first_name`, `contact_last_name`, `contact_email`, `address_line1`, `address_line2`, `city`, `state_abbr`, `zip_code`, `venue_phone`, `venue_notes`) VALUES
 (1, 'New Haven Inn', 'Business', 'Liam', 'Jones', 'nhaveninn@email', '217 Park Lane', '', 'New Haven', 'NY', '12345', '845-555-3004', 'Add venue notes here'),
 (2, 'Marriott Conference Center', 'Business', 'Olivia', 'Moore', 'marriott@email', '2641 South Rd.', '', 'Poughkeepsie', 'NY', '12601', '845-555-3005', 'Add venue notes here'),
 (3, 'Greenkill Retreat Center', 'Business', 'Lily', 'Jackson', 'greenkill@email', '300 Pond Rd.', '', 'Huguenot', 'NY', '', '845-555-3006', 'Add venue notes here'),
@@ -414,22 +380,6 @@ INSERT INTO `venue` (`venue_ID`, `venue_name`, `venue_type`, `contact_first_name
 --
 ALTER TABLE `client`
   ADD PRIMARY KEY (`client_ID`);
-
---
--- Indexes for table `client_employee`
---
-ALTER TABLE `client_employee`
-  ADD PRIMARY KEY (`client_employee_ID`),
-  ADD KEY `client_ID_fk` (`client_ID_fk`),
-  ADD KEY `employee_ID_fk` (`employee_ID_fk`);
-
---
--- Indexes for table `client_vendor`
---
-ALTER TABLE `client_vendor`
-  ADD PRIMARY KEY (`client_vendor_ID`),
-  ADD KEY `client_ID_fk` (`client_ID_fk`),
-  ADD KEY `vendor_ID_fk` (`vendor_ID_fk`);
 
 --
 -- Indexes for table `employee`
@@ -506,18 +456,6 @@ ALTER TABLE `client`
   MODIFY `client_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `client_employee`
---
-ALTER TABLE `client_employee`
-  MODIFY `client_employee_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `client_vendor`
---
-ALTER TABLE `client_vendor`
-  MODIFY `client_vendor_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
@@ -574,20 +512,6 @@ ALTER TABLE `venue`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `client_employee`
---
-ALTER TABLE `client_employee`
-  ADD CONSTRAINT `client_employee_ibfk_1` FOREIGN KEY (`client_ID_fk`) REFERENCES `client` (`client_ID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `client_employee_ibfk_2` FOREIGN KEY (`employee_ID_fk`) REFERENCES `employee` (`employee_ID`) ON DELETE NO ACTION ON UPDATE CASCADE;
-
---
--- Constraints for table `client_vendor`
---
-ALTER TABLE `client_vendor`
-  ADD CONSTRAINT `client_vendor_ibfk_1` FOREIGN KEY (`client_ID_fk`) REFERENCES `client` (`client_ID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `client_vendor_ibfk_2` FOREIGN KEY (`vendor_ID_fk`) REFERENCES `vendor` (`vendor_ID`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `event_order`
