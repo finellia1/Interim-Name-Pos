@@ -1,32 +1,18 @@
 <?php
 
-class productSearch extends session {
+class productSearch extends Dbh {
 
     protected function getProducts($searchType, $searchContent) {
     
-    $stmt = null;
-    $host='127.0.0.1';
-    $db = 'hv_audio_visual';
-    $user = 'root';
-    $pass = '';
-    $charset = 'utf8mb4';
-    //https://phpdelusions.net/pdo#dsn
+        $stmt = $this->connect();
 
-    $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-    $options = [
-        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::ATTR_EMULATE_PREPARES   => false,
-    ];
-    try {
-        $pdo = new PDO($dsn, $user, $pass, $options);
         //If there is no sessions set, default to selecting every item
         if(!isset($_SESSION["searchTypeInput"])){
             $_SESSION["searchTypeInput"] = "select * from product";
         }
         //Set data to results of search query ran.
         //Search query is session variable set in search popup
-        $getData = $pdo->query($_SESSION["searchTypeInput"]);
+        $getData = $stmt->query($_SESSION["searchTypeInput"]);
         foreach($getData as $row){
             //Echo out table information with row infomration from DB 
             echo "<tr>"; 
@@ -71,19 +57,5 @@ class productSearch extends session {
             echo "</form>";
             echo "</tr>";
         }
-
-        //If an execption is thrown, default the search to select every item in DB
-    } catch (\PDOException $e) {
-            $_SESSION["searchTypeInput"] = "select * from product";
-            throw new \PDOException($e->getMessage(), (int)$e->getCode());
-    }
-        // $_SESSION["searchTypeInput"] = "select * from product where {$searchType} like '%{$searchContent}%'";
-        // $_SESSION["searchTypeInput"] = "select * from product";
-        // if(!$stmt->execute(array($product_ID, $product_name, $product_description, $product_type, $make, $model, $qty_unit, $qty_in_stock,$is_promotional,$reg_price,$discounted_price,$num_rented,$num_broken))) {
-        //     $stmt = null;
-        //     header('location: ../homepage.phpgetProductSTMTFAILED');
-        //     exit();
-        // }
-        // $stmt = null;
     }
 }
