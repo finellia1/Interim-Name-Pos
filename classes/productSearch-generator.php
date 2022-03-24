@@ -1,16 +1,12 @@
 <?php
-
-class productSearch extends session {
-
-    protected function getProducts($searchType, $searchContent) {
-    
-    $stmt = null;
+    //Connect to DB
     $host='127.0.0.1';
     $db = 'hv_audio_visual';
     $user = 'root';
     $pass = '';
     $charset = 'utf8mb4';
     //https://phpdelusions.net/pdo#dsn
+        
 
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
     $options = [
@@ -77,13 +73,4 @@ class productSearch extends session {
             $_SESSION["searchTypeInput"] = "select * from product";
             throw new \PDOException($e->getMessage(), (int)$e->getCode());
     }
-        // $_SESSION["searchTypeInput"] = "select * from product where {$searchType} like '%{$searchContent}%'";
-        // $_SESSION["searchTypeInput"] = "select * from product";
-        // if(!$stmt->execute(array($product_ID, $product_name, $product_description, $product_type, $make, $model, $qty_unit, $qty_in_stock,$is_promotional,$reg_price,$discounted_price,$num_rented,$num_broken))) {
-        //     $stmt = null;
-        //     header('location: ../homepage.phpgetProductSTMTFAILED');
-        //     exit();
-        // }
-        // $stmt = null;
-    }
-}
+?>

@@ -1,6 +1,5 @@
 <?php
-require '../classes/session.classes.php';
-session::start();
+require_once 'classes/session.classes.php';
 if(isset($_POST["submit"])) 
 {
     //Search type is populated by form
@@ -20,9 +19,10 @@ if(isset($_POST["submit"]))
 }
 
     // instantiate signupContr class
-    include "../classes/dbh.classes.php";
-    include "../classes/productSearch.classes.php";
-    include "../classes/productSearch-contr.classes.php";
+    include "classes/dbh.classes.php";
+    include "classes/productSearch.classes.php";
+    include "classes/productSearch-contr.classes.php";
+
     $searchProduct = new productSearchContr($searchType, $searchContent);
     // running error handlers and user signup
     $searchProduct-> searchProducts($searchType, $searchContent);

@@ -35,7 +35,6 @@ class productSearchContr extends productSearch {
         } else {
             $searchType = " ";
         }
-        
         if($searchContent=="" ){
             $searchContent= " ";
         } else {
