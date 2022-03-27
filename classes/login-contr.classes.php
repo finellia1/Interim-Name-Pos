@@ -2,14 +2,14 @@
 
 class LoginContr extends Login {
     // create the properties inside the class
-    private $employee_ID;
+    private $email;
     private $pwd;
 
     // pass through the variables from the form
-    public function __construct($employee_ID, $pwd)
+    public function __construct($email, $pwd)
     {
         // reference this property in this class
-        $this->employee_ID = $employee_ID;
+        $this->email = $email;
         $this->pwd = $pwd;
     }
     //logs in
@@ -19,12 +19,12 @@ class LoginContr extends Login {
             exit();
         }
         //gets user
-        $this->getUser($this->employee_ID, $this->pwd);
+        $this->getUser($this->email, $this->pwd);
     }
     //bool
     private function emptyInput() {
         $result;
-        if(empty($this->employee_ID) || empty($this->pwd)) {
+        if(empty($this->email) || empty($this->pwd)) {
             $result = false;
         } else {
             $result = true;

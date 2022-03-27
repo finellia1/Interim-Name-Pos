@@ -1,111 +1,106 @@
-html{
-    font-family: sans-serif;
-    margin: 0;
-    padding: 0%;
+html {
+  font-family: sans-serif;
 }
 
-/*Give each item of the inventory some padding*/
-.inventoryItem{
-    margin:25px;
+.inventoryItem {
+  margin: 25px;
 }
 
-/*General use inline tag*/
-.inline{
-    display: inline;
+.inline {
+  display: inline;
 }
 
-/*Style table headings*/
-td, th{
-    padding:8px;
-    text-align: center;
+td,
+th {
+  padding: 8px;
+  text-align: center;
 }
 
-th{
-    border-bottom: 2px black solid;
+th {
+  border-bottom: 2px black solid;
 }
 
-label{
-    margin: 10px;
-    padding: 10px;
+.invView {
+  text-align: center;
 }
 
-
-.alignLeft{
-    text-align: left;
+label {
+  margin: 10px;
+  padding: 10px;
 }
 
-
-.dropShadow{
-    box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.15);
-    border-radius: 15px;
-
-}
-button{
-    text-align: center;
+.editParam {
+  margin: 15px;
 }
 
-.popup{
-    visibility: hidden;
-    /*Found on https://css-tricks.com/quick-css-trick-how-to-center-an-object-exactly-in-the-center/*/
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    /* bring your own prefixes */
-    transform: translate(-50%, -50%);
-    z-index: 25;
-    background-color: white;
+.alignLeft {
+  text-align: left;
 }
 
-#inventoryWrapper{
-    height: 80%;
-    overflow: scroll;
+.dropShadow {
+  box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 15px;
+}
+button {
+  text-align: center;
 }
 
-#addItemBtnTH{
-    border: none;
+.popup {
+  visibility: hidden;
+  /*Found on https://css-tricks.com/quick-css-trick-how-to-center-an-object-exactly-in-the-center/*/
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+  z-index: 25;
+  background-color: white;
 }
 
-#searchBtn{
-    border: none;
+#addItemBtnTH {
+  border: none;
 }
 
-#searchType{
-    border: none;
+#searchBtn {
+  border: none;
 }
 
-.noBorder{
-    border: none;
+#searchType {
+  border: none;
 }
 
-button{
-    border: none;
-    padding: 15px;
-    border-radius: 100px;
-    background: linear-gradient(135.76deg, #FF0F7B 7.5%, #F89B29 88.59%);
-    color: white;
-    box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.15);
+.noBorder {
+  border: none;
 }
 
-input[type=submit]{
-    border: none;
-    padding: 15px;
-    border-radius: 100px;
-    background: linear-gradient(135.76deg, #FF0F7B 7.5%, #F89B29 88.59%);
-    color: white;
-    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.15);
+button {
+  border: none;
+  padding: 15px;
+  border-radius: 100px;
+  background: linear-gradient(135.76deg, #ff0f7b 7.5%, #f89b29 88.59%);
+  color: white;
+  box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.15);
 }
 
-input[type=text]{
-    border: none;
-    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.15);
-    padding:5px;
-    border-radius: 15px;
+input[type="submit"] {
+  border: none;
+  padding: 15px;
+  border-radius: 100px;
+  background: linear-gradient(135.76deg, #ff0f7b 7.5%, #f89b29 88.59%);
+  color: white;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.15);
 }
 
-#searchTypeInput{
-    border: none;
-    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.15);
-    padding:5px;
-    border-radius: 15px;
+input[type="text"] {
+  border: none;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.15);
+  padding: 5px;
+  border-radius: 15px;
 }
 
+#searchTypeInput {
+  border: none;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.15);
+  padding: 5px;
+  border-radius: 15px;
+}

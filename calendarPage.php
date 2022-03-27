@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="navBar.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POS</title>
+
+    <link rel="stylesheet" href=".\css\calendarPage.css">
     <script>
             let img = document.querySelector('img');
             let start = img.src;
             let hover = img.getAttribute('data-hover'); //specified in img tag
             console.log(start);
 
-            img.onmouseover = () => { img.src = hover; }
+            img.onmouseover = () => { img.src = hover; } 
             img.onmouseout = () => { img.src = start; } //to revert back to start
     </script>
 </head>
@@ -51,7 +54,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class = "logout" href="link to signin page">
+                            <a class = "logout" href=".\login.php">
                                 <img src=".\Assets\logout.png" height = 30px width = 30px alt = "logout-icon">
                             </a>
                         </li>
@@ -59,19 +62,80 @@
                     
                 </div>
             </div>
-            <div class = "middlePanel">
-                <h1> Middle Panel</h1>
-                <p>
-                    lipsum...
-                </p>
+            <div class = "middlePanel"> 
+                    <div id="banner">
+                        <h1>Calendar</h1>
+                    </div>
+                    <div id="container">
+                        <div id="header">
+                            <div id="monthDisplay"></div>
+                            <div>
+                            <button id="backButton">Back</button>
+                            <button id="nextButton">Next</button>
+                            </div>
+                        </div>
+
+                        <div id="weekdays">
+                            <div>Sunday</div>
+                            <div>Monday</div>
+                            <div>Tuesday</div>
+                            <div>Wednesday</div>
+                            <div>Thursday</div>
+                            <div>Friday</div>
+                            <div>Saturday</div>
+                        </div>
+
+                        <div id="calendar"></div>
+                        </div>
+
+                        <div id="newEventModal">
+                        <h2>New Event</h2>
+
+                        <input id="eventTitleInput" placeholder="Event Title"/>
+                        <textarea id="eventDescriptionInput" placeholder="Event Description" ></textarea>
+                        <select id= "employee1" name="employees" id="employees">
+                            <option value="none" selected disabled hidden>Select an Employee</option>
+                            <option value="Reed">Reed</option>
+                            <option value="Taimur">Taimur</option>
+                            <option value="Jorge">Jorge</option>
+                            <option value="Ben">Ben</option>
+                        </select>
+                        <br></br>
+                        <select id= "employee2" name="employees" id="employees">
+                            <option value="none" selected disabled hidden>Select an Employee</option>
+                            <option value="Reed">Reed</option>
+                            <option value="Taimur">Taimur</option>
+                            <option value="Jorge">Jorge</option>
+                            <option value="Ben">Ben</option>
+                        </select>
+                        <br></br>
+                        <button id="saveButton">Save</button>
+                        <button id="cancelButton">Cancel</button>
+                        
+                        </div>
+
+                        <div id="deleteEventModal">
+                        <h2>Event</h2>
+
+                        <p id="eventText"></p>
+
+                        <button id="deleteButton">Delete</button>
+                        <button id="closeButton">Close</button>
+                        
+                        </div>
+
+                        <div id="modalBackDrop"></div>
+                        <script src=".\js\calendarScript.js"></script>
             </div>
             <div class = "rightPanel">
-                <h1> Right Panel </h1>
-                <p>
-                    lipsum...
-                </p>
+                <p id ="eventTitle"></p>
+                <p id="eventInfo"></p>
+                <p id="Employees"></p>
+                <p id="working1"></p>
+                <p id="working2"></p>
             </div>
         </main>
     </div>
 
 </body>     
+</html>

@@ -1,4 +1,7 @@
+<!-- RUN CART FROM THIS FILE -->
+    <!-- THIS PAGE RUNS ON  hv_audio_visual_v2.sql -->
 <?php
+
 session_start();
 // Include functions and connect to the database using PDO MySQL
 include 'functions.php';

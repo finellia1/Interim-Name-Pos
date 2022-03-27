@@ -15,9 +15,9 @@ if(isset($_POST["submit"]))
     include "../classes/updateUser.classes.php";
     include "../classes/updateUser-contr.classes.php";
         //create object
-    $updateUser = new UpdateUserContr($employee_ID, $pwd, $email, $first_name, $last_name, $phone_number, $employee_type);
+    $updateUser = new employeeUpdateContr($employee_ID, $pwd, $email, $first_name, $last_name, $phone_number, $employee_type);
     //update User
-    $updateUser-> updateUser();
+    $updateUser-> employeeUpdate();
     // going back to front page
     header("location: ../index.php?error=User UPDATED");
 }
