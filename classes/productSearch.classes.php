@@ -14,7 +14,7 @@ class productSearch extends Dbh {
 
         //Set data to results of search query ran.
         //Search query is session variable set in search popup
-        echo $_SESSION["searchTypeInput"];
+        //echo $_SESSION["searchTypeInput"];
         $getData = $stmt->query($_SESSION["searchTypeInput"]);
         foreach($getData as $row){
             //Echo out table information with row infomration from DB 
@@ -54,8 +54,8 @@ class productSearch extends Dbh {
 
             //Create form to handle removing item
             echo "<form name='remove' action='./includes/productRemove.inc.php' method='post'>";
-            echo "<td><button type='submit' name='submit' value='submit'>Delete</button>";
-            echo "<td><button type='button'>Cart</button>";
+            echo "<td><label for 'Delete button'><button type='submit' name='submit' value='submit'>Delete</button></label>";
+            echo "<td><label for 'Cart button'><button type='button'>Cart</button></label>";
             echo "<td> <input type='hidden' name='PID' id='deleteID' value='{$row['product_ID']}'> </td>";
             echo "</form>";
             echo "</tr>";

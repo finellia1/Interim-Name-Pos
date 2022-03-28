@@ -69,7 +69,8 @@
                         <h1>Inventory Page</h1>
                         <br><br>
                         <div id = "searchPopup" class = "popup">
-                            <form name="edit" action="./includes/inventory.inc.php" method="POST">
+                        <fieldset>
+                            <form name="searchForm" action="./includes/inventory.inc.php" method="POST">
                                 <table class="dropShadow">
                                     <tr>
                                         <td class="alignLeft">
@@ -103,24 +104,30 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input id = "searchSubmit" type="submit" value="Search!"></button>
+                                            <label for="Submit search button">
+                                                <input id = "searchSubmit" type="submit" value="Search!"></button>
+                                            </label>
                                         </td>
                                         <td>
-                                            <button type="button" onclick="exitPane('searchPopup')">Close</button>
+                                            <label for="Exit search pane button">
+                                                <button type="button" onclick="exitPane('searchPopup')">Close</button>
+                                            </label>
                                         </td>
                                     </tr>
                                 </table>
                             </form>
-                        </div>
+                        </fieldset>
+                    </div>
    <!--Edit popup. Hidden by default-->
    <div id="editPopup" class = "popup">
+                     <fieldset>
                         <form name="edit" action="./includes/productUpdate.inc.php" method="POST">
                             <table class="dropShadow">
                             <!-- Item Name --> 
                             <input type='hidden' name='deleteID_edit' id='deleteID_edit'>
                             <tr>
                                     <td class="alignLeft">
-                                        <label for="itemName">Product Type:</label>
+                                        <label for="product type">Product Type:</label>
                                     </td>
                                     <td class="alignLeft">
                                         <input type="text" id="productType" name="product_type" value="productType"><br>
@@ -129,7 +136,7 @@
                             <!-- Product Type -->
                             <tr>
                                     <td class="alignLeft">
-                                        <label for="itemName">Item Name:</label>
+                                        <label for="item name">Item Name:</label>
                                     </td>
                                     <td class="alignLeft">
                                         <input type="text" id="itemName" name="product_name" value="itemName"><br>
@@ -138,7 +145,7 @@
                             <!-- Item Description -->
                                 <tr>
                                     <td class="alignLeft">
-                                        <label for="itemName">Description:</label>
+                                        <label for="description">Description:</label>
                                     </td>
                                     <td class="alignLeft">
                                         <input type="text" id="description" name="product_description" value="description"><br>
@@ -147,7 +154,7 @@
                                 <!-- Make -->
                                 <tr>
                                     <td class="alignLeft">
-                                        <label for="itemName">Make:</label>
+                                        <label for="make">Make:</label>
                                     </td>
                                     <td class="alignLeft">
                                         <input type="text" id="make" name="make" value="make"><br>
@@ -156,7 +163,7 @@
                                 <!-- Model -->
                                 <tr>
                                     <td class="alignLeft">
-                                        <label for="itemName">Model:</label>
+                                        <label for="model">Model:</label>
                                     </td>
                                     <td class="alignLeft">
                                         <input type="text" id="model" name="model" value="model"><br>
@@ -165,7 +172,7 @@
                                 <!-- Quantity Unit -->
                                 <tr>
                                     <td class="alignLeft">
-                                        <label for="itemName">Quantity_Unit:</label>
+                                        <label for="quantity unit">Quantity_Unit:</label>
                                     </td>
                                     <td class="alignLeft">
                                         <input type="text" id="quantity" name="qty_unit_edit" value="quantity"><br>
@@ -174,7 +181,7 @@
                                 <!-- Quantity In Stock -->
                                 <tr>
                                     <td class="alignLeft">
-                                        <label for="itemName">Quantity In Stock:</label>
+                                        <label for="quantity in stock">Quantity In Stock:</label>
                                     </td>
                                     <td class="alignLeft">
                                         <input type="text" id="quantityInStock" name="qty_in_stock" value="quantityInStock"><br>
@@ -183,7 +190,7 @@
                                 <!-- Promotional -->
                                 <tr>
                                     <td class="alignLeft">
-                                        <label for="itemName">isPromotional</label>
+                                        <label for="is promotional">isPromotional</label>
                                     </td>
                                     <td class="alignLeft">
                                         <input type="checkbox" id="isPromotional" name="isPromotional_edit" ><br>
@@ -192,7 +199,7 @@
                                 <!--Regular Price -->
                                 <tr>
                                     <td class="alignLeft">
-                                        <label for="itemName">Regular Price</label>
+                                        <label for="regular price">Regular Price</label>
                                     </td>
                                     <td class="alignLeft">
                                         <input type="text" id="regularPrice" name="reg_price" value="regularPrice"><br>
@@ -201,7 +208,7 @@
                                 <!--Discounted Price -->
                                 <tr>
                                     <td class="alignLeft">
-                                        <label for="itemName">Discounted Price:</label>
+                                        <label for="discounted price">Discounted Price:</label>
                                     </td>
                                     <td class="alignLeft">
                                         <input type="text" id="discountedPrice" name="discounted_price" value="discountedPrice"><br>
@@ -210,7 +217,7 @@
                                 <tr>
                                 <!--Number Rented -->
                                     <td class="alignLeft">
-                                        <label for="itemName">Number Rented:</label>
+                                        <label for="number rented">Number Rented:</label>
                                     </td>
                                     <td class="alignLeft">
                                         <input type="text" id="numberRented" name="num_rented" value="numberRented"><br>
@@ -219,7 +226,7 @@
                                 <!-- Number Broken -->
                                 <tr>
                                     <td class="alignLeft">
-                                        <label for="itemName">Number Broken</label>
+                                        <label for="number broken">Number Broken</label>
                                     </td>
                                     <td class="alignLeft">
                                         <input type="text" id="numberBroken" name="num_broken" value="numberBroken"><br>
@@ -227,153 +234,169 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input type="submit" value="Submit!"></button>
+                                        <label for="Submit edit button">
+                                            <input type="submit" value="Submit!"></button>
+                                        </label>
                                     </td>
                                     <!-- Button to close pane-->
                                     <td>
+                                        <label for="Exit pane button">
                                         <!-- Button to submit form -->
-                                        <button type="button" onclick="exitPane('editPopup')">Cancel!</button>
+                                            <button type="button" onclick="exitPane('editPopup')">Cancel!</button>
+                                        </label>
+
                                     </td>
                                 </tr>
                             </table>
                         </form>
-                    </div>                 
+                    </fieldset>
+                </div>                 
                     <!--Add popup. Hidden by default-->
                     <div id="addPopup" class = "popup">
-                        <form name="add" action="./includes/productAdd.inc.php" method="post">
-                            <table class="dropShadow">
-                                <!-- Item Name --> 
-                                <tr>
-                                    <td class="alignLeft">
-                                        <label for="itemName">Item Name:</label>
-                                    </td>
-                                    <td class="alignLeft">
-                                        <input type="text" name="product_name" value="itemName"><br>
-                                    </td>
-                                </tr>
-                                <!-- Product Type -->
-                                <tr>
-                                    <td class="alignLeft">
-                                        <label for="itemName">Product Type:</label>
-                                    </td>
-                                    <td class="alignLeft">
-                                        <input type="text" name="product_type" value="productType"><br>
-                                    </td>
-                                </tr>
-                                <!-- Item Description -->
-                                <tr>
-                                    <td class="alignLeft">
-                                        <label for="itemName">Description:</label>
-                                    </td>
-                                    <td class="alignLeft">
-                                        <input type="text" name="product_description" value="description"><br>
-                                    </td>
-                                </tr>
-                                <!-- Make -->
-                                <tr>
-                                    <td class="alignLeft">
-                                        <label for="itemName">Make:</label>
-                                    </td>
-                                    <td class="alignLeft">
-                                        <input type="text"  name="make" value="make"><br>
-                                    </td>
-                                </tr>
-                                
-                                <!-- Model -->
-                                <tr>
-                                    <td class="alignLeft">
-                                        <label for="itemName">Model:</label>
-                                    </td>
-                                    <td class="alignLeft">
-                                        <input type="text" name="model" value="model"><br>
-                                    </td>
-                                </tr>
-                                <!-- Quantity Unit -->
-                                <tr>
-                                    <td class="alignLeft">
-                                        <label for="itemName">Quantity_Unit:</label>
-                                    </td>
-                                    <td class="alignLeft">
-                                        <input type="text" name="qty_unit" value="quantity"><br>
-                                    </td>
-                                </tr>
-                                <!-- Quantity In Stock -->
-                                <tr>
-                                    <td class="alignLeft">
-                                        <label for="itemName">Quantity In Stock:</label>
-                                    </td>
-                                    <td class="alignLeft">
-                                        <input type="text" name="qty_in_stock" value="quantityInStock"><br>
-                                    </td>
-                                </tr>
-                                <!-- Promotional -->
-                                <tr>
-                                    <td class="alignLeft">
-                                        <label for="itemName">isPromotional</label>
-                                    </td>
-                                    <td class="alignLeft">
-                                        <input type="checkbox" name="isPromotional" ><br>
-                                    </td>
-                                </tr>
-                                <!--Regular Price -->
-                                <tr>
-                                    <td class="alignLeft">
-                                        <label for="itemName">Regular Price</label>
-                                    </td>
-                                    <td class="alignLeft">
-                                        <input type="text" name="reg_price" value="regularPrice"><br>
-                                    </td>
-                                </tr>
-                                <!--Discounted Price -->
-                                <tr>
-                                    <td class="alignLeft">
-                                        <label for="itemName">Discounted Price:</label>
-                                    </td>
-                                    <td class="alignLeft">
-                                        <input type="text" name="discounted_price" value="discountedPrice"><br>
-                                    </td>
-                                </tr>
-                                <tr>
-                                <!--Number Rented -->
-                                    <td class="alignLeft">
-                                        <label for="itemName">Number Rented:</label>
-                                    </td>
-                                    <td class="alignLeft">
-                                        <input type="text" name="num_rented" value="numberRented"><br>
-                                    </td>
-                                </tr>
-                                <!-- Number Broken -->
-                                <tr>
-                                    <td class="alignLeft">
-                                        <label for="itemName">Number Broken</label>
-                                    </td>
-                                    <td class="alignLeft">
-                                        <input type="text" name="num_broken" value="numberBroken"><br>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <!-- Button to submit form -->
-                                        <input type="submit" name = "submit" value="submit"></button>
-                                    </td>
-                                    <td>
-                                        <!-- Button to close pane-->
-                                        <button type="button" onclick="exitPane('addPopup')">Cancel!</button>
-                                    </td>
-                                </tr>
-                            </table>
-                        </form>
+                        <fieldset>
+                            <form name="add" action="./includes/productAdd.inc.php" method="post">
+                                <table class="dropShadow">
+                                    <!-- Item Name --> 
+                                    <tr>
+                                        <td class="alignLeft">
+                                            <label for="item name">Item Name:</label>
+                                        </td>
+                                        <td class="alignLeft">
+                                            <input type="product name" name="product_name" value="itemName"><br>
+                                        </td>
+                                    </tr>
+                                    <!-- Product Type -->
+                                    <tr>
+                                        <td class="alignLeft">
+                                            <label for="product type">Product Type:</label>
+                                        </td>
+                                        <td class="alignLeft">
+                                            <input type="text" name="product_type" value="productType"><br>
+                                        </td>
+                                    </tr>
+                                    <!-- Item Description -->
+                                    <tr>
+                                        <td class="alignLeft">
+                                            <label for="description">Description:</label>
+                                        </td>
+                                        <td class="alignLeft">
+                                            <input type="text" name="product_description" value="description"><br>
+                                        </td>
+                                    </tr>
+                                    <!-- Make -->
+                                    <tr>
+                                        <td class="alignLeft">
+                                            <label for="make">Make:</label>
+                                        </td>
+                                        <td class="alignLeft">
+                                            <input type="text"  name="make" value="make"><br>
+                                        </td>
+                                    </tr>
+                                    
+                                    <!-- Model -->
+                                    <tr>
+                                        <td class="alignLeft">
+                                            <label for="model">Model:</label>
+                                        </td>
+                                        <td class="alignLeft">
+                                            <input type="text" name="model" value="model"><br>
+                                        </td>
+                                    </tr>
+                                    <!-- Quantity Unit -->
+                                    <tr>
+                                        <td class="alignLeft">
+                                            <label for="quantity unit">Quantity_Unit:</label>
+                                        </td>
+                                        <td class="alignLeft">
+                                            <input type="text" name="qty_unit" value="quantity"><br>
+                                        </td>
+                                    </tr>
+                                    <!-- Quantity In Stock -->
+                                    <tr>
+                                        <td class="alignLeft">
+                                            <label for="quantity in stock">Quantity In Stock:</label>
+                                        </td>
+                                        <td class="alignLeft">
+                                            <input type="text" name="qty_in_stock" value="quantityInStock"><br>
+                                        </td>
+                                    </tr>
+                                    <!-- Promotional -->
+                                    <tr>
+                                        <td class="alignLeft">
+                                            <label for="is promotional">isPromotional</label>
+                                        </td>
+                                        <td class="alignLeft">
+                                            <input type="checkbox" name="isPromotional" ><br>
+                                        </td>
+                                    </tr>
+                                    <!--Regular Price -->
+                                    <tr>
+                                        <td class="alignLeft">
+                                            <label for="regular price">Regular Price</label>
+                                        </td>
+                                        <td class="alignLeft">
+                                            <input type="text" name="reg_price" value="regularPrice"><br>
+                                        </td>
+                                    </tr>
+                                    <!--Discounted Price -->
+                                    <tr>
+                                        <td class="alignLeft">
+                                            <label for="discounted price">Discounted Price:</label>
+                                        </td>
+                                        <td class="alignLeft">
+                                            <input type="text" name="discounted_price" value="discountedPrice"><br>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                    <!--Number Rented -->
+                                        <td class="alignLeft">
+                                            <label for="number rented">Number Rented:</label>
+                                        </td>
+                                        <td class="alignLeft">
+                                            <input type="text" name="num_rented" value="numberRented"><br>
+                                        </td>
+                                    </tr>
+                                    <!-- Number Broken -->
+                                    <tr>
+                                        <td class="alignLeft">
+                                            <label for="number broken">Number Broken</label>
+                                        </td>
+                                        <td class="alignLeft">
+                                            <input type="text" name="num_broken" value="numberBroken"><br>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="Submit add button">
+                                            <!-- Button to submit form -->
+                                                <input type="submit" name = "submit" value="submit"></button>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <label for="Exit add pane">
+                                            <!-- Button to close pane-->
+                                                <button type="button" onclick="exitPane('addPopup')">Cancel!</button>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                        <fieldset>
                     </div>
                     <!-- Control panel contains buttons for adding and searching for items-->
                     <table id="controlPanel">
                         <tr>
-                            <th id="addItemBtnTH">
-                                <button type="button" onclick="addItem()">Add Item</button>
-                            </th>
+                            <label for="Open add pane">
+                                <th id="addItemBtnTH">
+                                    <button type="button" onclick="addItem()">Add Item</button>
+                                </th>
+                            </label>
 
-                            <th id="searchBtn">
-                                <button type="button" onclick="searchItem()">Search</button>
-                            </th>
+                            <label for="Open search pane">
+                                <th id="searchBtn">
+                                    <button type="button" onclick="searchItem()">Search</button>
+                                </th>
+                            </label>
                         </tr>
                     </table>
                     <!--Contains the table-->

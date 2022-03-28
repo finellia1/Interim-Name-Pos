@@ -8,6 +8,7 @@ class productSearchContr extends productSearch {
     // pass through the variables from the form
     public function __construct($searchType, $searchContent)
     {
+        //Compare actual search type to row name
         if($searchType == "Product ID"){
             $searchType = "product_ID";
         } else if($searchType == "Product Type"){
@@ -38,7 +39,7 @@ class productSearchContr extends productSearch {
         if($searchContent=="" ){
             $searchContent= " ";
         } else {
-            echo($searchContent);
+            //echo($searchContent);
         }
         // reference this property in this class
         $this->searchType = $searchType;
