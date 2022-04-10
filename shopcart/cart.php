@@ -60,7 +60,7 @@ if ($products_in_cart) {
 
 
 <!--html to make the cart presentalble to me right now going to combine to tais hopefullly; -->
-<?=template_header('Cart')?>
+<!--<//?=template_header('Cart')?>-->
 
 <div>
     <h1>Shopping Cart</h1>
@@ -109,4 +109,4 @@ if ($products_in_cart) {
     </form>
 </div>
 
-<?=template_footer()?>
+<!--<//?=template_footer()?>!-->

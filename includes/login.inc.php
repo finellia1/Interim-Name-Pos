@@ -18,6 +18,10 @@ if(isset($_POST["submit"]))
     //set session
     session::set("loggedInID", $email);
 
-    header("location: ../index.php?error=LOGGED IN");
+    header("location: ../homepage.php?error=LOGGED IN");
+    //Resets error message
+    require_once("../classes/session.classes.php");
+    session::start();
+    session::set("errorMessage", "");
     // going back to front page
 }

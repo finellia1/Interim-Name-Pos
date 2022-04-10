@@ -27,7 +27,10 @@ class productUpdate extends Dbh {
 
             if(!$stmt->execute()) {
                 $stmt = null;
-                header('location: ../index.php?error=stmtfailedProductType');
+                require_once("../classes/session.classes.php");
+                session::start();
+                session::set("errorMessage", "Failed Product Type");
+                header('location: ../homepage.php?error=editFailedProductType');                
                 exit();
             }
 
@@ -37,7 +40,10 @@ class productUpdate extends Dbh {
 
             if(!$stmt->execute()) {
                 $stmt = null;
-                header('location: ../index.php?error=stmtfailedName');
+                require_once("../classes/session.classes.php");
+                session::start();
+                session::set("errorMessage", "Failed Name");
+                header('location: ../homepage.php?error=editFailedName');
                 exit();
             }
 
@@ -48,7 +54,10 @@ class productUpdate extends Dbh {
 
             if(!$stmt->execute()) {
                 $stmt = null;
-                header('location: ../index.php?error=stmtfailedDESCRIPTION');
+                require_once("../classes/session.classes.php");
+                session::start();
+                session::set("errorMessage", "Failed Description");
+                header('location: ../homepage.php?error=editFailedDescription');
                 exit();
             }
 
@@ -60,7 +69,10 @@ class productUpdate extends Dbh {
 
         if(!$stmt->execute()) {
             $stmt = null;
-            header('location: ../index.php?error=stmtfailedDESCRIPTION');
+            require_once("../classes/session.classes.php");
+            session::start();
+            session::set("errorMessage", "Failed Regular Price");
+            header('location: ../homepage.php?error=editFailedRegularPrice');
             exit();
         }
 
@@ -72,7 +84,10 @@ class productUpdate extends Dbh {
 
             if(!$stmt->execute()) {
                 $stmt = null;
-                header('location: ../index.php?error=stmtfailed1');
+                require_once("../classes/session.classes.php");
+                session::start();
+                session::set("errorMessage", "Failed is promotional");
+                header('location: ../homepage.php?error=editFailedIsPromotional');
                 exit();
             }
 
@@ -85,7 +100,10 @@ class productUpdate extends Dbh {
 
             if(!$stmt->execute()) {
                 $stmt = null;
-                header('location: ../index.php?error=stmtfailed1');
+                require_once("../classes/session.classes.php");
+                session::start();
+                session::set("errorMessage", "Failed Discounted Price");
+                header('location: ../homepage.php?error=editFailedDiscountedPrice');
                 exit();
             }
 
@@ -99,7 +117,10 @@ class productUpdate extends Dbh {
 
             if(!$stmt->execute()) {
                 $stmt = null;
-                header('location: ../index.php?error=stmtfailed1');
+                require_once("../classes/session.classes.php");
+                session::start();
+                session::set("errorMessage", "Failed Make");
+                header('location: ../homepage.php?error=editFailedMake');
                 exit();
             }
 
@@ -108,11 +129,12 @@ class productUpdate extends Dbh {
 
         if(!empty($num_rented)) {
             $stmt = $this->connect()->prepare("UPDATE product SET num_rented = $p_num_rented WHERE product_ID = $product_ID" );
-    
-    
                 if(!$stmt->execute()) {
                     $stmt = null;
-                    header('location: ../index.php?error=stmtfailed1');
+                    require_once("../classes/session.classes.php");
+                    session::start();
+                    session::set("errorMessage", "Failed Number Rented");
+                    header('location: ../homepage.php?error=editFailedNumberRented');
                     exit();
                 }
     
@@ -125,7 +147,10 @@ class productUpdate extends Dbh {
     
                 if(!$stmt->execute()) {
                     $stmt = null;
-                    header('location: ../index.php?error=stmtfailed1');
+                    require_once("../classes/session.classes.php");
+                    session::start();
+                    session::set("errorMessage", "Failed Number Broken");
+                    header('location: ../homepage.php?error=editFailedNumberBroken');
                     exit();
                 }
     
@@ -138,7 +163,10 @@ class productUpdate extends Dbh {
     
                 if(!$stmt->execute()) {
                     $stmt = null;
-                    header('location: ../index.php?error=stmtfailed1');
+                    require_once("../classes/session.classes.php");
+                    session::start();
+                    session::set("errorMessage", "Failed Quantity Unit");
+                    header('location: ../homepage.php?error=editFailedQuantityUnit');
                     exit();
                 }
     
@@ -150,7 +178,10 @@ class productUpdate extends Dbh {
     
                 if(!$stmt->execute()) {
                     $stmt = null;
-                    header('location: ../index.php?error=stmtfailed1');
+                    require_once("../classes/session.classes.php");
+                    session::start();
+                    session::set("errorMessage", "Failed Model Number");
+                    header('location: ../homepage.php?error=editFailedModelNumber');
                     exit();
                 }
     
@@ -162,7 +193,10 @@ class productUpdate extends Dbh {
 
             if(!$stmt->execute()) {
                 $stmt = null;
-                header('location: ../index.php?error=stmtfailed1');
+                require_once("../classes/session.classes.php");
+                session::start();
+                session::set("errorMessage", "Failed Quantity in Stock");
+                header('location: ../homepage.php?error=editFailedQuantityInStock');
                 exit();
             }
 

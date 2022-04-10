@@ -15,7 +15,7 @@ class LoginContr extends Login {
     //logs in
     public function loginUser() {
         if($this->emptyInput() == false) {
-            header("location: ../index.php?error=emptyinput");
+            header("location: ../login.php?error=emptyinput");
             exit();
         }
         //gets user
@@ -26,7 +26,18 @@ class LoginContr extends Login {
         $result;
         if(empty($this->email) || empty($this->pwd)) {
             $result = false;
-        } else {
+        
+            if(empty($this->email)){
+                require_once("../classes/session.classes.php");
+                session::start();
+                session::set("errorMessage", "Please enter a valid email!");
+            } else if (empty($this->pwd)){
+                require_once("../classes/session.classes.php");
+                session::start();
+                session::set("errorMessage", "Please enter a valid password!");
+            }
+        }
+        else {
             $result = true;
         }
         return $result;

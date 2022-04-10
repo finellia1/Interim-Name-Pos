@@ -39,10 +39,14 @@ class productAddContr extends productAdd {
     public function addProduct() {
         if($this->emptyInput() == true) {
             header("location: ../homepage.php?error='emptyInput'");
+            //session::destroy();
             exit();
         }
         if($this->duplicateProduct() == true) {
             header("location: ../homepage.php?error='duplicateProduct");
+            require_once("../classes/session.classes.php");
+            session::start();
+            session::set("errorMessage", "You have entered a duplicate product. Please enter a unique product.");
             exit();
         }
 
@@ -55,9 +59,86 @@ class productAddContr extends productAdd {
     private function emptyInput() {
         $result;
 
-        if(empty($this->product_ID) || empty($this->product_name) || empty($this->product_description) || empty($this->product_type) || empty($this->make) || empty($this->model) || empty($this->qty_unit) || empty($this->qty_in_stock) || empty($this->is_promotional) || empty($this->reg_price) || empty($this->discounted_price)|| empty($this->num_rented) || empty($this->num_broken)) {
+        if(empty($this->product_ID)){
+            require_once("../classes/session.classes.php");
+            session::start();
+            session::set("errorMessage", "Please fill in product ID");
             $result = true;
-        } else {
+        }
+        else if (empty($this->product_name)){
+            require_once("../classes/session.classes.php");
+            session::start();
+            $result = true;
+            session::set("errorMessage", "Please fill in product name");
+        }
+        else if (empty($this->product_type)){
+            require_once("../classes/session.classes.php");
+            session::start();
+            $result = true;
+            session::set("errorMessage", "Please fill in product type");
+        }
+        else if (empty($this->product_description)){
+            require_once("../classes/session.classes.php");
+            session::start();
+            $result = true;
+            session::set("errorMessage", "Please fill in product description");
+        }
+        else if (empty($this->make)){
+            require_once("../classes/session.classes.php");
+            session::start();
+            $result = true;
+            session::set("errorMessage", "Please fill in make");
+        }
+        else if (empty($this->model)){
+            require_once("../classes/session.classes.php");
+            session::start();
+            $result = true;
+            session::set("errorMessage", "Please fill in model");
+        } 
+        else if (empty($this->qty_unit)){
+            require_once("../classes/session.classes.php");
+            session::start();
+            $result = true;
+            session::set("errorMessage", "Please fill in quantity of unit");
+        } 
+        else if (empty($this->qty_in_stock))
+        {
+            require_once("../classes/session.classes.php");
+            session::start();
+            $result = true;
+            session::set("errorMessage", "Please fill in quantity in stock");
+        } 
+        else if (empty($this->is_promotional)){
+            require_once("../classes/session.classes.php");
+            session::start();
+            $result = true;
+            session::set("errorMessage", "Please check the Is Promotional check box");
+        }
+        else if (empty($this->reg_price)){
+            require_once("../classes/session.classes.php");
+            session::start();
+            $result = true;
+            session::set("errorMessage", "Please fill in regular price");
+        }
+        else if (empty($this->discounted_price)){
+            require_once("../classes/session.classes.php");
+            session::start();
+            $result = true;
+            session::set("errorMessage", "Please fill in discounted price");
+        }
+        else if (empty($this->num_rented)){
+            require_once("../classes/session.classes.php");
+            session::start();
+            $result = true;
+            session::set("errorMessage", "Please fill in number rented");
+        }
+        else if (empty($this->num_broken)){
+            require_once("../classes/session.classes.php");
+            session::start();
+            $result = true;
+            session::set("errorMessage", "Please fill in number broken");
+        } 
+        else {
             $result = false;
         }
 

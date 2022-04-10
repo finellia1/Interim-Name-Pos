@@ -23,6 +23,9 @@ class Login extends Dbh {
         //checks if pwd and pwdHashed match
         if($checkPwd == False) {
             $stmt = null;
+            require_once("../classes/session.classes.php");
+            session::start();
+            session::set("errorMessage", "You have entered an incorrect password");
             header("location: ../index.php?error=wrongpassword");
             exit();
         } elseif($checkPwd == true) {
@@ -30,13 +33,16 @@ class Login extends Dbh {
             //checks db for matching login info
             if(!$stmt->execute(array($email, $pwdHashed[0]["pwd"]))) {
                 $stmt = null;
-                header("location: ../index.php?error=stmtfailed4");
+                header("location: ../login.php?error=stmtfailed4");
                 exit();
             }
 
             if($stmt->rowCount() == 0) {
                 $stmt = null;
-                header("location: ../index.php?error=usernotfound2");
+                require_once("../classes/session.classes.php");
+                session::start();
+                session::set("errorMessage", "User Not Found");
+                header("location: ../login.php?error=usernotfound");
                 exit();
             }
 

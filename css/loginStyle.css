@@ -1,6 +1,8 @@
 
             /*Fonts*/
-
+html{
+    font-family: sa;
+}
 
 @font-face{
     font-family: roboto-black;

@@ -27,7 +27,7 @@ if (isset($_GET['product_ID'])) {
            Price: &dollar;<?=$product['reg_price']?>
             
         
-        <form action="index.php?page=cart" method="post">
+        <form action="shopcart/index.php?page=cart" method="post">
             <input type="number" name="quantity" value="1" min="1" max="<?=$product['qty_in_stock']?>" placeholder="Quantity" required>
             <input type="hidden" name="product_ID" value="<?=$product['product_ID']?>">
             <input type="submit" value="Add To Cart">

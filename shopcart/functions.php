@@ -26,9 +26,9 @@ echo <<<EOT
         <header>
                 <h1>Interim POS</h1>
                 <nav>
-                    <a href="index.php">Home</a>
-                    <a href="index.php?page=products">Products</a>
-                    <a href="index.php?page=cart"> cart </a>
+                    <a href="shopcart/index.php"> Home </a>
+                    <a href="shopcart/index.php?page=products"> Products </a>
+                    <a href="shopcart/index.php?page=cart"> Cart </a>
                 </nav>
 
         </header>

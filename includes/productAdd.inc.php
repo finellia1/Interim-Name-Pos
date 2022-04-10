@@ -25,5 +25,10 @@
     $addProduct-> addProduct($product_ID, $product_name, $product_description, $product_type, $make, $model, $qty_unit, $qty_in_stock,$is_promotional,$reg_price,$discounted_price,$num_rented,$num_broken);
     // going back to front page
     header("location: ../homepage.php?error=ran");
+    //Clears previously thrown error message
+    require_once("../classes/session.classes.php");
+    session::start();
+    session::set("errorMessage", "");
+
 // }
-?>
+?>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    

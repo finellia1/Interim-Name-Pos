@@ -9,6 +9,10 @@ class productAdd extends Dbh {
         if(!$stmt->execute(array($product_ID, $product_name, $product_description, $product_type, $make, $model, $qty_unit, $qty_in_stock,$is_promotional,$reg_price,$discounted_price,$num_rented,$num_broken))) {
             $stmt = null;
             header('location: ../homepage.php');
+            require_once("../classes/session.classes.php");
+            session::start();
+            session::set("errorMessage", "");
+            $result = true;
             exit();
         }
         $stmt = null;
@@ -20,7 +24,8 @@ class productAdd extends Dbh {
         $stmt = $this->connect()->prepare('SELECT product_ID FROM product WHERE product_ID = ? OR product_name = ?;');
         if(!$stmt->execute(array($product_ID, $product_name))) {
             $stmt = null;
-            header("location: ../homepage.php");
+            session::start();
+            header("location: ../homepage.php?=duplicateProduct");
             exit();
         }
 

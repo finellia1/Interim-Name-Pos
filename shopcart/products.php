@@ -19,7 +19,7 @@ $total_products = $pdo->query('SELECT * FROM product')->rowCount();
     <h1>Products</h1>
     <p><?=$total_products?> Products</p>
         <?php foreach ($products as $product): ?>
-            <a href="index.php?page=product&product_ID=<?=$product['product_ID']?>" >
+            <a href="shopcart/index.php?page=product&product_ID=<?=$product['product_ID']?>" >
            <?=$product['product_description']?>
                 &dollar;<?=$product['reg_price']?>
         </a>
@@ -28,12 +28,12 @@ $total_products = $pdo->query('SELECT * FROM product')->rowCount();
 
 <!-- Logic to go between last page -->
         <?php if ($current_page > 1): ?>
-        <a href="index.php?page=products&p=<?=$current_page-1?>">Prev</a> 
+        <a href="shopcart/index.php?page=products&p=<?=$current_page-1?>">Prev</a> 
         <?php endif; ?>
 
 <!-- Logic to go between next page -->
         <?php if ($total_products > ($current_page * $num_products_on_each_page) - $num_products_on_each_page + count($products)): ?>
-        <a href="index.php?page=products&p=<?=$current_page+1?>">Next</a>
+        <a href="shopcart/index.php?page=products&p=<?=$current_page+1?>">Next</a>
         <?php endif; ?>
     </div>
 </div>

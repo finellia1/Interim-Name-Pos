@@ -7,6 +7,7 @@
             let start = img.src;
             let hover = img.getAttribute('data-hover'); //specified in img tag
             console.log(start);
+            require "../classes/session.classes.php";
 
             img.onmouseover = () => { img.src = hover; }
             img.onmouseout = () => { img.src = start; } //to revert back to start
@@ -16,6 +17,7 @@
 <body>
     <div class = "wrap">
         <main>
+            
             <div class = "leftPanel">
                 <div class = "nav-bar">
                     <ul>
@@ -57,14 +59,12 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+                </div>
             <div class = "middlePanel">
                 <div class = "inventory">
                     <?php 
                         require './classes/session.classes.php';
-
                         session::start();
-                        // session_start();
                         ?>
                         <h1>Inventory Page</h1>
                         <br><br>
@@ -78,19 +78,19 @@
                                         <td class="alignLeft">
                                             <input id = "searchTypeInput" name = "searchTypeInput" list="searchType" placeholder ="Search by...">
                                             <datalist id = "searchType" >
-                                            <option value = "Product ID">
-                                            <option value = "Product Type">
-                                            <option value = "Product Name">
-                                            <option value = "Description">
-                                            <option value = "Make">
-                                            <option value = "Model Number">
-                                            <option value = "Quantity Unit">
-                                            <option value = "Quantity In Stock">
-                                            <option value = "Regular Price">
-                                            <option value = "Discounted Price">
-                                            <option value = "Number Rented">
-                                            <option value = "Number Broken">
-                                            <option value = "*">
+                                            <option placeholder = "Product ID">
+                                            <option placeholder = "Product Type">
+                                            <option placeholder = "Product Name">
+                                            <option placeholder = "Description">
+                                            <option placeholder = "Make">
+                                            <option placeholder = "Model Number">
+                                            <option placeholder = "Quantity Unit">
+                                            <option placeholder = "Quantity In Stock">
+                                            <option placeholder = "Regular Price">
+                                            <option placeholder = "Discounted Price">
+                                            <option placeholder = "Number Rented">
+                                            <option placeholder = "Number Broken">
+                                            <option placeholder = "*">
                                             </datalist>
                                         </td>
                                     </tr>
@@ -118,8 +118,8 @@
                             </form>
                         </fieldset>
                     </div>
-   <!--Edit popup. Hidden by default-->
-   <div id="editPopup" class = "popup">
+                <!--Edit popup. Hidden by default-->
+                <div id="editPopup" class = "popup">
                      <fieldset>
                         <form name="edit" action="./includes/productUpdate.inc.php" method="POST">
                             <table class="dropShadow">
@@ -402,6 +402,7 @@
                     <!--Contains the table-->
                     <div id = "inventoryWrapper">
                         <table id="inventory">
+                        <?php if(session::get("errorMessage")!=""){echo session::get("errorMessage");};?>
                             <tr>
                                 <th>Product ID</th>
                                 <th>Product Type</th>
@@ -430,10 +431,15 @@
                     <script type="text/javascript" src="./js/inventory.js"></script>
 
                 </div>
+            </div>
             <div class = "rightPanel">
-                <h1> Right Panel </h1>
+                <!--<h1> Right Panel </h1>-->
                 <p>
-                    lipsum...
+                    <?php
+                        include "shopcart/cart.php";
+
+                        echo "test";
+                    ?>
                 </p>
             </div>
         </main>
