@@ -7,29 +7,17 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   </head>
   <body class="dropShadow"> 
-    <div class="leftSideLogin">                        
-      <!--  left half of page--> 
-      <br>    
+    <div class="leftSideLogin">                        <!--  left half of page--> 
+      <p></p><br>    
       <div class="center">    
-        <form id="login" method="POST" action="includes/login.inc.php">   
-          <!-- Error message display !-->
-          <?php
-          require_once("classes\session.classes.php");
-          session::start();
-          if(session::get("errorMessage")!=""){echo session::get("errorMessage");};
-          ?>
-          
+        <form id="login" method="POST" action="includes/login.inc.php">    
           <h1 class="loginWord "><b>Login:</h1>   
-          <input type="text" name="email" id="ip1" placeholder="Email">
-          <!-- Add padding to both fields !-->
-          <br>
-          <br>
-          <input type="Password" name="pwd" id="ip2" placeholder="Password">    
-          <br>
-          <br>    
+          <input type="text" name="email" id="ip1" placeholder="     Email">    
+          <br><br>    
+          <input type="Password" name="pwd" id="ip2" placeholder="    Password">    
+          <br><br>    
           <button type="submit" name="submit" id="ip3">Submit</button>       
-          <br>
-          <br>     
+          <br><br>     
           <h3>Need an Account?    
           <br>
           Click <a href="#">here</a> to register</h3>

@@ -70,12 +70,8 @@
                         <div id="header">
                             <div id="monthDisplay"></div>
                             <div>
-                                <label for="Next month button">
-                                    <button id="backButton">Back</button>
-                                </label>
-                                <label for="Previous month button">
-                                    <button id="nextButton">Next</button>
-                                </label>
+                            <button id="backButton">Back</button>
+                            <button id="nextButton">Next</button>
                             </div>
                         </div>
 

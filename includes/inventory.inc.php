@@ -48,7 +48,6 @@ session::start();
         $searchType = "num_broken";
     }
 
-
     if($searchContent==""){
         $searchContent=" ";
     }

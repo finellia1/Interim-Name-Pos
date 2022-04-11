@@ -59,12 +59,14 @@
                         </li>
                     </ul>
                 </div>
-                </div>
+            </div>
             <div class = "middlePanel">
                 <div class = "inventory">
                     <?php 
                         require './classes/session.classes.php';
+
                         session::start();
+                        // session_start();
                         ?>
                         <h1>Inventory Page</h1>
                         <br><br>

@@ -66,7 +66,6 @@ if ($products_in_cart) {
     <h1>Shopping Cart</h1>
     <form action="index.php?page=cart" method="post">
         <table>
-
                 <tr>
                     <td colspan="1">Product</td>
                     <td>Price</td>

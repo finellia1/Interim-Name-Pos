@@ -27,4 +27,4 @@ if(isset($_POST["submit"]))
     // running error handlers and user signup
     $searchProduct-> searchProducts($searchType, $searchContent);
     // going back to front page
-    //session::display();
+    session::display();
