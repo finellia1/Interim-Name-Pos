@@ -116,118 +116,63 @@
    <!--Edit popup. Hidden by default-->
    <div id="editPopup" class = "popup">
                      <fieldset>
-                        <form name="edit" action="./includes/productUpdate.inc.php" method="POST">
+                        <form name="edit" action="./includes/vendorUpdate.inc.php" method="POST">
                             <table class="dropShadow">
-                            <!-- Item Name --> 
+                            <!-- Company Name --> 
                             <input type='hidden' name='deleteID_edit' id='deleteID_edit'>
                             <tr>
                                     <td class="alignLeft">
-                                        <label for="product type">Product Type:</label>
+                                        <label for="company name">Company Name:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="productType" name="product_type" value="productType"><br>
+                                        <input type="text" id="companyName" name="company_name" value="companyName"><br>
                                     </td>
                                 </tr>
-                            <!-- Product Type -->
+                            <!-- Website -->
                             <tr>
                                     <td class="alignLeft">
-                                        <label for="item name">Item Name:</label>
+                                        <label for="item name">Website:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="itemName" name="product_name" value="itemName"><br>
+                                        <input type="text" id="website" name="website" value="website"><br>
                                     </td>
                                 </tr>
-                            <!-- Item Description -->
+                            <!-- Sales Representative -->
                                 <tr>
                                     <td class="alignLeft">
-                                        <label for="description">Description:</label>
+                                        <label for="sales represenetative">Sales Representative:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="description" name="product_description" value="description"><br>
+                                        <input type="text" id="salesrep" name="salesrep" value="salesrep"><br>
                                     </td>
                                 </tr>
-                                <!-- Make -->
+                                <!-- Email -->
                                 <tr>
                                     <td class="alignLeft">
-                                        <label for="make">Make:</label>
+                                        <label for="Email">Email:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="make" name="make" value="make"><br>
+                                        <input type="text" id="email" name="email" value="email"><br>
                                     </td>
                                 </tr>
-                                <!-- Model -->
+                                <!-- Phone -->
                                 <tr>
                                     <td class="alignLeft">
-                                        <label for="model">Model:</label>
+                                        <label for="phone">Phone:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="model" name="model" value="model"><br>
+                                        <input type="text" id="phone" name="phone" value="phone"><br>
                                     </td>
                                 </tr>
-                                <!-- Quantity Unit -->
+                                <!-- Vendor Notes -->
                                 <tr>
                                     <td class="alignLeft">
-                                        <label for="quantity unit">Quantity_Unit:</label>
+                                        <label for="vendor notes">Vendor Notes:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="quantity" name="qty_unit_edit" value="quantity"><br>
+                                        <input type="text" id="vendorNotes" name="vendor_notes" value="vendor notes"><br>
                                     </td>
                                 </tr>
-                                <!-- Quantity In Stock -->
-                                <tr>
-                                    <td class="alignLeft">
-                                        <label for="quantity in stock">Quantity In Stock:</label>
-                                    </td>
-                                    <td class="alignLeft">
-                                        <input type="text" id="quantityInStock" name="qty_in_stock" value="quantityInStock"><br>
-                                    </td>
-                                </tr>
-                                <!-- Promotional -->
-                                <tr>
-                                    <td class="alignLeft">
-                                        <label for="is promotional">isPromotional</label>
-                                    </td>
-                                    <td class="alignLeft">
-                                        <input type="checkbox" id="isPromotional" name="isPromotional_edit" ><br>
-                                    </td>
-                                </tr>
-                                <!--Regular Price -->
-                                <tr>
-                                    <td class="alignLeft">
-                                        <label for="regular price">Regular Price</label>
-                                    </td>
-                                    <td class="alignLeft">
-                                        <input type="text" id="regularPrice" name="reg_price" value="regularPrice"><br>
-                                    </td>
-                                </tr>
-                                <!--Discounted Price -->
-                                <tr>
-                                    <td class="alignLeft">
-                                        <label for="discounted price">Discounted Price:</label>
-                                    </td>
-                                    <td class="alignLeft">
-                                        <input type="text" id="discountedPrice" name="discounted_price" value="discountedPrice"><br>
-                                    </td>
-                                </tr>
-                                <tr>
-                                <!--Number Rented -->
-                                    <td class="alignLeft">
-                                        <label for="number rented">Number Rented:</label>
-                                    </td>
-                                    <td class="alignLeft">
-                                        <input type="text" id="numberRented" name="num_rented" value="numberRented"><br>
-                                    </td>
-                                </tr>
-                                <!-- Number Broken -->
-                                <tr>
-                                    <td class="alignLeft">
-                                        <label for="number broken">Number Broken</label>
-                                    </td>
-                                    <td class="alignLeft">
-                                        <input type="text" id="numberBroken" name="num_broken" value="numberBroken"><br>
-                                    </td>
-                                </tr>
-                                <tr>
                                     <td>
                                         <label for="Submit edit button">
                                             <input type="submit" value="Submit!"></button>

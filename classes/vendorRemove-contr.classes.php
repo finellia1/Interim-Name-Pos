@@ -13,7 +13,7 @@ class productRemoveContr extends productRemove {
 
     public function checkProduct() {
         if($this->emptyInput() == false) {
-            header("location: ../homepage.php?error=emptyinput");
+            header("location: ../vendor.php?error=emptyinput");
             exit();
         }
         $this->removeProduct($this->product_ID);

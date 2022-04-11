@@ -41,10 +41,10 @@ class vendorSearch extends Dbh {
                 $p_vendor_notes = "'".$row['vendor_notes']."'";
 
                 //Pass in the p_ variables to button. This way the variables can be accessed in JS
-                printf('<td><button type="button" onclick="editPane(%s,%s, %s,%s,%s,%s,%s)">Edit</button>',$p_id,$p_company_name,$p_website,$p_salesrep, $p_email, $p_phone, $p_vendor_notes);
+                printf('<td><button type="button" onclick="editPane_vendor(%s,%s, %s,%s,%s,%s,%s)">Edit</button>',$p_id,$p_company_name,$p_website,$p_salesrep, $p_email, $p_phone, $p_vendor_notes);
 
                 //Create form to handle removing item
-                echo "<form name='remove' action='./includes/productRemove.inc.php' method='post'>";
+                echo "<form name='remove' action='./includes/vendorRemove.inc.php' method='post'>";
                 echo "<td><label for 'Delete button'><button type='submit' name='submit' value='submit'>Delete</button></label>";
                 echo "<td><label for 'Cart button'><button type='button'>Cart</button></label>";
                 echo "<td> <input type='hidden' name='PID' id='deleteID' value='{$row['vendor_ID']}'> </td>";
