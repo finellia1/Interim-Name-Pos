@@ -16,6 +16,17 @@ function editPane(id,name,type,description, make, model, quanitity, quantityInSt
 
 }
 
+function editPane_vendor(product_ID,company_name,website,sales_representative, email, phone, vendor_notes){
+    document.getElementById('editPopup').style.visibility = 'visible';    
+    document.getElementById('itemName').value = company_name;
+    document.getElementById('productType').value = website;
+    document.getElementById('description').value = sales_representative;
+    document.getElementById('make').value = email;
+    document.getElementById('model').value = phone;
+    document.getElementById('quantity').value = vendor_notes;
+    document.getElementById('deleteID_edit').value = product_ID;
+}
+
 function exitPane(ID){
     document.getElementById(ID).style.visibility = 'hidden';
 }
