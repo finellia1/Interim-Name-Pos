@@ -1,9 +1,13 @@
 <?php
 // Check to make sure the ID parameter is specified in the URL
-if (isset($_GET['product_ID'])) {
+if (isset($_POST['product_ID'])) {
+    include 'functions.php';
+    $pdo = pdo_connect_mysql();
+    session_start();
+    $_SESSSION["productFound"] = "ran";
     // Prepare statement and execute, prevents SQL injection
     $stmt = $pdo->prepare('SELECT * FROM product WHERE product_ID = ?');
-    $stmt->execute([$_GET['product_ID']]);
+    $stmt->execute([$_POST['product_ID']]);
     // Fetch the product from the database and return the result as an Array
     $product = $stmt->fetch(PDO::FETCH_ASSOC);
     // Check if the product exists (array is not empty)
@@ -18,7 +22,6 @@ if (isset($_GET['product_ID'])) {
 
 
 ?>
-<?=template_header('Product')?>
 
 <div >
     <div>

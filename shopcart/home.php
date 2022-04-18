@@ -1,6 +1,7 @@
 
 <!-- This is going to be our home page -->
-<?=template_header('Home')?>
+
+<?php=template_header('Home')?>
 
 <div>
     <h2>Landing page</h2>
@@ -10,5 +11,5 @@
     </div>
 </div>
 
-<?=template_footer()?>
+<?php=template_footer()?>
 

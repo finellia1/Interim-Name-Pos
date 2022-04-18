@@ -27,7 +27,7 @@ if (isset($_POST['product_ID'], $_POST['quantity']) && is_numeric($_POST['produc
             $_SESSION['cart'] = array($product_ID => $quantity);
         }
     }
-    header('Location: index.php?page=placeorder');
+    header('Location: ../homepage.php');
     exit;
 }
 
@@ -60,7 +60,7 @@ if ($products_in_cart) {
 
 
 <!--html to make the cart presentalble to me right now going to combine to tais hopefullly; -->
-<?=template_header('Cart')?>
+<?php=template_header('Cart')?>
 
 <div>
     <h1>Shopping Cart</h1>
@@ -85,7 +85,7 @@ if ($products_in_cart) {
                     <td>
                         <a href="index.php?page=product&ID=<?=$product['product_ID']?>"><?=$product['product_description']?></a>
                         <br>
-                        <a href="index.php?page=cart&remove=<?=$product['product_ID']?>" >Remove</a>
+                        <a href="index.php?page=cart&remove=<?=$product['product_ID']?>">Remove</a>
                     </td>
                     <td>&dollar;<?=$product['reg_price']?></td>
                     <td>
@@ -109,4 +109,4 @@ if ($products_in_cart) {
     </form>
 </div>
 
-<?=template_footer()?>
+<?php=template_footer()?>

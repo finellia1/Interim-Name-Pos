@@ -64,6 +64,7 @@
                         require './classes/session.classes.php';
 
                         session::start();
+                        //session::display();
                         // session_start();
                         ?>
                         <h1>Inventory Page</h1>
@@ -426,15 +427,11 @@
 
                         </table>
                     </div>
-
                     <script type="text/javascript" src="./js/inventory.js"></script>
-
                 </div>
+            </div>
             <div class = "rightPanel">
-                <h1> Right Panel </h1>
-                <p>
-                    lipsum...
-                </p>
+                <iframe src="shopcart\index.php" frameborder="0" height=100%"></iframe>
             </div>
         </main>
     </div>
