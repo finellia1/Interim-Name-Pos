@@ -7,11 +7,12 @@ class vendorSearch extends Dbh {
         
         $stmt = $this->connect();
         //$_SESSION["searchTypeInput_vendor"] = "select * from vendor";
-        echo $_SESSION["searchTypeInput_vendor"];
 
         //If there is no sessions set, default to selecting every item
         if(!isset($_SESSION["searchTypeInput_vendor"])){
-            $_SESSION["searchTypeInput_vendor"] = "select * from product";
+            $_SESSION["searchTypeInput_vendor"] = "select * from vendor";
+        }else{
+            //echo $_SESSION["searchTypeInput_vendor"];
         }
 
         //Set data to results of search query ran.

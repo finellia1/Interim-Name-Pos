@@ -7,10 +7,6 @@ class productSearch extends Dbh {
         
         $stmt = $this->connect();
 
-        if(isset($_SESSION["debug"])){
-            echo $_SESSION["debug"];
-        }
-
         //If there is no sessions set, default to selecting every item
         if(!isset($_SESSION["searchTypeInput"])){
             $_SESSION["searchTypeInput"] = "select * from product";

@@ -19,7 +19,6 @@ class productUpdateContr extends productUpdate {
     // pass through the variables from the form
     public function __construct($product_ID, $name, $description, $product_type, $make, $model_no, $quantity_unit, $quantity_in_stock,$isPromotional,$regular_price,$discounted_price,$num_rented,$num_broken)
     {
-        echo($product_ID);
         // reference this property in this class
         $this->product_ID = $product_ID;
         $this->name = $name;
