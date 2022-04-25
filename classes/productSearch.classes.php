@@ -19,7 +19,7 @@ class productSearch extends Dbh {
         foreach($getData as $row){
             if($row['is_discontinued'] == 0){
                 //Echo out table information with row infomration from DB 
-                echo "<tr>"; 
+                echo "<tr class = 'inventoryItem'>"; 
                 echo "<td> {$row['product_ID']} </td>";
                 echo "<td> {$row['product_type']} </td>";
                 echo "<td> {$row['product_name']} </td>";

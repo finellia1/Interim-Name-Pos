@@ -22,7 +22,7 @@ class clientSearch extends Dbh {
         foreach($getData as $row){
             if($row['is_inactive'] == 0){
                 //Echo out table information with row infomration from DB 
-                echo "<tr class = 'tableRow'>"; 
+                echo "<tr  class = 'inventoryItem'>"; 
                 echo "<td> {$row['client_ID']} </td>";
                 echo "<td> {$row['company']} </td>";
                 echo "<td> {$row['client_type']} </td>";

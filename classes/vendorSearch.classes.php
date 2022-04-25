@@ -22,7 +22,7 @@ class vendorSearch extends Dbh {
         foreach($getData as $row){
             if($row['is_inactive'] == 0){
                 //Echo out table information with row infomration from DB 
-                echo "<tr>"; 
+                echo "<tr class = 'inventoryItem'>"; 
                 echo "<td> {$row['vendor_ID']} </td>";
                 echo "<td> {$row['company_name']} </td>";
                 echo "<td> {$row['website']} </td>";
