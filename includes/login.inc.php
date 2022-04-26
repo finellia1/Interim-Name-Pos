@@ -3,7 +3,7 @@
 if(isset($_POST["submit"])) 
 {
     // grab the data from login form
-    $employee_ID = $_POST["employee_ID"];
+    $email = $_POST["email"];
     $pwd = $_POST["pwd"];
 
     // instantiate loginContr class
@@ -12,11 +12,11 @@ if(isset($_POST["submit"]))
     require "../classes/login-contr.classes.php";
     require "../classes/session.classes.php";
         //create object
-    $login = new LoginContr($employee_ID, $pwd);
+    $login = new LoginContr($email, $pwd);
     // logging in
     $login-> loginUser();
     //set session
-    session::set("loggedInID", $employee_ID);
+    session::set("loggedInID", $email);
 
     header("location: ../index.php?error=LOGGED IN");
     // going back to front page

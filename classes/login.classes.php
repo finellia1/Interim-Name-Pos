@@ -3,10 +3,10 @@
 class Login extends Dbh {
 
     //connects to db, prepares and executes $stmt, compares pwd to pwdHashed, logs in
-    protected function getUser($employee_ID, $pwd) {
-        $stmt = $this->connect()->prepare('SELECT pwd FROM employee WHERE employee_ID = ?;');
+    protected function getUser($email, $pwd) {
+        $stmt = $this->connect()->prepare('SELECT pwd FROM employee WHERE email = ?;');
 
-        if(!$stmt->execute(array($employee_ID))) {
+        if(!$stmt->execute(array($email))) {
             $stmt = null;
             header('location: ../index.php?error=stmtfailed3');
             exit();
@@ -26,9 +26,9 @@ class Login extends Dbh {
             header("location: ../index.php?error=wrongpassword");
             exit();
         } elseif($checkPwd == true) {
-            $stmt = $this->connect()->prepare('SELECT * FROM employee WHERE employee_ID = ? and pwd = ?;');
+            $stmt = $this->connect()->prepare('SELECT * FROM employee WHERE email = ? and pwd = ?;');
             //checks db for matching login info
-            if(!$stmt->execute(array($employee_ID, $pwdHashed[0]["pwd"]))) {
+            if(!$stmt->execute(array($email, $pwdHashed[0]["pwd"]))) {
                 $stmt = null;
                 header("location: ../index.php?error=stmtfailed4");
                 exit();

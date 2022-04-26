@@ -1,7 +1,7 @@
 <?php
 
     
-    //database_v2
+
     session_start();       //session is used to get cart from previous page.
     $cart = $_SESSION['cartArray'];
     // print_r($cart);
@@ -22,7 +22,7 @@
     }
   
 
-    $stmt = $conn ->query('SELECT invoice_ID FROM invoice ORDER BY invoice_ID ASC');  //gets all invoice_ID numbers to figure out current invoiceID
+    $stmt = $conn ->query('SELECT invoice_ID FROM invoice');  //gets all invoice_ID numbers to figure out current invoiceID
     $ids = $stmt -> fetchALL(PDO::FETCH_COLUMN);
     $newID =array_pop($ids);                                  //gets most recent id and increments it.
     $newID++;
@@ -307,7 +307,7 @@
                 <h4 style="padding: 10px;"> 
                 <?php
                 if($currentClient['tax_exempt'] == 1){ //checks if client is tax exempt or not, and changes the invoice accordingly
-                    echo "Tax Exempt";
+                    echo "Text Exempt";
                 }
                 else{
                     echo "Tax: 8%";
