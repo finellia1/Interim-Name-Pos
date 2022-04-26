@@ -166,22 +166,28 @@
             display: flex;
         }
 
-        #title{
 
-            font-family:roboto-black ;
-            padding-left: 10px;
-            font-size: 60px;
-            line-height: 39px;
+        @media screen and (max-width:360px){
 
-            background-image:linear-gradient(135.76deg, #FF0F7B 7.5%, #F89B29 88.59%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent; 
-             
+            #title{
+
+                font-family:roboto-black ;
+                padding-left: 20px;
+                font-size: 300%;
+                line-height: 39px;
+
+                background-image:linear-gradient(135.76deg, #FF0F7B 7.5%, #F89B29 88.59%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent; 
+                
+                }
+
         }
+        
 
         .topright {
             position: absolute;
-            right: 50px;
+            right: 5px;
         }
         button{
             background-image:linear-gradient(135.76deg, #FF0F7B 7.5%, #F89B29 88.59%) ;
@@ -191,10 +197,10 @@
             padding: 20px;
             text-align: center;
             text-decoration: none;
-            display: inline-block;
             font-size: 16px;
             margin: 4px 2px;
-            position: absolute;
+            float:right;
+            margin-right:5px;
             right: 50px;
 
 
@@ -227,7 +233,7 @@
         <h1>Invoice #<?php echo $newID ?></h1>     
         </div>
        <div class="topright">
-       <h1 id="title"> HVAV</h1>
+            <h1 id="title">RENTAL</h1>
        </div>
     </div>
     
@@ -295,10 +301,10 @@
         </table>
         
         
-            <div class="card" style="width: 40%;">
+            <div class="card" style="min-width: 40%; max-width:50px;">
                     
-                <h2 style="padding-left: 4px;">SubTotal : <?php echo "$".sprintf("%.2f", ($totalcost)); ?></h1>
-                <h4 style="padding-left: 4px;"> 
+                <h2 style="padding: 10px;">SubTotal : <?php echo "$".sprintf("%.2f", ($totalcost)); ?></h1>
+                <h4 style="padding: 10px;"> 
                 <?php
                 if($currentClient['tax_exempt'] == 1){ //checks if client is tax exempt or not, and changes the invoice accordingly
                     echo "Tax Exempt";
@@ -308,11 +314,13 @@
                 }
                 ?>
                 </h4>
-                <h1 style="position: relative;">Balance(USD):</h1>
                            
             </div>  
-
+            
+            
             <button onClick="window.print()">Print this page</button>
+            <button style="">Continue</button>
+            
         
 </body>
 </html>
