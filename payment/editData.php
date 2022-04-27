@@ -1,5 +1,6 @@
 <?php
 include('../invoice/db_connect.php');
+session_start();
 // id= 7Ucr2AUj5k
 // key = 69Qcf7E4Q4PQc76m 
 // for testing purposes.
@@ -7,12 +8,15 @@ include('../invoice/db_connect.php');
 $stmt = $conn ->query('SELECT * FROM authorizecredentials');
 $creds = $stmt -> fetchALL(PDO::FETCH_COLUMN);
 
-echo "lmao";
     if(isset($_POST['submit'])){ //submits id and key to the database if button is pressed.
 
         //check if any value is empty before submitting
         if(empty($_POST['id']) or empty($_POST['key'])){
-            echo "Please fill both fields before submitting ";
+            $error= "Please fill both fields before submitting";
+            
+            $_SESSION['error'] = $error;
+            header("Location: editsCredPage.php");
+            exit;
         }
         else{
             //htmlspecialchars used to prevent html injections.
@@ -20,6 +24,29 @@ echo "lmao";
             $key = htmlspecialchars($_POST['key']);
             $idcheck = htmlspecialchars($_POST['idconfirm']);
             $keycheck = htmlspecialchars($_POST['keyconfirm']);
+
+            if($id != $idcheck && $key != $keycheck){
+
+                $error = 'The ID and Key entries do not match. Try entering them again';
+                $_SESSION['error'] = $error;
+                header("Location: editsCredPage.php");
+                exit;
+    
+            }elseif($id == $idcheck && $key != $keycheck){
+    
+                $error = 'The Key entries do not match. Try entering them again';
+                $_SESSION['error'] = $error;
+                header("Location: editsCredPage.php");
+                exit;
+    
+            }elseif($id != $idcheck && $key == $keycheck){
+    
+                $error = 'The ID entries do not match. Try entering them again';
+                $_SESSION['error'] = $error;
+                header("Location: editsCredPage.php");
+                exit;
+    
+            }
 
             if($id == $idcheck && $key == $keycheck){
 
@@ -73,10 +100,7 @@ echo "lmao";
 
                 header("Location: index.php");
 
-            }else{
-                echo "Make sure your inputs match please";
             }
-
               
 
         }

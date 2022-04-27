@@ -1,0 +1,122 @@
+.row {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+    margin: 0 -16px;
+  }
+  .content-wrapper {
+    width: 600px;
+    margin-left: auto;
+    margin-right:auto;
+    padding: 10px;
+    border: 1px solid #000;
+    background-color: #f2f2f2;
+    padding: 5px 20px 15px 20px;
+    border: 1px solid #F89B29;
+    border-radius:10px;
+  }
+  .form-content {
+    padding: 5px;
+    border-radius:10px;
+  }
+  input {
+    width: 95%;
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius:10px;
+  }
+  label {
+    font-size: 20px;
+  }
+  h1 {
+    font-size: 24px;
+    text-align: center;
+  }
+  .select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .submit {
+    width: 100%;
+    font-size: 23px;
+    background: linear-gradient(135.76deg, #FF0F7B 7.5%, #F89B29 88.59%);
+    color: #fff;
+    cursor: pointer;
+    padding: 5px;
+  }
+  .message {
+    text-align: center;
+    font-size: 33px;
+    margin-top: 5%;
+    margin-bottom: 10px;
+  }
+  .error-link {
+    text-align: center;
+    font-size: 23px;
+  }
+  .error-link a {
+    text-decoration: none;
+  }
+  
+  .container {
+    background-color: #f2f2f2;
+    padding: 5px 20px 15px 20px;
+    border: 1px solid #F89B29;
+    border-radius:10px;
+  }
+  
+  input[type=text] {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius:10px;
+  }
+  
+  label {
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .icon-container {
+    margin-bottom: 20px;
+    padding: 7px 0;
+    font-size: 24px;
+  }
+  
+  .btn {
+    background: linear-gradient(135.76deg, #FF0F7B 7.5%, #F89B29 88.59%);;
+    color: white;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    width: 100%;
+    border-radius:10px;
+    cursor: pointer;
+    font-size: 17px;
+  }
+  
+  .submit:hover {
+    background: #45a049;
+  }
+  
+  span.price {
+    float: right;
+    color: grey;
+  }
+  
+  /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (and change the direction - make the "cart" column go on top) */
+  @media (max-width: 800px) {
+    .row {
+      flex-direction: column-reverse;
+    }
+    .col-25 {
+      margin-bottom: 20px;
+    }
+  }

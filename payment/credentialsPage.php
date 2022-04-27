@@ -11,6 +11,15 @@ $creds = $stmt -> fetchALL(PDO::FETCH_COLUMN);
 if($creds != null){
     header("Location: index.php");
 }
+
+session_start();
+ if($_SESSION != NULL){
+    $error = $_SESSION['error'];
+    session_unset();
+ }else{
+     $error = '';
+ }
+
 ?>
 
 <!DOCTYPE html>
@@ -18,16 +27,26 @@ if($creds != null){
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="../css/editCredPage.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lol</title>
+    <title>Enter Credentials</title>
 </head>
 <body>
-<form method="POST" action="subEncData.php" > 
-    <label>Transaction Key:</label> <input name="key" type="text"/><br>
-    <label>Re-Enter Key: </label> <input name="keyconfirm" type="text"/><br>
-    <label>Transaction ID:</label> <input name="id" type="text"/> <br>
-    <label>Re-Enter ID: </label> <input name="idconfirm" type="text"/><br>
-    <input type="submit" name="submit" value="Insert" /> <br>
-</form> 
+<div class="content-wrapper">
+    <h1>Enter Authorize.net Credentials</h1>
+    <form method="POST" action="subEncData.php" > 
+        <h2> <?php echo $error; ?></h2>
+        <label>Transaction Key:</label> 
+        <input name="key" type="text"/>
+        <label>Re-Enter Key: </label> 
+        <input name="keyconfirm" type="text"/>
+        <label>Transaction ID:</label> 
+        <input name="id" type="text"/>
+        <label>Re-Enter ID: </label>
+        <input name="idconfirm" type="text"/>
+        <input type="submit" name="submit" class="submit" value="Insert" />
+    </form> 
+
+</div>
 </body>
 </html>

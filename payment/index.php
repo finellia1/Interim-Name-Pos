@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 $m = $_GET['m'];
 
 include('../invoice/db_connect.php');
@@ -46,65 +49,9 @@ include('../invoice/db_connect.php');
   <head>
 
     <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/Pstyle.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Check Out</title>
-
-<style>
-body {
-  font-family: Arial Narrow, sans-serif;
-}
-.content-wrapper {
-  width: 400px;
-  margin-left: auto;
-  margin-right:auto;
-  padding: 10px;
-  border: 1px solid #000;
-}
-.form-content {
-  padding: 5px;
-}
-input {
-  width: 95%;
-  padding: 5px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-label {
-  font-size: 20px;
-}
-h1 {
-  font-size: 24px;
-  text-align: center;
-}
-.select {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-size: 18px;
-}
-.submit {
-  width: 100%;
-  font-size: 23px;
-  background: #000;
-  color: #fff;
-  cursor: pointer;
-  padding: 5px;
-}
-.message {
-  text-align: center;
-  font-size: 33px;
-  margin-top: 5%;
-  margin-bottom: 10px;
-}
-.error-link {
-  text-align: center;
-  font-size: 23px;
-}
-.error-link a {
-  text-decoration: none;
-}
-</style>
 
   </head>
   <body>
@@ -131,7 +78,7 @@ if (isset($m)) {
     <div class="form-content">
 
       <label>Amount</label>
-      <input type="text" name="amount" value="98.61"/>
+      <input type="text" name="amount" readonly="readonly" value= '<?php  echo $_SESSION["Total"] ?>'/>
 
       <label>Your Full Name</label>
       <input type="text" name="name" value="John Smith"/>
