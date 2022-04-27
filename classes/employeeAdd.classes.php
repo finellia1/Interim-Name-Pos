@@ -2,12 +2,15 @@
 //functions to register user
 class employeeAdd extends Dbh {
     //connects to db, prepares and executes $stmt, checks pwd against pwdHashed, adds entry to db
-    protected function setUser($employee_ID, $security_ID_fk, $pwd, $confirmpwd, $email, $first_name, $last_name, $job_title) {
-        $stmt = $this->connect()->prepare('INSERT INTO employee (employee_ID, security_ID_fk, pwd, email, first_name, last_name, job_title) VALUES (?,?,?,?,?,?,?);');
-        
+    protected function setUser($security_type, $pwd, $confirmpwd, $job_title, $first_name, $last_name, $email) {
+        include_once '../classes/session.classes.php';
+            
+        session::start();
+        session::set("security_type3", $security_type);
+        $stmt = $this->connect()->prepare('INSERT INTO employee (security_type, pwd, job_title, first_name, last_name, email, is_inactive) VALUES (?,?,?,?,?,?,?);');
         $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
 
-        if(!$stmt->execute(array($employee_ID, $security_ID_fk, $hashedPwd, $email, $first_name, $last_name, $job_title))) {
+        if(!$stmt->execute(array($security_type, $hashedPwd, $job_title, $first_name, $last_name, $email, 0))) {   
             $stmt = null;
             header('location: ../index.php?error=stmtfailedemployeeAdd.classes ln 11');
             exit();

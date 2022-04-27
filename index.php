@@ -2,6 +2,7 @@
     include 'classes/session.classes.php';
     include 'includes/flagInit.php';
     session::start();
+    session::display();
     resetFlags();
 ?>
 
@@ -36,12 +37,14 @@
                 ?>
                     <form action="includes/employeeAdd.inc.php" method="post">
                         <input type="text" name="employee_ID" placeholder="Employee ID">
+                        <input type="text" name="security_type" placeholder="Security Type">
                         <input type="password" name="pwd" placeholder="Password">
                         <input type="password" name="confirmpwd" placeholder="Confirm Password">
-                        <input type="text" name="email" placeholder="E-mail">
+                        <br>
+                        <input type="text" name="job_title" placeholder="Job Title">
                         <input type="text" name="first_name" placeholder="First Name">
                         <input type="text" name="last_name" placeholder="Last Name">
-                        <input type="text" name="job_title" placeholder="Job Title">
+                        <input type="text" name="email" placeholder="E-mail">
                         <br>
                         <button type="submit" name="submit">Add User</button>
                     </form>

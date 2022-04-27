@@ -3,28 +3,31 @@
 class employeeAddContr extends employeeAdd {
     // create the properties inside the class
     private $employee_ID;
-    private $security_ID_fk;
+    private $security_ID_fk; //?
+    private $security_type;
     private $pwd;
     private $confirmpwd;
-    private $email;
+    private $job_title;
     private $first_name;
     private $last_name;
+    private $email;
     // private $phone_number;
-    private $job_title;
 
     // pass through the variables from the form
-    public function __construct($employee_ID, $pwd, $confirmpwd, $email, $first_name, $last_name, $job_title)
+    public function __construct($employee_ID, $security_type, $pwd, $confirmpwd, $job_title, $first_name, $last_name, $email)
     {
         // reference this property in this class
         $this->employee_ID = $employee_ID;
         $this->security_ID_fk = 1;
+        $this->security_type = $security_type;
         $this->pwd = $pwd;
         $this->confirmpwd = $confirmpwd;
-        $this->email = $email;
+        $this->job_title = $job_title;
         $this->first_name = $first_name;
         $this->last_name =$last_name;
+        $this->email = $email;
+        //session::start();
         // $this->phone_number = $phone_number;
-        $this->job_title = $job_title;
     }
     //error handling, sets user
     public function employeeAdd() {
@@ -50,7 +53,8 @@ class employeeAddContr extends employeeAdd {
         }
         $this->security_ID_fk = $this->setSecurity();
         //sets user
-        $this->setUser($this->employee_ID, $this->security_ID_fk, $this->pwd, $this->confirmpwd, $this->email, $this->first_name, $this->last_name, $this->job_title);
+
+        $this->setUser($this->security_type, $this->pwd, $this->confirmpwd, $this->job_title, $this->first_name, $this->last_name, $this->email);
     }
 
     // error handling using methods
