@@ -69,6 +69,13 @@ main {
   width: 100%;
   height: 100%;
 }
+.rightPanel{
+  background-color: rgba(196, 196, 196, 0.16);
+}
 .inventory {
   height: inherit;
+}
+
+fieldset{
+  border: none;
 }

@@ -52,8 +52,12 @@ class productSearch extends Dbh {
             //Create form to handle removing item
             echo "<form name='remove' action='./includes/productRemove.inc.php' method='post'>";
             echo "<td><button type='submit' name='submit' value='submit'>Delete</button>";
-            echo "<td><button type='button'>Cart</button>";
-            echo "<td> <input type='hidden' name='PID' id='deleteID' value='{$row['product_ID']}'> </td>";
+            echo "<input type='hidden' name='PID' id='deleteID' value='{$row['product_ID']}'>";
+            echo "</form>";
+            echo "<form action='shopcart\product.php' method='post'>";
+            echo "<td><button type='submit' value='Cart'>Cart</button>";
+            echo "<input type='hidden' name='quantity' value='{$row['qty_in_stock']}'>";
+            echo "<input type='hidden' name='product_ID' value='{$row['product_ID']}'>";
             echo "</form>";
             echo "</tr>";
         }

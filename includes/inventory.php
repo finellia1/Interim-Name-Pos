@@ -328,12 +328,11 @@ session::start();
                             echo "<td> {$row['discounted_price']} </td>";
                             echo "<td> {$row['num_rented']} </td>";
                             echo "<td> {$row['num_broken']} </td>";
-                            echo "<form name='edit' action='../includes/productUpdate.inc.php' method='post'>";
-                            echo "<td><button type='submit' name='submit' value='submit'>Edit</button>";;
-                            echo "<form name='remove' action='../includes/productRemove.inc.php' method='post'>";
+                            echo "<td><button type='button' onclick='addItem()'>Edit</button>";
+                            echo "<form name='remove' action='../includes/removeProduct.inc.php' method='post'>";
                             echo "<td><button type='submit' name='submit' value='submit'>Delete</button>";
                             echo "<td><button type='button'>Cart</button>";
-                            echo "<td> <input type='hidden' name='product_ID' id='PID' value='{$row['product_ID']}'> </td>";
+                            echo "<td> <input type='hidden' name='deleteID' id='deleteID' value='{$row['product_ID']}'> </td>";
                             echo "</form>";
                             echo "</tr>";
                         }

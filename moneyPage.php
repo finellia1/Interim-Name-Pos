@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="moneyPage.css">
+    <link rel="stylesheet" href="css/moneyPage.css">
     <script>
         let img = document.querySelector('img');
         let start = img.src;
