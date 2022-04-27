@@ -296,7 +296,7 @@
                     <html>
 
                     <head>
-                        <link rel="stylesheet" href="moneyPageprofitLoss.css">
+                        <link rel="stylesheet" href="css/moneyPageprofitLoss.css">
                         <script>
                             let img = document.querySelector('img');
                             let start = img.src;
