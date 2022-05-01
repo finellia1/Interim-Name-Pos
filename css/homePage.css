@@ -69,6 +69,20 @@ main {
   width: 100%;
   height: 100%;
 }
+.rightPanel{
+  background-color: rgba(196, 196, 196, 0.16);
+}
 .inventory {
   height: inherit;
 }
+<<<<<<< HEAD
+.rightPanel {
+  flex: 5;
+  background-color: aquamarine;
+}
+=======
+
+fieldset{
+  border: none;
+}
+>>>>>>> 0092fa73903870bf672aeb2bb53b762717526e32

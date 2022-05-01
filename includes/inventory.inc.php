@@ -46,15 +46,39 @@ session::start();
         $searchType = "num_broken";
     }
 
+
     if($searchContent==""){
         $searchContent=" ";
     }
 
+<<<<<<< HEAD
+=======
+    //If the search type is not blank, set the search type input.
+    //This search type session variable is used to run the search query to generate the divs in the homepage 
+
+
+>>>>>>> 0092fa73903870bf672aeb2bb53b762717526e32
     if($searchType!=""){
         $_SESSION["searchTypeInput"] = "select * from product where {$searchType} like '%{$searchContent}%'";
-    }else{
+    }else if($searchType=="" && $searchContent!=""){
+        $_SESSION["searchTypeInput"] = "SELECT * FROM `product` where product_ID LIKE '%{$searchContent}%'
+        OR product_type LIKE '%{$searchContent}%'
+        OR product_name LIKE '%{$searchContent}%'
+        OR product_description LIKE '%{$searchContent}%'
+        OR make LIKE '%{$searchContent}%'
+        OR model LIKE '%{$searchContent}%'
+        OR qty_unit LIKE '%{$searchContent}%'
+        OR qty_in_stock LIKE '%{$searchContent}%'
+        OR is_promotional LIKE '%{$searchContent}%'
+        OR reg_price LIKE '%{$searchContent}%'
+        OR discounted_price LIKE '%{$searchContent}%'
+        OR num_rented LIKE '%{$searchContent}%'
+        OR num_broken LIKE '%{$searchContent}%';";
+    }
+    else{
         $_SESSION["searchTypeInput"] = "select * from product";
     }
+    
     header("location: ../homepage.php");
 
 

@@ -3,11 +3,17 @@
 class SignupContr extends Signup {
     // create the properties inside the class
     private $employee_ID;
+<<<<<<<< HEAD:classes/signup-contr.classes.php
+========
+    private $security_ID_fk; //?
+    private $security_type;
+>>>>>>>> 0092fa73903870bf672aeb2bb53b762717526e32:classes/employeeAdd-contr.classes.php
     private $pwd;
     private $confirmpwd;
-    private $email;
+    private $job_title;
     private $first_name;
     private $last_name;
+<<<<<<<< HEAD:classes/signup-contr.classes.php
     private $phone_number;
     private $employee_type;
 
@@ -16,13 +22,31 @@ class SignupContr extends Signup {
     {
         // reference this property in this class
         $this->employee_ID = $employee_ID;
+========
+    private $email;
+    // private $phone_number;
+
+    // pass through the variables from the form
+    public function __construct($employee_ID, $security_type, $pwd, $confirmpwd, $job_title, $first_name, $last_name, $email)
+    {
+        // reference this property in this class
+        $this->employee_ID = $employee_ID;
+        $this->security_ID_fk = 1;
+        $this->security_type = $security_type;
+>>>>>>>> 0092fa73903870bf672aeb2bb53b762717526e32:classes/employeeAdd-contr.classes.php
         $this->pwd = $pwd;
         $this->confirmpwd = $confirmpwd;
-        $this->email = $email;
+        $this->job_title = $job_title;
         $this->first_name = $first_name;
         $this->last_name =$last_name;
+<<<<<<<< HEAD:classes/signup-contr.classes.php
         $this->phone_number = $phone_number;
         $this->employee_type = $employee_type;
+========
+        $this->email = $email;
+        //session::start();
+        // $this->phone_number = $phone_number;
+>>>>>>>> 0092fa73903870bf672aeb2bb53b762717526e32:classes/employeeAdd-contr.classes.php
     }
     //error handling, sets user
     public function signupUser() {
@@ -47,7 +71,12 @@ class SignupContr extends Signup {
             exit();
         }
         //sets user
+<<<<<<<< HEAD:classes/signup-contr.classes.php
         $this->setUser($this->employee_ID, $this->pwd, $this->confirmpwd, $this->email, $this->first_name, $this->last_name, $this->phone_number, $this->employee_type);
+========
+
+        $this->setUser($this->security_type, $this->pwd, $this->confirmpwd, $this->job_title, $this->first_name, $this->last_name, $this->email);
+>>>>>>>> 0092fa73903870bf672aeb2bb53b762717526e32:classes/employeeAdd-contr.classes.php
     }
 
     // error handling using methods

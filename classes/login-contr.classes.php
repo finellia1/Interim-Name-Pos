@@ -19,7 +19,12 @@ class LoginContr extends Login {
             exit();
         }
         //gets user
+<<<<<<< HEAD
         $this->getUser($this->employee_ID, $this->pwd);
+=======
+
+        $this->getUser($this->email, $this->pwd);
+>>>>>>> 0092fa73903870bf672aeb2bb53b762717526e32
     }
     //bool
     private function emptyInput() {

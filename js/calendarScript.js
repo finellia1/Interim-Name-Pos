@@ -1,7 +1,8 @@
 let nav = 0;
 let clicked = null;
-let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
-
+let eventDates = [];//needs to be changed to an array of start dates and event order ids so that 
+                                                                                              // we can search the array for an event for that day and just plug in 
+                                                                              
 const calendar = document.getElementById('calendar');
 const newEventModal = document.getElementById('newEventModal');
 const deleteEventModal = document.getElementById('deleteEventModal');
@@ -18,7 +19,12 @@ const working2 = document.getElementById('working2');
 const Employees = document.getElementById('Employees');
 
 
-
+function assignDates(dates){
+  for(i=0; i<dates.length; i++){
+    eventDates[i]= dates[i];
+    alert(eventDates[i]);
+  }
+}
 function openModal(date) {
   clicked = date;
 
