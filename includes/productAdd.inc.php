@@ -2,6 +2,7 @@
 // if(isset($_POST["submit"])) 
 // {
     $product_ID = "add";
+    $vendor = $_POST["vendor"];
     $product_name = $_POST["product_name"];
     $product_description = $_POST["product_description"];
     $product_type = $_POST["product_type"];
@@ -20,10 +21,10 @@
     include "../classes/dbh.classes.php";
     include "../classes/productAdd.classes.php";
     include "../classes/productAdd-contr.classes.php";
-    $addProduct = new productAddContr($product_ID, $product_name, $product_description, $product_type, $make, $model, $qty_unit, $qty_in_stock,$is_promotional,$reg_price,$discounted_price,$num_rented,$num_broken);
+    $addProduct = new productAddContr($product_ID,$vendor, $product_name, $product_description, $product_type, $make, $model, $qty_unit, $qty_in_stock,$is_promotional,$reg_price,$discounted_price,$num_rented,$num_broken);
     // running error handlers and user signup
-    $addProduct-> addProduct($product_ID, $product_name, $product_description, $product_type, $make, $model, $qty_unit, $qty_in_stock,$is_promotional,$reg_price,$discounted_price,$num_rented,$num_broken);
+    $addProduct-> addProduct($product_ID, $vendor,$product_name, $product_description, $product_type, $make, $model, $qty_unit, $qty_in_stock,$is_promotional,$reg_price,$discounted_price,$num_rented,$num_broken);
     // going back to front page
-    header("location: ../homepage.php?error=ran");
+    header("location: ../inventory.php?error=ran");
 // }
 ?>

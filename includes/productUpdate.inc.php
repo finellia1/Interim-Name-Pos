@@ -25,4 +25,4 @@
     //  updateProduct
     $updateProduct-> updateProduct($product_ID, $name, $description, $product_type, $make, $model_no, $quantity_unit, $quantity_in_stock,$isPromotional,$regular_price,$discounted_price,$num_rented,$num_broken);
     // going back to front page
-    header("location: ../homepage.php?error=PRODUCT UPDATED");
+    header("location: ../inventory.php?error=PRODUCT UPDATED");

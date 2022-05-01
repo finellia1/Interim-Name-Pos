@@ -40,6 +40,8 @@ function openModal(date) {
     newEventModal.style.display = 'block';
   }
   backDrop.style.display = 'block';
+      //AF - Focus on the first element on the form so that it can be used with the keyboard
+      document.getElementById('eventTitleInput').focus();
 }
 
 function load() {//sets the current month and year to your local systems time
@@ -76,7 +78,6 @@ function load() {//sets the current month and year to your local systems time
   for(let i = 1; i <= paddingDays + daysInMonth; i++) {
     const daySquare = document.createElement('div');
     daySquare.classList.add('day');
-
     const dayString = `${month + 1}/${i - paddingDays}/${year}`;
 
     if (i > paddingDays) {
@@ -93,8 +94,18 @@ function load() {//sets the current month and year to your local systems time
         eventDiv.innerText = eventForDay.title;
         daySquare.appendChild(eventDiv);
       }
-
+      //AF - Allows day to be tabbed over
+      //https://www.w3schools.com/jsref/met_element_setattribute.asp
+      //https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
+      //https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp
+      daySquare.setAttribute('tabindex',i+5);
       daySquare.addEventListener('click', () => openModal(dayString));
+      //AF - Add second event listener to work with a keyboard
+      daySquare.addEventListener('keypress', function(event){
+        if(event.key === "Enter"){
+          openModal(dayString);
+        }
+      });
     } else {
       daySquare.classList.add('padding');
     }

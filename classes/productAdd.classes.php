@@ -2,13 +2,13 @@
 
 class productAdd extends Dbh {
 
-    protected function setProduct($product_ID, $product_name, $product_description, $product_type, $make, $model, $qty_unit, $qty_in_stock,$is_promotional,$reg_price,$discounted_price,$num_rented,$num_broken) {
-        $stmt = $this->connect()->prepare('INSERT INTO product (product_ID, product_name, product_description, product_type, make, model, qty_unit,qty_in_stock,is_promotional,reg_price,discounted_price,num_rented,num_broken) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);');
+    protected function setProduct($product_ID,$vendor, $product_name, $product_description, $product_type, $make, $model, $qty_unit, $qty_in_stock,$is_promotional,$reg_price,$discounted_price,$num_rented,$num_broken) {
+        $stmt = $this->connect()->prepare('INSERT INTO product (product_ID, vendor_ID_fk, product_name, product_description, product_type, make, model, qty_unit,qty_in_stock,is_promotional,reg_price,discounted_price,num_rented,num_broken) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?);');
 
 
-        if(!$stmt->execute(array($product_ID, $product_name, $product_description, $product_type, $make, $model, $qty_unit, $qty_in_stock,$is_promotional,$reg_price,$discounted_price,$num_rented,$num_broken))) {
+        if(!$stmt->execute(array($product_ID, $vendor, $product_name, $product_description, $product_type, $make, $model, $qty_unit, $qty_in_stock,$is_promotional,$reg_price,$discounted_price,$num_rented,$num_broken))) {
             $stmt = null;
-            header('location: ../homepage.php');
+            header('location: ../inventory.php');
             exit();
         }
         $stmt = null;
@@ -20,7 +20,7 @@ class productAdd extends Dbh {
         $stmt = $this->connect()->prepare('SELECT product_ID FROM product WHERE product_ID = ? OR product_name = ?;');
         if(!$stmt->execute(array($product_ID, $product_name))) {
             $stmt = null;
-            header("location: ../homepage.php");
+            header("location: ../inventory.php");
             exit();
         }
 

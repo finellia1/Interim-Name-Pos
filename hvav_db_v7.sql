@@ -1,14 +1,11 @@
 -- phpMyAdmin SQL Dump
-
-
--- version 5.1.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Jennie Q. Colabella
--- Generation Time: Mar 28, 2022 at 12:47 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.2
+-- Generation Time: Apr 27, 2022 at 11:10 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -25,6 +22,18 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `hv_audio_visual` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `hv_audio_visual`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `authorize_credentials`
+--
+
+CREATE TABLE `authorize_credentials` (
+  `authorize_credentials_ID` int(11) NOT NULL,
+  `transaction_ID` int(11) NOT NULL,
+  `transaction_key` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -74,6 +83,8 @@ CREATE TABLE `employee` (
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
+  `hourly_salary` decimal(10,2) NOT NULL,
+  `yearly_salary` decimal(10,2) NOT NULL,
   `is_inactive` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -81,12 +92,12 @@ CREATE TABLE `employee` (
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`employee_ID`, `security_type`, `pwd`, `job_title`, `first_name`, `last_name`, `email`, `is_inactive`) VALUES
-(1, 'administrator', 'testpassword1', 'Systems Adminis', 'Sarah', 'Jones', 'sjones@email.com', 0),
-(2, 'manager', 'testpassword2', 'Manager', 'John', 'Smith', 'jsmith@email.com', 0),
-(3, 'staff', 'testpassword3', 'Technician', 'Amy', 'Baker', 'abaker@email.com', 0),
-(4, 'staff', 'testpassword4', 'Warehouse', 'Dan', 'Arnold', 'darnold@email.com', 0),
-(5, 'user', 'testpassword5', 'Warehouse Trainee', 'Bill', 'Miller', 'bmiller@email.com', 0);
+INSERT INTO `employee` (`employee_ID`, `security_type`, `pwd`, `job_title`, `first_name`, `last_name`, `email`, `hourly_salary`, `yearly_salary`, `is_inactive`) VALUES
+(1, 'administrator', 'testpassword1', 'Systems Adminis', 'Sarah', 'Jones', 'sjones@email.com', '60.00', '120000.00', 0),
+(2, 'manager', 'testpassword2', 'Manager', 'John', 'Smith', 'jsmith@email.com', '60.00', '120000.00', 0),
+(3, 'staff', 'testpassword3', 'Technician', 'Amy', 'Baker', 'abaker@email.com', '42.50', '85000.00', 0),
+(4, 'staff', 'testpassword4', 'Warehouse', 'Dan', 'Arnold', 'darnold@email.com', '32.50', '65000.00', 0),
+(5, 'user', 'testpassword5', 'Warehouse Trainee', 'Bill', 'Miller', 'bmiller@email.com', '22.50', '45000.00', 0);
 
 -- --------------------------------------------------------
 
@@ -103,10 +114,9 @@ CREATE TABLE `event_order` (
   `event_end` datetime NOT NULL,
   `num_trucks_needed` int(2) NOT NULL,
   `num_techs_needed` int(2) NOT NULL,
-  `setup_date` date NOT NULL,
-  `load_in_time` time NOT NULL,
-  `on_site_time` time NOT NULL,
-  `breakdown_date` date NOT NULL,
+  `setup_start` datetime NOT NULL,
+  `load_truck_start` datetime NOT NULL,
+  `breakdown_start` datetime NOT NULL,
   `is_confirmed` tinyint(1) NOT NULL,
   `is_staffed` tinyint(1) NOT NULL,
   `is_complete` tinyint(1) NOT NULL,
@@ -119,18 +129,17 @@ CREATE TABLE `event_order` (
 -- Dumping data for table `event_order`
 --
 
-INSERT INTO `event_order` (`event_order_ID`, `event_type`, `is_nonprofit`, `order_date`, `event_start`, `event_end`, `num_trucks_needed`, `num_techs_needed`, `setup_date`, `load_in_time`, `on_site_time`, `breakdown_date`, `is_confirmed`, `is_staffed`, `is_complete`, `is_cancelled`, `created_by`, `event_notes`) VALUES
-(8, 'wedding', 0, '2022-01-07', '2022-05-03 14:00:00', '2022-05-03 17:00:00', 2, 2, '2022-05-02', '10:00:00', '12:00:00', '2022-05-04', 0, 0, 0, 0, 'S. Jones', 'Add event notes here.'),
-(9, 'Conference', 0, '2022-01-28', '2022-03-07 09:00:00', '2022-03-11 17:00:00', 2, 1, '2022-03-06', '06:00:00', '19:00:00', '2022-03-12', 0, 0, 0, 0, 'S. Jones', ''),
-(10, 'Party', 0, '2022-02-01', '2022-03-17 13:00:00', '2022-03-17 16:00:00', 1, 1, '2022-03-16', '09:00:00', '11:00:00', '2022-03-16', 0, 0, 0, 0, 'J. Smith', ''),
-(11, 'Corporate Training', 1, '2022-02-02', '2022-04-04 10:00:00', '2022-03-04 16:00:00', 2, 1, '2022-04-03', '10:00:00', '11:00:00', '2022-04-05', 0, 0, 0, 0, 'S. Jones', ''),
-(12, 'Party', 0, '2022-02-05', '2022-04-24 12:00:00', '2022-04-24 19:00:00', 1, 2, '2022-04-23', '09:00:00', '10:00:00', '2022-04-25', 0, 0, 0, 0, 'J. Smith', '');
+INSERT INTO `event_order` (`event_order_ID`, `event_type`, `is_nonprofit`, `order_date`, `event_start`, `event_end`, `num_trucks_needed`, `num_techs_needed`, `setup_start`, `load_truck_start`, `breakdown_start`, `is_confirmed`, `is_staffed`, `is_complete`, `is_cancelled`, `created_by`, `event_notes`) VALUES
+(8, 'wedding', 0, '2022-05-05', '2022-05-22 14:00:00', '2022-05-22 17:00:00', 2, 2, '2022-05-22 11:00:00', '2022-05-22 10:00:00', '2022-05-23 09:00:00', 0, 0, 0, 0, 'S. Jones', 'Add event notes here.'),
+(9, 'Conference', 0, '2022-05-05', '2022-06-07 09:00:00', '2022-06-11 17:00:00', 2, 1, '2022-06-06 11:00:00', '2022-06-06 09:00:00', '2022-06-12 13:00:00', 0, 0, 0, 0, 'S. Jones', ''),
+(10, 'Party', 0, '2022-05-05', '2022-05-28 13:00:00', '2022-05-28 16:00:00', 1, 1, '2022-05-28 11:00:00', '2022-05-28 09:00:00', '2022-05-28 17:00:00', 0, 0, 0, 0, 'J. Smith', ''),
+(11, 'Corporate Training', 1, '2022-02-02', '2022-04-04 10:00:00', '2022-03-04 16:00:00', 2, 1, '2022-04-03 00:00:00', '2022-04-07 10:00:00', '2022-04-05 00:00:00', 0, 0, 0, 0, 'S. Jones', ''),
+(12, 'Party', 0, '2022-05-05', '2022-06-11 12:00:00', '2022-06-11 19:00:00', 1, 2, '2022-06-11 11:00:00', '2022-06-11 09:00:00', '2022-06-12 10:00:00', 0, 0, 0, 0, 'J. Smith', '');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `event_product_list`
--- This was previously named the 'invoice_product_list'
 --
 
 CREATE TABLE `event_product_list` (
@@ -186,36 +195,11 @@ CREATE TABLE `invoice` (
 --
 
 INSERT INTO `invoice` (`invoice_ID`, `event_product_list_ID_fk`, `client_ID_fk`, `event_order_ID_fk`, `venue_ID_fk`, `refund_ID_fk`, `time_of_sale`, `is_tax_exempt`, `payment_terms`, `date_due`, `payment_type`, `amount_due`, `sales_tax`, `total_due`, `is_deposit_forfeited`, `is_deposit_refunded`) VALUES
-(1, 3, 1, 8, 1, 2, '2022-01-07 10:27:00', 0, 'Payment terms go here.', '2022-02-07', 'check', '1015.00', '91.35', '1106.35', 0, 0),
-(2, 4, 2, 9, 2, 0, '2022-01-28 13:15:00', 0, '', '2022-01-28', 'check', '765.00', '68.85', '833.85', 0, 0),
-(3, 5, 3, 10, 3, 0, '2022-02-01 15:47:00', 0, '', '2022-02-01', 'credit card', '1375.00', '123.75', '1498.75', 0, 0),
-(4, 6, 4, 11, 4, 0, '2022-02-02 09:14:00', 0, '', '2022-02-02', 'credit card', '1285.00', '115.65', '1400.65', 0, 0),
-(5, 7, 5, 12, 5, 0, '2022-02-05 15:17:00', 1, '', '2022-02-05', 'cash', '525.00', '47.25', '527.25', 0, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `mailing_list`
--- Code for mailing_list contributed by Christopher Moschetti
---
-
-CREATE TABLE `mailing_list` (
-  `mailing_list_ID` int(11) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `first_name` varchar(50) NOT NULL,
-  `last_name` varchar(50) NOT NULL,
-  `company` varchar(100) NOT NULL,
-  `mailing_list_terms` text NOT NULL,
-  `accepted_mailing_list_terms` tinyint(1) NOT NULL,
-  `last_updated` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `mailing_list`
---
-
-INSERT INTO `mailing_list` (`mailing_list_ID`, `email`, `first_name`, `last_name`, `company`, `mailing_list_terms`, `accepted_mailing_list_terms`, `last_updated`) VALUES
-(1, 'greenelandscaping@email', 'Charlotte', 'Greene', 'Greene Landscaping', 'Enter mailing terms here.', 1, '2022-03-27 15:34:04');
+(1, 3, 1, 8, 1, 2, '2022-05-05 10:27:00', 0, 'Payment terms go here.', '2022-05-05', 'check', '1015.00', '91.35', '1106.35', 0, 0),
+(2, 4, 2, 9, 2, 0, '2022-05-05 13:15:00', 0, '', '2022-05-05', 'check', '765.00', '68.85', '833.85', 0, 0),
+(3, 5, 3, 10, 3, 0, '2022-05-05 15:47:00', 0, '', '2022-05-05', 'credit card', '1375.00', '123.75', '1498.75', 0, 0),
+(4, 6, 4, 11, 4, 0, '2022-05-05 09:14:00', 0, '', '2022-05-05', 'credit card', '1285.00', '115.65', '1400.65', 0, 0),
+(5, 7, 5, 12, 5, 0, '2022-05-05 15:17:00', 1, '', '2022-05-05', 'cash', '525.00', '47.25', '527.25', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -262,11 +246,11 @@ CREATE TABLE `payment` (
 --
 
 INSERT INTO `payment` (`payment_ID`, `invoice_ID_fk`, `amount_paid`, `payment_date`, `payment_time`, `balance_due`) VALUES
-(1, 1, '1106.35', '2022-01-07', '2022-03-07 02:37:42', '0.00'),
-(2, 2, '833.85', '2022-01-28', '2022-03-07 02:38:08', '0.00'),
-(3, 3, '1498.75', '2022-02-01', '2022-03-07 02:38:40', '0.00'),
-(4, 4, '1400.65', '2022-02-02', '2022-03-07 02:39:09', '0.00'),
-(5, 5, '527.25', '2022-02-05', '2022-03-07 02:39:30', '0.00');
+(1, 1, '1106.35', '2022-05-05', '2022-05-06 01:37:42', '0.00'),
+(2, 2, '833.85', '2022-05-05', '2022-05-06 01:38:08', '0.00'),
+(3, 3, '1498.75', '2022-05-05', '2022-05-06 01:38:40', '0.00'),
+(4, 4, '1400.65', '2022-05-05', '2022-05-06 01:39:09', '0.00'),
+(5, 5, '527.25', '2022-05-05', '2022-05-06 01:39:30', '0.00');
 
 -- --------------------------------------------------------
 
@@ -340,7 +324,7 @@ INSERT INTO `product` (`product_ID`, `vendor_ID_fk`, `product_type`, `product_na
 (41, 3, 'Switcher', 'Streaming Switcher', 'ATEM mini 4 channel Streaming Switcher', 'ATEM', '', 'each', 1, 0, '200.00', '200.00', 0, 0, 0),
 (42, 3, 'Camera', 'Streaming Set', 'Streaming Rig (Streaming laptop, ATEM streaming switcher and capture card) ', 'ATEM', '', 'each', 1, 0, '400.00', '350.00', 0, 0, 0),
 (43, 2, 'Camera', 'Camera System', 'Vaddio PTZ Camera System with 3 Joystick controlled PTZ cameras', 'Vaddio', '', 'each', 1, 0, '795.00', '695.00', 0, 0, 0),
-(44, 2, 'Lighting', 'Lighting Trees with Dimmer Pack and Lighting Board', 'Pair of Lighting Trees w/ 2 ‚ÄúLeko Source 4‚Äù Ellipsoid Lights w/ Dimmer Pack & DMX lighting board', '', '', 'pair', 1, 0, '700.00', '700.00', 0, 0, 0),
+(44, 2, 'Lighting', 'Lighting Trees with Dimmer Pack and Lighting Board', 'Pair of Lighting Trees w/ 2 ìLeko Source 4î Ellipsoid Lights w/ Dimmer Pack & DMX lighting board', '', '', 'pair', 1, 0, '700.00', '700.00', 0, 0, 0),
 (45, 5, 'Lighting', 'Spots on Tripod Stands with Lighting Board', 'Pair of Chauvet Follow spots on tripod stands w/ DMX Lighting board', '', '', 'pair', 1, 0, '500.00', '500.00', 0, 0, 0),
 (46, 4, 'Lighting', 'Battery Powered Uplights', 'Chauvet Battery Powered Uplights', 'Chauvet', '', 'each', 20, 0, '20.00', '20.00', 0, 0, 0),
 (47, 1, 'Laptop Accessory', 'Laptop Slide Advancer', 'Laptop Slide Advancer', '', '', 'each', 6, 0, '25.00', '25.00', 0, 0, 0),
@@ -363,6 +347,7 @@ CREATE TABLE `refund` (
   `amt_refunded_cash` decimal(10,2) NOT NULL,
   `amt_refunded_check` decimal(10,2) NOT NULL,
   `amt_refunded_credit` decimal(10,2) NOT NULL,
+  `date_refunded` date NOT NULL,
   `refund_reason` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -370,14 +355,13 @@ CREATE TABLE `refund` (
 -- Dumping data for table `refund`
 --
 
-INSERT INTO `refund` (`refund`, `amt_refunded_cash`, `amt_refunded_check`, `amt_refunded_credit`, `refund_reason`) VALUES
-(2, '0.00', '75.00', '0.00', 'Product added to cart by mistake.');
+INSERT INTO `refund` (`refund`, `amt_refunded_cash`, `amt_refunded_check`, `amt_refunded_credit`, `date_refunded`, `refund_reason`) VALUES
+(2, '0.00', '75.00', '0.00', '0000-00-00', 'Product added to cart by mistake.');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `schedule`
--- Code for schedule contributed by Christopher Moschetti
 --
 
 CREATE TABLE `schedule` (
@@ -387,24 +371,6 @@ CREATE TABLE `schedule` (
   `pickup_date` date NOT NULL,
   `pickup_time` time NOT NULL,
   `travel_time` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user_feedback`
--- Code for user_feedback contributed by Christopher Moschetti
---
-
-CREATE TABLE `user_feedback` (
-  `user_feedback_ID` int(11) NOT NULL,
-  `invoice_ID_fk` int(11) NOT NULL,
-  `rating_given` int(1) NOT NULL,
-  `feedback_notes` text NOT NULL,
-  `is_client` tinyint(1) NOT NULL,
-  `is_venue` tinyint(1) NOT NULL,
-  `feedback_terms` text NOT NULL,
-  `accepted_feedback_terms` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -485,6 +451,12 @@ CREATE TABLE `z_report` (
 --
 
 --
+-- Indexes for table `authorize_credentials`
+--
+ALTER TABLE `authorize_credentials`
+  ADD PRIMARY KEY (`authorize_credentials_ID`);
+
+--
 -- Indexes for table `client`
 --
 ALTER TABLE `client`
@@ -522,12 +494,6 @@ ALTER TABLE `invoice`
   ADD KEY `event_product_list_ID_fk` (`event_product_list_ID_fk`);
 
 --
--- Indexes for table `mailing_list`
---
-ALTER TABLE `mailing_list`
-  ADD PRIMARY KEY (`mailing_list_ID`);
-
---
 -- Indexes for table `packing_list`
 --
 ALTER TABLE `packing_list`
@@ -563,13 +529,6 @@ ALTER TABLE `schedule`
   ADD KEY `packing_list_ID_fk` (`packing_list__ID_fk`);
 
 --
--- Indexes for table `user_feedback`
---
-ALTER TABLE `user_feedback`
-  ADD PRIMARY KEY (`user_feedback_ID`),
-  ADD KEY `invoice_ID_fk` (`invoice_ID_fk`);
-
---
 -- Indexes for table `vendor`
 --
 ALTER TABLE `vendor`
@@ -591,6 +550,12 @@ ALTER TABLE `z_report`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `authorize_credentials`
+--
+ALTER TABLE `authorize_credentials`
+  MODIFY `authorize_credentials_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `client`
@@ -623,12 +588,6 @@ ALTER TABLE `invoice`
   MODIFY `invoice_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `mailing_list`
---
-ALTER TABLE `mailing_list`
-  MODIFY `mailing_list_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT for table `packing_list`
 --
 ALTER TABLE `packing_list`
@@ -657,12 +616,6 @@ ALTER TABLE `refund`
 --
 ALTER TABLE `schedule`
   MODIFY `schedule_ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `user_feedback`
---
-ALTER TABLE `user_feedback`
-  MODIFY `user_feedback_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `vendor`
@@ -726,12 +679,6 @@ ALTER TABLE `product`
 --
 ALTER TABLE `schedule`
   ADD CONSTRAINT `schedule_ibfk_1` FOREIGN KEY (`packing_list__ID_fk`) REFERENCES `packing_list` (`packing_list_ID`) ON DELETE NO ACTION ON UPDATE CASCADE;
-
---
--- Constraints for table `user_feedback`
---
-ALTER TABLE `user_feedback`
-  ADD CONSTRAINT `user_feedback_ibfk_1` FOREIGN KEY (`invoice_ID_fk`) REFERENCES `invoice` (`invoice_ID`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `z_report`

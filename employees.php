@@ -33,7 +33,7 @@
 
                 <div id="searchPopup" class="popup">
                     <fieldset>
-                        <form name="searchForm" action="./includes/vendor.inc.php" method="POST">
+                        <form name="searchForm" action="./includes/employee.inc.php" method="POST">
                             <table class="dropShadow">
                                 <tr>
                                     <td class="alignLeft">
@@ -42,13 +42,15 @@
                                         <input id="searchTypeInput" name="searchTypeInput" list="searchType"
                                             placeholder="Search by...">
                                         <datalist id="searchType">
-                                            <option value="Vendor ID">
-                                            <option value="Company Name">
-                                            <option value="Website">
-                                            <option value="Sales Representative">
+                                            <option value="Employee ID">
+                                            <option value="Security Type">
+                                            <option value="Password">
+                                            <option value="Job Title">
+                                            <option value="First Name">
+                                            <option value="Last Name">
                                             <option value="Email">
-                                            <option value="Phone">
-                                            <option value="Vendor Notes">
+                                            <option value="Hourly Salary">
+                                            <option value="Yearly Salary">
                                             <option value="*">
                                         </datalist>
                                     </td>
@@ -82,60 +84,80 @@
                     <fieldset>
                         <form name="edit" action="./includes/vendorUpdate.inc.php" method="POST">
                             <table class="dropShadow">
-                                <!-- Company Name -->
                                 <input type='hidden' name='deleteID_edit' id='deleteID_edit'>
+                                <!-- security_type -->
                                 <tr>
                                     <td class="alignLeft">
-                                        <label for="company name">Company Name:</label>
+                                        <label for="Security type of employee">Security Type:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="companyName" name="company_name" value="companyName"><br>
+                                        <input type="text" id="security_type" name="security_type" value="security_type"><br>
                                     </td>
                                 </tr>
-                                <!-- Website -->
+                                <!-- password -->
                                 <tr>
                                     <td class="alignLeft">
-                                        <label for="item name">Website:</label>
+                                        <label for="Password for employee">Password:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="website" name="website" value="website"><br>
+                                        <input type="password" id="password" name="password" value=""><br>
                                     </td>
                                 </tr>
-                                <!-- Sales Representative -->
+                                <!-- job_title -->
                                 <tr>
                                     <td class="alignLeft">
-                                        <label for="sales represenetative">Sales Representative:</label>
+                                        <label for="Job title of employee">Job Title:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="salesrep" name="salesrep" value="salesrep"><br>
+                                        <input type="text" id="job_title" name="job_title" value="job_title"><br>
                                     </td>
                                 </tr>
-                                <!-- Email -->
+                                <!-- first_name -->
                                 <tr>
                                     <td class="alignLeft">
-                                        <label for="Email">Email:</label>
+                                        <label for="first name of employee">First name:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="email" name="email" value="email"><br>
+                                        <input type="text" id="first_name" name="first_name" value="first_name"><br>
                                     </td>
                                 </tr>
-                                <!-- Phone -->
+                                <!-- last_name -->
                                 <tr>
                                     <td class="alignLeft">
-                                        <label for="phone">Phone:</label>
+                                        <label for="vendor notes">Last name:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="phone" name="phone" value="phone"><br>
+                                        <input type="text" id="last_name" name="last_name" value="last_name"><br>
                                     </td>
                                 </tr>
-                                <!-- Vendor Notes -->
+                                <!-- email -->
                                 <tr>
                                     <td class="alignLeft">
-                                        <label for="vendor notes">Vendor Notes:</label>
+                                        <label for="Email address of employee">Email:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="vendorNotes" name="vendor_notes"
-                                            value="vendor notes"><br>
+                                        <input type="text" id="email" name="email"
+                                            value="email"><br>
+                                    </td>
+                                </tr>
+                                <!-- hourly_salary -->
+                                <tr>
+                                    <td class="alignLeft">
+                                        <label for="hourly_salary">Hourly salary:</label>
+                                    </td>
+                                    <td class="alignLeft">
+                                        <input type="text" id="hourly_salary" name="hourly_salary"
+                                            value="hourly_salary"><br>
+                                    </td>
+                                </tr>
+                                <!-- yearly_salary -->
+                                <tr>
+                                    <td class="alignLeft">
+                                        <label for="yearly_salary">Yearly salary:</label>
+                                    </td>
+                                    <td class="alignLeft">
+                                        <input type="text" id="yearly_salary" name="yearly_salary"
+                                            value="yearly_salary"><br>
                                     </td>
                                 </tr>
                                 <td>
@@ -161,59 +183,79 @@
                     <fieldset>
                         <form name="add" action="./includes/vendorAdd.inc.php" method="post">
                             <table class="dropShadow">
-                                <!-- Company Name -->
-                                <tr>
+                                                                <!-- security_type -->
+                                                                <tr>
                                     <td class="alignLeft">
-                                        <label for="company name">Company Name:</label>
+                                        <label for="Security type of employee">Security Type:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="company_name" value="company name"><br>
-                                    </td>
-                                </tr>
-                                <!-- Website -->
-                                <tr>
-                                    <td class="alignLeft">
-                                        <label for="website">Website:</label>
-                                    </td>
-                                    <td class="alignLeft">
-                                        <input type="text" name="website" value="website"><br>
+                                        <input type="text" id="security_type" name="security_type" value="security_type"><br>
                                     </td>
                                 </tr>
-                                <!-- Sales Representative -->
+                                <!-- password -->
                                 <tr>
                                     <td class="alignLeft">
-                                        <label for="sales representative">Sales Rep:</label>
+                                        <label for="Password for employee">Password:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="salesrep" value="Sales Representative"><br>
+                                        <input type="password" id="password" name="password" value=""><br>
                                     </td>
                                 </tr>
-
-                                <!-- Email -->
+                                <!-- job_title -->
                                 <tr>
                                     <td class="alignLeft">
-                                        <label for="model">Email:</label>
+                                        <label for="Job title of employee">Job Title:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="email" value="email"><br>
+                                        <input type="text" id="job_title" name="job_title" value="job_title"><br>
                                     </td>
                                 </tr>
-                                <!-- Phone -->
+                                <!-- first_name -->
                                 <tr>
                                     <td class="alignLeft">
-                                        <label for="quantity unit">Phone Number:</label>
+                                        <label for="first name of employee">First name:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="phone" value="phone"><br>
+                                        <input type="text" id="first_name" name="first_name" value="first_name"><br>
                                     </td>
                                 </tr>
-                                <!-- Vendor Notes -->
+                                <!-- last_name -->
                                 <tr>
                                     <td class="alignLeft">
-                                        <label for="vendor notes">Vendor Notes:</label>
+                                        <label for="vendor notes">Last name:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="vendor_notes" value="Notes"><br>
+                                        <input type="text" id="last_name" name="last_name" value="last_name"><br>
+                                    </td>
+                                </tr>
+                                <!-- email -->
+                                <tr>
+                                    <td class="alignLeft">
+                                        <label for="Email address of employee">Email:</label>
+                                    </td>
+                                    <td class="alignLeft">
+                                        <input type="text" id="email" name="email"
+                                            value="email"><br>
+                                    </td>
+                                </tr>
+                                <!-- hourly_salary -->
+                                <tr>
+                                    <td class="alignLeft">
+                                        <label for="hourly_salary">Hourly salary:</label>
+                                    </td>
+                                    <td class="alignLeft">
+                                        <input type="text" id="hourly_salary" name="hourly_salary"
+                                            value="hourly_salary"><br>
+                                    </td>
+                                </tr>
+                                <!-- yearly_salary -->
+                                <tr>
+                                    <td class="alignLeft">
+                                        <label for="yearly_salary">Yearly salary:</label>
+                                    </td>
+                                    <td class="alignLeft">
+                                        <input type="text" id="yearly_salary" name="yearly_salary"
+                                            value="yearly_salary"><br>
                                     </td>
                                 </tr>
                                 <td>
@@ -253,19 +295,21 @@
                 <div id="inventoryWrapper">
                     <table id="inventory">
                         <tr>
-                            <th>Vendor ID</th>
-                            <th>Company Name</th>
-                            <th>Website</th>
-                            <th>Sales Representative</th>
+                            <th>Employee ID</th>
+                            <th>Security Type</th>
+                            <th>Password</th>
+                            <th>Job Title</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
                             <th>Email</th>
-                            <th>Phone</th>
-                            <th>Vendor Notes</th>
+                            <th>Hourly Salary</th>
+                            <th>Yearly Salary</th>
                             <th>Edit</th>
                             <th>Delete</th>
                             <th>Add to Cart</th>
                         </tr>
                         <?php
-                                include "includes/vendorSearch.inc.php";
+                                include "includes/employeeSearch.inc.php";
                             ?>
 
                     </table>

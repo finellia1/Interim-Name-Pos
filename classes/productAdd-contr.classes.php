@@ -3,6 +3,7 @@
 class productAddContr extends productAdd {
     // create the properties inside the class
     private $product_ID;
+    private $vendor;
     private $product_name;
     private $product_description;
     private $product_type;
@@ -17,11 +18,12 @@ class productAddContr extends productAdd {
     private $num_broken;
 
     // pass through the variables from the form
-    public function __construct($product_ID, $product_name, $product_description, $product_type, $make, $model, $qty_unit, $qty_in_stock, $is_promotional, $reg_price, $discounted_price, $num_rented, $num_broken)
+    public function __construct($product_ID, $vendor, $product_name, $product_description, $product_type, $make, $model, $qty_unit, $qty_in_stock, $is_promotional, $reg_price, $discounted_price, $num_rented, $num_broken)
     {
         echo($product_ID);
         // reference this property in this class
         $this->product_ID = $product_ID;
+        $this->vendor = $vendor;
         $this->product_name = $product_name;
         $this->product_description = $product_description;
         $this->product_type = $product_type;
@@ -38,15 +40,15 @@ class productAddContr extends productAdd {
 
     public function addProduct() {
         if($this->emptyInput() == true) {
-            header("location: ../homepage.php?error='emptyInput'");
+            header("location: ../inventory.php?error='emptyInput'");
             exit();
         }
         if($this->duplicateProduct() == true) {
-            header("location: ../homepage.php?error='duplicateProduct");
+            header("location: ../inventory.php?error='duplicateProduct");
             exit();
         }
 
-        $this->setProduct($this->product_ID,$this->product_name,$this->product_description,$this->product_type,$this->make,$this->model,$this->qty_unit,$this->qty_in_stock,$this->is_promotional,$this->reg_price,$this->discounted_price,$this->num_rented,$this->num_broken);
+        $this->setProduct($this->product_ID,$this->vendor,$this->product_name,$this->product_description,$this->product_type,$this->make,$this->model,$this->qty_unit,$this->qty_in_stock,$this->is_promotional,$this->reg_price,$this->discounted_price,$this->num_rented,$this->num_broken);
     }
 
     // error handling using methods
