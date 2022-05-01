@@ -6,6 +6,7 @@ if(isset($_POST["submit"]))
     $email = $_POST["email"];
     $pwd = $_POST["pwd"];
 
+    
     // instantiate loginContr class
     require "../classes/dbh.classes.php";
     require "../classes/login.classes.php";
@@ -14,9 +15,10 @@ if(isset($_POST["submit"]))
         //create object
     $login = new LoginContr($email, $pwd);
     // logging in
+    
     $login-> loginUser();
     //set session
-    session::set("loggedInID", $email);
+    //session::set("loggedInID", $email);
 
     header("location: ../index.php?error=LOGGED IN");
     // going back to front page

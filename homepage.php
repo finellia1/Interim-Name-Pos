@@ -61,9 +61,13 @@
             <div class = "middlePanel">
                 <div class = "inventory">
                     <?php 
+                        echo "test";
                         require './classes/session.classes.php';
 
                         session::start();
+                        require_once("classes\permissions.php");
+                        $permissions = new permissions();
+                        echo($permissions->getPermissions());
                         //session::display();
                         // session_start();
                         ?>

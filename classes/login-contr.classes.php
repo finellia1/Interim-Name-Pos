@@ -19,6 +19,7 @@ class LoginContr extends Login {
             exit();
         }
         //gets user
+
         $this->getUser($this->email, $this->pwd);
     }
     //bool

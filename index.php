@@ -1,6 +1,6 @@
 <?php 
-    include 'classes/session.classes.php';
-    include 'includes/flagInit.php';
+    include_once 'classes/session.classes.php';
+    include_once 'includes/flagInit.php';
     session::start();
     session::display();
     resetFlags();
@@ -23,6 +23,8 @@
         } else {
             echo '<p>You are logged out</p>';
         }
+
+
     ?>
 </main>
 

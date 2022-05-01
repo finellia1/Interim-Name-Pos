@@ -6,9 +6,11 @@ class employeeAdd extends Dbh {
         include_once '../classes/session.classes.php';
             
         session::start();
-        session::set("security_type3", $security_type);
         $stmt = $this->connect()->prepare('INSERT INTO employee (security_type, pwd, job_title, first_name, last_name, email, is_inactive) VALUES (?,?,?,?,?,?,?);');
         $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
+        session::set("security_type3", $hashedPwd);
+        
+        session::set("security_type4", $pwd);
 
         if(!$stmt->execute(array($security_type, $hashedPwd, $job_title, $first_name, $last_name, $email, 0))) {   
             $stmt = null;
