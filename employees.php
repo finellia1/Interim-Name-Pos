@@ -82,7 +82,7 @@
                 <!--Edit popup. Hidden by default-->
                 <div id="editPopup" class="popup">
                     <fieldset>
-                        <form name="edit" action="./includes/vendorUpdate.inc.php" method="POST">
+                        <form name="edit" action="./includes/employeeUpdate.inc.php" method="POST">
                             <table class="dropShadow">
                                 <input type='hidden' name='deleteID_edit' id='deleteID_edit'>
                                 <!-- security_type -->
@@ -181,7 +181,7 @@
                 <!--Add popup. Hidden by default-->
                 <div id="addPopup" class="popup">
                     <fieldset>
-                        <form name="add" action="./includes/vendorAdd.inc.php" method="post">
+                        <form name="add" action="./includes/employeeAdd.inc.php" method="post">
                             <table class="dropShadow">
                                                                 <!-- security_type -->
                                                                 <tr>
@@ -189,7 +189,7 @@
                                         <label for="Security type of employee">Security Type:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="security_type" name="security_type" value="security_type"><br>
+                                        <input type="text" name="security_type" value="security_type"><br>
                                     </td>
                                 </tr>
                                 <!-- password -->
@@ -198,7 +198,7 @@
                                         <label for="Password for employee">Password:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="password" id="password" name="password" value=""><br>
+                                        <input type="password" name="password" value=""><br>
                                     </td>
                                 </tr>
                                 <!-- job_title -->
@@ -207,7 +207,7 @@
                                         <label for="Job title of employee">Job Title:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="job_title" name="job_title" value="job_title"><br>
+                                        <input type="text" name="job_title" value="job_title"><br>
                                     </td>
                                 </tr>
                                 <!-- first_name -->
@@ -216,7 +216,7 @@
                                         <label for="first name of employee">First name:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="first_name" name="first_name" value="first_name"><br>
+                                        <input type="text" name="first_name" value="first_name"><br>
                                     </td>
                                 </tr>
                                 <!-- last_name -->
@@ -225,7 +225,7 @@
                                         <label for="vendor notes">Last name:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="last_name" name="last_name" value="last_name"><br>
+                                        <input type="text" name="last_name" value="last_name"><br>
                                     </td>
                                 </tr>
                                 <!-- email -->
@@ -234,7 +234,7 @@
                                         <label for="Email address of employee">Email:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="email" name="email"
+                                        <input type="text" name="email"
                                             value="email"><br>
                                     </td>
                                 </tr>
@@ -244,7 +244,7 @@
                                         <label for="hourly_salary">Hourly salary:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="hourly_salary" name="hourly_salary"
+                                        <input type="text" name="hourly_salary"
                                             value="hourly_salary"><br>
                                     </td>
                                 </tr>
@@ -254,7 +254,7 @@
                                         <label for="yearly_salary">Yearly salary:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="yearly_salary" name="yearly_salary"
+                                        <input type="text" name="yearly_salary"
                                             value="yearly_salary"><br>
                                     </td>
                                 </tr>

@@ -5,6 +5,7 @@ session::start();
     //Search type is populated by form
     $searchType = $_POST["searchTypeInput"];
     //Search content is populated by form
+    $searchContent = $_POST["searchContent"];
 
     if($searchType == "Employee ID"){
         $searchType = "employee_ID";
@@ -24,20 +25,12 @@ session::start();
         $searchType = "hourly_salary";
     } else if($searchType == "Yearly Salary"){
         $searchType = "yearly_salary";
-    }else {
-        $searchType = " ";
     }
-    if($searchContent=="" ){
-        $searchContent= " ";
-    } else {
-        //echo($searchContent);
-    }
-
     //If the search type is not blank, set the search type input.
     //This search type session variable is used to run the search query to generate the divs in the homepage 
 
 
-    if($searchType!=" "){
+    if($searchType!=""){
         $_SESSION["searchTypeInput_employee"] = "select * from employee where {$searchType} like '%{$searchContent}%'";
     }else if($searchType=="" && $searchContent!=""){
         $_SESSION["searchTypeInput_employee"] = "SELECT * FROM `employee` where employee_ID LIKE '%{$searchContent}%'
