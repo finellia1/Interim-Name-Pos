@@ -61,7 +61,6 @@
             <div class = "middlePanel">
                 <div class = "inventory">
                     <?php 
-                        echo "test";
                         require './classes/session.classes.php';
 
                         session::start();
@@ -71,7 +70,9 @@
                         //session::display();
                         // session_start();
                         ?>
+                        <div id="banner">
                         <h1>Inventory Page</h1>
+                        </div>
                         <br><br>
                         <div id = "searchPopup" class = "popup">
                         <fieldset>
@@ -415,10 +416,7 @@
                                 <th>Make</th>
                                 <th>Model Number</th>
                                 <th>Quantity Unit</th>
-                                <th>Quantity In Stock</th>
-                                <th>Promotional</th>
                                 <th>Regular Price</th>
-                                <th>Discounted Price</th>
                                 <th>Number Rented</th>
                                 <th>Number Broken</th>
                                 <th>Edit</th>

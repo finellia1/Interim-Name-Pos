@@ -23,10 +23,7 @@ class productSearch extends Dbh {
             echo "<td> {$row['make']} </td>";
             echo "<td> {$row['model']} </td>";
             echo "<td> {$row['qty_unit']} </td>";
-            echo "<td> {$row['qty_in_stock']} </td>";
-            echo "<td> {$row['is_promotional']} </td>";
             echo "<td> {$row['reg_price']} </td>";
-            echo "<td> {$row['discounted_price']} </td>";
             echo "<td> {$row['num_rented']} </td>";
             echo "<td> {$row['num_broken']} </td>";
 

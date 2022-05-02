@@ -9,6 +9,7 @@ h1{
 }
 .font{
     font-family: roboto-black;
+    
 }
 
 .btn{
@@ -30,4 +31,10 @@ h1{
     color: white;
     margin: 0;
     padding-top: 30px;
+  }
+  .desc{
+    border: none;
+    padding: 15px;
+    border-radius: 100px;
+    text-align: center;
   }
