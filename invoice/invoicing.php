@@ -30,10 +30,9 @@
     $stmt2 = $conn ->query('SELECT * FROM client');            //gets all client info, that will be used display info on invoice, see if tax exempt,
     $clients = $stmt2 -> fetchALL(PDO::FETCH_ASSOC);
     $currentClient= $clients[2];                                // index 0-4 to check each client in the current database.
-    
-    if ($currentClient['tax_exempt'] == 0){
+    if ($currentClient['is_tax_exempt'] == 0){
         
-        $totalcost = $totalcost * $tax;
+        $totalcostwithTax = $totalcost * $tax;
 
     }
     
@@ -257,7 +256,7 @@
                 <h3 style="padding: 10px;">
                 <?php
 
-                    echo $currentClient['address_line1']. ", " . $currentClient['city']. ", " . $currentClient['state']. ", " . $currentClient['zip_code'];
+                    echo $currentClient['address_line1']. ", " . $currentClient['city']. ", " . $currentClient['state_abbr']. ", " . $currentClient['zip_code'];
 
                 ?>
                 </h3>
@@ -306,8 +305,13 @@
                 <h2 style="padding: 10px;">SubTotal : <?php echo "$".sprintf("%.2f", ($totalcost)); ?></h1>
                 <h4 style="padding: 10px;"> 
                 <?php
+<<<<<<< Updated upstream
                 if($currentClient['tax_exempt'] == 1){ //checks if client is tax exempt or not, and changes the invoice accordingly
                     echo "Tax Exempt";
+=======
+                if($currentClient['is_tax_exempt'] == 1){ //checks if client is tax exempt or not, and changes the invoice accordingly
+                    echo "Text Exempt";
+>>>>>>> Stashed changes
                 }
                 else{
                     echo "Tax: 8%";

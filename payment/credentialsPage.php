@@ -5,7 +5,7 @@ include('../invoice/db_connect.php');
 // key = 69Qcf7E4Q4PQc76m 
 // for testing purposes.
 
-$stmt = $conn ->query('SELECT * FROM authorizecredentials');
+$stmt = $conn ->query('SELECT * FROM authorize_credentials');
 $creds = $stmt -> fetchALL(PDO::FETCH_COLUMN);
 
 if($creds != null){

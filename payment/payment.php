@@ -30,12 +30,12 @@ define("AUTHORIZENET_LOG_FILE","phplog");
   // key = 69Qcf7E4Q4PQc76m 
   // for testing purposes.
 
-  $stmt = $conn ->query('SELECT * FROM authorizecredentials');
+  $stmt = $conn ->query('SELECT * FROM authorize_credentials');
   $creds = $stmt -> fetchALL(PDO::FETCH_ASSOC);
 
   $holder = $creds[0];
-  $encrypted_ID = $holder['transactionID'];
-  $encrypted_KEY = $holder['transactionKey'];
+  $encrypted_ID = $holder['transaction_ID'];
+  $encrypted_KEY = $holder['transaction_key'];
   
   //decryption
 
@@ -116,11 +116,29 @@ define("AUTHORIZENET_LOG_FILE","phplog");
     // ***************************************************************************
     // ***************************************************************************
 
-if ($response != null)
-{
+  
+//***********************************************************************************
+
+if ($response != null){
   $tresponse = $response->getTransactionResponse();
   if (($tresponse != null) && ($tresponse->getResponseCode()=="1"))
   {
+
+    //Adding into payment table into database
+    include('../invoice/db_connect.php');
+  
+    $stmt = $conn ->query('SELECT payment_ID FROM payment');  //gets all invoice_ID numbers to figure out current invoiceID
+    $ids = $stmt -> fetchALL(PDO::FETCH_COLUMN);
+    $newID =array_pop($ids);                                  //gets most recent id and increments it.
+    $newID++;
+
+    $dateNow= date("Y-m-d");
+    $timeNow= date("Y-m-d  H:i:s");
+  
+    $query= 'INSERT INTO payment (payment_ID, invoice_ID_fk, amount_paid, payment_date, payment_time, balance_due) VALUES (?,?,?,?,?,?)';
+    $statement = $conn->prepare($query)->execute([$newID, 5, $amount, $dateNow, $timeNow, 0.00]);
+
+
     header("Location: ./?m=1");
     die();
   }

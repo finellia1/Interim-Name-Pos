@@ -1,17 +1,27 @@
 <?php
+<<<<<<< Updated upstream
 $m = $_GET['m'];
+=======
+
+session_start();
+if(isset($_GET['m'])){
+  
+  $m = $_GET['m'];
+}
+
+>>>>>>> Stashed changes
 
 include('../invoice/db_connect.php');
   // id= 7Ucr2AUj5k
   // key = 69Qcf7E4Q4PQc76m 
   // for testing purposes.
 
-  $stmt = $conn ->query('SELECT * FROM authorizecredentials');
+  $stmt = $conn ->query('SELECT * FROM authorize_credentials');
   $creds = $stmt -> fetchALL(PDO::FETCH_ASSOC);
 
   $holder = $creds[0];
-  $encrypted_ID = $holder['transactionID'];
-  $encrypted_KEY = $holder['transactionKey'];
+  $encrypted_ID = $holder['transaction_ID'];
+  $encrypted_KEY = $holder['transaction_key'];
   
   //decryption
 
@@ -131,7 +141,11 @@ if (isset($m)) {
     <div class="form-content">
 
       <label>Amount</label>
+<<<<<<< Updated upstream
       <input type="text" name="amount" value="98.61"/>
+=======
+      <input type="text" name="amount" value= '<?php  echo $_SESSION["Total"] ?>'/>
+>>>>>>> Stashed changes
 
       <label>Your Full Name</label>
       <input type="text" name="name" value="John Smith"/>
