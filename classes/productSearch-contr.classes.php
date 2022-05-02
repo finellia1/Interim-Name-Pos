@@ -49,4 +49,8 @@ class productSearchContr extends productSearch {
     public function searchProducts() {
         $this->getProducts($this->searchType, $this->searchContent);
     }
+
+    public function getVendors(){
+        $this->fillVendorForm();
+    }
 }

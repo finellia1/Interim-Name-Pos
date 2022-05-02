@@ -1,6 +1,6 @@
 <?php
 
-class removeProductContr extends removeProduct {
+class clientRemoveContr extends clientRemove {
     // create the properties inside the class
     private $product_ID;
 
@@ -11,12 +11,12 @@ class removeProductContr extends removeProduct {
         $this->product_ID = $product_ID;
     }
 
-    public function checkProduct() {
+    public function checkClient() {
         if($this->emptyInput() == false) {
             header("location: ../homepage.php?error=emptyinput");
             exit();
         }
-        $this->removeProduct($this->product_ID);
+        $this->removeClient($this->product_ID);
     }
 
     // error handling using methods

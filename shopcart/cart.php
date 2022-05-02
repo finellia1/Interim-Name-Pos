@@ -27,7 +27,7 @@ if (isset($_POST['product_ID'], $_POST['quantity']) && is_numeric($_POST['produc
             $_SESSION['cart'] = array($product_ID => $quantity);
         }
     }
-    header('Location: ../homepage.php');
+    header('Location: ../inventory.php');
     exit;
 }
 
@@ -135,10 +135,12 @@ if ($products_in_cart) {
              
         </div>
         <div>
-            
-            <input class="btn" type="submit" value="Place Order"  target="_parent" name="placeorder">
+            <!--Antonio Finelli - added OnClick for refreshing page-->
+            <input class="btn" type="submit" value="Place Order"  target="_parent" name="placeorder" ">
     
         </div>
+
+
     </form>
 </div>
 

@@ -1,0 +1,40 @@
+<div class="font">
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="../css/cartStyle.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <div class="font">
+        <div id="banner">
+            <h1><?=$product['product_description']?></h1>
+        </div>
+        <div class="desc">
+            Regular Price: &dollar;<?=$product['reg_price']?>
+            <br>
+            <br>
+            Amount in stock: <?=$product['qty_in_stock']?>
+            <br>
+            <br>
+            Make of product: <?=$product['make']?>
+            <br>
+            <br>
+            Number Broken: <?=$product['num_broken']?>
+            <br>
+            <br>
+
+            <form action="index.php?page=cart" method="post">
+                QTY TO ADD: <input type="number" name="quantity" value="1" min="1" max="<?=$product['qty_in_stock']?>"
+                    placeholder="Quantity" required>
+                <input type="hidden" name="product_ID" value="<?=$product['product_ID']?>">
+                <br>
+                <br>
+                <input class='btn' type="submit" onclick="refreshPage()" value="Add To Cart">
+
+            </form>
+            <div>
+
+            </div>
+
+        </div>
+        <script type="text/javascript" src="js\cart.js"></script>
+    </div>

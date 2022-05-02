@@ -25,6 +25,6 @@ if(isset($_POST["submit"]))
 
     $searchProduct = new productSearchContr($searchType, $searchContent);
     // running error handlers and user signup
-    $searchProduct-> searchProducts($searchType, $searchContent);
+    $searchProduct-> getVendors();
     // going back to front page
     //session::display();

@@ -3,6 +3,7 @@
 class productUpdateContr extends productUpdate {
     // create the properties inside the class
     private $product_ID;
+    private  $vendor;
     private $name;
     private $description;
     private $product_type;
@@ -17,11 +18,11 @@ class productUpdateContr extends productUpdate {
     private $num_broken;
 
     // pass through the variables from the form
-    public function __construct($product_ID, $name, $description, $product_type, $make, $model_no, $quantity_unit, $quantity_in_stock,$isPromotional,$regular_price,$discounted_price,$num_rented,$num_broken)
+    public function __construct($product_ID,  $vendor, $name, $description, $product_type, $make, $model_no, $quantity_unit, $quantity_in_stock,$isPromotional,$regular_price,$discounted_price,$num_rented,$num_broken)
     {
-        echo($product_ID);
         // reference this property in this class
         $this->product_ID = $product_ID;
+        $this->vendor = $vendor;
         $this->name = $name;
         $this->description = $description;
         $this->product_type = $product_type;
@@ -39,10 +40,10 @@ class productUpdateContr extends productUpdate {
     //updates product
     public function updateProduct() {
         if(empty($this->product_ID)) {
-            header("location: ../homepage.php?error=emptyPRODUCT ID");
+            header("location: ../inventory.php?error=emptyPRODUCT ID");
             exit();
         }
         //sets product
-        $this->setProduct($this->product_ID,$this->name,$this->description,$this->product_type,$this->make,$this->model_no,$this->quantity_unit,$this->quantity_in_stock,$this->isPromotional,$this->regular_price,$this->discounted_price,$this->num_rented,$this->num_broken);
+        $this->setProduct($this->product_ID,$this->vendor, $this->name,$this->description,$this->product_type,$this->make,$this->model_no,$this->quantity_unit,$this->quantity_in_stock,$this->isPromotional,$this->regular_price,$this->discounted_price,$this->num_rented,$this->num_broken);
     }
 }

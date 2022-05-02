@@ -51,11 +51,17 @@ if (isset($_POST['product_ID'])) {
             <input type="hidden" name="product_ID" value="<?=$product['product_ID']?>">
             <br>
             <br>
-            <input class='btn' type="submit" value="Add To Cart">
+            <input class='btn' type="submit" value="Add To Cart" onclick ="refreshPage()">
             
         </form>
         <div>
-            
+        <script>
+            function refreshPage(){
+                //For reloading page : https://stackoverflow.com/questions/5351342/reload-parent-window-from-within-an-iframe
+                parent.location.reload();
+                console.log("asdadsasdsadassadsad");
+            }
+        </script>
         </div>
     </div>
 </div>

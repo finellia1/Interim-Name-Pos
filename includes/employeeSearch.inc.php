@@ -19,12 +19,12 @@ if(isset($_POST["submit"]))
 }
 
     // instantiate signupContr class
-    include_once "classes/dbh.classes.php";
-    include_once "classes/productSearch.classes.php";
-    include_once "classes/productSearch-contr.classes.php";
+    include "classes/dbh.classes.php";
+    include "classes/employeeSearch.classes.php";
+    include "classes/employeeSearch-contr.classes.php";
 
-    $searchProduct = new productSearchContr($searchType, $searchContent);
+    $searchEmployees = new employeeSearchContr($searchType, $searchContent);
     // running error handlers and user signup
-    $searchProduct-> searchProducts($searchType, $searchContent);
+    $searchEmployees-> searchEmployees($searchType, $searchContent);
     // going back to front page
     //session::display();

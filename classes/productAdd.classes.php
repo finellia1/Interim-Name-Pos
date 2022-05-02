@@ -1,14 +1,21 @@
 <?php
 
 class productAdd extends Dbh {
+    //https://www.w3schools.com/sql/sql_join_inner.asp 
+    protected function getVendorID($vendorName){
+        $getCompanyName= $this->connect()->prepare('select vendor_ID from vendor where company_name = ?');
+        $getCompanyName->execute(array($vendorName));
+        $companyName =  $getCompanyName->fetch()[0];
 
-    protected function setProduct($product_ID, $product_name, $product_description, $product_type, $make, $model, $qty_unit, $qty_in_stock,$is_promotional,$reg_price,$discounted_price,$num_rented,$num_broken) {
-        $stmt = $this->connect()->prepare('INSERT INTO product (product_ID, product_name, product_description, product_type, make, model, qty_unit,qty_in_stock,is_promotional,reg_price,discounted_price,num_rented,num_broken) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);');
+        return $companyName;
+    }
 
-
-        if(!$stmt->execute(array($product_ID, $product_name, $product_description, $product_type, $make, $model, $qty_unit, $qty_in_stock,$is_promotional,$reg_price,$discounted_price,$num_rented,$num_broken))) {
+    protected function setProduct($product_ID,$vendor, $product_name, $product_description, $product_type, $make, $model, $qty_unit, $qty_in_stock,$is_promotional,$reg_price,$discounted_price,$num_rented,$num_broken) {
+        $vendorName = $this->getVendorID($vendor);
+        $stmt = $this->connect()->prepare('INSERT INTO product (product_ID, vendor_ID_fk, product_name, product_description, product_type, make, model, qty_unit,qty_in_stock,is_promotional,reg_price,discounted_price,num_rented,num_broken) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?);');
+        if(!$stmt->execute(array($product_ID, $vendorName, $product_name, $product_description, $product_type, $make, $model, $qty_unit, $qty_in_stock,$is_promotional,$reg_price,$discounted_price,$num_rented,$num_broken))) {
             $stmt = null;
-            header('location: ../homepage.php');
+            header('location: ../inventory.php');
             exit();
         }
         $stmt = null;
@@ -20,7 +27,7 @@ class productAdd extends Dbh {
         $stmt = $this->connect()->prepare('SELECT product_ID FROM product WHERE product_ID = ? OR product_name = ?;');
         if(!$stmt->execute(array($product_ID, $product_name))) {
             $stmt = null;
-            header("location: ../homepage.php");
+            header("location: ../inventory.php");
             exit();
         }
 

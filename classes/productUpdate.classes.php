@@ -1,11 +1,22 @@
 <?php
 //functions for updating products
 class productUpdate extends Dbh {
+    protected function getVendorID($vendorName){
+        $getCompanyName= $this->connect()->prepare('select vendor_ID from vendor where company_name = ?');
+        $getCompanyName->execute(array($vendorName));
+        $companyName =  $getCompanyName->fetch()[0];
+        echo $companyName;
+
+        return $companyName;
+    }
+
 
     //for each field passed, connects to db, prepares and executes $stmt, updates entry in db
-    protected function setProduct($product_ID, $name, $description, $product_type, $make, $model_no, $quantity_unit, $quantity_in_stock,$isPromotional,$regular_price,$discounted_price,$num_rented,$num_broken) {
+    protected function setProduct($product_ID, $vendor, $name, $description, $product_type, $make, $model_no, $quantity_unit, $quantity_in_stock,$isPromotional,$regular_price,$discounted_price,$num_rented,$num_broken) {
+        $vendor = $this->getVendorID($vendor);
         $p_id = "'".$product_ID."'";
-        $p_type = "'".$type."'";
+        $p_vendor = $this->getVendorID($vendor);
+        //$p_type = "'".$type."'";
         $p_name = "'".$name."'";
         $p_description = "'".$description."'";
         $p_product_type = "'".$product_type."'";
@@ -19,9 +30,6 @@ class productUpdate extends Dbh {
         $p_num_rented = "'".$num_rented."'";
         $p_num_broken = "'".$num_broken."'";
 
-
-        echo($p_id);
-
         if(!empty($product_type)) {
             $stmt = $this->connect()->prepare("UPDATE product SET product_type = $p_product_type WHERE product_ID = $product_ID" );
 
@@ -32,6 +40,17 @@ class productUpdate extends Dbh {
             }
 
        }
+
+       if(!empty($vendor)) {
+        $stmt = $this->connect()->prepare("UPDATE product SET vendor_ID_fk = $vendor WHERE product_ID = $product_ID" );
+
+        if(!$stmt->execute()) {
+            $stmt = null;
+            header('location: ../index.php?error=stmtfailedProductType');
+            exit();
+        }
+
+   }
        if(!empty($name)) {
         $stmt = $this->connect()->prepare("UPDATE product SET product_name = $p_name WHERE product_ID = $product_ID" );
 
