@@ -10,7 +10,7 @@
   margin-left: auto;
   margin-right:auto;
   padding: 10px;
-  border: 4px solid #FF0F7B;
+  border: 4px solid #452ADD; 
   background-color: #f2f2f2;
   padding: 5px 20px 15px 20px;
   border-radius:10px;
@@ -35,7 +35,7 @@ h1 {
   text-align: center;
 }
 h2{
-    color: #FF0F7B;
+    color: #452ADD;
 }
 .select {
   width: 100%;
@@ -48,7 +48,7 @@ h2{
 .submit {
   width: 100%;
   font-size: 23px;
-  background: linear-gradient(135.76deg, #FF0F7B 7.5%, #F89B29 88.59%);
+  background: linear-gradient(135.76deg, #452ADD 7.5%, #602add 88.59%);
   color: #fff;
   cursor: pointer;
   padding: 5px;
@@ -87,7 +87,7 @@ label {
 }
 
 .btn {
-  background: linear-gradient(135.76deg, #FF0F7B 7.5%, #F89B29 88.59%);;
+  background: linear-gradient(135.76deg, #452ADD 7.5%, #602add 88.59%);;
   color: white;
   padding: 12px;
   margin: 10px 0;

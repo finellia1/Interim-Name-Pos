@@ -75,6 +75,7 @@ if ($products_in_cart) {
                 $subtotal += (float)$product['reg_price'] * (int)$products_in_cart[$product['product_ID']];
      }  $total = $subtotal*1.089;
         $format_total = number_format($total, 2);
+        $_SESSION["Total"] = $format_total;
 }
 ?>
 
@@ -83,9 +84,15 @@ if ($products_in_cart) {
 <!--html to make the cart presentalble to me right now going to combine to tais hopefullly; -->
 <?php=template_header('Cart')?>
 
-<div>
+<div class = "font" >
+    <head>
+    <link rel="stylesheet" type="text/css" href="../css/cartStyle.css">   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    </head>
+    <div id="banner">
     <h1>Shopping Cart</h1>
-    <form action="../pform.php"  target="_parent" method="post">
+    </div>
+    <form action="../payment/index.php"  target="_parent" method="post">
         <table>
 
                 <tr>
@@ -93,6 +100,7 @@ if ($products_in_cart) {
                     <td>Price</td>
                     <td>Quantity</td>
                     <td>Final Price</td>
+                    <br>
                 </tr>
             
             <tbody>
@@ -106,7 +114,7 @@ if ($products_in_cart) {
                     <td><br>
                         <?=$product['product_description']?>
                         <br>
-                        <a href="index.php?page=cart&remove=<?=$product['product_ID']?>">Remove</a> <br>
+                        <a href="index.php?page=cart&remove=<?=$product['product_ID']?>"> <br>Remove</a> <br>
                     </td>
                     <td>&dollar;<?=$product['reg_price']?></td>
                     <td>
@@ -119,19 +127,16 @@ if ($products_in_cart) {
             </tbody>
         </table>
         
-           Subtotal
-             &dollar;<?=$subtotal?>
-             <br>
-            GrandTotal &dollar;<?=$format_total?>
+           <p>Subtotal &dollar;<?=$subtotal?></p>
+           <p>GrandTotal &dollar;<?=$format_total?></p>
             <?
-            session_register('Total');
             $_SESSION["Total"] = $format_total;
             ?>
              
         </div>
         <div>
-            <input type="hidden" name="Stotal" value= "<?php  echo $format_total ;?> ">
-            <input type="submit" value="Place Order"  target="_parent" name="placeorder">
+            
+            <input class="btn" type="submit" value="Place Order"  target="_parent" name="placeorder">
     
         </div>
     </form>

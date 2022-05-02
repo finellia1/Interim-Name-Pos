@@ -43,7 +43,7 @@ h1 {
 .submit {
   width: 100%;
   font-size: 23px;
-  background: linear-gradient(135.76deg, #FF0F7B 7.5%, #F89B29 88.59%);
+  background: linear-gradient(135.76deg, #452ADD 7.5%, #602add 88.59%);
   color: #fff;
   cursor: pointer;
   padding: 5px;
@@ -65,7 +65,7 @@ h1 {
 .container {
   background-color: #f2f2f2;
   padding: 5px 20px 15px 20px;
-  border: 1px solid #F89B29;
+  border: 1px solid #452ADD;
   border-radius: 3px;
 }
 
@@ -89,7 +89,7 @@ label {
 }
 
 .btn {
-  background: linear-gradient(135.76deg, #FF0F7B 7.5%, #F89B29 88.59%);;
+  background: linear-gradient(135.76deg, #452ADD 7.5%, #602add 88.59%);
   color: white;
   padding: 12px;
   margin: 10px 0;
