@@ -10,7 +10,7 @@
         $products = $stmt -> fetchALL(PDO::FETCH_ASSOC);
         for($i =0 ; $i<6 ; $i++){
             
-            $shoppingCart[$i] = $products[$i+random_int(1,18)]; //fills an array up with 6 random items from the products array
+            $shoppingCart[$i] = $products[$i]; //fills an array up with 6 random items from the products array
         }
         print_r($shoppingCart);         // checking products.
 
