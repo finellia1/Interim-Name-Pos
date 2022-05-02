@@ -1,0 +1,15 @@
+body{
+    font-family: sans-serif;
+}
+
+#Requests{
+    border-spacing: 2em 0em;
+}
+
+input{
+    border-radius: 15px;
+    color:white;
+    background:linear-gradient(#452ADD 7.5%, #602add 88.59%);
+    padding: 1em;
+    border-color: white;
+}
