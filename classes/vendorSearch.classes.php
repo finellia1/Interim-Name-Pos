@@ -7,11 +7,10 @@ class vendorSearch extends Dbh {
         
         $stmt = $this->connect();
         //$_SESSION["searchTypeInput_vendor"] = "select * from vendor";
-        echo $_SESSION["searchTypeInput_vendor"];
 
         //If there is no sessions set, default to selecting every item
         if(!isset($_SESSION["searchTypeInput_vendor"])){
-            $_SESSION["searchTypeInput_vendor"] = "select * from product";
+            $_SESSION["searchTypeInput_vendor"] = "select * from vendor";
         }
 
         //Set data to results of search query ran.
@@ -22,13 +21,6 @@ class vendorSearch extends Dbh {
             if($row['is_inactive'] == 0){
                 //Echo out table information with row infomration from DB 
                 echo "<tr>"; 
-                echo "<td> {$row['vendor_ID']} </td>";
-                echo "<td> {$row['company_name']} </td>";
-                echo "<td> {$row['website']} </td>";
-                echo "<td> {$row['salesrep']} </td>";
-                echo "<td> {$row['email']} </td>";
-                echo "<td> {$row['phone']} </td>";
-                echo "<td> {$row['vendor_notes']} </td>";
 
                 //Append single quotes to either side the data
                 //This is done to be able to pass a string to a js onclick()
@@ -46,9 +38,17 @@ class vendorSearch extends Dbh {
                 //Create form to handle removing item
                 echo "<form name='remove' action='./includes/vendorRemove.inc.php' method='post'>";
                 echo "<td><label for 'Delete button'><button type='submit' name='submit' value='submit'>Delete</button></label>";
-                echo "<td><label for 'Cart button'><button type='button'>Cart</button></label>";
-                echo "<td> <input type='hidden' name='PID' id='deleteID' value='{$row['vendor_ID']}'> </td>";
+                echo "<input type='hidden' name='PID' id='deleteID' value='{$row['vendor_ID']}'>";
                 echo "</form>";
+
+                echo "<td> {$row['vendor_ID']} </td>";
+                echo "<td> {$row['company_name']} </td>";
+                echo "<td> {$row['website']} </td>";
+                echo "<td> {$row['salesrep']} </td>";
+                echo "<td> {$row['email']} </td>";
+                echo "<td> {$row['phone']} </td>";
+                echo "<td> {$row['vendor_notes']} </td>";
+
                 echo "</tr>";
             }
         }

@@ -2,17 +2,17 @@
 //functions to register user
 class employeeAdd extends Dbh {
     //connects to db, prepares and executes $stmt, checks pwd against pwdHashed, adds entry to db
-    protected function setUser($security_type, $pwd, $confirmpwd, $job_title, $first_name, $last_name, $email) {
+    protected function setUser($employee_ID, $security_type, $pwd, $job_title, $first_name, $last_name, $email, $hourly_salary, $yearly_salary) {
         include_once '../classes/session.classes.php';
             
         session::start();
-        $stmt = $this->connect()->prepare('INSERT INTO employee (security_type, pwd, job_title, first_name, last_name, email, is_inactive) VALUES (?,?,?,?,?,?,?);');
+        $stmt = $this->connect()->prepare('INSERT INTO employee (security_type, pwd, job_title, first_name, last_name, email, hourly_salary, yearly_salary) VALUES (?,?,?,?,?,?,?,?);');
         $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
-        session::set("security_type3", $hashedPwd);
+        //session::set("security_type3", $hashedPwd);
         
-        session::set("security_type4", $pwd);
+        //session::set("security_type4", $pwd);
 
-        if(!$stmt->execute(array($security_type, $hashedPwd, $job_title, $first_name, $last_name, $email, 0))) {   
+        if(!$stmt->execute(array($security_type, $hashedPwd, $job_title, $first_name, $last_name, $email, $hourly_salary, $yearly_salary))) {   
             $stmt = null;
             header('location: ../index.php?error=stmtfailedemployeeAdd.classes ln 11');
             exit();

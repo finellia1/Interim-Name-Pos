@@ -39,24 +39,23 @@
                                         <td class="alignLeft">
                                             <label for="searchTypeInput">Search Field:</label></td>
                                         <td class="alignLeft">
-                                            <input id="searchTypeInput" name="searchTypeInput" list="searchType"
-                                                placeholder="Search by..." class="dropDown">
-                                            <datalist id="searchType">
-                                                <option value="Product ID">
-                                                <option value="Vendor">
-                                                <option value="Product Type">
-                                                <option value="Product Name">
-                                                <option value="Description">
-                                                <option value="Make">
-                                                <option value="Model Number">
-                                                <option value="Quantity Unit">
-                                                <option value="Quantity In Stock">
-                                                <option value="Regular Price">
-                                                <option value="Discounted Price">
-                                                <option value="Number Rented">
-                                                <option value="Number Broken">
-                                                <option value="*">
-                                            </datalist>
+                                            <!--https://www.w3schools.com/tags/tag_select.asp-->
+                                            <select name="searchTypeInput">
+                                                <option value="Product ID">Product ID</option>
+                                                <option value="Vendor">Vendor</option>
+                                                <option value="Product Type">Product Type</option>
+                                                <option value="Product Name">Product Name</option>
+                                                <option value="Description">Description</option>
+                                                <option value="Make">Make</option>
+                                                <option value="Model Number">Model Number</option>
+                                                <option value="Quantity Unit">Quantity Unit</option>
+                                                <option value="Quantity In Stock">Quantity In Stock</option>
+                                                <option value="Regular Price">Regular Price</option>
+                                                <option value="Discounted Price">Discounted Price</option>
+                                                <option value="Number Rented">Number Rented</option>
+                                                <option value="Number Broken">Number Broken</option>
+                                                <option value="">All</option>
+                                            </select>
                                         </td>
                                     </tr>
                                     <tr>
@@ -397,6 +396,9 @@
                     <div id="inventoryWrapper">
                         <table id="inventory">
                             <tr>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                                <th>Add to Cart</th>
                                 <th>Product ID</th>
                                 <th>Vendor</th>
                                 <th>Product Type</th>
@@ -411,9 +413,7 @@
                                 <th>Discounted Price</th>
                                 <th>Number Rented</th>
                                 <th>Number Broken</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                                <th>Add to Cart</th>
+
                             </tr>
                             <?php
                                 include "includes\productSearch.inc.php";

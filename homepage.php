@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<!--https://www.w3schools.com/tags/ref_language_codes.asp ADA LANGUAGE COMPLIANCE -->
+<html lang = "en">
 <head>
     <title>Homepage</title>
     <link rel="stylesheet" href=".\css\homePage.css">
@@ -66,16 +67,16 @@
                             <h1 class = "inline" id = "titleHeader">VENDOR</h1>
                             <div >
                                 <button class = "alternatePages" onclick = "callChangePage(1)" id = "newForm1">CLIENTS</button>
-                                <button class = "alternatePages" onclick = "callChangePage(2)"id = "newForm2">INVENTORY</button>
+                                <button class = "alternatePages" onclick = "callChangePage(2)" id = "newForm2">INVENTORY</button>
+                                <button class = "alternatePages" onclick = "callChangePage(3)" id = "newForm3">EMPLOYEES</button>
                             </div>
                         </div>
                     <iframe src="inventory.php"  id = "home" title="inventory"></iframe>
                 </div>  
-
         </main>
         <script type="text/javascript" src="./js/homepage.js"></script>
         <div class = "rightPanel">
-                <iframe src="shopcart\index.php" frameborder="0" height=100%"></iframe>
+                <iframe title = "Shopping cart" src="shopcart\index.php" frameborder="0" height=100%"></iframe>
             </div>
     </div>
 

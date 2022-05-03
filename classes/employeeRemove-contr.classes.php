@@ -3,23 +3,25 @@
 session_start();
 class employeeRemoveContr extends employeeRemove {
     // create the properties inside the class
-    private $eail;
+    private $product_ID;
 
     // pass through the variables from the form
-    public function __construct($email)
+    public function __construct($product_ID)
     {
         // reference this property in this class
-        $this->email = $email;
+        $this->product_ID = $product_ID;
     }
-
     public function checkEmployee() {
-        if($this->emptyInput() == false) {
+        /*if($this->emptyInput() == false) {
             $_SESSION["removeUserErrorMsg"] = "Please enter an Email!";
-            header("location: ../index.php?error=emptyinput");
+            header("location: ../employees.php?error=emptyinput");
             exit();
         }
-        $this->removeUser($this->email);
+        */
+        $this->removeUser($this->product_ID);
     }
+    /*
+
 
     // error handling using methods
 
@@ -48,5 +50,6 @@ class employeeRemoveContr extends employeeRemove {
 
         return $result;
     }
+    */
 
 }

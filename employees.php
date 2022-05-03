@@ -39,20 +39,17 @@
                                     <td class="alignLeft">
                                         <label for="searchTypeInput">Search Field:</label></td>
                                     <td class="alignLeft">
-                                        <input id="searchTypeInput" name="searchTypeInput" list="searchType"
-                                            placeholder="Search by...">
-                                        <datalist id="searchType">
-                                            <option value="Employee ID">
-                                            <option value="Security Type">
-                                            <option value="Password">
-                                            <option value="Job Title">
-                                            <option value="First Name">
-                                            <option value="Last Name">
-                                            <option value="Email">
-                                            <option value="Hourly Salary">
-                                            <option value="Yearly Salary">
-                                            <option value="*">
-                                        </datalist>
+                                        <select id="searchTypeInput">
+                                            <option value="Employee ID">Employee ID</option>
+                                            <option value="Security Type">Security Type</option>
+                                            <option value="Job Title">Job Title</option>
+                                            <option value="First Name">First Name</option>
+                                            <option value="Last Name">Last Name</option>
+                                            <option value="Email">Email</option>
+                                            <option value="Hourly Salary">Hourly Salary</option>
+                                            <option value="Yearly Salary">Yearly Salary</option>
+                                            <option value="">All</option>
+                                        </select>
                                     </td>
                                 </tr>
                                 <tr>
@@ -82,7 +79,7 @@
                 <!--Edit popup. Hidden by default-->
                 <div id="editPopup" class="popup">
                     <fieldset>
-                        <form name="edit" action="./includes/employeeUpdate.inc.php" method="POST">
+                        <form name="edit" action="includes/updateUser.inc.php" method="POST">
                             <table class="dropShadow">
                                 <input type='hidden' name='deleteID_edit' id='deleteID_edit'>
                                 <!-- security_type -->
@@ -91,7 +88,13 @@
                                         <label for="Security type of employee">Security Type:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="security_type" name="security_type" value="security_type"><br>
+                                        <!--https://www.w3schools.com/tags/tag_select.asp-->
+                                        <select name="security_type" id = "security_type">
+                                            <option value="administrator">Administrator</option>
+                                            <option value="manager">Manager</option>
+                                            <option value="staff">Staff</option>
+                                            <option value="user">User</option>
+                                        </select>
                                     </td>
                                 </tr>
                                 <!-- password -->
@@ -136,8 +139,7 @@
                                         <label for="Email address of employee">Email:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="email" name="email"
-                                            value="email"><br>
+                                        <input type="text" id="email" name="email" value="email"><br>
                                     </td>
                                 </tr>
                                 <!-- hourly_salary -->
@@ -183,13 +185,19 @@
                     <fieldset>
                         <form name="add" action="./includes/employeeAdd.inc.php" method="post">
                             <table class="dropShadow">
-                                                                <!-- security_type -->
-                                                                <tr>
+                                <!-- security_type -->
+                                <tr>
                                     <td class="alignLeft">
                                         <label for="Security type of employee">Security Type:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="security_type" value="security_type"><br>
+                                        <!--https://www.w3schools.com/tags/tag_select.asp-->
+                                        <select name="security_type">
+                                            <option value="administrator">Administrator</option>
+                                            <option value="manager">Manager</option>
+                                            <option value="staff">Staff</option>
+                                            <option value="user">User</option>
+                                        </select>
                                     </td>
                                 </tr>
                                 <!-- password -->
@@ -234,8 +242,7 @@
                                         <label for="Email address of employee">Email:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="email"
-                                            value="email"><br>
+                                        <input type="text" name="email" value="email"><br>
                                     </td>
                                 </tr>
                                 <!-- hourly_salary -->
@@ -244,8 +251,7 @@
                                         <label for="hourly_salary">Hourly salary:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="hourly_salary"
-                                            value="hourly_salary"><br>
+                                        <input type="text" name="hourly_salary" value="hourly_salary"><br>
                                     </td>
                                 </tr>
                                 <!-- yearly_salary -->
@@ -254,8 +260,7 @@
                                         <label for="yearly_salary">Yearly salary:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="yearly_salary"
-                                            value="yearly_salary"><br>
+                                        <input type="text" name="yearly_salary" value="yearly_salary"><br>
                                     </td>
                                 </tr>
                                 <td>
@@ -295,18 +300,16 @@
                 <div id="inventoryWrapper">
                     <table id="inventory">
                         <tr>
+                            <th>Edit</th>
+                            <th>Delete</th>
                             <th>Employee ID</th>
                             <th>Security Type</th>
-                            <th>Password</th>
                             <th>Job Title</th>
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Email</th>
                             <th>Hourly Salary</th>
                             <th>Yearly Salary</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
-                            <th>Add to Cart</th>
                         </tr>
                         <?php
                                 include "includes/employeeSearch.inc.php";
@@ -318,12 +321,6 @@
                 <script type="text/javascript" src="./js/inventory.js"></script>
                 <script type="text/javascript" src="./js/homepage.js"></script>
 
-            </div>
-            <div class="rightPanel">
-                <h1> Right Panel </h1>
-                <p>
-                    lipsum...
-                </p>
             </div>
             </main>
         </div>

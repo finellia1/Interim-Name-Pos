@@ -361,6 +361,8 @@
                     <div id = "inventoryWrapper">
                         <table id="inventory">
                             <tr>
+                                <th>Edit</th>
+                                <th>Delete</th>
                                 <th>Client ID</th>
                                 <th>Company</th>
                                 <th>Client Type</th>
@@ -374,9 +376,6 @@
                                 <th>Zip Code</th>
                                 <th>Phone Number</th>
                                 <th>Client Notes</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                                <th>Add to Cart</th>
                             </tr>
                             <?php
                                 include "includes\clientSearch.inc.php";

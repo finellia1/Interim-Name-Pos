@@ -7,14 +7,12 @@ class employeeSearch extends Dbh {
         
         $stmt = $this->connect();
 
-
-
         //If there is no sessions set, default to selecting every item
         if(!isset($_SESSION["searchTypeInput_employee"])){
             $_SESSION["searchTypeInput_employee"] = "select * from employee";
         }
 
-        echo $_SESSION["searchTypeInput_client"];
+        //echo $_SESSION["searchTypeInput_employee"];
 
         //Set data to results of search query ran.
         //Search query is session variable set in search popup
@@ -24,15 +22,7 @@ class employeeSearch extends Dbh {
             if($row['is_inactive'] == 0){
                 //Echo out table information with row infomration from DB 
                 echo "<tr  class = 'inventoryItem'>"; 
-                echo "<td> {$row['employee_ID']} </td>";
-                echo "<td> {$row['security_type']} </td>";
-                echo "<td> {$row['pwd']} </td>";
-                echo "<td> {$row['job_title']} </td>";
-                echo "<td> {$row['first_name']} </td>";
-                echo "<td> {$row['last_name']} </td>";
-                echo "<td> {$row['email']} </td>";
-                echo "<td> {$row['hourly_salary']} </td>";
-                echo "<td> {$row['yearly_salary']} </td>";
+
 
                 //Append single quotes to either side the data
                 //This is done to be able to pass a string to a js onclick()
@@ -52,9 +42,21 @@ class employeeSearch extends Dbh {
                 //Create form to handle removing item
                 echo "<form name='remove' action='./includes/employeeRemove.inc.php' method='post'>";
                 echo "<td><label for 'Delete button'><button type='submit' name='submit' value='submit'>Delete</button></label>";
-                echo "<td><label for 'Cart button'><button type='button'>Cart</button></label>";
-                echo "<td> <input type='hidden' name='PID' id='deleteID' value='{$row['email']}'> </td>";
+                //echo "<td><label for 'Cart button'><button type='button'>Cart</button></label>";
+                echo "<input type='hidden' name='PID' id='deleteID' value='{$row['employee_ID']}'>";
                 echo "</form>";
+                
+
+                echo "<td> {$row['employee_ID']} </td>";
+                echo "<td> {$row['security_type']} </td>";
+                //echo "<td> {$row['pwd']} </td>";
+                echo "<td> {$row['job_title']} </td>";
+                echo "<td> {$row['first_name']} </td>";
+                echo "<td> {$row['last_name']} </td>";
+                echo "<td> {$row['email']} </td>";
+                echo "<td> {$row['hourly_salary']} </td>";
+                echo "<td> {$row['yearly_salary']} </td>";
+
                 echo "</tr>";
             }
         }

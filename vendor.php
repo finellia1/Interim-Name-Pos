@@ -253,6 +253,8 @@
                 <div id="inventoryWrapper">
                     <table id="inventory">
                         <tr>
+                        <th>Edit</th>
+                            <th>Delete</th>
                             <th>Vendor ID</th>
                             <th>Company Name</th>
                             <th>Website</th>
@@ -260,9 +262,7 @@
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Vendor Notes</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
-                            <th>Add to Cart</th>
+
                         </tr>
                         <?php
                                 include "includes/vendorSearch.inc.php";

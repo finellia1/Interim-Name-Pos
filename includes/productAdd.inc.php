@@ -2,7 +2,7 @@
 // if(isset($_POST["submit"])) 
 // {
     $product_ID = "add";
-    $vendor = $_POST["vendor"];
+    $vendor = $_POST["vendorInput"];
     $product_name = $_POST["product_name"];
     $product_description = $_POST["product_description"];
     $product_type = $_POST["product_type"];

@@ -3,8 +3,8 @@
 class productSearch extends Dbh {
 
     protected function fillVendorForm(){
-        echo '<input id="vendorInput" name="vendorInput" list="vendorList" placeholder="Search by..."  class = "dropDown">';
-        echo "<datalist id = 'vendorList'>";
+       // echo '<input id="vendorInput" name="vendorInput" list="vendorList" placeholder="Search by..."  class = "dropDown">';
+        echo "<select name = 'vendorInput' id = 'vendorList'>";
         $stmt = $this->connect();
         $getCompanyName= $this->connect()->prepare('select company_name from vendor');
         $getCompanyName->execute();
@@ -13,7 +13,7 @@ class productSearch extends Dbh {
             printf('<option>%s</option>', $row['company_name']); 
 
         }
-        echo "</datalist>";
+        echo "</select>";
     }
 
     protected function getProducts($searchType, $searchContent) {
@@ -36,26 +36,7 @@ class productSearch extends Dbh {
 
                 //Echo out table information with row infomration from DB 
                 echo "<tr class = 'inventoryItem'>"; 
-                echo "<td> {$row['product_ID']} </td>";
-                //Display vendor as name instead of integer  
-                //https://www.php.net/manual/en/pdo.prepare.php
-                $getCompanyName= $stmt->prepare('select company_name from vendor where vendor_ID = ?');
-                $getCompanyName->execute(array($row['vendor_ID_fk']));
-                $companyName =  $getCompanyName->fetch()[0];
 
-                echo "<td> $companyName </td>";
-                echo "<td> {$row['product_type']} </td>";
-                echo "<td> {$row['product_name']} </td>";
-                echo "<td> {$row['product_description']} </td>";
-                echo "<td> {$row['make']} </td>";
-                echo "<td> {$row['model']} </td>";
-                echo "<td> {$row['qty_unit']} </td>";
-                echo "<td> {$row['qty_in_stock']} </td>";
-                echo "<td> {$row['is_promotional']} </td>";
-                echo "<td> {$row['reg_price']} </td>";
-                echo "<td> {$row['discounted_price']} </td>";
-                echo "<td> {$row['num_rented']} </td>";
-                echo "<td> {$row['num_broken']} </td>";
 
                 //Append single quotes to either side the data
                 //This is done to be able to pass a string to a js onclick()
@@ -96,7 +77,35 @@ class productSearch extends Dbh {
                 echo "<input type='hidden' name='quantity' value='{$row['qty_in_stock']}'>";
                 echo "<input type='hidden' name='product_ID' value='{$row['product_ID']}'>";
                 echo "</form>";
+
+
+
+
+
+                echo "<td> {$row['product_ID']} </td>";
+                //Display vendor as name instead of integer  
+                //https://www.php.net/manual/en/pdo.prepare.php
+                $getCompanyName= $stmt->prepare('select company_name from vendor where vendor_ID = ?');
+                $getCompanyName->execute(array($row['vendor_ID_fk']));
+                $companyName =  $getCompanyName->fetch()[0];
+
+                echo "<td> $companyName </td>";
+                echo "<td> {$row['product_type']} </td>";
+                echo "<td> {$row['product_name']} </td>";
+                echo "<td> {$row['product_description']} </td>";
+                echo "<td> {$row['make']} </td>";
+                echo "<td> {$row['model']} </td>";
+                echo "<td> {$row['qty_unit']} </td>";
+                echo "<td> {$row['qty_in_stock']} </td>";
+                echo "<td> {$row['is_promotional']} </td>";
+                echo "<td> {$row['reg_price']} </td>";
+                echo "<td> {$row['discounted_price']} </td>";
+                echo "<td> {$row['num_rented']} </td>";
+                echo "<td> {$row['num_broken']} </td>";
+
                 echo "</tr>";
+
+                
             }
         }
     }
