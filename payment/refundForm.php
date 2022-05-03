@@ -50,22 +50,29 @@ if(isset($_POST['submitR'])){
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="../css/refundPage.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-<form method="POST" action="refundForm.php" >
-    <label for="quantity">Amount to Be Refunded:</label><br>
-    <input type="number" id="refund" name="refunded" min="0" max="<?php echo $amount_paid; ?>" step=".01"> <br>
-    <input type="radio" id="cash" name="ptype" value="cash">
-    <label for="html">Cash</label><br>
-    <input type="radio" id="credit" name="ptype" value="credit">
-    <label for="css">Credit</label><br>
-    <input type="radio" id="Check" name="ptype" value="check">
-    <label for="javascript">Check</label><br>
-    <label for="fname">Reason for refund:</label><br>
-    <input type="text" id="reason" name="reason" style= "height: 100px !important; width: 400px;"><br>
-    <input type="submit" name="submitR" class="submit" value="Refund">
+
+<div class="content-wrapper">
+
+    <form method="POST" action="refundForm.php" >
+        <label for="quantity">Amount to Be Refunded:</label><br>
+        <input type="number" id="refund" name="refunded" min="0" max="<?php echo $amount_paid; ?>" step=".01"> <br>
+        <input type="radio" id="cash" name="ptype" value="cash">
+        <label>Cash</label><br>
+        <input type="radio" id="credit" name="ptype" value="credit">
+        <label>Credit</label><br>
+        <input type="radio" id="Check" name="ptype" value="check">
+        <label>Check</label><br>
+        <label for="fname">Reason for refund:</label><br>
+        <input type="text" id="reason" name="reason" style= "height: 100px !important; width: 400px;"><br>
+        <input type="submit" name="submitR" class="submit" value="Refund">
     </form>
+
+</div>
+
 </body>
 </html>

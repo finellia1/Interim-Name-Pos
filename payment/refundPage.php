@@ -19,8 +19,6 @@ $payments = $stmt -> fetchALL(PDO::FETCH_ASSOC);
     <title>Refund Page</title>
 </head>
 <body>
-    <div>
-
     <table>
             <tr>
                 <th>Payment ID</th>
@@ -55,7 +53,5 @@ $payments = $stmt -> fetchALL(PDO::FETCH_ASSOC);
             ?>
 
         </table>
-
-    </div>
 </body>
 </html>
