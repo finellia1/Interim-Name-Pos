@@ -1,37 +1,58 @@
 <?php
 
     
-
-    session_start();       //session is used to get cart from previous page.
-    $cart = $_SESSION['cartArray'];
-    // print_r($cart);
-
     include('db_connect.php');
+    session_start();       //session is used to get cart from previous page.
+    $cart = $_SESSION['cart'];
+    $product_IDs = array_keys($cart);
+    //print_r($product_IDs);
+    //print_r($cart);
 
-    $totalcost= 0;
-    $tax = 1.08;
+    $stmt = $conn ->query('SELECT * FROM product');  //gets all items in the products table, and outputs them as an assoc array
+    $products = $stmt -> fetchALL(PDO::FETCH_ASSOC);
+    $items_in_cart;
+    $itemnumber=0;
+    $totalcost =0;
 
-    for($i = 0; $i<6 ; $i++){                   //for testing
-        $quant[$i]=random_int(1,3);
+
+    for($i = 0; $i<count($products); $i++){
+
+        $id= $product_IDs[$itemnumber];
+
+        if($product_IDs[$itemnumber] == $products[$i]['product_ID']){
+
+            $items_in_cart[$itemnumber] = $products[$i];
+            $totalcost = $totalcost + $products[$i]['reg_price'] * $cart[$id];
+            $itemnumber++;
+            if($itemnumber> count($product_IDs)-1){
+                break;
+            }
+
+        }
+
     }
+    
+    //echo $totalcost;
+    //print_r($items_in_cart);
 
-    for($i =0; $i<count($cart); $i++){
-        
-        $totalcost = $totalcost + $cart[$i]['reg_price'] *$quant[$i];
+    $tax = 1.089;
 
-    }
-  
 
     $stmt = $conn ->query('SELECT invoice_ID FROM invoice');  //gets all invoice_ID numbers to figure out current invoiceID
     $ids = $stmt -> fetchALL(PDO::FETCH_COLUMN);
     $newID =array_pop($ids);                                  //gets most recent id and increments it.
     $newID++;
 
+    // for testing
     $stmt2 = $conn ->query('SELECT * FROM client');            //gets all client info, that will be used display info on invoice, see if tax exempt,
     $clients = $stmt2 -> fetchALL(PDO::FETCH_ASSOC);
     $currentClient= $clients[2];                                // index 0-4 to check each client in the current database.
+
+    //once sessions is implemented
+
+    // $currentClient = $_SESSION['client'];
     
-    if ($currentClient['tax_exempt'] == 0){
+    if ($currentClient['is_tax_exempt'] == 0){
         
         $totalcost = $totalcost * $tax;
 
@@ -123,11 +144,12 @@
         font-family: roboto-black;
         margin-left: auto;
         margin-right: auto;
+        display: block;
 
         }
         #colorbox{
 
-            background-image: linear-gradient(135.76deg, #FF0F7B 7.5%, #F89B29 88.59%);
+            background-image: linear-gradient(135.76deg, #452ADD 7.5%, #602add 88.59%);
             border-radius:10px;
             min-height: 8px;
 
@@ -157,7 +179,7 @@
         .dot {
             height: 70px;
             width: 70px;
-            background-image:linear-gradient(135.76deg, #FF0F7B 7.5%, #F89B29 88.59%);
+            background-image:linear-gradient(135.76deg, #452ADD 7.5%, #602add 88.59%);
             border-radius: 50%;
             display: inline-block;
         }
@@ -167,30 +189,26 @@
         }
 
 
-        @media screen and (max-width:360px){
-
-            #title{
+         #title{
 
                 font-family:roboto-black ;
-                padding-left: 20px;
-                font-size: 300%;
-                line-height: 39px;
+                font-size:calc(30px + 1.5vw);
+                min-width: 200%;
+                /* line-height: 39px; */
 
-                background-image:linear-gradient(135.76deg, #FF0F7B 7.5%, #F89B29 88.59%);
+                background-image:linear-gradient(135.76deg, #452ADD 7.5%, #602add 88.59%);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent; 
                 
                 }
 
-        }
-        
-
         .topright {
             position: absolute;
-            right: 5px;
+            left: 80%;
+            
         }
         button{
-            background-image:linear-gradient(135.76deg, #FF0F7B 7.5%, #F89B29 88.59%) ;
+            background-image:linear-gradient(135.76deg, #452ADD 7.5%, #602add 88.59%) ;
             border: none;
             color: white;
             border-radius: 100px;
@@ -233,7 +251,7 @@
         <h1>Invoice #<?php echo $newID ?></h1>     
         </div>
        <div class="topright">
-            <h1 id="title">RENTAL</h1>
+            <h1 id="title">RENT-EZ</h1>
        </div>
     </div>
     
@@ -242,22 +260,22 @@
 
         <div class="child">
         <!--Displays all shop information in a card -->
-          <div class="card" style="width: 100%;">
-              <h2 style="padding: 10px;">HVAV</h2>
+          <div class="card" style="width: 90%;">
+              <h2 style="padding: 10px;">Rent-EZ</h2>
               <h3 style="padding-left: 10px; padding-right: 10px;">845-797-7000</h3>
               <h3 style="padding: 10px;">1914 US-44, Modena, NY, 12548</h3>
           </div>
         </div>
         <div class="child"> 
 
-            <div class="card" style="width: 100%;">        <!--Displays all client information in a card -->
+            <div class="card" style="width: 90%;">        <!--Displays all client information in a card -->
 
                 <h2 style="padding: 10px;"><?php echo $currentClient['company'];?></h2>
                 <h3 style="padding-left: 10px; padding-right: 10px;"><?php echo $currentClient['phone']; ?></h3>
                 <h3 style="padding: 10px;">
                 <?php
 
-                    echo $currentClient['address_line1']. ", " . $currentClient['city']. ", " . $currentClient['state']. ", " . $currentClient['zip_code'];
+                    echo $currentClient['address_line1']. ", " . $currentClient['city']. ", " . $currentClient['state_abbr']. ", " . $currentClient['zip_code'];
 
                 ?>
                 </h3>
@@ -285,13 +303,13 @@
                 
 
             <?php
-                for($i =0; $i<count($cart); $i++){          //displays all items to be purchased in the invoice.
+                for($i =0; $i<count($items_in_cart); $i++){          //displays all items to be purchased in the invoice.
 
-                    echo '<tr><td>'. $cart[$i]['product_ID'].'</td>';
-                    echo '<td>'. $cart[$i]['product_description'].'</td>';
-                    echo '<td>'. $quant[$i].'</td>';
-                    echo '<td>'. "$". $cart[$i]['reg_price'].'</td>';
-                    echo '<td>'. "$". sprintf("%.2f",$cart[$i]['reg_price'] *$quant[$i]).'</td>';
+                    echo '<tr><td>'. $items_in_cart[$i]['product_ID'].'</td>';
+                    echo '<td>'. $items_in_cart[$i]['product_description'].'</td>';
+                    echo '<td>'. $cart[$product_IDs[$i]].'</td>';
+                    echo '<td>'. "$". $items_in_cart[$i]['reg_price'].'</td>';
+                    echo '<td>'. "$". sprintf("%.2f",$items_in_cart[$i]['reg_price'] *$cart[$product_IDs[$i]]).'</td>';
 
 
                 }
@@ -301,12 +319,12 @@
         </table>
         
         
-            <div class="card" style="min-width: 40%; max-width:50px;">
+            <div class="card" style="max-width: 300px">
                     
                 <h2 style="padding: 10px;">SubTotal : <?php echo "$".sprintf("%.2f", ($totalcost)); ?></h1>
                 <h4 style="padding: 10px;"> 
                 <?php
-                if($currentClient['tax_exempt'] == 1){ //checks if client is tax exempt or not, and changes the invoice accordingly
+                if($currentClient['is_tax_exempt'] == 1){ //checks if client is tax exempt or not, and changes the invoice accordingly
                     echo "Text Exempt";
                 }
                 else{
