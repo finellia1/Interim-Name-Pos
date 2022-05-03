@@ -77,19 +77,20 @@
         padding: 5px;
       }
 
-    input[type=text] {
-        width: 100%;
+    textarea {
+        padding-left: 30px;
+        width: 70%;
         margin-bottom: 20px;
-        padding: 12px;
         border: 1px solid #ccc;
-        border-radius: 30px;
+        border-radius: 20px;
+        overflow-wrap: break-word;
     }
     input[type = number]{
 
         margin-bottom: 20px;
         padding: 12px;
         border: 1px solid #ccc;
-        border-radius: 30px;
+        border-radius: 20px;
 
     }
     input[type = radio]{
@@ -99,6 +100,15 @@
 
     label{
         font-family: roboto-regular;
+    }
+
+    #colorbox{
+
+        background-image: linear-gradient(135.76deg, #452ADD 7.5%, #602add 88.59%);
+        border-radius:10px;
+        min-height: 8px;
+
+
     }
     
     table {
