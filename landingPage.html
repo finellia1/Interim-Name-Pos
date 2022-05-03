@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing Page</title>
 
-    <link rel="stylesheet" href=".\style.css">
-    <script src=".\script.js"></script>
+    <link rel="stylesheet" href=".\css\landingPagestyle.css">
+    <script src=".\js\landingScript.js"></script>
 </head>
 <body>
     <section>
-        <img src="layer.png" id="layer">
-        <img src="crowd.png" id="crowd"> 
+        <img src=".\Assets\layer.png" id="layer">
+        <img src=".\Assets\crowd.png" id="crowd"> 
         <h2 id="text">Rent EZ</h2><br>
         <div id = "nav">
             
             <a href="#about">About</a><br>
             <a href="#services">Services</a>
-            <a href="sources">Sources</a>
-            <div id="login"><a href="invoicepage">Log In</a></div>
+            <a href="#sources">Sources</a>
+            <div id="login"><a href="login.php">Log In</a></div>
         </div>    
         
 
@@ -38,107 +38,145 @@
 
         <div class="home-about" >
             <h2 id="about">About us</h2>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+            <p>A POS system meant to help rental companies better manage their businesses.</p>
             <div class="columns">
                 <div class="col">
-                    <h3>Lorem, ipsum.</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae
-                      maiores fuga eos provident voluptas perferendis.
+                    <h3>Tailored to Your Needs</h3>
+                    <p>Our inventory system is created to house any type of product or merchandise, so don't
+                        worry about not being compatable with us.
                     </p>
                 </div>
 
                 <div class="col">
-                    <h3>A, illo!</h3>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                        Voluptatibus minima quo beatae eius blanditiis officiis.
+                    <h3>Make it your own</h3>
+                    <p>Our user interface was made with your companies personality involved. 0Make the website your own by incorporating your own logo and color pallete.
                     </p>
                 </div>
           
                 <div class="col">
-                    <h3>Repudiandae, error?</h3>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum
-                    quasi quis doloribus quia illum laudantium.
+                    <h3>Fully Mutable</h3>
+                    <p>We know that running a business isnt as straightforward as large companies make it out to be. We made sure that you will not be
+                        held back by our software and can make the decisions you need to make when you need to make them.
                     </p>
                 </div>
             </div>
         </div>
         <div class="home-more-stuff">
             <h2 id = services>Services</h2>
+            <br>
             <div class="more-stuff-grid">
                 <img
-                    src="https://unsplash.it/400"
+                    width= "400"
+                    height="400"
+                    src=".\Assets\inventory_img.jpg"
                     alt=""
                     class="slide-in from-left"
                 />
-                <p class="slide-in from-right">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis fugit,
-                    quae beatae vero sit magni quaerat id ratione. Dolor optio unde amet
-                    omnis sapiente neque cumque consequuntur reiciendis deserunt.
-                    Dolorem vero exercitationem consequuntur, eligendi cupiditate
-                    debitis facilis quibusdam magni. Eveniet.
-                </p>
+                <div class="slide-in from-right">
+                    <h3>Inventory Management</h3><br>
+                    <p>
+                        The ability to manage your inventory, vendors, and employees in one page. Add, edit, and delete your merchandise. Create employee accounts. Save your vendors and other resources.
+                    </p>
+                </div>
             </div>
             <div class="more-stuff-grid">
-                <p class="slide-in from-left">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis fugit,
-                    quae beatae vero sit magni quaerat id ratione. Dolor optio unde amet
-                    omnis sapiente neque cumque consequuntur reiciendis deserunt.
-                    Dolorem vero exercitationem consequuntur, eligendi cupiditate
-                    debitis facilis quibusdam magni. Eveniet.
-                </p>
+                <div class="slide-in from-left">
+                    <h3>Scheduling</h3><br>
+                    <p>
+                        Schedule events, employee work schedules, and more.
+                        View schedule through a beautifully designed and responsive UI.
+                        All through the comfort of your device.
+                    </p>
+                </div>
+
                 <img
-                    src="https://unsplash.it/401"
+                    width="400";
+                    height="400";
+                    src=".\Assets\scheduling_img.jpg"
                     alt=""
                     class="slide-in from-right"
                 />
             </div>
             <div class="more-stuff-grid">
-                <img src="//unsplash.it/400" alt="" class="slide-in from-left" />
-                <p class="slide-in from-right">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis fugit,
-                    quae beatae vero sit magni quaerat id ratione. Dolor optio unde amet
-                    omnis sapiente neque cumque consequuntur reiciendis deserunt.
-                    Dolorem vero exercitationem consequuntur, eligendi cupiditate
-                    debitis facilis quibusdam magni. Eveniet.
-                </p>
+                <img width ="400" src=".\Assets\transactions_img.jpg" alt="a hand scanning a credit card on a credit card scanner" class="slide-in from-left" />
+                <div class="slide-in from-right">
+                    <h3>Transactions</h3>
+                    <br>
+                    <p>
+                        All transactions can be done through the shopping cart system. Safe interactions using authorize.net. 
+                </div>
             </div>
             <div class="more-stuff-grid">
-                <p class="slide-in from-left">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis fugit,
-                    quae beatae vero sit magni quaerat id ratione. Dolor optio unde amet
-                    omnis sapiente neque cumque consequuntur reiciendis deserunt.
-                    Dolorem vero exercitationem consequuntur, eligendi cupiditate
-                    debitis facilis quibusdam magni. Eveniet.
-                </p>
+                <div  class="slide-in from-left">
+                    <h3>Financials</h3><br>
+                    <p>
+                        Invoices and Z-reports are produced for every interactions. No more hassle on your financial side.
+                    </p>
+                </div>
                 <img
-                    src="https://unsplash.it/401"
+                    width="400"
+                    src="./Assets/financials_img.jpg"
                     alt=""
                     class="slide-in from-right"
                 />
             </div>
-            <div class="more-stuff-grid">
-                <img src="//unsplash.it/400" alt="" class="slide-in from-left" />
-                <p class="slide-in from-right">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis fugit,
-                    quae beatae vero sit magni quaerat id ratione. Dolor optio unde amet
-                    omnis sapiente neque cumque consequuntur reiciendis deserunt.
-                    Dolorem vero exercitationem consequuntur, eligendi cupiditate
-                    debitis facilis quibusdam magni. Eveniet.
+            
+            
+        </div>
+        <div id="sources">
+            <div class="container">
+                <div class="avatar">
+                  <img src="" height="150" width="150">
+                </div>
+                <h2>Jennie</h2>
+                <a href="jennieSources.pdf">Sources</a>
+                <p>Maintained functionality of database and organization of group tasks. Implemented z-report and money page.</p>
+            </div>
+            <div class="container">
+                <div class="avatar">
+                  <img src="./Assets/Taimur.jpeg" height="150" width="150">
+                </div>
+                <h2>Taimur Tawil</h2>
+                <a href="taimurSources.pdf ">Sources</a>
+                <p>Designed nav bar and landing page. Implemented scheduling and event order system. Created calendar page. </p>
+            </div>
+            <div class="container">
+                <div class="avatar">
+                  <img src="./Assets/antonio.jpg" height="150" width="150">
+                </div>
+                <h2>Antonio Finelli</h2>
+                <a href="antonioSources.pdf">Sources</a>
+                <p>ADA compliances, inventory table, employee table,
+                    and vendor table. Established common design theme.
                 </p>
             </div>
-            <div class="more-stuff-grid">
-                <p class="slide-in from-left">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis fugit,
-                    quae beatae vero sit magni quaerat id ratione. Dolor optio unde amet
-                    omnis sapiente neque cumque consequuntur reiciendis deserunt.
-                    Dolorem vero exercitationem consequuntur, eligendi cupiditate
-                    debitis facilis quibusdam magni. Eveniet.
-                </p>
-                <img
-                    src="https://unsplash.it/401"
-                    alt=""
-                    class="slide-in from-right"
-                />
+            <div class="container">
+                <div class="avatar">
+                  <img src="./Assets/nick.jpg" height="150" width="150">
+                </div>
+                <h2>Nicholas Finelli</h2>
+                <a href="nickSources.pdf">Sources</a>
+                <p></p>
+                <p>Error Handling, login logic, permissions, and file management.</p>
+            </div>
+            <div class="container">
+                <div class="avatar">
+                  <img src="./Assets/asfand.png" height="150" width="150">
+                </div>
+                <h2>Asfand Alavi</h2>
+                <a href="asfandSources.pdf">Sources</a>
+                <p>Implemented invoicing, secure checkout, and mobile responsivness</p>
+            </div>
+            <div class="container">
+                <div class="avatar">
+                  <img src="./Assets/jorge.jpg" height="150" width="150">
+                </div>
+                <h2>Jorge Cruz</h2>
+                <a href="jorgeSources.pdf">Sources</a>
+                <p> Login UI, Shopping cart logic and UI. Security and authorize.net</p>
             </div>
         </div>
+
+
+
 </body>
