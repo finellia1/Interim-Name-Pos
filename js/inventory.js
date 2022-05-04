@@ -1,8 +1,8 @@
-function editPane(id,vendor,vendorName,name,type,description, make, model, quanitity, quantityInStock, promotional,regularPrice, discountedPrice, numRented, numBroken){
+function editPane(id,vendor,name,type,description, make, model, quanitity, quantityInStock, promotional,regularPrice, discountedPrice, numRented, numBroken, vendorName){
     console.log(vendorName);
     document.getElementById('editPopup').style.visibility = 'visible';
     document.getElementById('itemName').value = name; 
-    document.getElementById('vendorList').value = vendor;
+    document.getElementById('vendorList').value = vendorName;
     document.getElementById('productType').value = type;
     document.getElementById('description').value = description;
     document.getElementById('make').value = make;

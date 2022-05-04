@@ -55,8 +55,14 @@ class productSearch extends Dbh {
                 $p_num_rented = "'".$row['num_rented']."'";
                 $p_num_broken = "'".$row['num_broken']."'";
 
+
+                $getCompanyName= $stmt->prepare('select company_name from vendor where vendor_ID = ?');
+                $getCompanyName->execute(array($row['vendor_ID_fk']));
+                $companyName =  $getCompanyName->fetch()[0];
+                $p_companyName = "'".$companyName."'";
+
                 //Pass in the p_ variables to button. This way the variables can be accessed in JS
-                printf('<td><button type="button" onclick="editPane(%s,%s, %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)">Edit</button>',$p_id,$p_vendor,$p_name,$p_type,$p_description, $p_make, $p_model, $p_qty_unit, $p_qty_in_stock, $p_is_promotional, $p_reg_price, $p_discounted_price, $p_num_rented, $p_num_broken);
+                printf('<td><button type="button" onclick="editPane(%s,%s, %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)">Edit</button>',$p_id,$p_vendor,$p_name,$p_type,$p_description, $p_make, $p_model, $p_qty_unit, $p_qty_in_stock, $p_is_promotional, $p_reg_price, $p_discounted_price, $p_num_rented, $p_num_broken,$p_companyName);
 
                 //Create form to handle removing item
                 /*
@@ -85,9 +91,7 @@ class productSearch extends Dbh {
                 echo "<td> {$row['product_ID']} </td>";
                 //Display vendor as name instead of integer  
                 //https://www.php.net/manual/en/pdo.prepare.php
-                $getCompanyName= $stmt->prepare('select company_name from vendor where vendor_ID = ?');
-                $getCompanyName->execute(array($row['vendor_ID_fk']));
-                $companyName =  $getCompanyName->fetch()[0];
+
 
                 echo "<td> $companyName </td>";
                 echo "<td> {$row['product_type']} </td>";

@@ -20,7 +20,7 @@ class vendorSearch extends Dbh {
         foreach($getData as $row){
             if($row['is_inactive'] == 0){
                 //Echo out table information with row infomration from DB 
-                echo "<tr>"; 
+                echo "<tr  class = 'inventoryItem'>"; 
 
                 //Append single quotes to either side the data
                 //This is done to be able to pass a string to a js onclick()
