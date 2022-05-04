@@ -1,0 +1,167 @@
+/* FONTS */
+
+@font-face{
+    font-family: roboto-black;
+    src: url(../fonts/roboto/roboto-black.ttf);
+}
+@font-face{
+    font-family: roboto-blackitalic;
+    src: url(../fonts/roboto/roboto-blackitalic.ttf);
+}
+@font-face{
+    font-family: roboto-bold;
+    src: url(../fonts/roboto/roboto-bold.ttf);
+}
+@font-face{
+    font-family: roboto-bolditalic;
+    src: url(../fonts/roboto/roboto-bolditalic.ttf);
+}
+@font-face{
+    font-family: roboto-italic;
+    src: url(../fonts/roboto/roboto-italic.ttf);
+}
+@font-face{
+    font-family: roboto-light;
+    src: url(../fonts/roboto/roboto-light.ttf);
+}
+@font-face{
+    font-family: roboto-lightitalic;
+    src: url(../fonts/roboto/roboto-lightitalic.ttf);
+}
+@font-face{
+    font-family: roboto-medium;
+    src: url(../fonts/roboto/roboto-medium.ttf);
+}
+@font-face{
+    font-family: roboto-mediumitalic;
+    src: url(../fonts/roboto/roboto-mediumitalic.ttf);
+}
+@font-face{
+    font-family: roboto-regular;
+    src: url(../fonts/roboto/roboto-regular.ttf);
+}
+@font-face{
+    font-family: roboto-thin;
+    src: url(../fonts/roboto/roboto-thin.ttf);
+}
+@font-face{
+    font-family: roboto-thinitalic;
+    src: url(../fonts/roboto/roboto-thinitalicegular.ttf);
+}
+
+ 
+    body{
+
+    background-image: url(../Assets/refundpageBG.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;  
+    background-size: cover;
+
+    }
+
+
+    .content-wrapper {
+        width: 600px;
+        margin-left: auto;
+        margin-right:auto;
+        padding: 10px;
+        background-color: #f2f2f2;
+        padding: 5px 20px 15px 20px;
+        border-radius: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10%;
+
+      }
+
+    .form-content {
+        padding: 5px;
+      }
+
+    textarea {
+        padding-left: 30px;
+        width: 70%;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        overflow-wrap: break-word;
+    }
+    input[type = number]{
+
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+
+    }
+    input[type = radio]{
+        margin-bottom: 12px;
+
+    }
+
+    label{
+        font-family: roboto-regular;
+    }
+
+    #colorbox{
+
+        background-image: linear-gradient(135.76deg, #452ADD 7.5%, #602add 88.59%);
+        border-radius:10px;
+        min-height: 8px;
+
+
+    }
+    
+    
+    table {
+    /* background-image: linear-gradient(135.76deg, #FF0F7B 7.5%, #F89B29 88.59%); */
+    font-family: roboto-black;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    width: 40%;
+    border-radius:10px;
+    box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.06);
+    transition: 0.3s;
+    }
+
+    td, th {
+    text-align: center;
+    padding: 4px;
+    font-family: roboto-regular;
+    }
+    
+    th{
+        border-bottom: 1px;
+    }
+
+    .card {
+        /* Add shadows to create the "card" effect */
+        box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.06);
+        transition: 0.3s;
+        border-radius: 25px;
+        font-family: roboto-black;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+    .container{
+        display: flex;
+    }
+
+    .submit {
+        width: 100%;
+        font-size: 23px;
+        background: linear-gradient(135.76deg,#452ADD 7.5%, #602add 88.59%);
+        color: #fff;
+        cursor: pointer;
+        padding: 5px;
+        border-radius:20px;
+
+      }
+
+      .submit:hover {
+        background: #45a049;
+      }
