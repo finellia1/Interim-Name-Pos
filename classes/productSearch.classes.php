@@ -6,7 +6,7 @@ class productSearch extends Dbh {
        // echo '<input id="vendorInput" name="vendorInput" list="vendorList" placeholder="Search by..."  class = "dropDown">';
         echo "<select name = 'vendorInput' id = 'vendorList'>";
         $stmt = $this->connect();
-        $getCompanyName= $this->connect()->prepare('select company_name from vendor');
+        $getCompanyName= $this->connect()->prepare('select c  ompany_name from vendor');
         $getCompanyName->execute();
 
         foreach($getCompanyName as $row){
@@ -76,7 +76,7 @@ class productSearch extends Dbh {
 
                 echo "<form name='remove' action='./includes/productRemove.inc.php' method='post'>";
                 echo "<td><button type='submit' name='submit' value='submit'>Delete</button>";
-                echo "<input type='hidden' name='PID' id='deleteID' value='{$row['product_ID']}'>";
+                echo "<input type='hidden' name='PID' value='{$row['product_ID']}'>";
                 echo "</form>";
                 echo "<form action='shopcart\product.php' method='post'>";
                 echo "<td><button type='submit' value='Cart'>Cart</button>";
