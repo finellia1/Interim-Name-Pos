@@ -10,20 +10,20 @@
 </head>
 <body>
     <section>
-        <img src=".\Assets\layer.png" id="layer" alt="A stage with a band performing and auto filled with a fake crowd">
-        <img src=".\Assets\crowd.png" id="crowd" alt="Real crowd that rises up as you scroll"> 
-        <h2 id="text">Rent EZ</h2><br>
+        <img src=".\Assets\layer.png" id="layer" alt="A stage with a band performing and auto filled with a fake crowd"> <!--Background for Parallax scrolling-->
+        <img src=".\Assets\crowd.png" id="crowd" alt="Real crowd that rises up as you scroll">  <!--Foreground for Parallax scrolling-->
+        <h2 id="text">Rent EZ</h2><br> <!--Title and Company Name-->
         <div id = "nav">
             
-            <a href="#about">About</a><br>
-            <a href="#services">Services</a>
-            <a href="#sources">Sources</a>
-            <div id="login"><a href="login.php">Log In</a></div>
+            <a href="#about">About</a><br> <!--Skip to about section-->
+            <a href="#services">Services</a><!--Skip to service section-->
+            <a href="#sources">Sources</a><!--Skip to sources section-->
+            <div id="login"><a href="login.php">Log In</a></div><!--Takes you to login page-->
         </div>    
         
 
     </section>
-    <script type="text/javascript">
+    <script type="text/javascript"> //For parallax scrolling 
         let layer = document.getElementById("layer");
         let crowd = document.getElementById("crowd");
         let text = document.getElementById("text");
@@ -72,7 +72,7 @@
                     alt="a bunch of boxes in storage"
                     class="slide-in from-left"
                 />
-                <div class="slide-in from-right">
+                <div class="slide-in from-right"><!--Supposed to slide in from the right but didn't work-->
                     <h3>Inventory Management</h3><br>
                     <p>
                         The ability to manage your inventory, vendors, and employees in one page. Add, edit, and delete your merchandise. Create employee accounts. Save your vendors and other resources.
@@ -121,17 +121,15 @@
                     class="slide-in from-right"
                 />
             </div>
-            
-            
         </div>
-        <div id="sources"> 
+        <div id="sources"> <!--Developer cards for everyone who worked on the project-->
             <div class="container">
                 <div class="avatar">
-                  <img src="jennie.jpg" height="150" width="150" alt="Jennie's headshot">
+                  <img src="jennie.jpg" height="150" width="150" alt="Jennie's headshot"><!--Developer headshots-->
                 </div>
-                <h2>Jennie</h2>
-                <a href="jennieSources.pdf">Sources</a>
-                <p>Project manager and database administrator. Implemented z-report and money page.</p>
+                <h2>Jennie Q. Colabella </h2><!--Developer names-->
+                <a href="jennieSources.pdf">Sources</a> <!--displays pdf with their sources-->
+                <p>Project manager and database administrator. Implemented z-report and money page.</p><!--Tasks that the developer has completed-->
             </div>
             <div class="container">
                 <div class="avatar">
