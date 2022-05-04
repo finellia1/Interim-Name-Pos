@@ -71,10 +71,6 @@
                     <div id="banner">
                     <h1>Z Report</h1>
                 </div>
-                <!-- Print brief description of the report for user. -->
-                <div id="instructions">
-                    <p><b>A Z Report is a detailed history of the current day's transactions. To print the Z Report for the current day, please click the "print report" button.</b></p>
-                </div>
 
                 <!-- Print company name and address. -->
                 <div id ="heading">
@@ -194,7 +190,7 @@
                                 $total_refunded = $check_sum + $credit_sum + $cash_sum;
                             }
                                 $total_check_refunds = number_format($check_sum, 2);
-                                $total_credit_refunds = number_format($credit_card_sum, 2);
+                                $total_credit_refunds = number_format($credit_sum, 2);
                                 $total_cash_refunds = number_format($cash_sum, 2);
                                 $total_amt_refunded = number_format($total_refunded, 2);
 
@@ -202,13 +198,12 @@
                             echo "Check Refunds: $" . $total_check_refunds . nl2br("\n");
                             echo "Credit Card Refunds: $" . $total_credit_refunds . nl2br("\n");
                             echo "Cash Refunds: $" . $total_cash_refunds . nl2br("\n");
+                            echo '<hr>';
                             echo "Total Refunds: $" . $total_amt_refunded . nl2br("\n");
                             echo '<hr>';
 
 
                         //Print Taxes Collected
-                        echo "TAXES COLLECTED: " . nl2br("\n");
-
                         $total_tax = 0;
                         $getData = $pdo->query("SELECT sales_tax
                         FROM invoice i
@@ -218,7 +213,7 @@
                             $total_tax += $sales_tax;
                             }
                         $tax_total = number_format($total_tax, 2);
-                        echo "Tax Collected January 1st to Current Date: $" . $tax_total . nl2br("\n");
+                        echo "TAXES COLLECTED: Tax Collected January 1st to Current Date: $" . $tax_total . nl2br("\n");
                         echo '<hr>';
 
 
@@ -329,13 +324,11 @@
                                 $dec_tax = $row['sales_tax'];
                                 $total_tax += $dec_tax;
                             }
-                        echo "TAXES COLLECTE BY MONTH: " . nl2br("\n");
-                        echo "Jan: $" . $jan_tax . ", Feb: $" . $feb_tax . ", Mar: $" . $mar_tax . ", Apr: $" . $apr_tax . ", May: $" . $may_tax .
-                        ", Jun: $" . $jun_tax . ", Jul: $" . $jul_tax . ", Aug: $" . $aug_tax . ", Sep: $" . $sep_tax . ", Oct: $" . $oct_tax .
-                        ", Nov: $" . $nov_tax . ", Dec: $" . $dec_tax. nl2br("\n");
+                        echo "TAXES COLLECTED BY MONTH: " . nl2br("\n");
+                        echo "JAN-APR: &nbsp;&nbsp;&nbsp; Jan: $" . $jan_tax . ", Feb: $" . $feb_tax . ", Mar: $" . $mar_tax . ", Apr: $" . $apr_tax . nl2br("\n");
+                        echo "MAY-AUG: &nbsp; May: $" . $may_tax . ", Jun: $" . $jun_tax . ", Jul: $" . $jul_tax . ", Aug: $" . $aug_tax . nl2br("\n");
+                        echo "SEP-DEC: &nbsp;&nbsp;&nbsp; Sep: $" . $sep_tax . ", Oct: $" . $oct_tax . ", Nov: $" . $nov_tax . ", Dec: $" . $dec_tax. nl2br("\n");
                         echo '<hr>';
-
-
 
                         } catch (\PDOException $e) {
                             print "Error!: " . $e->getMessage() . "<br/>";
@@ -344,7 +337,7 @@
                     }
                 ?>
             <form method="post">
-                <input type="submit" name="button" class="button" value="Print Report" />
+                <input type="submit" name="button" class="button" value="Print Report"/>
             </form>
         </div>
 
@@ -353,10 +346,7 @@
                     <div id="banner">
                         <h1>Profit Loss Report</h1>
                     </div>
-                    <div id="instructions">
-                    <p><b>Profit and loss reports summarize business revenue and expenses. To print the Profit/Loss Report from January 1 of the current year to the present date, click "print report."</b></p>
-                    </div>
-
+                    
                     <!-- Print company name and address. -->
                     <div id ="heading">
                         <h2 style="text-align:center;">RENT-EZ</h2>
