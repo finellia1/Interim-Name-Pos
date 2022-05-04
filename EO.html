@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>EO</title>
+
+       <link rel="stylesheet" href=".\css\EOStyle.css">
+       <script src=".\js\EOScript.js"></script>
+</head>
+<body>
+       
+       <div class="header">
+              <h1>Event Order</h1><!--Title-->
+       </div>
+       <form id="EOform">
+              <input type="hidden" name="req" value="save"/>
+              <input type="hidden" id="evtid" name="eid"/>   
+
+              <div id="textInput">
+                     <p>Event Order Creator</p><!--Person that submits this form-->
+                     <input type ="text" name="created_by" id="createdBy" required/>
+              </div>
+              <div id="textInput">
+                     <p>Event Name</p><!--Event name-->
+                     <input type ="text" name="event_name" id="event_name" required/>
+              </div>
+              <div id="textInput">
+                     <p>Order Date(todays date)</p><!--Date submitted-->
+                     <input type = "date" name= order_date id="orderDate" required>
+              </div>
+              <div id="textInput"><!--Event start and event end-->
+                     <p>Start Time:</p>
+                     <input type="datetime-local" id="start" name="event_start" value="2022-05-05T00:00" min="2022-05-05T00:00" max="2023-12-31T00:00" required/>
+              
+                     <p>End Time:</p>
+                     <input type="datetime-local" id="end" name="event_end" value="2022-05-05T00:00" min="2022-05-05T00:00" max="2023-12-31T00:00" required/>
+              </div>
+           
+              <div id="address"><!--Address of event, replace or use for the venue add function-->
+                     <p>What is the address of the event?</p>
+                     <input type="street"  id="autocomplete" placeholder="Street">
+                     <input type="city" id="inputCity" placeholder="City"><br>
+                     <input type="state" id="inputState" placeholder="State">
+                     <input type="zip" id="inputZip" placeholder="Zip">
+                     <input type="county" id="inputCounty" placeholder="County"><br>
+                     <input type="country" id="inputCountry" placeholder="Country">
+              </div>
+           
+              <div id="selectOne">    
+                     <p> What is the nature of the event? Choose One:</p> <!--What kind of event it is-->
+                     <label class ="radio-control"><input type="radio" name="event_type" id="other_text" value="party" onClick="regularEvent()" required>Party</input></label><br>
+                     <label class ="radio-control"><input type="radio" name="event_type" id="other_text" value="concert" onClick="regularEvent()">Concert</input></label><br>
+                     <label class ="radio-control"><input type="radio" name="event_type" id="other_text" value="convention" onClick="regularEvent()">Convention</input></label><br>
+                     <label class = "radio-input-control" onClick="otherEvent()"> <!--Adds the ability to add an other in case the user didn't see the exact type desired-->
+                            <input type="radio" name="event_type" id="other_event" value="other" >Other:</input>
+                            <input type ="text" name="other" id="dateInput" /></label>
+              </div>
+            
+              <div id="attendeeCount">
+                     <p> How many people do you expect to come to your event? Choose One:</p><!--Expected attendance-->
+                     <label class ="radio-control"><input type="radio" name="expected_num_people" value="10-50" required>10-50</input></label><br>
+                     <label class ="radio-control"><input type="radio" name="expected_num_people" value="50-100">50-100</input></label><br>
+                     <label class ="radio-control"><input type="radio" name="expected_num_people" value="100-200">100-200</input></label><br>
+                     <label class ="radio-control"><input type="radio" name="expected_num_people" value="200+">200+</input></label>
+              </div>
+            
+              <div id="helpOption">
+                     <p>Will you require a technician on site to help run the event?</p> <!--Technicians required-->
+                     <label class ="radio-control"><input type="radio" name="is_staffed" value=1 required>Yes</input></label><br>
+                     <label class ="radio-control"><input type="radio" name="is_staffed" value=0>No</input></label>
+              </div>
+
+              <div id="textInput"><!--Setup time-->
+                     <p>Setup Time:</p>
+                     <input type="datetime-local" id="start" name="setup_start" value="2022-04-03T00:00" min="2022-04-03T00:00" max="2023-12-31T00:00" required/>
+              </div>
+
+              <div id="textInput"><!--Breakdown/Clean up time -->
+                     <p>Breakdown Time:</p>
+                     <input type="datetime-local" id="start" name="breakdown_start" value="2022-04-03T00:00" min="2022-04-03T00:00" max="2023-12-31T00:00" required/>  
+              </div>
+
+              <div id="isnonProfit"><!--Is this event for a non profit organization -->
+                     <p>Is the event a non-profit?</p>
+                     <label class ="radio-control"><input type="radio" name="is_nonprofit" value=1 required>Yes</input></label><br>
+                     <label class ="radio-control"><input type="radio" name="is_nonprofit" value=0 >No</input></label>
+              </div>
+
+              <div id="contactOption"><!--Contact preferrance -->
+                     <p> How would you like us to contact you?</p>
+                     <label class ="radio-control"><input type="radio" name="contact_option" value="email"required>Email</input></label><br>
+                     <label class ="radio-control"><input type="radio" name="contact_option" value="phone">Phone</input></label>
+              </div>
+
+              <div id="paymentType"> <!--How did the customer pay for the event-->
+                     <p>How did you pay for this event?</p>
+                     <label class ="radio-control"><input type="radio" name="payment_type" value="Credit/Debit" required>Credit/Debit Card</input></label><br>
+                     <label class ="radio-control"><input type="radio" name="payment_type" value="Cash">Cash</input></label><br>
+                     <label class ="radio-control"><input type="radio" name="payment_type" value="Check">Check</input></label><br>
+              </div>
+            
+              <div id= "eventNotes"><!--other notes-->
+                     <p>Any other notes?</p>
+                     <textarea id="notes" name="event_notes" cols="50" rows="10" required></textarea>
+              </div>
+
+              <div id= "submitBlock"><!--Submit button-->
+                     <a href="invoicepage"><input type="submit" class="Submit"></a>
+              </div>
+            
+       </form>
+       
+</body>

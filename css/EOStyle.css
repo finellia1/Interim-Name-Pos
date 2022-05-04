@@ -1,0 +1,170 @@
+:root {/*color for radio buttons*/
+  --form-control-color: #452ADD;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.header {   /*gradient header*/
+  padding: 60px;
+  text-align: center;
+  background-image: linear-gradient(to bottom right, #452ADD 7.5%, #602add 88.59%);
+  color: white;
+  font-size: 30px;
+}
+input,
+label { /*adds space between label and input*/
+  margin: 5px 5px;
+}
+
+#textInput input {  /*text box customization*/
+  padding: 10px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  box-shadow: 0px 0px 3px gray;
+  height: 30px;
+  text-align: start;
+}
+
+form div {  /*centers form*/
+  margin: 0px auto;
+  width: 450px;
+}
+
+#address input {  /*Styles address boxes*/
+  padding: 10px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  box-shadow: 0px 0px 3px gray;
+  height: 30px;
+  text-align: start;
+}
+#inputStreet {
+  width: 100%;
+}
+
+#inputCity {
+  width: 50%;
+}
+
+#inputState {
+  width: 15%;
+}
+
+#inputZip {
+  width: 28%;
+}
+
+#inputCounty {
+  width: 45%;
+}
+
+#inputCountry {
+  width: 50%;
+}
+
+.radio-control {  /*styles radio buttons*/
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.1;
+  display: grid;
+  grid-template-columns: 1em auto;
+  gap: 0.5em;
+  transform: translateY(-0.075em);
+}
+.radio-input-control {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.1;
+  display: grid;
+  grid-template-columns: 1em 40px 200px;
+  gap: 0.5em;
+  transform: translateY(-0.075em);
+}
+input[type="radio"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+  font: inherit;
+  color: currentColor;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid currentColor;
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+}
+input[type="radio"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--form-control-color);
+}
+input[type="radio"]:checked::before {
+  transform: scale(1);
+}
+input[type="radio"]:focus {
+  outline: max(2px, 0.15em) solid currentColor;
+  outline-offset: max(2px, 0.15em);
+}
+.radio-control:focus-within {
+  color: var(--form-control-color);
+}
+.radio-input-control:focus-within {
+  color: var(--form-control-color);
+}
+p {
+  font-weight: 700;
+  font-size: 18px;
+}
+.Submit {/*styles submit block/button*/
+  width: 150px;
+  height: 40px;
+  display: inline-block;
+  padding: 0.3em 1.2em;
+  margin: 0 0.1em 0.1em 0;
+  border: 0.16em solid rgba(255, 255, 255, 0);
+  border-radius: 2em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+  text-shadow: 0 0.04em 0.04em rgba(0, 0, 0, 0.35);
+  text-align: center;
+  transition: all 0.2s;
+  background-image: linear-gradient(#452ADD 7.5%, #602add 88.59%);
+}
+.Submit:hover {
+  border-color: black;
+}
+@media all and (max-width: 30em) {
+  .Submit {
+    display: block;
+    margin: 0.2em auto;
+  }
+}
+#submitBlock {
+  margin: 0px auto;
+  width: 450px;
+}
+#eventNotes textarea {
+  padding: 10px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  box-shadow: 0px 0px 3px gray;
+  text-align: start;
+}
