@@ -460,23 +460,22 @@
                                 FROM refund WHERE date_refunded BETWEEN MAKEDATE(YEAR(CURDATE()), 1) AND MAKEDATE(YEAR(CURDATE())+1, 1)");
                                 foreach ($getData as $row) {
                                     $amt_refunded_check = $row['amt_refunded_check'];
-                                    $check_sum -= $amt_refunded_check;
+                                    $check_sum += $amt_refunded_check;
                                     $amt_refunded_credit = $row['amt_refunded_credit'];
+                                    $credit_card_sum += $amt_refunded_credit;
                                     $amt_refunded_cash = $row['amt_refunded_cash'];
+                                    $cash_sum += $amt_refunded_cash;
                                 }
-                                    $total_refunds = $amt_refunded_check + $amt_refunded_credit + $amt_refunded_cash;
+                                    $total_refunds = $check_sum + $credit_card_sum + $cash_sum;
                                     $profit_loss = $total_sales - $total_refunds;
-                                    $total_checks_refunded = number_format($amt_refunded_check, 2);
-                                    $total_cards_refunded = number_format($amt_refunded_credit, 2);
-                                    $total_cash_refunded = number_format($amt_refunded_cash, 2);
+                                    $total_checks_refunded = number_format($check_sum, 2);
+                                    $total_cards_refunded = number_format($credit_card_sum, 2);
+                                    $total_cash_refunded = number_format($cash_sum, 2);
                                     $total_amt_refunded = number_format($total_refunds, 2);
                                 echo "Total Check Refunds: $" . $total_checks_refunded . nl2br("\n");
                                 echo "Total Credit Card Refunds: $" . $total_cards_refunded . nl2br("\n");
                                 echo "Total Cash Refunds: $" . $total_cash_refunded . nl2br("\n\n");
                                 echo "Total Refunds: $" . $total_amt_refunded . nl2br("\n\n");
-
-
-
 
                                 //Print Employee Salary Total for Active Employees
                                 $total_salaries = 0;
