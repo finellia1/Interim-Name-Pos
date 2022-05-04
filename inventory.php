@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang = "en">
 
 <head>
+    <title>Inventory</title>
     <link rel="stylesheet" href=".\css\homePage.css">
     <script>
         let img = document.querySelector('img');
@@ -25,7 +26,7 @@
 
             <div class="middlePanel">
                 <div class="inventory">
-                    <?php 
+                        <?php 
                         require './classes/session.classes.php';
 
                         session::start();

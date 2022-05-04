@@ -48,7 +48,7 @@ class clientSearch extends Dbh {
                 //Create form to handle removing item
                 echo "<form name='remove' action='./includes/clientRemove.inc.php' method='post'>";
                 echo "<td><label for 'Delete button'><button type='submit' name='submit' value='submit'>Delete</button></label>";
-                echo "<input type='hidden' name='PID' id='deleteID' value='{$row['client_ID']}'>";
+                echo "<input type='hidden' name='PID' value='{$row['client_ID']}'>";
                 echo "</form>";
 
                 echo "<td> {$row['client_ID']} </td>";
