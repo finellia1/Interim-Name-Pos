@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang = "en">
 <head>
+    <title>Clients</title>
     <link rel="stylesheet" href=".\css\homePage.css">
     <script>
             let img = document.querySelector('img');

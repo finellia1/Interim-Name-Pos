@@ -38,7 +38,7 @@ class vendorSearch extends Dbh {
                 //Create form to handle removing item
                 echo "<form name='remove' action='./includes/vendorRemove.inc.php' method='post'>";
                 echo "<td><label for 'Delete button'><button type='submit' name='submit' value='submit'>Delete</button></label>";
-                echo "<input type='hidden' name='PID' id='deleteID' value='{$row['vendor_ID']}'>";
+                echo "<input type='hidden' name='PID' value='{$row['vendor_ID']}'>";
                 echo "</form>";
 
                 echo "<td> {$row['vendor_ID']} </td>";

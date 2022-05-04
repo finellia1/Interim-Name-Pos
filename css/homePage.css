@@ -5,10 +5,13 @@ body {
 .wrap {
   height: 100vh;
   display: flex;
+  flex-wrap: wrap;
 }
 main {
   flex: 1;
   display: flex;
+  flex-wrap: wrap;
+
 }
 .nav-bar {
   height: 100%;
@@ -68,13 +71,17 @@ main {
   /*background-color: rgba(196, 196, 196, 0.16);*/
   width: 100%;
   height: 100%;
+  flex-wrap: wrap;
+
 }
 .rightPanel{
   background-color: rgba(196, 196, 196, 0.16);
+  flex-wrap: wrap;
 }
 .inventory {
   height: inherit;
 }
+
 
 fieldset{
   border: none;

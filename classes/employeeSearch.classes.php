@@ -43,7 +43,7 @@ class employeeSearch extends Dbh {
                 echo "<form name='remove' action='./includes/employeeRemove.inc.php' method='post'>";
                 echo "<td><label for 'Delete button'><button type='submit' name='submit' value='submit'>Delete</button></label>";
                 //echo "<td><label for 'Cart button'><button type='button'>Cart</button></label>";
-                echo "<input type='hidden' name='PID' id='deleteID' value='{$row['employee_ID']}'>";
+                echo "<input type='hidden' name='PID' value='{$row['employee_ID']}'>";
                 echo "</form>";
                 
 
