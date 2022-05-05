@@ -68,7 +68,7 @@ switch ($_POST["req"]) {
   case "confirm":
     echo $_CAL->confirm(
       $_POST["load_truck_start"], $_POST["num_trucks_needed"], $_POST["num_techs_needed"], $_POST["eid"]
-    );
+    ) ? "OK" : $_CAL->error ;
 
  
   // (D) DELETE EVENT

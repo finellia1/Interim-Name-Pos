@@ -26,8 +26,11 @@ class Calendar {
   // HELPER - EXECUTE SQL QUERY
   function exec ($sql, $data=null) {
     try {
+      $this->pdo->beginTransaction();
       $this->stmt = $this->pdo->prepare($sql);
       $this->stmt->execute($data);
+      $this->pdo->commit();
+      
       return true;
     } catch (Exception $ex) {
       $this->error = $ex->getMessage();
@@ -51,7 +54,7 @@ class Calendar {
       $data = [$type, $is_nonprofit, $order_date, $start, $end, $setup, $breakdown, $is_staffed, $creator, $name, $attendees, $contact, $notes];
     } else {
       $sql = "UPDATE `event_order` SET `event_type`=?, `isnonprofit`=?, `order_date`=?, `event_start`=?, `event_end`=?, `setup_start`=?, `breakdown_start`=?, `is_staffed`=?, `created_by`=?, `event_name`=?, 
-      `expected_num_people`=?, `contact_option`=?, `event_notes`=?) WHERE `event_order_ID`=?";
+      `expected_num_people`=?, `contact_option`=?, `event_notes`=? WHERE `event_order_ID`=?";
       $data = [$type, $is_nonprofit, $order_date, $start, $end, $setup, $breakdown, $is_staffed, $creator, $name, $attendees, $contact, $notes, $id];
     }
 
@@ -59,10 +62,11 @@ class Calendar {
     return $this->exec($sql, $data);
   }
   function confirm($load_truck_start, $num_trucks_needed, $num_techs_needed, $id=null){
-    $isconfirmed = 1;
-    $sql="UPDATE `event_order` SET `load_truck_start`=?, `num_trucks_needed`=?, `num_techs_needed`=?, `is_confirmed`=?) WHERE `event_order_ID`=?";
-    $data = [$load_truck_start, $num_trucks_needed, $num_techs_needed, $isconfirmed, $id];
-    return $this->exec($sql, $data);
+    if($id != null){
+      $sql="UPDATE `event_order` SET `load_truck_start`=?, `num_trucks_needed`=?, `num_techs_needed`=?, `is_confirmed`=? WHERE `event_order_ID`=?";
+      $data = [$load_truck_start, $num_trucks_needed, $num_techs_needed, 1, $id];
+      return $this->exec($sql,$data);
+    }
   }
 
   // DELETE EVENT

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,14 +8,15 @@
 
     <link rel="stylesheet" href=".\css\calendarPage.css">
     <script>
-            let img = document.querySelector('img');
-            let start = img.src;
-            let hover = img.getAttribute('data-hover'); //specified in img tag
-            console.log(start);
+            //let img = document.querySelector('img');
+            //let start = img.src;
+            //let hover = img.getAttribute('data-hover'); //specified in img tag
+            //console.log(start);
 
-            img.onmouseover = () => { img.src = hover; } 
-            img.onmouseout = () => { img.src = start; } //to revert back to start
+            //img.onmouseover = () => { img.src = hover; } 
+            //img.onmouseout = () => { img.src = start; } //to revert back to start
     </script>
+    <script type="text/javascript" src=".\js\calendarScript.js"></script>
 </head>
 <body>
     <div class = "wrap">
@@ -63,76 +65,64 @@
                 </div>
             </div>
             <div class = "middlePanel"> 
-                    <div id="banner">
-                        <h1>Calendar</h1>
-                    </div>
-                    <div id="container">
-                        <div id="header">
-                            <div id="monthDisplay"></div>
-                            <div>
-                            <button id="backButton">Back</button>
-                            <button id="nextButton">Next</button>
-                            </div>
-                        </div>
+                <div id="banner">
+                    <h1>Calendar</h1>
+                </div>
+                <!-- (A) PERIOD SELECTOR -->
+                <div id="calPeriod"><?php
+                // (A1) MONTH SELECTOR
+                // NOTE: DEFAULT TO CURRENT SERVER MONTH YEAR
+                $months = [
+                    1 => "January", 2 => "Febuary", 3 => "March", 4 => "April",
+                    5 => "May", 6 => "June", 7 => "July", 8 => "August",
+                    9 => "September", 10 => "October", 11 => "November", 12 => "December"
+                ];
+                $monthNow = date("m");
+                echo "<select id='calmonth'>";
+                foreach ($months as $m=>$mth) {
+                    printf("<option value='%s'%s>%s</option>",
+                    $m, $m==$monthNow?" selected":"", $mth
+                    );
+                }
+                echo "</select>";
 
-                        <div id="weekdays">
-                            <div>Sunday</div>
-                            <div>Monday</div>
-                            <div>Tuesday</div>
-                            <div>Wednesday</div>
-                            <div>Thursday</div>
-                            <div>Friday</div>
-                            <div>Saturday</div>
-                        </div>
+                // (A2) YEAR SELECTOR
+                echo "<input type='number' id='calyear' value='".date("Y")."'/>";
+                ?></div>
 
-                        <div id="calendar"></div>
-                        </div>
+                <!-- (B) CALENDAR WRAPPER -->
+                <div id="calwrap"></div>
 
-                        <div id="newEventModal">
-                        <h2>New Event</h2>
-
-                        <input id="eventTitleInput" placeholder="Event Title"/>
-                        <textarea id="eventDescriptionInput" placeholder="Event Description" ></textarea>
-                        <select id= "employee1" name="employees" id="employees">
-                            <option value="none" selected disabled hidden>Select an Employee</option>
-                            <option value="Reed">Reed</option>
-                            <option value="Taimur">Taimur</option>
-                            <option value="Jorge">Jorge</option>
-                            <option value="Ben">Ben</option>
-                        </select>
-                        <br></br>
-                        <select id= "employee2" name="employees" id="employees">
-                            <option value="none" selected disabled hidden>Select an Employee</option>
-                            <option value="Reed">Reed</option>
-                            <option value="Taimur">Taimur</option>
-                            <option value="Jorge">Jorge</option>
-                            <option value="Ben">Ben</option>
-                        </select>
-                        <br></br>
-                        <button id="saveButton">Save</button>
-                        <button id="cancelButton">Cancel</button>
-                        
-                        </div>
-
-                        <div id="deleteEventModal">
-                        <h2>Event</h2>
-
-                        <p id="eventText"></p>
-
-                        <button id="deleteButton">Delete</button>
-                        <button id="closeButton">Close</button>
-                        
-                        </div>
-
-                        <div id="modalBackDrop"></div>
-                        <script src=".\js\calendarScript.js"></script>
+                <!-- (C) EVENT FORM -->
+                <div id="calblock"><form id="calform">
+                <input type="hidden" name="req" value="confirm"/>
+                <input type="hidden" id="evtid" name="eid"/>
+                <label for="start">Load Trucks:</label>
+                <input type="datetime-local" id="load_truck_start" name="load_truck_start" required/>
+                <label for="num_techs_needed">Number of Techs:</label>
+                <input type ="text" name="num_techs_needed" id="num_techs_needed" required/>
+                <label for="num_trucks_needed">Number of Trucks:</label>
+                <input type ="text" name="num_trucks_needed" id="num_trucks_needed" required/>
+                <input type="submit" id="calformsave" value="Confirm"/>
+                <input type="button" id="calformcx" value="Cancel"/>
+                </form></div>
             </div>
             <div class = "rightPanel">
-                <p id ="eventTitle"></p>
-                <p id="eventInfo"></p>
-                <p id="Employees"></p>
-                <p id="working1"></p>
-                <p id="working2"></p>
+                
+                    <p id="event_title"></p>
+                    <p id="isconfirmed"></p>
+                    <p id="nonprofit"></p>
+                    <p id="eventtype"></p>
+                    <p id ="orderdate"></p>
+                    <p id="eventstart"></p>
+                    <p id="eventend"></p>
+                    <p id="setupStart"></p>
+                    <p id="breakdownStart"></p>
+                    <p id="expected_attendees"></p>
+                    <p id="staffed"></p>
+                    <p id="contactPreferences"></p>
+
+                <input type="button" id="calformdel" value="Delete"/>   
             </div>
         </main>
     </div>

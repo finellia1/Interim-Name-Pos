@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+
+    <link rel="stylesheet" href=".\css\landingPagestyle.css">
+    <script src=".\js\landingScript.js"></script>
+</head>
+<body>
+    <section>
+        <img src=".\Assets\layer.png" id="layer" alt="A stage with a band performing and auto filled with a fake crowd"> <!--Background for Parallax scrolling-->
+        <img src=".\Assets\crowd.png" id="crowd" alt="Real crowd that rises up as you scroll">  <!--Foreground for Parallax scrolling-->
+        <h2 id="text">Rent EZ</h2><br> <!--Title and Company Name-->
+        <div id = "nav">
+            
+            <a href="#about">About</a><br> <!--Skip to about section-->
+            <a href="#services">Services</a><!--Skip to service section-->
+            <a href="#sources">Sources</a><!--Skip to sources section-->
+            <div id="login"><a href="login.php">Log In</a></div><!--Takes you to login page-->
+        </div>    
+        
+
+    </section>
+    <script type="text/javascript"> //For parallax scrolling 
+        let layer = document.getElementById("layer");
+        let crowd = document.getElementById("crowd");
+        let text = document.getElementById("text");
+
+        window.addEventListener('scroll', function(){
+            var value = window.scrollY;
+            layer.style.top = value * 0.30 + 'px';
+            crowd.style.top = value* 0.20 + 'px';
+            text.style.top = -value * 0.05 + 'px';
+        })
+    </script>
+
+        <div class="home-about" >
+            <h2 id="about">About us</h2>
+            <p>A POS system meant to help rental companies better manage their businesses.</p>
+            <div class="columns">
+                <div class="col">
+                    <h3>Tailored to Your Needs</h3>
+                    <p>Our inventory system is created to house any type of product or merchandise, so don't
+                        worry about not being compatable with us.
+                    </p>
+                </div>
+
+                <div class="col">
+                    <h3>Make it your own</h3>
+                    <p>Our user interface was made with your company's personality in mind. Make the website your own by incorporating your own logo and color pallete.
+                    </p>
+                </div>
+          
+                <div class="col">
+                    <h3>Fully Mutable</h3>
+                    <p>We know that running a business isn't as straight-forward as large companies make it out to be. We made sure that you will not be
+                        held back by our software and can make the decisions you need to make, when you need to make them.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="home-more-stuff">
+            <h2 id = services>Services</h2>
+            <br>
+            <div class="more-stuff-grid">
+                <img
+                    width= "400"
+                    height="400"
+                    src=".\Assets\inventory_img.jpg"
+                    alt="a bunch of boxes in storage"
+                    class="slide-in from-left"
+                />
+                <div class="slide-in from-right"><!--Supposed to slide in from the right but didn't work-->
+                    <h3>Inventory Management</h3><br>
+                    <p>
+                        The ability to manage your inventory, vendors, and employees in one page. Add, edit, and delete your merchandise. Create employee accounts. Save your vendors and other resources.
+                    </p>
+                </div>
+            </div>
+            <div class="more-stuff-grid">
+                <div class="slide-in from-left">
+                    <h3>Scheduling</h3><br>
+                    <p>
+                        Schedule events, employee work schedules, and more.
+                        View schedule through a beautifully designed and responsive UI.
+                        All through the comfort of your device.
+                    </p>
+                </div>
+
+                <img
+                    width="400";
+                    height="400";
+                    src=".\Assets\scheduling_img.jpg"
+                    alt="Man writing on a post-it that is on board"
+                    class="slide-in from-right"
+                />
+            </div>
+            <div class="more-stuff-grid">
+                <img width ="400" src=".\Assets\transactions_img.jpg" alt="a hand scanning a credit card on a credit card scanner" class="slide-in from-left" />
+                <div class="slide-in from-right">
+                    <h3>Transactions</h3>
+                    <br>
+                    <p>
+                        All transactions can be done through the shopping cart system. Safe interactions using authorize.net. 
+                    </p>
+                </div>
+            </div>
+            <div class="more-stuff-grid">
+                <div  class="slide-in from-left">
+                    <h3>Financials</h3><br>
+                    <p>
+                        Invoices and Z-reports are produced for every interactions. No more hassle on your financial side.
+                    </p>
+                </div>
+                <img
+                    width="400"
+                    src="./Assets/financials_img.jpg"
+                    alt="Man looking at graphs and charts on a laptop"
+                    class="slide-in from-right"
+                />
+            </div>
+        </div>
+        <div id="sources"> <!--Developer cards for everyone who worked on the project-->
+            <div class="container">
+                <div class="avatar">
+                  <img src="jennie.jpg" height="150" width="150" alt="Jennie's headshot"><!--Developer headshots-->
+                </div>
+                <h2>Jennie Q. Colabella </h2><!--Developer names-->
+                <a href="jennieSources.pdf">Sources</a> <!--displays pdf with their sources-->
+                <p>Project manager and database administrator. Implemented z-report and money page.</p><!--Tasks that the developer has completed-->
+            </div>
+            <div class="container">
+                <div class="avatar">
+                  <img src="./Assets/Taimur.jpeg" height="150" width="150" alt="Taimur's headshot">
+                </div>
+                <h2>Taimur Tawil</h2>
+                <a href="taimurSources.pdf ">Sources</a>
+                <p>Designed nav bar and landing page. Implemented scheduling and event order system. Created calendar page. </p>
+            </div>
+            <div class="container">
+                <div class="avatar">
+                  <img src="./Assets/antonio.jpg" height="150" width="150" alt="Antonio's headshot">
+                </div>
+                <h2>Antonio Finelli</h2>
+                <a href="antonioSources.pdf">Sources</a>
+                <p>ADA compliances, inventory table, employee table,
+                    and vendor table. Established common design theme.
+                </p>
+            </div>
+            <div class="container">
+                <div class="avatar">
+                  <img src="./Assets/nick.jpg" height="150" width="150" alt="Nick's headshot">
+                </div>
+                <h2>Nicholas Finelli</h2>
+                <a href="nickSources.pdf">Sources</a>
+                <p></p>
+                <p>Error Handling, login logic, permissions, and file management.</p>
+            </div>
+            <div class="container">
+                <div class="avatar">
+                  <img src="./Assets/asfand.png" height="150" width="150" alt="Asfand's headshot"> 
+                </div>
+                <h2>Asfand Alavi</h2>
+                <a href="asfandSources.pdf">Sources</a>
+                <p>Implemented invoicing, secure checkout, and mobile responsivness</p>
+            </div>
+            <div class="container">
+                <div class="avatar">
+                  <img src="./Assets/jorge.jpg" height="150" width="150" alt="Jorge's headshot">
+                </div>
+                <h2>Jorge Cruz</h2>
+                <a href="jorgeSources.pdf">Sources</a>
+                <p> Login UI, Shopping cart logic and UI. Security and authorize.net</p>
+            </div>
+        </div>
+
+
+
+</body>
