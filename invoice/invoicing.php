@@ -244,6 +244,7 @@
 
 </head>
 <body>
+<main title="Invoicing">
 
     <div class="container">
        <div class="container" style="padding-top:10px"> 
@@ -322,7 +323,7 @@
             <div class="card" style="max-width: 300px">
                     
                 <h2 style="padding: 10px;">SubTotal : <?php echo "$".sprintf("%.2f", ($totalcost)); ?></h1>
-                <h4 style="padding: 10px;"> 
+                <h3 style="padding: 10px;"> 
                 <?php
                 if($currentClient['is_tax_exempt'] == 1){ //checks if client is tax exempt or not, and changes the invoice accordingly
                     echo "Text Exempt";
@@ -331,7 +332,7 @@
                     echo "Tax: 8%";
                 }
                 ?>
-                </h4>
+                </h3>
                            
             </div>  
             
@@ -339,6 +340,6 @@
             <button onClick="window.print()">Print this page</button>
             <button style="">Continue</button>
             
-        
+            </main>
 </body>
 </html>

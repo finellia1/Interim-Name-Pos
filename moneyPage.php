@@ -1,6 +1,7 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html >
+<html lang = "en">
     <head>
+    <title>Money Page</title>
     <link rel="stylesheet" href="navBar.css">
         <script>
             let img = document.querySelector('img');
@@ -68,16 +69,16 @@
 
                 <!-- Create Z Report -->
                 <div class="middlePanel">
-                    <div id="banner">
+                    <div class="banner">
                     <h1>Z Report</h1> 
                 </div>
                 <!-- Print brief description of the report for user. -->
-                <div id="instructions">
+                <div class="instructions">
                     <p><b>A Z Report is a detailed history of the current day's transactions. To print the Z Report for the current day, please click the "print report" button.</b></p>
                 </div>
 
                 <!-- Print company name and address. -->
-                <div id ="heading">
+                <div class ="heading">
                     <h2 style="text-align:center;">RENT-EZ</h2>
                     <h3><span class="tab4">123 Main Street,</span> <span class="tab4">Hurley, NY 12443</span></h3>
                     <h3>(845)555-1212</h3>      
@@ -350,15 +351,15 @@
 
                <!-- CREATE PROFIT/LOSS REPORT -->
                 <div class="rightPanel">
-                    <div id="banner">
+                    <div class="banner">
                         <h1>Profit Loss Report</h1>
                     </div>
-                    <div id="instructions">
+                    <div class="instructions">
                     <p><b>Profit and loss reports summarize business revenue and expenses. To print the Profit/Loss Report from January 1 of the current year to the present date, click "print report."</b></p>
                     </div>
 
                     <!-- Print company name and address. -->
-                    <div id ="heading">
+                    <div class ="heading">
                         <h2 style="text-align:center;">RENT-EZ</h2>
                         <h3>123 Main Street, Hurley, NY 12443</h3>
                         <h3>(845)555-1212</h3>      

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang = "en">
 
 <head>
+    <title>Inventory</title>
     <link rel="stylesheet" href=".\css\homePage.css">
     <script>
         let img = document.querySelector('img');
@@ -24,12 +25,22 @@
         <main>
 
             <div class="middlePanel">
+                <?php 
+                    //https://www.php.net/manual/en/reserved.variables.get.php
+                    if(isset($_GET['skipnav'])){
+                        if($_GET['skipnav'] == 'true'){
+                            echo "<br>";
+                            echo '<a class = "skipNav" href="skipNav.html" alt = "Skip navigation link">Skip Navigation</a>';
+                        }
+                    }
+                ?>
                 <div class="inventory">
-                    <?php 
+                        <?php 
                         require './classes/session.classes.php';
 
                         session::start();
                         // session_start();
+                        
                         ?>
                     <div id="searchPopup" class="popup">
                         <fieldset>
@@ -376,6 +387,7 @@
                             </form>
                             <fieldset>
                     </div>
+
                     <!-- Control panel contains buttons for adding and searching for items-->
                     <table id="controlPanel">
                         <tr>
@@ -392,6 +404,7 @@
                             </label>
                         </tr>
                     </table>
+
                     <!--Contains the table-->
                     <div id="inventoryWrapper">
                         <table id="inventory">
@@ -426,7 +439,6 @@
 
                 </div>
             </div>
-
         </main>
     </div>
 
