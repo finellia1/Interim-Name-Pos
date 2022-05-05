@@ -12,7 +12,10 @@
     $products = $stmt -> fetchALL(PDO::FETCH_ASSOC);
     $items_in_cart;
     $itemnumber=0;
-    $totalcost =0;
+    $totalcost =0.00;
+    $sales_tax =0.00;
+    $subtotal = 0.00;
+    $payment_type = "credit card";
 
 
     for($i = 0; $i<count($products); $i++){
@@ -41,7 +44,8 @@
     $stmt = $conn ->query('SELECT invoice_ID FROM invoice');  //gets all invoice_ID numbers to figure out current invoiceID
     $ids = $stmt -> fetchALL(PDO::FETCH_COLUMN);
     $newID =array_pop($ids);                                  //gets most recent id and increments it.
-    $newID++;
+
+    $_SESSION['invoice_ID'] = $newID; 
 
     // for testing
     $stmt2 = $conn ->query('SELECT * FROM client');            //gets all client info, that will be used display info on invoice, see if tax exempt,
@@ -54,7 +58,9 @@
     
     if ($currentClient['is_tax_exempt'] == 0){
         
+        $subtotal = $totalcost;
         $totalcost = $totalcost * $tax;
+        $sales_tax = $totalcost - $subtotal;
 
     }
     
@@ -64,9 +70,15 @@
     
     //// Adding new invoice info into database. It works, but its currently commented out to make testing easier. 
 
-    // $timeNow=date("Y-m-d");
-    // $query= 'INSERT INTO invoice(invoice_ID, event_order_ID_fk, client_ID_fk, invoice_date, total_due) VALUES (?,?,?,?,?)';
-    // $statement = $conn->prepare($query)->execute([$newID, 1, $currentClient['client_ID'],$timeNow,$totalcost]);
+    $stmt = $conn ->query('SELECT * FROM `event_order` ORDER BY `event_order`.`event_order_ID` ASC');  //gets corresponding event_order_ID for foreign key
+    $ids = $stmt -> fetchALL(PDO::FETCH_COLUMN);
+    $eo_ID =array_pop($ids);  
+
+    $dateNow=date("Y-m-d");
+    $timeNow= date("Y-m-d  H:i:s");
+
+    $query= 'INSERT INTO invoice( event_product_list_ID_fk, event_order_ID_fk, client_ID_fk, venue_ID_fk, refund_ID_fk, time_of_sale, is_tax_exempt, subtotal, sales_tax, total_due, payment_type, date_due) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)';
+    $statement = $conn->prepare($query)->execute([9, $eo_ID, $currentClient['client_ID'], 2, 0, $timeNow, 0, $subtotal,$sales_tax, $totalcost,$payment_type, $dateNow]);
 
 ?>
 

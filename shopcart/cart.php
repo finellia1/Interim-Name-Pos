@@ -92,7 +92,7 @@ if ($products_in_cart) {
     <div id="banner">
     <h1>Shopping Cart</h1>
     </div>
-    <form action="../invoice/invoicing.php"  target="_parent" method="post">
+    <form action="../EO.html"  target="_parent" method="post">
         <table>
 
                 <tr>
