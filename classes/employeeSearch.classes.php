@@ -25,40 +25,43 @@ class employeeSearch extends Dbh {
 
                 //Clean job title
                  $c_job_title = $row['job_title'];
-                 if(str_contains($c_job_title, '"')){
+                 if(strpos($c_job_title, '"')){
                      $c_job_title = str_replace('"', "“", $row['job_title']);
                  }
-                 if(str_contains($c_job_title, "'")){
+                 if(strpos($c_job_title, "'")){
                      $c_job_title = str_replace("'", "’", $row['job_title']);
                  }
  
                 //Clean first name
                  $c_first_name = $row['first_name'];
-                 if(str_contains($c_first_name, '"')){
+                 if(strpos($c_first_name, '"')){
                      $c_first_name = str_replace('"', "“", $row['first_name']);
                  }
-                 if(str_contains($c_first_name, "'")){
+                 if(strpos($c_first_name, "'")){
                      $c_first_name = str_replace("'", "’", $row['first_name']);
                  }
  
                 //Clean last name
                 $c_last_name = $row['last_name'];
-                 if(str_contains($c_last_name, '"')){
+                 if(strpos($c_last_name, '"')){
                      $c_last_name = str_replace('"', "“", $row['last_name']);
                  }
-                 if(str_contains($c_last_name, "'")){
+                 if(strpos($c_last_name, "'")){
                      $c_last_name = str_replace("'", "’", $row['last_name']);
                  }
  
                 //Clean email
                 $c_email = $row['email'];
-                 if(str_contains($c_email, '"')){
+                 if(strpos($c_email, '"')){
                      $c_email = str_replace('"', "“", $row['email']);
                  }
-                 if(str_contains($c_email, "'")){
+                 if(strpos($c_email, "'")){
                      $c_email = str_replace("'", "’", $row['email']);
                  }
  
+                //use strpos instead of str_contains for better compatilibility with PHP versions below 8
+                    //https://stackoverflow.com/questions/66519169/call-to-undefined-function-str-contains-php
+
 
                 //Append single quotes to either side the data
                 //This is done to be able to pass a string to a js onclick()

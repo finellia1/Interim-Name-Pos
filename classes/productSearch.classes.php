@@ -47,55 +47,55 @@ class productSearch extends Dbh {
 
                 //Clean product type input
                 $c_type = $row['product_type'];
-                if(str_contains($c_type, '"')){
+                if(strpos($c_type, '"')){
                     $c_type = str_replace('"', "“", $row['product_type']);
                 }
-                if(str_contains($c_type, "'")){
+                if(strpos($c_type, "'")){
                     $c_type = str_replace("'", "’", $row['product_type']);
                 }
 
                 //Clean name input
                 $c_name = $row['product_name'];
-                if(str_contains($c_name, '"')){
+                if(strpos($c_name, '"')){
                     $c_name = str_replace('"', "“", $row['product_name']);
                 }
-                if(str_contains($c_name, "'")){
+                if(strpos($c_name, "'")){
                     $c_name = str_replace("'", "’", $row['product_name']);
                 }
 
                 //Clean description
                 $c_description = $row['product_description'];
-                if(str_contains($c_description, '"')){
+                if(strpos($c_description, '"')){
                     $c_description = str_replace('"', "“", $row['product_description']);
                 }
-                if(str_contains($c_description, "'")){
+                if(strpos($c_description, "'")){
                     $c_description = str_replace("'", "’", $row['product_description']);
                 }
 
                 //Clean make
                 $c_make = $row['make'];
-                if(str_contains($c_make, '"')){
+                if(strpos($c_make, '"')){
                     $c_make = str_replace('"', "“", $row['make']);
                 }
-                if(str_contains($c_make, "'")){
+                if(strpos($c_make, "'")){
                     $c_make = str_replace("'", "’", $row['make']);
                 }
 
                 //Clean model
                 $c_model = $row['model'];
-                if(str_contains($c_model, '"')){
+                if(strpos($c_model, '"')){
                     $c_model = str_replace('"', "“", $row['model']);
                 }
-                if(str_contains($c_model, "'")){
+                if(strpos($c_model, "'")){
                     $c_model = str_replace("'", "’", $row['model']);
                 }
 
                 //Clean Quantity Unit
                 $c_qty_unit = $row['qty_unit'];
-                if(str_contains($c_type, '"')){
+                if(strpos($c_type, '"')){
                     $c_qty_unit = str_replace('"', "“", $row['qty_unit']);
                 }
-                if(str_contains($c_type, "'")){
+                if(strpos($c_type, "'")){
                     $c_qty_unit = str_replace("'", "’", $row['qty_unit']);
                 }
                 

@@ -6,29 +6,59 @@
         
     class permissions{
         public $permissionArray = array(    
-        "homepage" => array(
+        "inventory" => array(
             "user" => array(
                             "addToCart" => 0, 
-                            "search" => 1,
-                            "add" => 0, 
-                            "delete" => 0),
+                            "edit" => 0, 
+                            "delete" => 0, 
+                            "addItem" => 0, 
+                            "search" => 1, 
             "staff" => array(
                             "addToCart" => 1, 
-                            "search" => 1,
-                            "add" => 0, 
-                            "delete" => 0),
+                            "edit" => 0, 
+                            "delete" => 0, 
+                            "addItem" => 0, 
+                            "search" => 1, 
             "manager" => array(
-                            "addToCart" => 0, 
-                            "search" => 1,
-                            "add" => 0, 
-                            "delete" => 0),
+                            "addToCart" => 1, 
+                            "edit" => 1, 
+                            "delete" => 1, 
+                            "addItem" => 1, 
+                            "search" => 1, 
             "administrator" => array(
                             "addToCart" => 1, 
-                            "search" => 1,
-                            "add" => 0, 
-                            "delete" => 0)
-                            )
-            
+                            "edit" => 1, 
+                            "delete" => 1, 
+                            "addItem" => 1, 
+                            "search" => 1,      
+            )),
+            "Cleints" => array(
+                "user" => array(
+                                "addToCart" => 0, 
+                                "edit" => 0, 
+                                "delete" => 0, 
+                                "addItem" => 0, 
+                                "search" => 1, 
+                "staff" => array(
+                                "addToCart" => 1, 
+                                "edit" => 0, 
+                                "delete" => 0, 
+                                "addItem" => 0, 
+                                "search" => 1, 
+                "manager" => array(
+                                "addToCart" => 1, 
+                                "edit" => 1, 
+                                "delete" => 1, 
+                                "addItem" => 1, 
+                                "search" => 1, 
+                "administrator" => array(
+                                "addToCart" => 1, 
+                                "edit" => 1, 
+                                "delete" => 1, 
+                                "addItem" => 1, 
+                                "search" => 1,      
+                )),
+                
             //Unsure about cart
             //Everyone should have access to Z Report
         );

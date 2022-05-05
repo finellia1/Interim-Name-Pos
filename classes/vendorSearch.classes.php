@@ -24,58 +24,60 @@ class vendorSearch extends Dbh {
 
                 //Clean company name input
                 $c_company_name = $row['company_name'];
-                if(str_contains($c_company_name, '"')){
+                if(strpos($c_company_name, '"')){
                     $c_company_name = str_replace('"', "“", $row['company_name']);
                 }
-                if(str_contains($c_company_name, "'")){
+                if(strpos($c_company_name, "'")){
                     $c_company_name = str_replace("'", "’", $row['company_name']);
                 }
 
                 //Clean website input
                 $c_website = $row['website'];
-                if(str_contains($c_website, '"')){
+                if(strpos($c_website, '"')){
                     $c_website = str_replace('"', "“", $row['website']);
                 }
-                if(str_contains($c_website, "'")){
+                if(strpos($c_website, "'")){
                     $c_website = str_replace("'", "’", $row['website']);
                 }
 
                 //Clean salesrep
                 $c_salesrep = $row['salesrep'];
-                if(str_contains($c_salesrep, '"')){
+                if(strpos($c_salesrep, '"')){
                     $c_salesrep = str_replace('"', "“", $row['salesrep']);
                 }
-                if(str_contains($c_salesrep, "'")){
+                if(strpos($c_salesrep, "'")){
                     $c_salesrep = str_replace("'", "’", $row['salesrep']);
                 }
 
                 //Clean email
                 $c_email = $row['email'];
-                if(str_contains($c_email, '"')){
+                if(strpos($c_email, '"')){
                     $c_email = str_replace('"', "“", $row['email']);
                 }
-                if(str_contains($c_email, "'")){
+                if(strpos($c_email, "'")){
                     $c_email = str_replace("'", "’", $row['email']);
                 }
 
                 //Clean phone number input
                 $c_phone = $row['phone'];
-                if(str_contains($c_phone, '"')){
+                if(strpos($c_phone, '"')){
                     $c_phone = str_replace('"', "“", $row['phone']);
                 }
-                if(str_contains($c_phone, "'")){
+                if(strpos($c_phone, "'")){
                     $c_phone = str_replace("'", "’", $row['phone']);
                 }       
                 
                 //Clean vendor notes
                 $c_vendor_notes = $row['vendor_notes'];
-                if(str_contains($c_vendor_notes, '"')){
+                if(strpos($c_vendor_notes, '"')){
                     $c_vendor_notes = str_replace('"', "“", $row['vendor_notes']);
                 }
-                if(str_contains($c_vendor_notes, "'")){
+                if(strpos($c_vendor_notes, "'")){
                     $c_vendor_notes = str_replace("'", "’", $row['vendor_notes']);
                 }
 
+                //use strpos instead of str_contains for better compatilibility with PHP versions below 8
+                    //https://stackoverflow.com/questions/66519169/call-to-undefined-function-str-contains-php
 
 
 
