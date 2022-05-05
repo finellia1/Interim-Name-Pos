@@ -17,7 +17,7 @@
                 img.src = start;
             }
         </script>
-        <link rel="stylesheet" href="moneyPage.css">
+        <link rel="stylesheet" href="css/moneyPage.css">
         <link rel="stylesheet" href="css/skipnavlink.css">
     </head>
 
@@ -29,38 +29,37 @@
                     <div class = "nav-bar">
                         <ul>
                             <li>
-                                <a class = "logo" href="moneyPage.php">
-                                    <img src=".\Assets\logo-placeholder-image.png" height = 60px width = 60px alt="logo">
+                                <a class="logo" href="homePage.php" title="Navigate to homepage">
+                                    <img src=".\Assets\logo-placeholder-image.png" height=60px width=60px alt="logo">
                                 </a>
                             </li>
                             <li>
-                                <a class = "home" href="homePage.php">
-                                    <img src=".\Assets\home.png" onmouseover="this.src='./Assets/homewhite.png'" onmouseout="this.src='./Assets/home.png'" height= 30px  width= 30px alt="home-icon">
+                                <a class="home" href="homePage.php" title="Navigate to homepage">
+                                    <img src=".\Assets\home.png" onmouseover="this.src='./Assets/homewhite.png'"
+                                        onmouseout="this.src='./Assets/home.png'" height=30px width=30px alt="home-icon">
                                 </a>
                             </li>
                             <li>
-                                <a class = "calendar" href="calendarPage.php">
-                                    <img src=".\Assets\calendar.png" onmouseover="this.src='./Assets/whitecalendar.png'" onmouseout="this.src='./Assets/calendar.png'" height = 30px width = 30px alt = "calendar-icon">
+                                <a class="calendar" href="calendarPage.php" title="Navigate to calender page">
+                                    <img src=".\Assets\calendar.png" onmouseover="this.src='./Assets/whitecalendar.png'"
+                                        onmouseout="this.src='./Assets/calendar.png'" height=30px width=30px
+                                        alt="calendar-icon">
                                 </a>
                             </li>
                             <li>
-                                <a class = "money" href="moneyPage.php">
-                                    <img src=".\Assets\wallet.png" onmouseover="this.src='./Assets/whitewallet.png'" onmouseout="this.src='./Assets/wallet.png'" height = 30px width = 30px alt = "wallet-icon">
+                                <a class="money" href="moneyPage.php" title="Navigate to money page">
+                                    <img src=".\Assets\wallet.png" onmouseover="this.src='./Assets/whitewallet.png'"
+                                        onmouseout="this.src='./Assets/wallet.png'" height=30px width=30px
+                                        alt="wallet-icon">
                                 </a>
                             </li>
                             <li>
-                                <a class = "history" href="historyPage.php">
-                                    <img src=".\Assets\history.png" onmouseover="this.src='./Assets/historywhite.png'" onmouseout="this.src='./Assets/history.png'" height = 30px width = 30px alt = "history-icon">
-                                </a>
-                            </li>
-                            <li>
-                                <a class = "settings" href="settingsPage.php">
-                                    <img src=".\Assets\setting.png" onmouseover="this.src='./Assets/settingswhite.png'" onmouseout="this.src='./Assets/setting.png'" height = 30px width = 30px alt = "settings-icon">
-                                </a>
-                            </li>
-                            <li>
-                                <a class = "logout" href="link to signin page">
-                                    <img src=".\Assets\logout.png" height = 30px width = 30px alt = "logout-icon">
+                                <a class="logout" href="link to signin page" title="Navigate to signin page">
+                                    <!-- <img src=".\Assets\logout.png" height=30px width=30px alt="logout-icon"> -->
+                                    <form action="includes/logout.inc.php" method="post">
+                                        <input type="image" name="submit" src=".\Assets\logout.png" height=30px width=30px alt="logout-icon"/>
+                                        <input type="hidden" name="action" value="Submit Form">
+                                    </form>
                                 </a>
                             </li>
                         </ul>

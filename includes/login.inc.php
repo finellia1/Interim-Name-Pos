@@ -20,6 +20,6 @@ if(isset($_POST["submit"]))
     //set session
     //session::set("loggedInID", $email);
 
-    header("location: ../index.php?error=LOGGED IN");
+    header("location: ../homepage.php?error=LOGGED IN");
     // going back to front page
 }
