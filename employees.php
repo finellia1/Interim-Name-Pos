@@ -292,26 +292,46 @@
                 </div>
                 <!-- Control panel contains buttons for adding and searching for items-->
                 <table id="controlPanel">
-                    <tr>
-                        <label for="Open add pane">
-                            <th id="addItemBtnTH">
-                                <button type="button" onclick="addItem()">Add Item</button>
-                            </th>
-                        </label>
-
-                        <label for="Open search pane">
-                            <th id="searchBtn">
-                                <button type="button" onclick="searchItem()">Search</button>
-                            </th>
-                        </label>
-                    </tr>
+                <?php
+                    require_once("classes\permissions.php");
+                    $permissionsObj = new permissions();
+                    //Error handling includes and object creation
+                    if($permissionsObj->getPermissionArray()["Employees"][$permissionsObj->getPermissions()]["addItem"] == 1){
+                        echo '<label for="Open add pane">
+                        <th id="addItemBtnTH">
+                            <button type="button" onclick="addItem()">Add Item</button>
+                        </th>
+                        </label>';
+                    }
+                    require_once("classes\permissions.php");
+                    $permissionsObj = new permissions();
+                    //Error handling includes and object creation
+                    if($permissionsObj->getPermissionArray()["Employees"][$permissionsObj->getPermissions()]["search"] == 1){
+                        echo '<label for="Open search pane">
+                        <th id="searchBtn">
+                            <button type="button" onclick="searchItem()">Search</button>
+                        </th>
+                    </label>';
+                    }
+                ?>  
                 </table>
                 <!--Contains the table-->
                 <div id="inventoryWrapper">
                     <table id="inventory">
                         <tr>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                        <?php
+                            require_once("classes\permissions.php");
+                            $permissionsObj = new permissions();
+                            //Error handling includes and object creation
+                            if($permissionsObj->getPermissionArray()["Employees"][$permissionsObj->getPermissions()]["edit"] == 1){
+                                echo "<th>Edit</th>";
+                            }
+                            //Error handling includes and object creation
+                            if($permissionsObj->getPermissionArray()["Employees"][$permissionsObj->getPermissions()]["delete"] == 1){
+                                echo "<th>Delete</th>";
+                            }
+                        ?>
+
                             <th>Employee ID</th>
                             <th>Security Type</th>
                             <th>Job Title</th>

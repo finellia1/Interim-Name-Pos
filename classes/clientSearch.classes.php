@@ -4,7 +4,9 @@ class clientSearch extends Dbh {
 
     protected function getClients($searchType, $searchContent) {
         //https://stackoverflow.com/questions/28717868/sql-server-select-where-any-column-contains-x
-        
+        require_once("classes\permissions.php");
+        $permissionsObj = new permissions();
+        //Error handling includes and object creation
         $stmt = $this->connect();
 
 
@@ -142,13 +144,16 @@ class clientSearch extends Dbh {
                 $p_client_notes = "'".$c_client_notes."'";
 
                 //Pass in the p_ variables to button. This way the variables can be accessed in JS
-                printf('<td><button type="button" onclick="editPane_client(%s,%s, %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)">Edit</button>',$p_client_ID,$p_company,$p_client_type,$p_first_name,$p_last_name,$p_email,$p_address_line1,$p_address_line2,$p_city,$p_state_abbr,$p_zip_code,$p_phone,$p_client_notes);
-
+                if($permissionsObj->getPermissionArray()["Clients"][$permissionsObj->getPermissions()]["edit"] == 1){
+                    printf('<td><button type="button" onclick="editPane_client(%s,%s, %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)">Edit</button>',$p_client_ID,$p_company,$p_client_type,$p_first_name,$p_last_name,$p_email,$p_address_line1,$p_address_line2,$p_city,$p_state_abbr,$p_zip_code,$p_phone,$p_client_notes);
+                }
+                if($permissionsObj->getPermissionArray()["Clients"][$permissionsObj->getPermissions()]["delete"] == 1){
                 //Create form to handle removing item
-                echo "<form name='remove' action='./includes/clientRemove.inc.php' method='post'>";
-                echo "<td><label for 'Delete button'><button type='submit' name='submit' value='submit'>Delete</button></label>";
-                echo "<input type='hidden' name='PID' value='{$row['client_ID']}'>";
-                echo "</form>";
+                    echo "<form name='remove' action='./includes/clientRemove.inc.php' method='post'>";
+                    echo "<td><label for 'Delete button'><button type='submit' name='submit' value='submit'>Delete</button></label>";
+                    echo "<input type='hidden' name='PID' value='{$row['client_ID']}'>";
+                    echo "</form>";
+                }
 
                 echo "<td> {$row['client_ID']} </td>";
                 echo "<td> {$row['company']} </td>";

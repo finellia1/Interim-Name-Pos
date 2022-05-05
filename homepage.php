@@ -1,3 +1,9 @@
+
+<?php
+    require_once("classes\permissions.php");
+    $permissionsObj = new permissions();
+    $permissionsObj->checkLoggedIn();
+?>
 <!DOCTYPE html>
 <!--https://www.w3schools.com/tags/ref_language_codes.asp ADA LANGUAGE COMPLIANCE -->
 <html lang="en">
@@ -24,6 +30,7 @@
 <body>
     <div class="wrap">
         <main title="main page content">
+
         <!--Example of skip nav https://webaim.org/techniques/skipnav/-->
         <a class = "skipNav" href="skipNav.html" alt = "Skip navigation link">Skip Navigation</a>
             <div class="leftPanel">
@@ -75,6 +82,7 @@
                         <div class = "headerBar">
                             <h1 class = "inline" id = "titleHeader">VENDOR</h1>
                             <div >
+
                                 <button class = "alternatePages" onclick = "callChangePage(1)" id = "newForm1">CLIENTS</button>
                                 <button class = "alternatePages" onclick = "callChangePage(2)"id = "newForm2">INVENTORY</button>
                                 <button class="alternatePages" onclick="callChangePage(3)" id="newForm3">EMPLOYEES</button>
@@ -83,12 +91,16 @@
                     <iframe src="inventory.php"  id = "home" title="inventory"></iframe>
                 </div>  
                     </tr>
+                <?php
+                if($permissionsObj->getPermissionArray()["shoppingCart"][$permissionsObj->getPermissions()]["viewShoppingCart"] == 1){
+                    echo'
                     <tr>
                 <script type="text/javascript" src="./js/homepage.js"></script>
                 <div class = "rightPanel">
                     <iframe title = "shopping cart" src="shopcart\index.php" frameborder="0" height=100%"></iframe>
                 </div>
-                </tr>
+                </tr>';}
+                ?>
             </table>
         </main>
     </div>

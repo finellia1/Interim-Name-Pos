@@ -22,6 +22,13 @@
     </head>
 
     <body>
+        <?php
+            require_once("classes\permissions.php");
+            $permissionsObj = new permissions();
+            if($permissionsObj->getPermissions()=="user" || $permissionsObj->getPermissions()=="staff"){
+                header('Location: ./homePage.php?invalidAccessAttempt');
+            }
+        ?>
         <!--Left Panel -->
         <div class = "wrap">
             <main>
