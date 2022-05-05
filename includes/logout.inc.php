@@ -4,8 +4,8 @@ require "../classes/session.classes.php";
 session::display(); //test
 
 //destroys session
-if(isset($_POST["submit"])) 
+if($_POST['action'] == "Submit Form") 
 {
     session::destroy();
-    header("location: ../index.php?error=LOGGED OUT");
+    header("location: ../login.php");
 }

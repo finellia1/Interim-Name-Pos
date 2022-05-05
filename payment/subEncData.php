@@ -6,7 +6,7 @@ session_start();
 // key = 69Qcf7E4Q4PQc76m 
 // for testing purposes.
 
-$stmt = $conn ->query('SELECT * FROM authorizecredentials');
+$stmt = $conn ->query('SELECT * FROM authorize_credentials');
 $creds = $stmt -> fetchALL(PDO::FETCH_COLUMN);
 
     if(isset($_POST['submit'])){ //submits id and key to the database if button is pressed.
@@ -92,11 +92,11 @@ $creds = $stmt -> fetchALL(PDO::FETCH_COLUMN);
                 
                 
 
-                $insert = 'INSERT INTO authorizecredentials (transactionKey, transactionID) VALUES (?,?)';
+                $insert = 'INSERT INTO authorize_credentials (transaction_key, transaction_ID) VALUES (?,?)';
                 $stmt = $conn -> prepare($insert);
                 $stmt->execute([$encrypted_ID, $encrypted_KEY]);
 
-                header("Location: index.php");
+                header("Location: ../homePage.php");
 
             }else{
                 echo "Make sure your inputs match please";

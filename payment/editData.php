@@ -5,7 +5,7 @@ session_start();
 // key = 69Qcf7E4Q4PQc76m 
 // for testing purposes.
 
-$stmt = $conn ->query('SELECT * FROM authorizecredentials');
+$stmt = $conn ->query('SELECT * FROM authorize_credentials');
 $creds = $stmt -> fetchALL(PDO::FETCH_COLUMN);
 
     if(isset($_POST['submit'])){ //submits id and key to the database if button is pressed.
@@ -51,12 +51,13 @@ $creds = $stmt -> fetchALL(PDO::FETCH_COLUMN);
             if($id == $idcheck && $key == $keycheck){
 
 
-                $stmt = $conn ->query('SELECT * FROM authorizecredentials');
+                $stmt = $conn ->query('SELECT * FROM authorize_credentials');
                 $creds = $stmt -> fetchALL(PDO::FETCH_ASSOC);
 
                 $holder = $creds[0];
-                $encrypted_IDOG = $holder['transactionID'];
-                $encrypted_KEYOG = $holder['transactionKey'];
+                $encrypted_IDOG = $holder['transaction_ID'];
+                $encrypted_KEYOG = $holder['transaction_key'];
+                $id = $holder['authorize_credentials_ID'];
 
 
                 //first we encrypt the data.
@@ -94,9 +95,9 @@ $creds = $stmt -> fetchALL(PDO::FETCH_COLUMN);
                 
                 
 
-                $sql = "UPDATE authorizecredentials SET transactionID=?, transactionKey=? WHERE transactionID=?";
+                $sql = "UPDATE authorize_credentials SET transaction_ID=?, transaction_Key=? WHERE authorize_credentials_ID =?";
                 $stmt= $conn->prepare($sql);
-                $stmt->execute([$encrypted_KEY, $encrypted_ID, $encrypted_IDOG]);
+                $stmt->execute([$encrypted_KEY, $encrypted_ID, $id]);
 
                 header("Location: index.php");
 

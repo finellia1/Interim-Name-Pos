@@ -2,7 +2,12 @@
 
 session_start();
 
-$m = $_GET['m'];
+if(isset($_GET['m'])){
+
+  $m = $_GET['m'];
+
+}
+
 
 include('../invoice/db_connect.php');
   // id= 7Ucr2AUj5k
@@ -13,8 +18,8 @@ include('../invoice/db_connect.php');
   $creds = $stmt -> fetchALL(PDO::FETCH_ASSOC);
 
   $holder = $creds[0];
-  $encrypted_ID = $holder['transactionID'];
-  $encrypted_KEY = $holder['transactionKey'];
+  $encrypted_ID = $holder['transaction_ID'];
+  $encrypted_KEY = $holder['transaction_key'];
   
   //decryption
 
@@ -38,10 +43,10 @@ include('../invoice/db_connect.php');
   $decrypted_KEY = openssl_decrypt ($encrypted_KEY, $ciphering, 
           $decryption_key, $options, $decryption_iv);
 
+          echo $decrypted_ID;
+          echo $decrypted_KEY;
   
   // Display the decrypted string
-  echo "Decrypted ID: " . $decrypted_ID . "\n";
-  echo "Decrypted KEY: " . $decrypted_KEY . "\n";
 
 ?>
 <!doctype html>
@@ -61,7 +66,7 @@ if (isset($m)) {
 
   if ($m==1) {
     echo '<div class="message">Payment Accepted Successfully!</div>
-    <div class="error-link"><a href="./">Test Again</a></div>
+    <div class="error-link"><a href="../invoice/invoicing.php">continue</a></div>
     ';
   } elseif ($m==2) {
     echo '<div class="message" id="error">There Was A Problem With Your Credit Card</div>

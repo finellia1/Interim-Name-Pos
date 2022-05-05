@@ -343,7 +343,7 @@
             
             
             <button onClick="window.print()">Print this page</button>
-            <button style="">Continue</button>
+            <a href="../payment/index.php"><button>Continue</button></a>
             
             </main>
 </body>

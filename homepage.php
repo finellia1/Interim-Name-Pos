@@ -71,7 +71,11 @@
                         </li>
                         <li>
                             <a class="logout" href="link to signin page" title="Navigate to signin page">
-                                <img src=".\Assets\logout.png" height=30px width=30px alt="logout-icon">
+                                <!-- <img src=".\Assets\logout.png" height=30px width=30px alt="logout-icon"> -->
+                                <form action="includes/logout.inc.php" method="post">
+                                    <input type="image" name="submit" src=".\Assets\logout.png" height=30px width=30px alt="logout-icon"/>
+                                    <input type="hidden" name="action" value="Submit Form">
+                                </form>
                             </a>
                         </li>
                     </ul>

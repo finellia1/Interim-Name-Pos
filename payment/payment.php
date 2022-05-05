@@ -6,7 +6,8 @@ use net\authorize\api\controller as AnetController;
 // ***************************************************************************
 // ***************************************************************************
 // grab our payment data first
-$amount = $_POST['amount'];
+$amountSt = $_POST['amount'];
+$amount = intval(str_replace(",","",$amountSt));
 $name = $_POST['name'];
 $street = $_POST['street'];
 $city = $_POST['city'];
@@ -34,8 +35,8 @@ define("AUTHORIZENET_LOG_FILE","phplog");
   $creds = $stmt -> fetchALL(PDO::FETCH_ASSOC);
 
   $holder = $creds[0];
-  $encrypted_ID = $holder['transactionID'];
-  $encrypted_KEY = $holder['transactionKey'];
+  $encrypted_ID = $holder['transaction_ID'];
+  $encrypted_KEY = $holder['transaction_key'];
   
   //decryption
 
