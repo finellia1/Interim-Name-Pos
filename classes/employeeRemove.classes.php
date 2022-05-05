@@ -8,15 +8,7 @@ class employeeRemove extends Dbh {
         $found = false;
         $stmtEO = $this->connect();
         
-        //CHECK EVENT PRODUCT LIST
-        $getData = $stmtEO->query("select * from invoice");
-        foreach($getData as $row){
-            if($product_ID == "{$row['employee_ID_fk']}"){
-                $found = true;
-            }else{
-                $_SESSION["debug"] = "GOOD!";
-            }
-        }       
+        //CHECK EVENT PRODUCT LIST 
         $getData = $stmtEO->query("select * from packing_list");
         foreach($getData as $row){
             if($product_ID == "{$row['employee_ID_fk']}"){
