@@ -41,16 +41,16 @@
     $tax = 1.089;
 
 
-    $stmt = $conn ->query('SELECT invoice_ID FROM invoice');  //gets all invoice_ID numbers to figure out current invoiceID
+    $stmt = $conn ->query('SELECT * FROM `invoice` ORDER BY `invoice`.`invoice_ID` ASC');  //gets all invoice_ID numbers to figure out current invoiceID
     $ids = $stmt -> fetchALL(PDO::FETCH_COLUMN);
-    $newID =array_pop($ids);                                  //gets most recent id and increments it.
+    $newID = array_pop($ids);                                  //gets most recent id and increments it.
 
     $_SESSION['invoice_ID'] = $newID; 
-
+    $newID++;
     // for testing
     $stmt2 = $conn ->query('SELECT * FROM client');            //gets all client info, that will be used display info on invoice, see if tax exempt,
     $clients = $stmt2 -> fetchALL(PDO::FETCH_ASSOC);
-    $currentClient= $clients[2];                                // index 0-4 to check each client in the current database.
+    $currentClient= $clients[1];                                // index 0-4 to check each client in the current database.
 
     //once sessions is implemented
 
@@ -62,6 +62,8 @@
         $totalcost = $totalcost * $tax;
         $sales_tax = $totalcost - $subtotal;
 
+    }else{
+        $subtotal = $totalcost;
     }
     
     
@@ -77,8 +79,8 @@
     $dateNow=date("Y-m-d");
     $timeNow= date("Y-m-d  H:i:s");
 
-    $query= 'INSERT INTO invoice( event_product_list_ID_fk, event_order_ID_fk, client_ID_fk, venue_ID_fk, refund_ID_fk, time_of_sale, is_tax_exempt, subtotal, sales_tax, total_due, payment_type, date_due) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)';
-    $statement = $conn->prepare($query)->execute([9, $eo_ID, $currentClient['client_ID'], 2, 0, $timeNow, 0, $subtotal,$sales_tax, $totalcost,$payment_type, $dateNow]);
+    $query= 'INSERT INTO invoice(invoice_ID, event_product_list_ID_fk, event_order_ID_fk, client_ID_fk, venue_ID_fk, refund_ID_fk, time_of_sale, is_tax_exempt, subtotal, sales_tax, total_due, payment_type, date_due) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)';
+    $statement = $conn->prepare($query)->execute([$newID,9, $eo_ID, $currentClient['client_ID'], 2, 0, $timeNow, 0, $subtotal,$sales_tax, $totalcost,$payment_type, $dateNow]);
 
 ?>
 
@@ -218,6 +220,7 @@
             position: absolute;
             left: 80%;
             
+            
         }
         button{
             background-image:linear-gradient(135.76deg, #452ADD 7.5%, #602add 88.59%) ;
@@ -266,7 +269,7 @@
     <div class="container">
        <div class="container" style="padding-top:10px"> 
            <span class="dot"></span>
-        <h1>Invoice #<?php echo $newID ?></h1>     
+        <h1>Invoice #<?php echo $newID; ?></h1>     
         </div>
        <div class="topright">
             <h1 id="title">RENT-EZ</h1>
@@ -339,8 +342,10 @@
         
             <div class="card" style="max-width: 300px">
                     
-                <h2 style="padding: 10px;">SubTotal : <?php echo "$".sprintf("%.2f", ($totalcost)); ?></h1>
-                <h3 style="padding: 10px;"> 
+                <h2 style="padding: 10px; padding-bottom:0px;">Total Due : <?php echo "$".sprintf("%.2f", ($totalcost)); ?></h2>
+                <h3 style="padding-left: 10px;">Sub Total : <?php echo "$".sprintf("%.2f", ($subtotal)); ?></h3>
+                <h3 style="padding-left: 10px;">Sales Tax : <?php echo "$".sprintf("%.2f", ($sales_tax)); ?></h3>
+                <h3 style="padding:10px"> 
                 <?php
                 if($currentClient['is_tax_exempt'] == 1){ //checks if client is tax exempt or not, and changes the invoice accordingly
                     echo "Text Exempt";

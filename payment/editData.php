@@ -95,11 +95,11 @@ $creds = $stmt -> fetchALL(PDO::FETCH_COLUMN);
                 
                 
 
-                $sql = "UPDATE authorize_credentials SET transaction_ID=?, transaction_Key=? WHERE authorize_credentials_ID =?";
+                $sql = "UPDATE authorize_credentials SET transaction_ID=?, transaction_key=? WHERE authorize_credentials_ID =?";
                 $stmt= $conn->prepare($sql);
                 $stmt->execute([$encrypted_KEY, $encrypted_ID, $id]);
 
-                header("Location: index.php");
+                header("Location: ../settingsPage.php");
 
             }
               

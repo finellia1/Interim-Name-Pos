@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 
 <head>
@@ -60,16 +61,9 @@
                 </div>
             </div>
             <div class = "middlePanel">
-                <h1> Middle Panel</h1>
-                <p>
-                    lipsum...
-                </p>
-            </div>
-            <div class = "rightPanel">
-                <h1> Right Panel </h1>
-                <p>
-                    lipsum...
-                </p>
+                <h1 style="font-family:Verdana, Geneva, Tahoma, sans-serif; padding-left:20px;"> Financial Control Panel</h1>
+                <a href="payment/editsCredPage.php"><button style="background: linear-gradient(135.76deg,#452ADD 7.5%, #602add 88.59%);color: #fff;cursor: pointer;padding: 5px;border-radius:20px;margin:20px">Edit Api Credentials</button></a><br>
+                <a href="payment/refundPage.php"><button style="background: linear-gradient(135.76deg,#452ADD 7.5%, #602add 88.59%);color: #fff;cursor: pointer;padding: 5px;border-radius:20px; margin:20px">Refund Page</button></a>
             </div>
         </main>
     </div>

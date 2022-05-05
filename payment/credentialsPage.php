@@ -9,7 +9,7 @@ $stmt = $conn ->query('SELECT * FROM authorize_credentials');
 $creds = $stmt -> fetchALL(PDO::FETCH_COLUMN);
 
 if($creds != null){
-    header("Location: index.php");
+    header("Location: ../homePage.php");
 }
 
 session_start();
