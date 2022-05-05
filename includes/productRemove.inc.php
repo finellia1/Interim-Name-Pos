@@ -10,4 +10,4 @@
     // running error handlers and Product signup
     $removeProduct-> checkProduct();
     // going back to front page
-    header("location: ../homepage.php");
+    header("location: ../inventory.php");

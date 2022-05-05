@@ -50,18 +50,16 @@
                                     <td class="alignLeft">
                                         <label for="searchTypeInput">Search Field:</label></td>
                                     <td class="alignLeft">
-                                        <input id="searchTypeInput" name="searchTypeInput" list="searchType"
-                                            placeholder="Search by...">
-                                        <datalist id="searchType">
-                                            <option value="Vendor ID">
-                                            <option value="Company Name">
-                                            <option value="Website">
-                                            <option value="Sales Representative">
-                                            <option value="Email">
-                                            <option value="Phone">
-                                            <option value="Vendor Notes">
-                                            <option value="*">
-                                        </datalist>
+                                        <select id="searchTypeInput" name="searchTypeInput" placeholder="Search by...">
+                                            <option value="Vendor ID">Vendor ID</option>
+                                            <option value="Company Name">Company Name</option>
+                                            <option value="Website">Website</option>
+                                            <option value="Sales Representative">Sales Representative</option>
+                                            <option value="Email">Email</option>
+                                            <option value="Phone">Phone</option>
+                                            <option value="Vendor Notes">Vendor Notes</option>
+                                            <option value = "">All</option>
+                                        </select>
                                     </td>
                                 </tr>
                                 <tr>

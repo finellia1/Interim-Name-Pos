@@ -20,14 +20,14 @@ class productRemove extends Dbh {
         if($found == false){
             if(!$stmt->execute(array($product_ID))) {
                 $stmt = null;
-                header('location: ../homepage.php?error=stmtfailed');
+                header('location: ../inventory.php?error=stmtfailed');
                 exit();
             }
         } else{
             $stmt = $this->connect()->prepare('update product set is_discontinued=1 where product_ID =?;');
             if(!$stmt->execute(array($product_ID))) {
                 $stmt = null;
-                header('location: ../homepage.php?error=stmtfailed');
+                header('location: ../inventory.php?error=stmtfailed');
                 exit();
             }
             $_SESSION["debug"] = "Located in event product list!";
@@ -36,7 +36,7 @@ class productRemove extends Dbh {
 
         if($stmt->rowCount() == 0) {
             $stmt = null;
-            header("location: ../homepage.php?error=Productnotfound");
+            header("location: ../inventory.php?error=Productnotfound");
             exit();
         }
         $stmt = null;

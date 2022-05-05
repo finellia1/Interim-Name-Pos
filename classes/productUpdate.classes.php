@@ -16,7 +16,7 @@ class productUpdate extends Dbh {
         $vendor = $this->getVendorID($vendor);
         $p_id = "'".$product_ID."'";
         $p_vendor = $this->getVendorID($vendor);
-        //$p_type = "'".$type."'";
+        $p_type = "'".$type."'";
         $p_name = "'".$name."'";
         $p_description = "'".$description."'";
         $p_product_type = "'".$product_type."'";
@@ -29,6 +29,8 @@ class productUpdate extends Dbh {
         $p_discounted_price = "'".$discounted_price."'";
         $p_num_rented = "'".$num_rented."'";
         $p_num_broken = "'".$num_broken."'";
+
+        
 
         if(!empty($product_type)) {
             $stmt = $this->connect()->prepare("UPDATE product SET product_type = $p_product_type WHERE product_ID = $product_ID" );

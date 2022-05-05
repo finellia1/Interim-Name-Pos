@@ -4,7 +4,7 @@ class productSearch extends Dbh {
 
     protected function fillVendorForm(){
        // echo '<input id="vendorInput" name="vendorInput" list="vendorList" placeholder="Search by..."  class = "dropDown">';
-        echo "<select name = 'vendorInput' id = 'vendorList'>";
+        //echo "<select name = 'vendorInput' id = 'vendorList'>";
         $stmt = $this->connect();
         $getCompanyName= $this->connect()->prepare('select company_name from vendor');
         $getCompanyName->execute();
@@ -13,7 +13,7 @@ class productSearch extends Dbh {
             printf('<option>%s</option>', $row['company_name']); 
 
         }
-        echo "</select>";
+        //echo "</select>";
     }
 
     protected function getProducts($searchType, $searchContent) {
@@ -30,6 +30,8 @@ class productSearch extends Dbh {
         //Set data to results of search query ran.
         //Search query is session variable set in search popup
         //echo $_SESSION["searchTypeInput"];
+        //echo $_SESSION["debug"];
+
         $getData = $stmt->query($_SESSION["searchTypeInput"]);
         foreach($getData as $row){
             if($row['is_discontinued'] == 0){
@@ -37,17 +39,78 @@ class productSearch extends Dbh {
                 //Echo out table information with row infomration from DB 
                 echo "<tr class = 'inventoryItem'>"; 
 
+                //Used for cleaning up input
+                //https://www.php.net/manual/en/function.str-replace.php
+                //https://www.php.net/manual/en/function.str-contains.php
+                //https://unicode-table.com/en/2018/
+                //https://unicode-table.com/en/201C/
+
+                //Clean product type input
+                $c_type = $row['product_type'];
+                if(str_contains($c_type, '"')){
+                    $c_type = str_replace('"', "“", $row['product_type']);
+                }
+                if(str_contains($c_type, "'")){
+                    $c_type = str_replace("'", "’", $row['product_type']);
+                }
+
+                //Clean name input
+                $c_name = $row['product_name'];
+                if(str_contains($c_name, '"')){
+                    $c_name = str_replace('"', "“", $row['product_name']);
+                }
+                if(str_contains($c_name, "'")){
+                    $c_name = str_replace("'", "’", $row['product_name']);
+                }
+
+                //Clean description
+                $c_description = $row['product_description'];
+                if(str_contains($c_description, '"')){
+                    $c_description = str_replace('"', "“", $row['product_description']);
+                }
+                if(str_contains($c_description, "'")){
+                    $c_description = str_replace("'", "’", $row['product_description']);
+                }
+
+                //Clean make
+                $c_make = $row['make'];
+                if(str_contains($c_make, '"')){
+                    $c_make = str_replace('"', "“", $row['make']);
+                }
+                if(str_contains($c_make, "'")){
+                    $c_make = str_replace("'", "’", $row['make']);
+                }
+
+                //Clean model
+                $c_model = $row['model'];
+                if(str_contains($c_model, '"')){
+                    $c_model = str_replace('"', "“", $row['model']);
+                }
+                if(str_contains($c_model, "'")){
+                    $c_model = str_replace("'", "’", $row['model']);
+                }
+
+                //Clean Quantity Unit
+                $c_qty_unit = $row['qty_unit'];
+                if(str_contains($c_type, '"')){
+                    $c_qty_unit = str_replace('"', "“", $row['qty_unit']);
+                }
+                if(str_contains($c_type, "'")){
+                    $c_qty_unit = str_replace("'", "’", $row['qty_unit']);
+                }
+                
+                //echo str_replace("'", "“", $Test);
 
                 //Append single quotes to either side the data
                 //This is done to be able to pass a string to a js onclick()
                 $p_id = "'".$row['product_ID']."'";
                 $p_vendor = "'".$row['vendor_ID_fk']."'";
-                $p_type = "'".$row['product_type']."'";
-                $p_name = "'".$row['product_name']."'";
-                $p_description = "'".$row['product_description']."'";
-                $p_make = "'".$row['make']."'";
-                $p_model = "'".$row['model']."'";
-                $p_qty_unit = "'".$row['qty_unit']."'";
+                $p_type = "'".$c_type."'";
+                $p_name = "'".$c_name."'";
+                $p_description = "'".$c_description."'";
+                $p_make = "'".$c_make."'";
+                $p_model = "'".$c_model."'";
+                $p_qty_unit = "'".$c_qty_unit."'";
                 $p_qty_in_stock = "'".$row['qty_in_stock']."'";
                 $p_is_promotional = "'".$row['is_promotional']."'";
                 $p_reg_price = "'".$row['reg_price']."'";
@@ -113,4 +176,4 @@ class productSearch extends Dbh {
             }
         }
     }
-}
+}               

@@ -44,22 +44,21 @@
                                         <td class="alignLeft">
                                             <label for="searchTypeInput">Search Field:</label></td>
                                         <td class="alignLeft">
-                                            <input id = "searchTypeInput" name = "searchTypeInput" list="searchType" placeholder ="Search by...">
-                                            <datalist id = "searchType" >
-                                            <option value = "Company">
-                                            <option value = "Client Type">
-                                            <option value = "First Name">
-                                            <option value = "Last Name">
-                                            <option value = "Email">
-                                            <option value = "Address Line 1">
-                                            <option value = "Address Line 2">
-                                            <option value = "City">
-                                            <option value = "State Abbreviation">
-                                            <option value = "Zip Code">
-                                            <option value = "Phone Number">
-                                            <option value = "Client Notes">
-                                            <option value = "*">
-                                            </datalist>
+                                            <select id = "searchTypeInput" name = "searchTypeInput" placeholder ="Search by..." >
+                                                <option value = "Company">Company</option>
+                                                <option value = "Client Type">Client Type</option>
+                                                <option value = "First Name">First Name</option>
+                                                <option value = "Last Name">Last Name</option>
+                                                <option value = "Email">Email</option>
+                                                <option value = "Address Line 1">Address Line 1</option>
+                                                <option value = "Address Line 2">Address Line 2</option>
+                                                <option value = "City">City</option>
+                                                <option value = "State Abbreviation">State Abbreviation</option>
+                                                <option value = "Zip Code">Zip Code</option>
+                                                <option value = "Phone Number">Phone Number</option>
+                                                <option value = "Client Notes">Client Notes</option>
+                                                <option value = "">All</option>
+                                            </select>
                                         </td>
                                     </tr>
                                     <tr>

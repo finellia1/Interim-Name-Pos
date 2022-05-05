@@ -106,9 +106,11 @@
                                             <label for="Item vendor">Vendor:</label>
                                         </td>
                                         <td class="alignLeft">
+                                        <select name = 'vendorInput' id = 'vendorList'>
                                             <?php
                                                     include "includes\productAddHelper.inc.php";
                                                 ?>
+                                                </select<>
                                         </td>
                                     </tr>
                                     <tr>
@@ -255,9 +257,11 @@
                                             <label for="Item vendor">Vendor:</label>
                                         </td>
                                         <td class="alignLeft">
+                                        <select name = 'vendorInput' id = 'vendorListAdd'>
                                             <?php
                                                     include "includes\productAddHelper.inc.php";
                                                 ?>
+                                            </select>
                                         </td>
                                     </tr>
                                     <!-- Item Name -->

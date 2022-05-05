@@ -22,15 +22,72 @@ class vendorSearch extends Dbh {
                 //Echo out table information with row infomration from DB 
                 echo "<tr  class = 'inventoryItem'>"; 
 
+                //Clean company name input
+                $c_company_name = $row['company_name'];
+                if(str_contains($c_company_name, '"')){
+                    $c_company_name = str_replace('"', "“", $row['company_name']);
+                }
+                if(str_contains($c_company_name, "'")){
+                    $c_company_name = str_replace("'", "’", $row['company_name']);
+                }
+
+                //Clean website input
+                $c_website = $row['website'];
+                if(str_contains($c_website, '"')){
+                    $c_website = str_replace('"', "“", $row['website']);
+                }
+                if(str_contains($c_website, "'")){
+                    $c_website = str_replace("'", "’", $row['website']);
+                }
+
+                //Clean salesrep
+                $c_salesrep = $row['salesrep'];
+                if(str_contains($c_salesrep, '"')){
+                    $c_salesrep = str_replace('"', "“", $row['salesrep']);
+                }
+                if(str_contains($c_salesrep, "'")){
+                    $c_salesrep = str_replace("'", "’", $row['salesrep']);
+                }
+
+                //Clean email
+                $c_email = $row['email'];
+                if(str_contains($c_email, '"')){
+                    $c_email = str_replace('"', "“", $row['email']);
+                }
+                if(str_contains($c_email, "'")){
+                    $c_email = str_replace("'", "’", $row['email']);
+                }
+
+                //Clean phone number input
+                $c_phone = $row['phone'];
+                if(str_contains($c_phone, '"')){
+                    $c_phone = str_replace('"', "“", $row['phone']);
+                }
+                if(str_contains($c_phone, "'")){
+                    $c_phone = str_replace("'", "’", $row['phone']);
+                }       
+                
+                //Clean vendor notes
+                $c_vendor_notes = $row['vendor_notes'];
+                if(str_contains($c_vendor_notes, '"')){
+                    $c_vendor_notes = str_replace('"', "“", $row['vendor_notes']);
+                }
+                if(str_contains($c_vendor_notes, "'")){
+                    $c_vendor_notes = str_replace("'", "’", $row['vendor_notes']);
+                }
+
+
+
+
                 //Append single quotes to either side the data
                 //This is done to be able to pass a string to a js onclick()
                 $p_id = "'".$row['vendor_ID']."'";
-                $p_company_name = "'".$row['company_name']."'";
-                $p_website = "'".$row['website']."'";
-                $p_salesrep = "'".$row['salesrep']."'";
-                $p_email = "'".$row['email']."'";
-                $p_phone = "'".$row['phone']."'";
-                $p_vendor_notes = "'".$row['vendor_notes']."'";
+                $p_company_name = "'".$c_company_name."'";
+                $p_website = "'".$c_website."'";
+                $p_salesrep = "'".$c_salesrep."'";
+                $p_email = "'".$c_email."'";
+                $p_phone = "'".$c_phone."'";
+                $p_vendor_notes = "'".$c_vendor_notes."'";
 
                 //Pass in the p_ variables to button. This way the variables can be accessed in JS
                 printf('<td><button type="button" onclick="editPane_vendor(%s,%s, %s,%s,%s,%s,%s)">Edit</button>',$p_id,$p_company_name,$p_website,$p_salesrep, $p_email, $p_phone, $p_vendor_notes);

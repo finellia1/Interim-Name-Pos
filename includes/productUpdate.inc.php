@@ -17,13 +17,67 @@
     $num_rented = $_POST["num_rented"];
     $num_broken = $_POST["num_broken"];
 
+    //Clean product type input
+    $c_type = $product_type;
+    if(str_contains($c_type, '"')){
+        $c_type = str_replace('"', "“", $product_type);
+    }
+    if(str_contains($c_type, "'")){
+        $c_type = str_replace("'", "’", $product_type);
+    }
+
+    //Clean name input
+    $c_name = $name;
+    if(str_contains($c_name, '"')){
+        $c_name = str_replace('"', "“", $name);
+    }
+    if(str_contains($c_name, "'")){
+        $c_name = str_replace("'", "’", $name);
+    }
+
+    //Clean description
+    $c_description = $description;
+    if(str_contains($c_description, '"')){
+        $c_description = str_replace('"', "“", $description);
+    }
+    if(str_contains($c_description, "'")){
+        $c_description = str_replace("'", "’", $description);
+    }
+
+    //Clean make
+    $c_make = $make;
+    if(str_contains($c_make, '"')){
+        $c_make = str_replace('"', "“", $make);
+    }
+    if(str_contains($c_make, "'")){
+        $c_make = str_replace("'", "’", $make);
+    }
+
+    //Clean model
+    $c_model = $model_no;
+    if(str_contains($c_model, '"')){
+        $c_model = str_replace('"', "“", $model_no);
+    }
+    if(str_contains($c_model, "'")){
+        $c_model = str_replace("'", "’", $model_no);
+    }
+
+    //Clean Quantity Unit
+    $c_qty_unit = $quantity_unit;
+    if(str_contains($c_type, '"')){
+        $c_qty_unit = str_replace('"', "“", $quantity_unit);
+    }
+    if(str_contains($c_type, "'")){
+        $c_qty_unit = str_replace("'", "’", $quantity_unit);
+    }
+
     // instantiate classes
     include "../classes/dbh.classes.php";
     include "../classes/productUpdate.classes.php";
     include "../classes/productUpdate-contr.classes.php";
     //create object
-    $updateProduct = new productUpdateContr($product_ID, $vendor, $name, $description, $product_type, $make, $model_no, $quantity_unit, $quantity_in_stock,$isPromotional,$regular_price,$discounted_price,$num_rented,$num_broken);
+    $updateProduct = new productUpdateContr($product_ID, $vendor, $c_name, $c_description, $c_type, $c_make, $c_model, $c_qty_unit, $quantity_in_stock,$isPromotional,$regular_price,$discounted_price,$num_rented,$num_broken);
     //  updateProduct
-    $updateProduct-> updateProduct($product_ID,  $vendor, $name, $description, $product_type, $make, $model_no, $quantity_unit, $quantity_in_stock,$isPromotional,$regular_price,$discounted_price,$num_rented,$num_broken);
+    $updateProduct-> updateProduct($product_ID,  $vendor, $c_name, $c_description, $c_type, $c_make, $c_model, $c_qty_unit, $quantity_in_stock,$isPromotional,$regular_price,$discounted_price,$num_rented,$num_broken);
     // going back to front page
     header("location: ../inventory.php?error=PRODUCT UPDATED");
