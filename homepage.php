@@ -55,21 +55,6 @@
                             </a>
                         </li>
                         <li>
-                            <a class="history" href="historyPage.php" title="Navigate to history page">
-                                <img src=".\Assets\history.png" onmouseover="this.src='./Assets/historywhite.png'"
-                                    onmouseout="this.src='./Assets/history.png'" height=30px width=30px
-                                    alt="history-icon">
-                            </a>
-                        </li>
-                        <li>
-                            <a class="settings" href="settingsPage.php" title="Navigate to settings page">
-                                <img src=".\Assets\setting.png" onmouseover="this.src='./Assets/settingswhite.png'"
-                                    onmouseout="this.src='./Assets/setting.png'" height=30px width=30px
-                                    alt="settings-icon">
-
-                            </a>
-                        </li>
-                        <li>
                             <a class="logout" href="link to signin page" title="Navigate to signin page">
                                 <!-- <img src=".\Assets\logout.png" height=30px width=30px alt="logout-icon"> -->
                                 <form action="includes/logout.inc.php" method="post">
