@@ -66,7 +66,7 @@ if (isset($m)) {
 
   if ($m==1) {
     echo '<div class="message">Payment Accepted Successfully!</div>
-    <div class="error-link"><a href="../invoice/invoicing.php">continue</a></div>
+    <div class="error-link"><a href="../homepage.php">continue</a></div>
     ';
   } elseif ($m==2) {
     echo '<div class="message" id="error">There Was A Problem With Your Credit Card</div>
