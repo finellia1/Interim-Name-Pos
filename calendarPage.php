@@ -16,11 +16,13 @@
             //img.onmouseover = () => { img.src = hover; } 
             //img.onmouseout = () => { img.src = start; } //to revert back to start
     </script>
+    <link rel="stylesheet" href="./css/skipnavlink.css">
     <script type="text/javascript" src=".\js\calendarScript.js"></script>
 </head>
 <body>
     <div class = "wrap">
-        <main>
+        <main title = "Calender Page">
+        <a class = "skipNav" href="skipNav.html" alt = "Skip navigation link">Skip Navigation</a>
             <div class = "left-panel">
                 <div class = "nav-bar">
                     <ul>
@@ -78,7 +80,11 @@
                     9 => "September", 10 => "October", 11 => "November", 12 => "December"
                 ];
                 $monthNow = date("m");
-                echo "<select id='calmonth'>";
+                echo "
+                <label for = 'Calender month input'>
+                <select id='calmonth'>
+                </label>
+                ";
                 foreach ($months as $m=>$mth) {
                     printf("<option value='%s'%s>%s</option>",
                     $m, $m==$monthNow?" selected":"", $mth

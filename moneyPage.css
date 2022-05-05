@@ -78,7 +78,7 @@ main {
     text-align: left;
 }
 
-#banner {
+.banner {
     width: 100%;
     height: 100px;
     text-align: center;
@@ -87,7 +87,7 @@ main {
     padding-top: 5px;
   }
 
-  #banner h1 {
+  .banner h1 {
     color: white;
     margin: 0;
     padding-top: 30px;
@@ -95,7 +95,7 @@ main {
   }
 
 
-  #instructions {
+  .instructions {
     width: 100%;
     height: 100px;
     text-align: left;
@@ -103,7 +103,7 @@ main {
     padding-left: 10px;
   }
 
-  #heading {
+  .heading {
     width: 100%;
     height: 100px;
     text-align: left;
@@ -111,7 +111,7 @@ main {
     padding-left: 10px;
   }
 
-  #heading h2{
+  .heading h2{
     color: black;
     margin: 0;
     text-align: center;
@@ -120,7 +120,7 @@ main {
     font-family: sans-serif;
   }
 
-  #heading h3{
+  .heading h3{
     color: black;
     margin: 0;
     text-align: center;

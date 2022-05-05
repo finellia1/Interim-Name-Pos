@@ -1,0 +1,11 @@
+
+/*https://www.w3schools.com/css/css_positioning.asp*/
+.skipNav{
+    color: white;
+    background: #452ADD;
+    position:fixed;
+    top:0;
+    left:0;
+    padding:5px;
+  } 
+  

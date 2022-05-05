@@ -99,8 +99,19 @@ html, body { font-family: arial, sans-serif; }
   cursor: pointer;
 }
 #calmonth { width: 180px; }
+#calmonth:focus{
+  border-style: solid;
+  color : #5250da;
+  border-width: 3px;
+  border-color: black;
+}
 #calyear { width: 100px; text-align: center; }
-
+#calyear:focus{
+  border-style: solid;
+  color : #5250da;
+  border-width: 3px;
+  border-color: black;
+}
 /* (C) CALENDAR */
 #calwrap {
   display: flex;
@@ -124,13 +135,21 @@ html, body { font-family: arial, sans-serif; }
 }
 .calsq.blank { background: #f2f2f2; }
 .calsq.today { background: #fbffde; }
-.calnum { color: #888; }
+.calnum { color: rgb(0, 0, 0); }
 .calevt {
   height: 20px;
   font-size: 0.8em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.calevt:focus{
+    border-style: solid;
+    color : #5250da;
+    border-width: 3px;
+    border-color: black;
+    padding: 2px ;
+  
 }
 .calevt:hover{
   background: #CBC3E3;

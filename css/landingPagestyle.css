@@ -266,7 +266,7 @@ h2 {
   font-size: 32px;
   font-weight: 600;
   margin-bottom: 15px;
-  color: #333;
+  color: rgb(0, 0, 0);
 }
 h4 {
   font-size: 13px;
@@ -278,5 +278,5 @@ p {
   font-size: 16px;
   line-height: 26px;
   margin-bottom: 20px;
-  color: #666;
+  color: rgb(0, 0, 0);
 }

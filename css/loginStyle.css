@@ -52,7 +52,7 @@
 }
 
                       /*  Default html tag  styling*/
-h3{
+h2{
     font-family: roboto-black;
 }
 input{
@@ -134,7 +134,7 @@ input{
         background: #FFFFFF;
         box-shadow: 0px 0px 20px -3px rgba(0, 0, 0, 0.25);
         border-radius: 50px; 
-        color:#BAB3B3;
+        color:#3e3e3e;
 
 
     }
@@ -144,7 +144,7 @@ input{
         height: 43px;
         left: 158px;
         top: 502px;
-        color:#BAB3B3;
+        color:#3e3e3e;
         background: #FFFFFF;
         box-shadow: 0px 0px 20px -3px rgba(0, 0, 0, 0.25);
         border-radius: 50px;

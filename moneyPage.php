@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang = "en" >
     <head>
+    <title>Money Page</title>
     <link rel="stylesheet" href="navBar.css">
         <script>
             let img = document.querySelector('img');
@@ -17,6 +18,7 @@
             }
         </script>
         <link rel="stylesheet" href="moneyPage.css">
+        <link rel="stylesheet" href="css/skipnavlink.css">
     </head>
 
     <body>
@@ -65,15 +67,15 @@
                     </div>
                 </div>
 
-
+                <a class = "skipNav" href="skipNav.html" alt = "Skip navigation link">Skip Navigation</a>
                 <!-- Create Z Report -->
                 <div class="middlePanel">
-                    <div id="banner">
+                    <div class="banner">
                     <h1>Z Report</h1>
                 </div>
 
                 <!-- Print company name and address. -->
-                <div id ="heading">
+                <div class ="heading">
                     <h2 style="text-align:center;">RENT-EZ</h2>
                     <h3><span class="tab4">123 Main Street,</span> <span class="tab4">Hurley, NY 12443</span></h3>
                     <h3>(845)555-1212</h3>
@@ -343,12 +345,12 @@
 
                <!-- CREATE PROFIT/LOSS REPORT -->
                 <div class="rightPanel">
-                    <div id="banner">
+                    <div class="banner">
                         <h1>Profit Loss Report</h1>
                     </div>
                     
                     <!-- Print company name and address. -->
-                    <div id ="heading">
+                    <div class ="heading">
                         <h2 style="text-align:center;">RENT-EZ</h2>
                         <h3>123 Main Street, Hurley, NY 12443</h3>
                         <h3>(845)555-1212</h3>

@@ -43,7 +43,6 @@
                                     <tr>
                                         <td class="alignLeft">
                                             <label for="searchTypeInput">Search Field:</label></td>
-                                        <td class="alignLeft">
                                             <select id = "searchTypeInput" name = "searchTypeInput" placeholder ="Search by..." >
                                                 <option value = "Company">Company</option>
                                                 <option value = "Client Type">Client Type</option>

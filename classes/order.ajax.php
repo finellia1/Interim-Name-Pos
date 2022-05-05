@@ -37,7 +37,7 @@ switch ($_POST["req"]) {
     <div class="calsq day<?=$day==$nowDay?" today":""?>" data-day="<?=$day?>">
       <div class="calnum"><?=$day?></div>
         <?php if (isset($events["d"][$day])) { foreach ($events["d"][$day] as $eid) { ?>
-        <div class="calevt" data-eid="<?=$eid?>"
+        <div tabindex = 0 class="calevt" data-eid="<?=$eid?>"
              style="background: #452ADD; 
              color: white; 
              margin-bottom: 5px">

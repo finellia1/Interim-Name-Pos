@@ -1,12 +1,13 @@
 
 <!DOCTYPE html>    
-<html>    
+<html lang = "en">    
   <head>    
       <title>Login Form</title>    
       <link rel="stylesheet" type="text/css" href="css/loginStyle.css">   
       <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   </head>
   <body class="dropShadow"> 
+    <main>
     <div class="leftSideLogin">                        <!--  left half of page--> 
       <p></p><br>    
       <div class="center">    
@@ -18,9 +19,9 @@
           <br><br>    
           <button type="submit" name="submit" id="ip3">Submit</button>       
           <br><br>     
-          <h3>Need an Account?    
+          <h2>Need an Account?    
           <br>
-          Click <a href="#">here</a> to register</h3>
+          Click <a href="#">here</a> to register</h2>
         </form>   
       </div>
     </div>                             <!--Second Side of Page-->
@@ -31,5 +32,6 @@
         <br><br><br>
       </div>
     </div>  
+    </main>
   </body>    
 </html>

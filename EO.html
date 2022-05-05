@@ -9,7 +9,7 @@
        <script src=".\js\EOScript.js"></script>
 </head>
 <body>
-       
+       <main>
        <div class="header">
               <h1>Event Order</h1><!--Title-->
        </div>
@@ -17,23 +17,23 @@
               <input type="hidden" name="req" value="save"/>
               <input type="hidden" id="evtid" name="eid"/>   
 
-              <div id="textInput">
-                     <p>Event Order Creator</p><!--Person that submits this form-->
+              <div class="textInput">
+                     <label for="createdBy">Event Order Creator</label><br><!--Person that submits this form-->
                      <input type ="text" name="created_by" id="createdBy" required/>
               </div>
-              <div id="textInput">
-                     <p>Event Name</p><!--Event name-->
+              <div class="textInput">
+                     <label for="event_name">Event Name</label><br><!--Event Name-->
                      <input type ="text" name="event_name" id="event_name" required/>
               </div>
-              <div id="textInput">
-                     <p>Order Date(todays date)</p><!--Date submitted-->
+              <div class="textInput">
+                     <label for="orderDate">Order Date(todays date)</label><br><!--Date submitted-->
                      <input type = "date" name= order_date id="orderDate" required>
               </div>
-              <div id="textInput"><!--Event start and event end-->
-                     <p>Start Time:</p>
-                     <input type="datetime-local" id="start" name="event_start" value="2022-05-05T00:00" min="2022-05-05T00:00" max="2023-12-31T00:00" required/>
-              
-                     <p>End Time:</p>
+              <div class="textInput"><!--Event start and event end-->
+                     <label for="event_start">Start Time</label><br>
+                     <input type="datetime-local" class="start" id = "event_start" name="event_start" value="2022-05-05T00:00" min="2022-05-05T00:00" max="2023-12-31T00:00" required/>
+                     <br>
+                     <label for="end">End Time</label><br>
                      <input type="datetime-local" id="end" name="event_end" value="2022-05-05T00:00" min="2022-05-05T00:00" max="2023-12-31T00:00" required/>
               </div>
            
@@ -49,9 +49,9 @@
            
               <div id="selectOne">    
                      <p> What is the nature of the event? Choose One:</p> <!--What kind of event it is-->
-                     <label class ="radio-control"><input type="radio" name="event_type" id="other_text" value="party" onClick="regularEvent()" required>Party</input></label><br>
-                     <label class ="radio-control"><input type="radio" name="event_type" id="other_text" value="concert" onClick="regularEvent()">Concert</input></label><br>
-                     <label class ="radio-control"><input type="radio" name="event_type" id="other_text" value="convention" onClick="regularEvent()">Convention</input></label><br>
+                     <label class ="radio-control"><input type="radio" name="event_type" class="other_text" value="party" onClick="regularEvent()" required>Party</input></label><br>
+                     <label class ="radio-control"><input type="radio" name="event_type" class="other_text" value="concert" onClick="regularEvent()">Concert</input></label><br>
+                     <label class ="radio-control"><input type="radio" name="event_type" class="other_text" value="convention" onClick="regularEvent()">Convention</input></label><br>
                      <label class = "radio-input-control" onClick="otherEvent()"> <!--Adds the ability to add an other in case the user didn't see the exact type desired-->
                             <input type="radio" name="event_type" id="other_event" value="other" >Other:</input>
                             <input type ="text" name="other" id="dateInput" /></label>
@@ -71,14 +71,14 @@
                      <label class ="radio-control"><input type="radio" name="is_staffed" value=0>No</input></label>
               </div>
 
-              <div id="textInput"><!--Setup time-->
-                     <p>Setup Time:</p>
-                     <input type="datetime-local" id="start" name="setup_start" value="2022-04-03T00:00" min="2022-04-03T00:00" max="2023-12-31T00:00" required/>
+              <div class="textInput"><!--Setup time-->
+                     <br><label for="setup_time">Setup Time</label><br>
+                     <input type="datetime-local" id = "setup_time" class="start" name="setup_start" value="2022-04-03T00:00" min="2022-04-03T00:00" max="2023-12-31T00:00" required/>
               </div>
 
-              <div id="textInput"><!--Breakdown/Clean up time -->
-                     <p>Breakdown Time:</p>
-                     <input type="datetime-local" id="start" name="breakdown_start" value="2022-04-03T00:00" min="2022-04-03T00:00" max="2023-12-31T00:00" required/>  
+              <div class="textInput"><!--Breakdown/Clean up time -->
+                     <br><label for="breakdown_time">Breakdown Time</label><br>
+                     <input type="datetime-local" id = "breakdown_time" class="start" name="breakdown_start" value="2022-04-03T00:00" min="2022-04-03T00:00" max="2023-12-31T00:00" required/>  
               </div>
 
               <div id="isnonProfit"><!--Is this event for a non profit organization -->
@@ -101,7 +101,7 @@
               </div>
             
               <div id= "eventNotes"><!--other notes-->
-                     <p>Any other notes?</p>
+                     <br><label for="notes">Any other notes?</label><br>
                      <textarea id="notes" name="event_notes" cols="50" rows="10" required></textarea>
               </div>
 
@@ -110,5 +110,5 @@
               </div>
             
        </form>
-       
+</main>
 </body>

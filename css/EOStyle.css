@@ -17,7 +17,7 @@ label { /*adds space between label and input*/
   margin: 5px 5px;
 }
 
-#textInput input {  /*text box customization*/
+.textInput input {  /*text box customization*/
   padding: 10px;
   box-sizing: border-box;
   margin-bottom: 10px;
@@ -123,10 +123,15 @@ input[type="radio"]:focus {
 .radio-input-control:focus-within {
   color: var(--form-control-color);
 }
+label {
+  font-weight: 700;
+  font-size: 18px;
+}
 p {
   font-weight: 700;
   font-size: 18px;
 }
+
 .Submit {/*styles submit block/button*/
   width: 150px;
   height: 40px;
