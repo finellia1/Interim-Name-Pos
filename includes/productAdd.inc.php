@@ -1,3 +1,4 @@
+
 <?php
 // if(isset($_POST["submit"])) 
 // {
@@ -10,12 +11,7 @@
     $model = $_POST["model"];
     $qty_unit = $_POST["qty_unit"];
     $qty_in_stock = $_POST["qty_in_stock"];
-    $is_promotional = isset($_POST["isPromotional"]); //needs to be fixed
-    if($is_promotional == true){
-        $is_promotional = 1;
-    }else{
-        $is_promotional = 0;
-    }
+    $is_promotional =1;
     
     $reg_price = $_POST["reg_price"];
     $discounted_price= $_POST["discounted_price"];
@@ -32,7 +28,7 @@
 
     //Clean name input
     $c_name = $product_name;
-    if(str_contains($product_name, '"')){
+    if(str_contains($c_name, '"')){
         $c_name = str_replace('"', "“", $product_name);
     }
     if(str_contains($c_name, "'")){
@@ -79,7 +75,7 @@
     include "../classes/dbh.classes.php";
     include "../classes/productAdd.classes.php";
     include "../classes/productAdd-contr.classes.php";
-    $addProduct = new productAddContr($product_ID,$vendor, $c_name, $c_description, $c_type, $c_make, $c_model, $c_qty_unit, $qty_in_stock,$is_promotional,$reg_price,$discounted_price,$num_rented,$num_broken);
+    $addProduct = new productAddContr($product_ID, $vendor,$c_name, $c_description, $c_type, $c_make, $c_model, $c_qty_unit, $qty_in_stock,$is_promotional,$reg_price,$discounted_price,$num_rented,$num_broken);
     // running error handlers and user signup
     $addProduct-> addProduct($product_ID, $vendor,$c_name, $c_description, $c_type, $c_make, $c_model, $c_qty_unit, $qty_in_stock,$is_promotional,$reg_price,$discounted_price,$num_rented,$num_broken);
     // going back to front page
