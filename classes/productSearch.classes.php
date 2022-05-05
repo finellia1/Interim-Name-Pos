@@ -18,7 +18,8 @@ class productSearch extends Dbh {
 
     protected function getProducts($searchType, $searchContent) {
         //https://stackoverflow.com/questions/28717868/sql-server-select-where-any-column-contains-x
-        
+        require_once("classes\permissions.php");
+        $permissionsObj = new permissions();
         $stmt = $this->connect();
 
         //If there is no sessions set, default to selecting every item
@@ -124,9 +125,10 @@ class productSearch extends Dbh {
                 $companyName =  $getCompanyName->fetch()[0];
                 $p_companyName = "'".$companyName."'";
 
+                if($permissionsObj->getPermissionArray()["Inventory"][$permissionsObj->getPermissions()]["edit"] == 1){
                 //Pass in the p_ variables to button. This way the variables can be accessed in JS
                 printf('<td><button type="button" onclick="editPane(%s,%s, %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)">Edit</button>',$p_id,$p_vendor,$p_name,$p_type,$p_description, $p_make, $p_model, $p_qty_unit, $p_qty_in_stock, $p_is_promotional, $p_reg_price, $p_discounted_price, $p_num_rented, $p_num_broken,$p_companyName);
-
+                }
                 //Create form to handle removing item
                 /*
                 echo "<form name='remove' action='./includes/productRemove.inc.php' method='post'>";
@@ -137,15 +139,19 @@ class productSearch extends Dbh {
                 echo "</tr>";
                 */
 
+                if($permissionsObj->getPermissionArray()["Inventory"][$permissionsObj->getPermissions()]["delete"] == 1){
                 echo "<form name='remove' action='./includes/productRemove.inc.php' method='post'>";
                 echo "<td><button type='submit' name='submit' value='submit'>Delete</button>";
                 echo "<input type='hidden' name='PID' value='{$row['product_ID']}'>";
                 echo "</form>";
+                }
+                if($permissionsObj->getPermissionArray()["Inventory"][$permissionsObj->getPermissions()]["addToCart"] == 1){
                 echo "<form action='shopcart\product.php' method='post'>";
                 echo "<td><button type='submit' value='Cart'>Cart</button>";
                 echo "<input type='hidden' name='quantity' value='{$row['qty_in_stock']}'>";
                 echo "<input type='hidden' name='product_ID' value='{$row['product_ID']}'>";
                 echo "</form>";
+                }
 
 
 

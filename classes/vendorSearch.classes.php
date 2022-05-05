@@ -1,10 +1,16 @@
 <?php
+    require_once("classes\permissions.php");
+    $permissionsObj = new permissions();
+    $permissionsObj->checkLoggedIn();
 
 class vendorSearch extends Dbh {
 
     protected function getProducts($searchType, $searchContent) {
         //https://stackoverflow.com/questions/28717868/sql-server-select-where-any-column-contains-x
-        
+        require_once("classes\permissions.php");
+        $permissionsObj = new permissions();
+        //Error handling includes and object creation
+
         $stmt = $this->connect();
         //$_SESSION["searchTypeInput_vendor"] = "select * from vendor";
 
@@ -92,14 +98,18 @@ class vendorSearch extends Dbh {
                 $p_vendor_notes = "'".$c_vendor_notes."'";
 
                 //Pass in the p_ variables to button. This way the variables can be accessed in JS
-                printf('<td><button type="button" onclick="editPane_vendor(%s,%s, %s,%s,%s,%s,%s)">Edit</button>',$p_id,$p_company_name,$p_website,$p_salesrep, $p_email, $p_phone, $p_vendor_notes);
+                if($permissionsObj->getPermissionArray()["Vendor"][$permissionsObj->getPermissions()]["edit"] == 1){
+                    printf('<td><button type="button" onclick="editPane_vendor(%s,%s, %s,%s,%s,%s,%s)">Edit</button>',$p_id,$p_company_name,$p_website,$p_salesrep, $p_email, $p_phone, $p_vendor_notes);
+                }
 
                 //Create form to handle removing item
-                echo "<form name='remove' action='./includes/vendorRemove.inc.php' method='post'>";
-                echo "<td><label for 'Delete button'><button type='submit' name='submit' value='submit'>Delete</button></label>";
-                echo "<input type='hidden' name='PID' value='{$row['vendor_ID']}'>";
-                echo "</form>";
 
+                if($permissionsObj->getPermissionArray()["Vendor"][$permissionsObj->getPermissions()]["delete"] == 1){
+                    echo "<form name='remove' action='./includes/vendorRemove.inc.php' method='post'>";
+                    echo "<td><label for 'Delete button'><button type='submit' name='submit' value='submit'>Delete</button></label>";
+                    echo "<input type='hidden' name='PID' value='{$row['vendor_ID']}'>";
+                    echo "</form>";    
+                }
                 echo "<td> {$row['vendor_ID']} </td>";
                 echo "<td> {$row['company_name']} </td>";
                 echo "<td> {$row['website']} </td>";

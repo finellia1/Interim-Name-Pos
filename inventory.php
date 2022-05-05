@@ -394,28 +394,49 @@
 
                     <!-- Control panel contains buttons for adding and searching for items-->
                     <table id="controlPanel">
-                        <tr>
-                            <label for="Open add pane">
-                                <th id="addItemBtnTH">
-                                    <button type="button" onclick="addItem()">Add Item</button>
-                                </th>
-                            </label>
-
-                            <label for="Open search pane">
-                                <th id="searchBtn">
-                                    <button type="button" onclick="searchItem()">Search</button>
-                                </th>
-                            </label>
-                        </tr>
+                    <?php
+                                require_once("classes\permissions.php");
+                                $permissionsObj = new permissions();
+                                //Error handling includes and object creation
+                                if($permissionsObj->getPermissionArray()["Inventory"][$permissionsObj->getPermissions()]["addItem"] == 1){
+                                    echo '<label for="Open add pane">
+                                    <th id="addItemBtnTH">
+                                        <button type="button" onclick="addItem()">Add Item</button>
+                                    </th>
+                                    </label>';
+                                }
+                                require_once("classes\permissions.php");
+                                $permissionsObj = new permissions();
+                                //Error handling includes and object creation
+                                if($permissionsObj->getPermissionArray()["Inventory"][$permissionsObj->getPermissions()]["search"] == 1){
+                                    echo '<label for="Open search pane">
+                                    <th id="searchBtn">
+                                        <button type="button" onclick="searchItem()">Search</button>
+                                    </th>
+                                </label>';
+                                }
+                            ?>  
                     </table>
 
                     <!--Contains the table-->
                     <div id="inventoryWrapper">
                         <table id="inventory">
                             <tr>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                                <th>Add to Cart</th>
+                            <?php
+                                    require_once("classes\permissions.php");
+                                    $permissionsObj = new permissions();
+                                    //Error handling includes and object creation
+                                    if($permissionsObj->getPermissionArray()["Inventory"][$permissionsObj->getPermissions()]["edit"] == 1){
+                                        echo "<th>Edit</th>";
+                                    }
+                                    if($permissionsObj->getPermissionArray()["Inventory"][$permissionsObj->getPermissions()]["delete"] == 1){
+                                        echo "<th>Delete</th>";
+                                    }
+                                    if($permissionsObj->getPermissionArray()["Inventory"][$permissionsObj->getPermissions()]["addToCart"] == 1){
+                                        echo "<th>Add to Cart</th>";
+                                    }
+                                    ?>
+         
                                 <th>Product ID</th>
                                 <th>Vendor</th>
                                 <th>Product Type</th>

@@ -1,4 +1,8 @@
-
+<?php
+    require_once("classes\permissions.php");
+    $permissionsObj = new permissions();
+    $permissionsObj->checkLoggedIn();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

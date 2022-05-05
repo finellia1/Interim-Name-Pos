@@ -4,7 +4,9 @@ class employeeSearch extends Dbh {
 
     protected function getEmployees($searchType, $searchContent) {
         //https://stackoverflow.com/questions/28717868/sql-server-select-where-any-column-contains-x
-        
+        require_once("classes\permissions.php");
+        $permissionsObj = new permissions();
+        //Error handling includes and object creation
         $stmt = $this->connect();
 
         //If there is no sessions set, default to selecting every item
@@ -76,15 +78,17 @@ class employeeSearch extends Dbh {
                 $p_yearly_salary = "'".$row['yearly_salary']."'";
 
                 //Pass in the p_ variables to button. This way the variables can be accessed in JS
-                printf('<td><button type="button" onclick="editPane_employee(%s,%s, %s,%s,%s,%s,%s,%s,%s)">Edit</button>',$p_id,$p_security_type,$p_pwd,$p_job_title,$p_first_name, $p_last_name, $p_email, $p_hourly_salary,$p_yearly_salary);
-
+                if($permissionsObj->getPermissionArray()["Employees"][$permissionsObj->getPermissions()]["edit"] == 1){
+                    printf('<td><button type="button" onclick="editPane_employee(%s,%s, %s,%s,%s,%s,%s,%s,%s)">Edit</button>',$p_id,$p_security_type,$p_pwd,$p_job_title,$p_first_name, $p_last_name, $p_email, $p_hourly_salary,$p_yearly_salary);
+                }
+                if($permissionsObj->getPermissionArray()["Employees"][$permissionsObj->getPermissions()]["delete"] == 1){
                 //Create form to handle removing item
                 echo "<form name='remove' action='./includes/employeeRemove.inc.php' method='post'>";
                 echo "<td><label for 'Delete button'><button type='submit' name='submit' value='submit'>Delete</button></label>";
                 //echo "<td><label for 'Cart button'><button type='button'>Cart</button></label>";
                 echo "<input type='hidden' name='PID' value='{$row['employee_ID']}'>";
                 echo "</form>";
-                
+                }
 
                 echo "<td> {$row['employee_ID']} </td>";
                 echo "<td> {$row['security_type']} </td>";
