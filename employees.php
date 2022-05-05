@@ -24,6 +24,15 @@
     <div class="wrap">
         <div class="middlePanel">
             <div class="inventory">
+            <?php 
+                    //https://www.php.net/manual/en/reserved.variables.get.php
+                    if(isset($_GET['skipnav'])){
+                        if($_GET['skipnav'] == 'true'){
+                            echo "<br>";
+                            echo '<a class = "skipNav" href="skipNav.html" alt = "Skip navigation link">Skip Navigation</a>';
+                        }
+                    }
+                ?>
                 <?php 
                         require './classes/session.classes.php';
 

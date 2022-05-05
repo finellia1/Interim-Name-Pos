@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
 
 <head>
     <title>Vendor Page</title>
@@ -23,7 +23,17 @@
 <body>
     <div class="wrap">
         <div class="middlePanel">
+
             <div class="inventory">
+                <?php 
+                    //https://www.php.net/manual/en/reserved.variables.get.php
+                    if(isset($_GET['skipnav'])){
+                        if($_GET['skipnav'] == 'true'){
+                            echo "<br>";
+                            echo '<a class = "skipNav" href="skipNav.html" alt = "Skip navigation link">Skip Navigation</a>';
+                        }
+                    }
+                ?>
                 <?php 
                         require './classes/session.classes.php';
 
@@ -254,7 +264,7 @@
                 <div id="inventoryWrapper">
                     <table id="inventory">
                         <tr>
-                        <th>Edit</th>
+                            <th>Edit</th>
                             <th>Delete</th>
                             <th>Vendor ID</th>
                             <th>Company Name</th>
