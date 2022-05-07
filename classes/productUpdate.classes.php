@@ -2,6 +2,7 @@
 //functions for updating products
 class productUpdate extends Dbh {
     protected function getVendorID($vendorName){
+        //Used to get vendor ID based on name of said vendor
         $getCompanyName= $this->connect()->prepare('select vendor_ID from vendor where company_name = ?');
         $getCompanyName->execute(array($vendorName));
         $companyName =  $getCompanyName->fetch()[0];
@@ -13,6 +14,7 @@ class productUpdate extends Dbh {
 
     //for each field passed, connects to db, prepares and executes $stmt, updates entry in db
     protected function setProduct($product_ID, $vendor, $name, $description, $product_type, $make, $model_no, $quantity_unit, $quantity_in_stock,$isPromotional,$regular_price,$discounted_price,$num_rented,$num_broken) {
+        // ' appended to either side for sql to recognize variables as strings
         $vendor = $this->getVendorID($vendor);
         $p_id = "'".$product_ID."'";
         $p_vendor = $this->getVendorID($vendor);

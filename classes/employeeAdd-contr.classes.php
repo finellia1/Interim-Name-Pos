@@ -11,7 +11,6 @@ class employeeAddContr extends employeeAdd {
     private $email;
     private $hourly_salary;
     private $yearly_salary;
-    // private $phone_number;
 
     // pass through the variables from the form
     public function __construct($employee_ID, $security_type, $pwd, $job_title, $first_name, $last_name, $email, $hourly_salary, $yearly_salary)
@@ -31,28 +30,6 @@ class employeeAddContr extends employeeAdd {
     }
     //error handling, sets user
     public function employeeAdd() {
-        /*
-        if($this->emptyInput() == false) {
-            header("location: ../index.php?error=emptyinput");
-            exit();
-        }
-        if($this->invalidemployee_ID() == false) {
-            header("location: ../index.php?error=username");
-            exit();
-        }
-        if($this->invalidEmail() == false) {
-            header("location: ../index.php?error=email");
-            exit();
-        }
-        if($this->pwdMatch() == false) {
-            header("location: ../index.php?error=passwordmatch");
-            exit();
-        }
-        if($this->duplicateUser() == false) {
-            header("location: ../index.php?error=useroremailtaken");
-            exit();
-        }
-        */
         $this->security_ID_fk = $this->setSecurity();
         //sets user
 

@@ -17,6 +17,7 @@ class productRemove extends Dbh {
                 $_SESSION["debug"] = "GOOD!";
             }
         }       
+        //If item not found, delete from database
         if($found == false){
             if(!$stmt->execute(array($product_ID))) {
                 $stmt = null;
@@ -24,15 +25,14 @@ class productRemove extends Dbh {
                 exit();
             }
         } else{
+            //If item found, set it as discontinued so it will not be generated on UI
             $stmt = $this->connect()->prepare('update product set is_discontinued=1 where product_ID =?;');
             if(!$stmt->execute(array($product_ID))) {
                 $stmt = null;
                 header('location: ../inventory.php?error=stmtfailed');
                 exit();
             }
-            $_SESSION["debug"] = "Located in event product list!";
         }
-
 
         if($stmt->rowCount() == 0) {
             $stmt = null;

@@ -28,17 +28,13 @@ session::start();
         }
         if($searchContent=="" ){
             $searchContent= " ";
-        } else {
-            //echo($searchContent);
         }
 
     //If the search type is not blank, set the search type input.
     //This search type session variable is used to run the search query to generate the divs in the homepage 
-
-
     if($searchType!=""){
         $_SESSION["searchTypeInput_vendor"] = "select * from vendor where {$searchType} like '%{$searchContent}%'";
-    }else if($searchType=="" && $searchContent!=""){
+    }else if($searchType=="" && $searchContent!=""){ // If the search type is empty and the search content isn't, search all rows 
         $_SESSION["searchTypeInput_vendor"] = "SELECT * FROM `vendor` where vendor_ID LIKE '%{$searchContent}%'
         OR company_name LIKE '%{$searchContent}%'
         OR website LIKE '%{$searchContent}%'
@@ -48,6 +44,7 @@ session::start();
         OR vendor_notes LIKE '%{$searchContent}%';";
     }
     else{
+        //In any other case, search all. This loads all DB info to page
         $_SESSION["searchTypeInput_vendor"] = "select * from vendor";
     }
     

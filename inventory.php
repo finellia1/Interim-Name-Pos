@@ -38,9 +38,7 @@
                         <?php 
                         require './classes/session.classes.php';
 
-                        session::start();
-                        // session_start();
-                        
+                        session::start();                        
                         ?>
                     <div id="searchPopup" class="popup">
                         <fieldset>
@@ -454,6 +452,7 @@
 
                             </tr>
                             <?php
+                                //Generates page content
                                 include "includes\productSearch.inc.php";
                             ?>
 

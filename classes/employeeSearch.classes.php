@@ -6,7 +6,6 @@ class employeeSearch extends Dbh {
         //https://stackoverflow.com/questions/28717868/sql-server-select-where-any-column-contains-x
         require_once("classes\permissions.php");
         $permissionsObj = new permissions();
-        //Error handling includes and object creation
         $stmt = $this->connect();
 
         //If there is no sessions set, default to selecting every item
@@ -14,11 +13,8 @@ class employeeSearch extends Dbh {
             $_SESSION["searchTypeInput_employee"] = "select * from employee";
         }
 
-        //echo $_SESSION["searchTypeInput_employee"];
-
         //Set data to results of search query ran.
         //Search query is session variable set in search popup
-        //echo $_SESSION["searchTypeInput"];
         $getData = $stmt->query($_SESSION["searchTypeInput_employee"]);
         foreach($getData as $row){
             if($row['is_inactive'] == 0){
@@ -85,11 +81,11 @@ class employeeSearch extends Dbh {
                 //Create form to handle removing item
                 echo "<form name='remove' action='./includes/employeeRemove.inc.php' method='post'>";
                 echo "<td><label for 'Delete button'><button type='submit' name='submit' value='submit'>Delete</button></label>";
-                //echo "<td><label for 'Cart button'><button type='button'>Cart</button></label>";
                 echo "<input type='hidden' name='PID' value='{$row['employee_ID']}'>";
                 echo "</form>";
                 }
 
+                //Generate Divs
                 echo "<td> {$row['employee_ID']} </td>";
                 echo "<td> {$row['security_type']} </td>";
                 //echo "<td> {$row['pwd']} </td>";

@@ -21,11 +21,11 @@ class Login extends Dbh {
         $pwdHashed = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $checkPwd = password_verify($pwd, $pwdHashed[0]["pwd"]); // returns a true or False value
         //checks if pwd and pwdHashed match
-        if($checkPwd == true) {
+        if($checkPwd == false) {
             $stmt = null;
             header("location: ../index.php?error=incorrectPassword");
             exit();
-        } elseif($checkPwd == false) {
+        } elseif($checkPwd == true) {
             $stmt = $this->connect()->prepare('SELECT * FROM employee WHERE email = ? and pwd = ?;');
             //checks db for matching login info
             if(!$stmt->execute(array($email, $pwdHashed[0]["pwd"]))) {

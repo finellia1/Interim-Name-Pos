@@ -8,7 +8,7 @@ class clientRemove extends Dbh {
         $found = false;
         $stmtEO = $this->connect();
 
-
+        //CHECK INVOICE LIST
         $getData = $stmtEO->query("select * from invoice");
         foreach($getData as $row){
             if($product_ID == "{$row['client_ID_fk']}"){
@@ -17,6 +17,7 @@ class clientRemove extends Dbh {
                 $_SESSION["debug"] = "GOOD!";
             }
         }       
+        //If item is not found, delete from database.
         if($found == false){
             if(!$stmt->execute(array($product_ID))) {
                 $stmt = null;
@@ -24,6 +25,7 @@ class clientRemove extends Dbh {
                 exit();
             }
         } else{
+            //If client is found, set it as inactive so it will not be generated in the UI
             $stmt = $this->connect()->prepare('update client set is_inactive=1 where client_ID =?;');
             if(!$stmt->execute(array($product_ID))) {
                 $stmt = null;

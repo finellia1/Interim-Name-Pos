@@ -2,6 +2,7 @@
 //functions for updating Users
 class updateUser extends Dbh {
     protected function updateUser($employee_ID, $security_type, $pwd, $job_title, $first_name, $last_name, $email, $hourly_salary, $yearly_salary) {
+        //Append ' to either side so SQL knows these are strings.
         $p_employee_ID = "'".$employee_ID."'";
         $p_security_type = "'".$security_type."'";
         $hashPass = password_hash($p_pwd, PASSWORD_DEFAULT);

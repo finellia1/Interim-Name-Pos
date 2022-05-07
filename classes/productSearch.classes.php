@@ -3,17 +3,17 @@
 class productSearch extends Dbh {
 
     protected function fillVendorForm(){
-       // echo '<input id="vendorInput" name="vendorInput" list="vendorList" placeholder="Search by..."  class = "dropDown">';
-        //echo "<select name = 'vendorInput' id = 'vendorList'>";
+        //Used to display all vendors to a select list
         $stmt = $this->connect();
+        //Get all company names from vendor table
         $getCompanyName= $this->connect()->prepare('select company_name from vendor');
         $getCompanyName->execute();
 
+        //Generate options based on company names
         foreach($getCompanyName as $row){
             printf('<option>%s</option>', $row['company_name']); 
 
         }
-        //echo "</select>";
     }
 
     protected function getProducts($searchType, $searchContent) {
@@ -26,13 +26,9 @@ class productSearch extends Dbh {
         if(!isset($_SESSION["searchTypeInput"])){
             $_SESSION["searchTypeInput"] = "select * from product";
         }
-        //$_SESSION["searchTypeInput"] = "select * from product";
 
         //Set data to results of search query ran.
         //Search query is session variable set in search popup
-        //echo $_SESSION["searchTypeInput"];
-        //echo $_SESSION["debug"];
-
         $getData = $stmt->query($_SESSION["searchTypeInput"]);
         foreach($getData as $row){
             if($row['is_discontinued'] == 0){
@@ -120,6 +116,7 @@ class productSearch extends Dbh {
                 $p_num_broken = "'".$row['num_broken']."'";
 
 
+                //Convert vendor ID fk to string based on vendor ID
                 $getCompanyName= $stmt->prepare('select company_name from vendor where vendor_ID = ?');
                 $getCompanyName->execute(array($row['vendor_ID_fk']));
                 $companyName =  $getCompanyName->fetch()[0];
@@ -129,16 +126,8 @@ class productSearch extends Dbh {
                 //Pass in the p_ variables to button. This way the variables can be accessed in JS
                 printf('<td><button type="button" onclick="editPane(%s,%s, %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)">Edit</button>',$p_id,$p_vendor,$p_name,$p_type,$p_description, $p_make, $p_model, $p_qty_unit, $p_qty_in_stock, $p_is_promotional, $p_reg_price, $p_discounted_price, $p_num_rented, $p_num_broken,$p_companyName);
                 }
-                //Create form to handle removing item
-                /*
-                echo "<form name='remove' action='./includes/productRemove.inc.php' method='post'>";
-                echo "<td><label for 'Delete button'><button type='submit' name='submit' value='submit'>Delete</button></label>";
-                echo "<td><label for 'Cart button'><button type='button'>Cart</button></label>";
-                echo "<td> <input type='hidden' name='PID' id='deleteID' value='{$row['product_ID']}'> </td>";
-                echo "</form>";
-                echo "</tr>";
-                */
 
+                //Generate divs
                 if($permissionsObj->getPermissionArray()["Inventory"][$permissionsObj->getPermissions()]["delete"] == 1){
                 echo "<form name='remove' action='./includes/productRemove.inc.php' method='post'>";
                 echo "<td><button type='submit' name='submit' value='submit'>Delete</button>";
@@ -160,8 +149,6 @@ class productSearch extends Dbh {
                 echo "<td> {$row['product_ID']} </td>";
                 //Display vendor as name instead of integer  
                 //https://www.php.net/manual/en/pdo.prepare.php
-
-
                 echo "<td> $companyName </td>";
                 echo "<td> {$row['product_type']} </td>";
                 echo "<td> {$row['product_name']} </td>";

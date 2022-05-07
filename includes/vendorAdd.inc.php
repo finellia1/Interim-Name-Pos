@@ -65,13 +65,13 @@
     }
 
 
-    // instantiate signupContr class
+    // instantiate vendor add controller class
     include "../classes/dbh.classes.php";
     include "../classes/vendorAdd.classes.php";
     include "../classes/vendorAdd-contr.classes.php";
-    $addProduct = new vendorAddContr($product_ID, $c_company_name, $c_website, $c_sales_representative, $c_email, $c_phone, $c_vendor_notes);
-    // running error handlers and user signup
-    $addProduct-> addVendor($product_ID, $c_company_name, $c_website, $c_sales_representative, $c_email, $c_phone, $c_vendor_notes);
+    $addVendor = new vendorAddContr($product_ID, $c_company_name, $c_website, $c_sales_representative, $c_email, $c_phone, $c_vendor_notes);
+    // Call add vendor function
+    $addVendor-> addVendor($product_ID, $c_company_name, $c_website, $c_sales_representative, $c_email, $c_phone, $c_vendor_notes);
     // going back to front page
     header("location: ../vendor.php?error=ran");
 // }

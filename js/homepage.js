@@ -1,5 +1,7 @@
-class Page{
+//Page class used to store page information
+class PageClass{
     constructor(headerText, link0Display, link0src, link1Display,link1src,link2Display,link2src){
+        //Class parameters
         this.headerText = headerText;
         this.link0Display = link0Display;
         this.link0src = link0src;
@@ -10,18 +12,23 @@ class Page{
     }
     
 }
+
 let pages
 {
-    let clients = new Page("CLIENTS", "VENDORS", "vendor.php", "INVENTORY","inventory.php","EMPLOYEES","employees.php");
-    let vendors = new Page("VENDORS", "CLIENTS", "clients.php", "INVENTORY","inventory.php","EMPLOYEES","employees.php");
-    let inventory = new Page("INVENTORY", "VENDORS", "vendor.php", "CLIENTS","clients.php","EMPLOYEES","employees.php");
-    let employees = new Page("EMPLOYEES", "VENDORS", "vendor.php", "CLIENTS","clients.php", "INVENTORY","inventory.php");
+    //Instantiate Page class with data per page.
+    let clients = new PageClass("CLIENTS", "VENDORS", "vendor.php", "INVENTORY","inventory.php","EMPLOYEES","employees.php");
+    let vendors = new PageClass("VENDORS", "CLIENTS", "clients.php", "INVENTORY","inventory.php","EMPLOYEES","employees.php");
+    let inventory = new PageClass("INVENTORY", "VENDORS", "vendor.php", "CLIENTS","clients.php","EMPLOYEES","employees.php");
+    let employees = new PageClass("EMPLOYEES", "VENDORS", "vendor.php", "CLIENTS","clients.php", "INVENTORY","inventory.php");
+    //Create pages array
     pages = [clients,vendors,inventory,employees]
+    //Set initial page to 2, the inventory page
     var currentPage= 2;
     changePage(currentPage)
 }
 
 function changePage(newPage){
+    //Set html to correct values based on classes and current page
     document.getElementById("newForm1").innerHTML = pages[newPage].link0Display;
     document.getElementById("newForm2").innerHTML = pages[newPage].link1Display;
     document.getElementById("newForm3").innerHTML = pages[newPage].link2Display;
@@ -31,6 +38,7 @@ function changePage(newPage){
 
 function callChangePage(inPage){
     var checkLoc;
+    //Set the location to check for input based on what button is clicked
     if(inPage == 1){
         checkLoc = "newForm1"
     }
@@ -41,22 +49,19 @@ function callChangePage(inPage){
         checkLoc = "newForm3"
     }
 
+    //Based on what button is clicked, changePage to desired page
     if(document.getElementById(checkLoc).innerHTML == "CLIENTS"){
         changePage(0)
-        console.log("CLINET")
         document.getElementById("home").src = "clients.php";
     }else if(document.getElementById(checkLoc).innerHTML == "VENDORS"){
         changePage(1)
-        console.log("VENDORS")
         document.getElementById("home").src = "vendor.php";
     }else if(document.getElementById(checkLoc).innerHTML == "INVENTORY"){
         changePage(2)
-        console.log("INVENRORY ")
         document.getElementById("home").src = "inventory.php";
     }
     else if(document.getElementById(checkLoc).innerHTML == "EMPLOYEES"){
         changePage(3)
-        console.log("EMPLOY ")
         document.getElementById("home").src = "employees.php";
     }
 

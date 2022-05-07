@@ -1,7 +1,6 @@
 
 <?php
-// if(isset($_POST["submit"])) 
-// {
+
     $product_ID = "add";
     $vendor = $_POST["vendorInput"];
     $product_name = $_POST["product_name"];
@@ -11,7 +10,7 @@
     $model = $_POST["model"];
     $qty_unit = $_POST["qty_unit"];
     $qty_in_stock = $_POST["qty_in_stock"];
-    $is_promotional =1;
+    $is_promotional =1; //Fix at a later date
     
     $reg_price = $_POST["reg_price"];
     $discounted_price= $_POST["discounted_price"];
@@ -71,15 +70,13 @@
         $c_qty_unit = str_replace("'", "’", $qty_unit);
     }
     
-    // instantiate signupContr class
     include "../classes/dbh.classes.php";
     include "../classes/productAdd.classes.php";
     include "../classes/productAdd-contr.classes.php";
+    // instantiate product add controller class
     $addProduct = new productAddContr($product_ID, $vendor,$c_name, $c_description, $c_type, $c_make, $c_model, $c_qty_unit, $qty_in_stock,$is_promotional,$reg_price,$discounted_price,$num_rented,$num_broken);
-    // running error handlers and user signup
     $addProduct-> addProduct($product_ID, $vendor,$c_name, $c_description, $c_type, $c_make, $c_model, $c_qty_unit, $qty_in_stock,$is_promotional,$reg_price,$discounted_price,$num_rented,$num_broken);
     // going back to front page
     header("location: ../inventory.php?error=ran");
-// }
 ?>
 

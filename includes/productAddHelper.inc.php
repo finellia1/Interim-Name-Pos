@@ -18,13 +18,13 @@ if(isset($_POST["submit"]))
 
 }
 
-    // instantiate signupContr class
     include_once "classes/dbh.classes.php";
     include_once "classes/productSearch.classes.php";
     include_once "classes/productSearch-contr.classes.php";
 
+    // instantiate product search controller class
     $searchProduct = new productSearchContr($searchType, $searchContent);
-    // running error handlers and user signup
+    // Calls get vendors
     $searchProduct-> getVendors();
     // going back to front page
     //session::display();

@@ -12,7 +12,6 @@ if(isset($_POST["submit"]))
     $email = $_POST["email"];
     $hourly_salary = $_POST["hourly_salary"];
     $yearly_salary = $_POST["yearly_salary"];
-    //$phone_number = $_POST["phone_number"];
 
 
     //Clean job title

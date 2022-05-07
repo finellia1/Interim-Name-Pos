@@ -8,7 +8,7 @@ class employeeRemove extends Dbh {
         $found = false;
         $stmtEO = $this->connect();
         
-        //CHECK EVENT PRODUCT LIST 
+        //CHECK PACKING LIST
         $getData = $stmtEO->query("select * from packing_list");
         foreach($getData as $row){
             if($product_ID == "{$row['employee_ID_fk']}"){
@@ -17,6 +17,7 @@ class employeeRemove extends Dbh {
                 $_SESSION["debug"] = "GOOD!";
             }
         }       
+        //If employee not found, delete from DB
         if($found == false){
             if(!$stmt->execute(array($product_ID))) {
                 $stmt = null;
@@ -24,6 +25,7 @@ class employeeRemove extends Dbh {
                 exit();
             }
         } else{
+            //If employee is found, set it as inactive so it will be not be shown in UI
             $stmt = $this->connect()->prepare('update employee set is_inactive=1 where employee_ID =?;');
             if(!$stmt->execute(array($product_ID))) {
                 $stmt = null;

@@ -6,7 +6,8 @@ session::start();
     $searchType = $_POST["searchTypeInput"];
     //Search content is populated by form
     $searchContent = $_POST["searchContent"];
-
+    
+    //Compare actual search type to row name
     if($searchType == "Company"){
         $searchType = "company";
     } else if($searchType == "Client Type"){
@@ -33,13 +34,13 @@ session::start();
             $searchType = "client_notes";
     } 
 
+    //https://stackoverflow.com/questions/28717868/sql-server-select-where-any-column-contains-x
+
     //If the search type is not blank, set the search type input.
     //This search type session variable is used to run the search query to generate the divs in the homepage 
-
-
     if($searchType!=""){
         $_SESSION["searchTypeInput_client"] = "select * from client where {$searchType} like '%{$searchContent}%'";
-    }else if($searchType=="" && $searchContent!=""){
+    }else if($searchType=="" && $searchContent!=""){  // If the search type is empty and the search content isn't, search all rows
         $_SESSION["searchTypeInput_client"] = "SELECT * FROM `client` where client_ID LIKE '%{$searchContent}%'
         OR company LIKE '%{$searchContent}%'
         OR client_type LIKE '%{$searchContent}%'
@@ -55,6 +56,7 @@ session::start();
         OR client_notes LIKE '%{$searchContent}%';";
     }
     else{
+        //In any other case, search all. This loads all DB info to page
         $_SESSION["searchTypeInput_client"] = "select * from client";
     }
     
@@ -64,4 +66,3 @@ session::start();
 ?>
 
 
-$p_client_ID,$p_company,$p_client_type,$p_first_name,$p_last_name,$p_email,$p_address_line1,$p_address_line2,$p_city,$p_state_abbr,$p_zip_code,$p_phone,$p_client_notes,

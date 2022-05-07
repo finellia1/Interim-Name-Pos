@@ -1,5 +1,5 @@
+//Sets edit pane to current data in DB based on what was clicked (for inventory)
 function editPane(id,vendor,name,type,description, make, model, quanitity, quantityInStock, promotional,regularPrice, discountedPrice, numRented, numBroken, vendorName){
-    console.log(vendorName);
     document.getElementById('editPopup').style.visibility = 'visible';
     document.getElementById('itemName').value = name; 
     document.getElementById('vendorList').value = vendorName;
@@ -18,8 +18,8 @@ function editPane(id,vendor,name,type,description, make, model, quanitity, quant
     document.getElementById('productType').focus();
 }
 
+//Sets edit pane to current data in DB based on what was clicked (for vendor)
 function editPane_vendor(product_ID,company_name,website,sales_representative, email, phone, vendor_notes){
-    console.log(product_ID +" " + company_name + " " + website + " " + sales_representative);
     document.getElementById('editPopup').style.visibility = 'visible';    
     document.getElementById('companyName').value = company_name;
     document.getElementById('companyName').focus();
@@ -31,6 +31,7 @@ function editPane_vendor(product_ID,company_name,website,sales_representative, e
     document.getElementById('deleteID_edit').value = product_ID;
 }
 
+//Sets edit pane to current data in DB based on what was clicked (for client)
 function editPane_client(product_ID,company_name,client_type,first_name,last_name,email,address_line1,address_line2,city,state_abbr,zip_code,phone,client_notes){
     document.getElementById('editPopup').style.visibility = 'visible';    
     document.getElementById('company_name').value = company_name;
@@ -49,8 +50,8 @@ function editPane_client(product_ID,company_name,client_type,first_name,last_nam
     document.getElementById('company_name').focus();
 }
 
+//Sets edit pane to current data in DB based on what was clicked (for employee)
 function editPane_employee(product_ID,company_name,client_type,first_name,last_name,email,address_line1,address_line2,city){
-    console.log(first_name)
     document.getElementById('editPopup').style.visibility = 'visible';    
     document.getElementById('security_type').value = company_name;
     document.getElementById('password').value = client_type;

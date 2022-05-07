@@ -3,10 +3,8 @@
 class clientSearch extends Dbh {
 
     protected function getClients($searchType, $searchContent) {
-        //https://stackoverflow.com/questions/28717868/sql-server-select-where-any-column-contains-x
         require_once("classes\permissions.php");
         $permissionsObj = new permissions();
-        //Error handling includes and object creation
         $stmt = $this->connect();
 
 
@@ -28,6 +26,7 @@ class clientSearch extends Dbh {
                 //Echo out table information with row infomration from DB 
                 echo "<tr  class = 'inventoryItem'>"; 
 
+                //Clean Company
                 $c_company_name = $row['company'];
                 if(strpos($c_company_name, '"')){
                     $c_company_name = str_replace('"', "“", $row['company']);
@@ -36,6 +35,7 @@ class clientSearch extends Dbh {
                     $c_company_name = str_replace("'", "’", $company_name);
                 }
             
+                //Clean client type
                 $c_client_type = $row['client_type'];
                 if(strpos($c_client_type, '"')){
                     $c_client_type = str_replace('"', "“", $row['client_type']);
@@ -44,6 +44,7 @@ class clientSearch extends Dbh {
                     $c_client_type = str_replace("'", "’", $row['client_type']);
                 }
             
+                //Clean first name 
                 $c_first_name = $row['first_name'];
                 if(strpos($c_first_name, '"')){
                     $c_first_name = str_replace('"', "“", $row['first_name']);
@@ -52,6 +53,7 @@ class clientSearch extends Dbh {
                     $c_first_name = str_replace("'", "’", $row['first_name']);
                 }
             
+                //Clean last name
                 $c_last_name = $row['last_name'];
                 if(strpos($c_last_name, '"')){
                     $c_last_name = str_replace('"', "“", $row['last_name']);
@@ -60,6 +62,7 @@ class clientSearch extends Dbh {
                     $c_last_name = str_replace("'", "’", $row['last_name']);
                 }
             
+                //Clean email
                 $c_email = $row['email'];
                 if(strpos($c_email, '"')){
                     $c_email = str_replace('"', "“", $row['email']);
@@ -67,7 +70,8 @@ class clientSearch extends Dbh {
                 if(strpos($c_email, "'")){
                     $c_email = str_replace("'", "’", $row['email']);
                 }
-            
+
+                //Clean address line 1
                 $c_address_line1 = $row['address_line1'];
                 if(strpos($c_address_line1, '"')){
                     $c_address_line1 = str_replace('"', "“", $row['address_line1']);
@@ -76,6 +80,7 @@ class clientSearch extends Dbh {
                     $c_address_line1 = str_replace("'", "’", $row['address_line1']);
                 }
             
+                //Clean address line 2
                 $c_address_line2 = $row['address_line2'];
                 if(strpos($c_address_line2, '"')){
                     $c_address_line2 = str_replace('"', "“", $row['address_line2']);
@@ -84,6 +89,7 @@ class clientSearch extends Dbh {
                     $c_address_line2 = str_replace("'", "’", $row['address_line2']);
                 }
             
+                //Clean city
                 $c_city = $row['city'];
                 if(strpos($c_city, '"')){
                     $c_city = str_replace('"', "“", $row['city']);
@@ -92,6 +98,7 @@ class clientSearch extends Dbh {
                     $c_city = str_replace("'", "’", $row['city']);
                 }
             
+                //Clean state abbreviation
                 $c_state_abbr = $row['state_abbr'];
                 if(strpos($c_state_abbr, '"')){
                     $c_state_abbr = str_replace('"', "“", $row['state_abbr']);
@@ -100,6 +107,7 @@ class clientSearch extends Dbh {
                     $c_state_abbr = str_replace("'", "’", $row['state_abbr']);
                 }
             
+                //Clean zip code
                 $c_zip_code = $row['zip_code'];
                 if(strpos($c_zip_code, '"')){
                     $c_zip_code = str_replace('"', "“", $row['zip_code']);
@@ -108,6 +116,7 @@ class clientSearch extends Dbh {
                     $c_zip_code = str_replace("'", "’", $row['zip_code']);
                 }
             
+                //Clean phone number
                 $c_phone = $row['phone'];
                 if(strpos($c_phone, '"')){
                     $c_phone = str_replace('"', "“", $row['phone']);
@@ -116,6 +125,7 @@ class clientSearch extends Dbh {
                     $c_phone = str_replace("'", "’", $row['phone']);
                 }
             
+                //Clean notes 
                 $c_client_notes = $row['client_notes'];
                 if(strpos($c_client_notes, '"')){
                     $c_client_notes = str_replace('"', "“", $row['client_notes']);
@@ -155,6 +165,7 @@ class clientSearch extends Dbh {
                     echo "</form>";
                 }
 
+                //Generate Divs
                 echo "<td> {$row['client_ID']} </td>";
                 echo "<td> {$row['company']} </td>";
                 echo "<td> {$row['client_type']} </td>";

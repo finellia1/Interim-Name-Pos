@@ -48,10 +48,10 @@ session::start();
         $searchType = "num_broken";
     }
 
+    //https://stackoverflow.com/questions/28717868/sql-server-select-where-any-column-contains-x
 
     //If the search type is not blank, set the search type input.
     //This search type session variable is used to run the search query to generate the divs in the homepage 
-
     $_SESSION["debug"] = $searchType;
 
     if($searchType=="vendor_ID_fk"){
@@ -59,7 +59,7 @@ session::start();
         INNER JOIN vendor
         on product.vendor_ID_fk = vendor.vendor_ID
         where vendor.company_name like '%{$searchContent}%';";
-    }else if($searchType!=""){
+    }else if($searchType!=""){// If the search type is empty and the search content isn't, search all rows
         $_SESSION["searchTypeInput"] = "select * from product where {$searchType} like '%{$searchContent}%'";
     }
     else if($searchType=="" && $searchContent!=""){
@@ -79,6 +79,7 @@ session::start();
         OR num_broken LIKE '%{$searchContent}%';";
     }
     else{
+        //In any other case, search all. This loads all DB info to page
         $_SESSION["searchTypeInput"] = "select * from product";
     }
 

@@ -9,22 +9,16 @@ if(isset($_POST["submit"]))
     //Search content is set to whatever is in search content 
     $searchContent = $_POST["searchContent"];
 } else {
-        //Search type is populated by form
         $searchType = " ";
-        //Search content is populated by form
-    
-        //Search content is set to whatever is in search content 
+     
         $searchContent = " ";
 
 }
 
-    // instantiate signupContr class
     include "classes/dbh.classes.php";
     include "classes/employeeSearch.classes.php";
     include "classes/employeeSearch-contr.classes.php";
-
+    // instantiate employee search controller class
     $searchEmployees = new employeeSearchContr($searchType, $searchContent);
-    // running error handlers and user signup
     $searchEmployees-> searchEmployees($searchType, $searchContent);
     // going back to front page
-    //session::display();

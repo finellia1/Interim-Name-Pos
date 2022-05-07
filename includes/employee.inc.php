@@ -26,13 +26,14 @@ session::start();
     } else if($searchType == "Yearly Salary"){
         $searchType = "yearly_salary";
     }
+
+    //https://stackoverflow.com/questions/28717868/sql-server-select-where-any-column-contains-x
+
     //If the search type is not blank, set the search type input.
     //This search type session variable is used to run the search query to generate the divs in the homepage 
-
-
     if($searchType!=""){
         $_SESSION["searchTypeInput_employee"] = "select * from employee where {$searchType} like '%{$searchContent}%'";
-    }else if($searchType=="" && $searchContent!=""){
+    }else if($searchType=="" && $searchContent!=""){// If the search type is empty and the search content isn't, search all rows 
         $_SESSION["searchTypeInput_employee"] = "SELECT * FROM `employee` where employee_ID LIKE '%{$searchContent}%'
         OR employee_ID LIKE '%{$searchContent}%'
         OR security_type LIKE '%{$searchContent}%'
@@ -45,6 +46,7 @@ session::start();
         OR yearly_salary LIKE '%{$searchContent}%';";
     }
     else{
+                //In any other case, search all. This loads all DB info to page
         $_SESSION["searchTypeInput_employee"] = "select * from employee";
     }
     

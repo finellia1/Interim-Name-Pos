@@ -297,6 +297,7 @@
 
                         </tr>
                         <?php
+                                /*Generates page content*/ 
                                 include "includes/vendorSearch.inc.php";
                             ?>
 
