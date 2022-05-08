@@ -28,7 +28,11 @@ class updateUserContr extends updateUser {
     //updates user
     public function updateUsers() {
         if(empty($this->employee_ID)) {
-            header("location: ../index.php?error=emptyUSER");
+            require_once("session.classes.php");
+            session::start();
+            session::set("homepageErrorMessage", "ERROR: PLEASE CONTACT IT classes/employeeUpdate-contr.classes.php line 32");
+            header('Location: ../homepage.php?failure');
+            //Code taken from classes/login.classes.php
             exit();
         }
         //sets user

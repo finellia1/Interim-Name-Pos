@@ -1,3 +1,10 @@
+<?php 
+    //Pulled from permissions.php
+    require_once("classes\permissions.php");
+    $permissions = new permissions();
+    $permissions->checkLoggedIn();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>

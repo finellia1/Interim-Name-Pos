@@ -7,36 +7,52 @@ class Login extends Dbh {
         $stmt = $this->connect()->prepare('SELECT pwd FROM employee WHERE email = ?;');
 
         if(!$stmt->execute(array($email))) {
-            $stmt = null;
-            header('location: ../index.php?error=stmtfailed3');
+            $stmt = null;                
+            require_once("session.classes.php");
+            session::start();
+            session::set("loginErrorMessage", "ERROR: PLEASE CONTACT IT classes\login.classes.php line 13");
+            header('Location: ../login.php?loginFailed');
+
             exit();
         }
 
         if($stmt->rowCount() == 0) {
             $stmt = null;
-            header("location: ../index.php?error=usernotfound1");
+            require_once("session.classes.php");
+            session::start();
+            session::set("loginErrorMessage", "Username or password is incorrect, please try again");
+            header('Location: ../login.php?loginFailed');            
             exit();
         }
 
         $pwdHashed = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $checkPwd = password_verify($pwd, $pwdHashed[0]["pwd"]); // returns a true or False value
         //checks if pwd and pwdHashed match
-        if($checkPwd == true) {
-            $stmt = null;
-            header("location: ../index.php?error=incorrectPassword");
+        if($checkPwd == true) { //IF STATEMENT FLIPPED TO ALLOW LOGIN WTIHOUT VERIFIYING: FLIP TRUE AND FALSE CONDITIONS TO SHOW CORRECT LOGIN ONCE YOU HAVE CREATED A USER
+            $stmt = null;                
+            require_once("session.classes.php");
+            session::start();
+            session::set("loginErrorMessage", "Username or password is incorrect, please try again");
+            header('Location: ../login.php?loginFailed');
             exit();
         } elseif($checkPwd == false) {
             $stmt = $this->connect()->prepare('SELECT * FROM employee WHERE email = ? and pwd = ?;');
             //checks db for matching login info
             if(!$stmt->execute(array($email, $pwdHashed[0]["pwd"]))) {
                 $stmt = null;
-                header("location: ../index.php?error=stmtfailed4");
+                require_once("session.classes.php");
+                session::start();
+                session::set("loginErrorMessage", "ERROR: PLEASE CONTACT IT classes\login.classes.php line 46");
+                header('Location: ../login.php?loginFailed');
                 exit();
             }
 
             if($stmt->rowCount() == 0) {
                 $stmt = null;
-                header("location: ../index.php?error=usernotfound2");
+            require_once("session.classes.php");
+            session::start();
+            session::set("loginErrorMessage", "ERROR: PLEASE CONTACT IT classes\login.classes.php line 55");
+            header('Location: ../login.php?loginFailed');
                 exit();
             }
 
@@ -51,6 +67,9 @@ class Login extends Dbh {
             //Chris wrote this class
             $sth->execute(array($email));
             session::set("securityType", $sth->fetch()[0]);
+            session::set("pass", $pwd);
+            session::set("passEncrypted", $pwdHashed[0]["pwd"]);
+
         }
         //starts session
         //session::start();

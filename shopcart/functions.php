@@ -1,4 +1,21 @@
 <?php
+require_once("..\classes\permissions.php");
+$permissions = new permissions();
+$permissions->checkLoggedInShoppingCart();
+//Pulled from permissions.php
+//Checks for permissions, bounces to login if user is not logged in
+
+//Pulled from permissions.php
+
+
+require_once("..\classes\permissions.php");
+$permissionsObj = new permissions();
+if($permissionsObj->getPermissionArray()["shoppingCart"][$permissionsObj->getPermissionsShoppingCart()]["viewShoppingCart"] == 0){
+header('Location: ../homepage.php');
+//If invalid login role, bounce back to homepage.php
+}
+
+
 //pdo style
 function pdo_connect_mysql() {
     // Update the details below with your MySQL details

@@ -1,3 +1,12 @@
+<?php
+    include_once("classes\permissions.php");
+    $permissions = new permissions();
+    $permissions->checkLoggedIn();
+    //Reroute to login if not logged in
+    session::display();
+    echo session::get("homepageErrorMessage");
+?>
+
 <!DOCTYPE html>
 <html lang = "en">
 
@@ -36,10 +45,10 @@
                 ?>
                 <div class="inventory">
                         <?php 
-                        require './classes/session.classes.php';
-
-                        session::start();
-                        // session_start();
+                        //require './classes/session.classes.php';
+                        //session::start();
+                        //session_start();
+                        //No longer needed since permissions starts session
                         
                         ?>
                     <div id="searchPopup" class="popup">
@@ -118,7 +127,7 @@
                                             <label for="product type">Product Type:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" id="productType" name="product_type"
+                                            <input type="text" id="productType" name="product_type" placeholder="Product Type"
                                                 value="productType"><br>
                                         </td>
                                     </tr>
@@ -128,7 +137,7 @@
                                             <label for="item name">Item Name:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" id="itemName" name="product_name" value="itemName"><br>
+                                            <input type="text" id="itemName" name="product_name" placeholder="Item Name"><br>
                                         </td>
                                     </tr>
                                     <!-- Item Description -->
@@ -137,7 +146,7 @@
                                             <label for="description">Description:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" id="description" name="product_description"
+                                            <input type="text" id="description" name="product_description" placeholder="Product Description"
                                                 value="description"><br>
                                         </td>
                                     </tr>
@@ -147,7 +156,7 @@
                                             <label for="make">Make:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" id="make" name="make" value="make"><br>
+                                            <input type="text" id="make" name="make" placeholder="Make"><br>
                                         </td>
                                     </tr>
                                     <!-- Model -->
@@ -156,7 +165,7 @@
                                             <label for="model">Model:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" id="model" name="model" value="model"><br>
+                                            <input type="text" id="model" name="model" placeholder="Model"><br>
                                         </td>
                                     </tr>
                                     <!-- Quantity Unit -->
@@ -165,7 +174,8 @@
                                             <label for="quantity unit">Quantity_Unit:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" id="quantity" name="qty_unit_edit" value="quantity"><br>
+                                            <input type="text" id="quantity" name="qty_unit_edit" placeholder="Quantity"><br>
+                                            <!-- Found input type = "number" in calendar.php which is written by Taimur -->
                                         </td>
                                     </tr>
                                     <!-- Quantity In Stock -->
@@ -174,7 +184,7 @@
                                             <label for="quantity in stock">Quantity In Stock:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" id="quantityInStock" name="qty_in_stock"
+                                            <input type="number" id="quantityInStock" name="qty_in_stock" placeholder="Quantity in Stock"
                                                 value="quantityInStock"><br>
                                         </td>
                                     </tr>
@@ -184,7 +194,7 @@
                                             <label for="is promotional">isPromotional</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="checkbox" id="isPromotional" name="isPromotional_edit"><br>
+                                            <input type="checkbox" id="isPromotional" placeholder="isPromotional_edit"><br>
                                         </td>
                                     </tr>
                                     <!--Regular Price -->
@@ -193,8 +203,8 @@
                                             <label for="regular price">Regular Price</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" id="regularPrice" name="reg_price"
-                                                value="regularPrice"><br>
+                                            <input type="number" id="regularPrice" name="reg_price" placeholder="Regular Price"
+                                                value="regularPrice" step="0.01"><br>
                                         </td>
                                     </tr>
                                     <!--Discounted Price -->
@@ -203,8 +213,8 @@
                                             <label for="discounted price">Discounted Price:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" id="discountedPrice" name="discounted_price"
-                                                value="discountedPrice"><br>
+                                            <input type="number" id="discountedPrice" name="discounted_price" placeholder="Discounted Price"
+                                                value="discountedPrice" step="0.01"><br>
                                         </td>
                                     </tr>
                                     <tr>
@@ -213,8 +223,8 @@
                                             <label for="number rented">Number Rented:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" id="numberRented" name="num_rented"
-                                                value="numberRented"><br>
+                                            <input type="number" id="numberRented" placeholder="Number Rented"
+                                                value="numberRented" name="num_rented"><br>
                                         </td>
                                     </tr>
                                     <!-- Number Broken -->
@@ -223,7 +233,7 @@
                                             <label for="number broken">Number Broken</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" id="numberBroken" name="num_broken"
+                                            <input type="number" id="numberBroken" placeholder="Number Broken" name="num_broken"
                                                 value="numberBroken"><br>
                                         </td>
                                     </tr>
@@ -270,7 +280,7 @@
                                             <label for="item name">Item Name:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="product_name" value="itemName"><br>
+                                            <input type="text" name="product_name" placeholder="Item Name"><br>
                                         </td>
                                     </tr>
                                     <!-- Product Type -->
@@ -279,7 +289,7 @@
                                             <label for="product type">Product Type:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="product_type" value="productType"><br>
+                                            <input type="text" name="product_type" placeholder="Product Type"><br>
                                         </td>
                                     </tr>
                                     <!-- Item Description -->
@@ -288,7 +298,7 @@
                                             <label for="description">Description:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="product_description" value="description"><br>
+                                            <input type="text" name="product_description" placeholder="Product Description"><br>
                                         </td>
                                     </tr>
                                     <!-- Make -->
@@ -297,7 +307,7 @@
                                             <label for="make">Make:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="make" value="make"><br>
+                                            <input type="text" name="make" placeholder="Make"><br>
                                         </td>
                                     </tr>
 
@@ -307,7 +317,7 @@
                                             <label for="model">Model:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="model" value="model"><br>
+                                            <input type="text" name="model" placeholder="Model"><br>
                                         </td>
                                     </tr>
                                     <!-- Quantity Unit -->
@@ -316,7 +326,7 @@
                                             <label for="quantity unit">Quantity_Unit:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="qty_unit" value="quantity"><br>
+                                            <input type="text" name="qty_unit" placeholder="Quantity"><br>
                                         </td>
                                     </tr>
                                     <!-- Quantity In Stock -->
@@ -325,7 +335,7 @@
                                             <label for="quantity in stock">Quantity In Stock:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="qty_in_stock" value="quantityInStock"><br>
+                                            <input type="number" name="qty_in_stock" placeholder="Quantity In Stock"><br>
                                         </td>
                                     </tr>
                                     <!-- Promotional -->
@@ -343,7 +353,8 @@
                                             <label for="regular price">Regular Price</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="reg_price" value="regularPrice"><br>
+                                            <input type="number" step="0.01" name="reg_price" placeholder="Regular Price"><br>
+
                                         </td>
                                     </tr>
                                     <!--Discounted Price -->
@@ -352,7 +363,7 @@
                                             <label for="discounted price">Discounted Price:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="discounted_price" value="discountedPrice"><br>
+                                            <input type="number" step="0.01" name="discounted_price" placeholder="Discounted Price"><br>
                                         </td>
                                     </tr>
                                     <tr>
@@ -361,7 +372,7 @@
                                             <label for="number rented">Number Rented:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="num_rented" value="numberRented"><br>
+                                            <input type="number" name="num_rented" placeholder="Number Rented"><br>
                                         </td>
                                     </tr>
                                     <!-- Number Broken -->
@@ -370,14 +381,14 @@
                                             <label for="number broken">Number Broken</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="num_broken" value="numberBroken"><br>
+                                            <input type="number" name="num_broken" placeholder="Number Broken"><br>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <label for="Submit add button">
                                                 <!-- Button to submit form -->
-                                                <input type="submit" name="submit" value="submit"></button>
+                                                <input type="submit" name="submit" placeholder="submit"></button>
                                             </label>
                                         </td>
                                         <td>
@@ -435,6 +446,7 @@
                                     if($permissionsObj->getPermissionArray()["Inventory"][$permissionsObj->getPermissions()]["addToCart"] == 1){
                                         echo "<th>Add to Cart</th>";
                                     }
+                                    //References from permissions.php
                                     ?>
          
                                 <th>Product ID</th>

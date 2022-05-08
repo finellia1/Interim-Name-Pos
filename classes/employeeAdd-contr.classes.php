@@ -67,6 +67,11 @@ class employeeAddContr extends employeeAdd {
 
         if(empty($this->employee_ID) || empty($this->pwd) || empty($this->confirmpwd) || empty($this->email) || empty($this->first_name) || empty($this->last_name) || empty($this->job_title)) {
             $result = false;
+            require_once("session.classes.php");
+            session::start();
+            session::set("homepageErrorMessage", "Empty Input!");
+            header('Location: ../homepage.php?emptyInput');
+            //Code taken from classes/login.classes.php
         } else {
             $result = true;
         }
@@ -79,6 +84,11 @@ class employeeAddContr extends employeeAdd {
         $result;
         if(!preg_match("/^[a-zA-Z0-9]*$/", $this->employee_ID)){
             $result = false;
+            require_once("session.classes.php");
+            session::start();
+            session::set("homepageErrorMessage", "Invalid employee ID!");
+            header('Location: ../homepage.php?invalidEmployeeID');
+            //Code taken from classes/login.classes.php
         } else {
             $result = true;
         }
@@ -91,6 +101,11 @@ class employeeAddContr extends employeeAdd {
         $result;
         if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
             $result = false;
+            require_once("session.classes.php");
+            session::start();
+            session::set("homepageErrorMessage", "Invalid Email!");
+            header('Location: ../homepage.php?invalidEmail');
+            //Code taken from classes/login.classes.php
         } else {
             $result = true;
         }
@@ -103,6 +118,11 @@ class employeeAddContr extends employeeAdd {
         $result;
         if ($this->pwd !== $this->confirmpwd) {
             $result = false;
+            require_once("session.classes.php");
+            session::start();
+            session::set("homepageErrorMessage", "Password does not match!");
+            header('Location: ../homepage.php?passwordsDoNotMatch');
+            //Code taken from classes/login.classes.php
         } else {
             $result = true;
         }
@@ -115,6 +135,11 @@ class employeeAddContr extends employeeAdd {
         $result;
         if(!$this->checkUser($this->employee_ID, $this->email)) {
             $result = false;
+            require_once("session.classes.php");
+            session::start();
+            session::set("homepageErrorMessage", "Duplicate User! Please put in a unique email address");
+            header('Location: ../homepage.php?duplicateUser');
+            //Code taken from classes/login.classes.php
         } else {
             $result = true;
         }

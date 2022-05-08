@@ -1,9 +1,24 @@
 <?php
+require_once("..\classes\permissions.php");
+$permissions = new permissions();
+$permissions->checkLoggedInShoppingCart();
+//Pulled from permissions.php
+//Checks for permissions, bounces to login if user is not logged in
+
+//Pulled from permissions.php
+
+
+require_once("..\classes\permissions.php");
+$permissionsObj = new permissions();
+if($permissionsObj->getPermissionArray()["shoppingCart"][$permissionsObj->getPermissionsShoppingCart()]["viewShoppingCart"] == 0){
+    header('Location: ../homepage.php');
+    //If invalid login role, bounce back to homepage.php
+}
 // Check to make sure the ID parameter is specified in the URL
 if (isset($_POST['product_ID'])) {
     include 'functions.php';
     $pdo = pdo_connect_mysql();
-    session_start();
+    //session_start();
     $_SESSION["productFound"] = "ran";
     // Prepare statement and execute, prevents SQL injection
     $stmt = $pdo->prepare('SELECT * FROM product WHERE product_ID = ?');
@@ -59,7 +74,6 @@ if (isset($_POST['product_ID'])) {
             function refreshPage(){
                 //For reloading page : https://stackoverflow.com/questions/5351342/reload-parent-window-from-within-an-iframe
                 parent.location.reload();
-                console.log("asdadsasdsadassadsad");
             }
         </script>
         </div>

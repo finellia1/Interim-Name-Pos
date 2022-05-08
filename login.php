@@ -1,4 +1,10 @@
+<?php
+  require_once("classes\permissions.php");
+  $permissions = new permissions();
+  $permissions->checkLoggedInLogin();
+  //Checks for permissions, bounces to log
 
+?>
 <!DOCTYPE html>    
 <html lang = "en">    
   <head>    
@@ -12,10 +18,16 @@
       <p></p><br>    
       <div class="center">    
         <form id="login" method="POST" action="includes/login.inc.php">    
-          <h1 class="loginWord "><b>Login:</h1>   
-          <input type="text" name="email" id="ip1" placeholder="     Email">    
-          <br><br>    
-          <input type="Password" name="pwd" id="ip2" placeholder="    Password">    
+          <h1 class="loginWord "><b>Login:</h1>
+          <?php
+            require_once(".\classes\session.classes.php");
+            session::start();
+            echo "<p>".session::get("loginErrorMessage")."</p>";
+            ?>
+          
+          <input type="email" name="email" id="ip1" placeholder="     Email" required>
+          <br><br>
+          <input type="Password" name="pwd" id="ip2" placeholder="    Password" required>    
           <br><br>    
           <button type="submit" name="submit" id="ip3">Submit</button>       
           <br><br>     

@@ -1,6 +1,23 @@
 <!-- RUN CART FROM INDEX FILE -->
     <!-- THIS PAGE RUNS ON  hv_audio_visual_v2.sql -->
 <?php
+require_once("..\classes\permissions.php");
+$permissions = new permissions();
+$permissions->checkLoggedInShoppingCart();
+//Pulled from permissions.php
+//Checks for permissions, bounces to login if user is not logged in
+
+//Pulled from permissions.php
+
+
+require_once("..\classes\permissions.php");
+$permissionsObj = new permissions();
+if($permissionsObj->getPermissionArray()["shoppingCart"][$permissionsObj->getPermissionsShoppingCart()]["viewShoppingCart"] == 0){
+    header('Location: ../homepage.php');
+    //If invalid login role, bounce back to homepage.php
+}
+
+
 // If the user clicked the add to cart button on the product page we can check for the form data
 if (isset($_POST['product_ID'], $_POST['quantity']) && is_numeric($_POST['product_ID']) && is_numeric($_POST['quantity'])) {
     $product_ID = (int)$_POST['product_ID']; //int check and post to identigy
@@ -92,7 +109,7 @@ if ($products_in_cart) {
     <div id="banner">
     <h1>Shopping Cart</h1>
     </div>
-    <form action="../EO.html"  target="_parent" method="post">
+    <form action="../EO.php"  target="_parent" method="post">
         <table>
 
                 <tr>
@@ -136,7 +153,7 @@ if ($products_in_cart) {
         </div>
         <div>
             <!--Antonio Finelli - added OnClick for refreshing page-->
-            <input class="btn" type="submit" value="Place Order"  target="_parent" name="placeorder" ">
+            <input class="btn" type="submit" value="Place Order"  target="_parent" name="placeorder">
     
         </div>
 

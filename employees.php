@@ -1,3 +1,9 @@
+<?php
+    include_once("classes\permissions.php");
+    $permissions = new permissions();
+    $permissions->checkLoggedIn();
+    //Reroute to login if not logged in
+?>
 <!DOCTYPE html>
 <html lang = "en">
 
@@ -34,9 +40,9 @@
                     }
                 ?>
                 <?php 
-                        require './classes/session.classes.php';
+                        //require './classes/session.classes.php';
 
-                        session::start();
+                        //session::start();
                         // session_start();
                         ?>
 
@@ -122,7 +128,7 @@
                                         <label for="Job title of employee">Job Title:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="job_title" name="job_title" value="job_title"><br>
+                                        <input type="text" id="job_title" name="job_title" placeholder="Job Title"><br>
                                     </td>
                                 </tr>
                                 <!-- first_name -->
@@ -131,7 +137,7 @@
                                         <label for="first name of employee">First name:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="first_name" name="first_name" value="first_name"><br>
+                                        <input type="text" id="first_name" name="first_name" placeholder="First Name"><br>
                                     </td>
                                 </tr>
                                 <!-- last_name -->
@@ -140,7 +146,7 @@
                                         <label for="vendor notes">Last name:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="last_name" name="last_name" value="last_name"><br>
+                                        <input type="text" id="last_name" name="last_name" placeholder="Last Name"><br>
                                     </td>
                                 </tr>
                                 <!-- email -->
@@ -149,7 +155,7 @@
                                         <label for="Email address of employee">Email:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="email" name="email" value="email"><br>
+                                        <input type="text" id="email" name="email" placeholder="Email"><br>
                                     </td>
                                 </tr>
                                 <!-- hourly_salary -->
@@ -158,8 +164,8 @@
                                         <label for="hourly_salary">Hourly salary:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="hourly_salary" name="hourly_salary"
-                                            value="hourly_salary"><br>
+                                        <input type="number" step="0.01" id="hourly_salary" name="Hourly Salary"
+                                        placeholder="hourly_salary"><br>
                                     </td>
                                 </tr>
                                 <!-- yearly_salary -->
@@ -168,7 +174,7 @@
                                         <label for="yearly_salary">Yearly salary:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="yearly_salary" name="yearly_salary"
+                                        <input type="number" step="0.01" id="yearly_salary" placeholder="Yearly Salary"
                                             value="yearly_salary"><br>
                                     </td>
                                 </tr>
@@ -225,7 +231,7 @@
                                         <label for="Job title of employee">Job Title:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="job_title" value="job_title"><br>
+                                        <input type="text" name="job_title" placeholder="Job Title"><br>
                                     </td>
                                 </tr>
                                 <!-- first_name -->
@@ -234,7 +240,7 @@
                                         <label for="first name of employee">First name:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="first_name" value="first_name"><br>
+                                        <input type="text" name="first_name" placeholder="First Name"><br>
                                     </td>
                                 </tr>
                                 <!-- last_name -->
@@ -243,7 +249,7 @@
                                         <label for="vendor notes">Last name:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="last_name" value="last_name"><br>
+                                        <input type="text" name="last_name" placeholder="Last Name"><br>
                                     </td>
                                 </tr>
                                 <!-- email -->
@@ -252,7 +258,7 @@
                                         <label for="Email address of employee">Email:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="email" value="email"><br>
+                                        <input type="text" name="email" placeholder="Email"><br>
                                     </td>
                                 </tr>
                                 <!-- hourly_salary -->
@@ -261,7 +267,8 @@
                                         <label for="hourly_salary">Hourly salary:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="hourly_salary" value="hourly_salary"><br>
+                                        <input type="number" step="0.01" name="hourly_salary" placeholder="Hourly Salary"><br>
+                                        <!-- Found input type=number inside of calendar.php created by Taimur-->
                                     </td>
                                 </tr>
                                 <!-- yearly_salary -->
@@ -270,13 +277,13 @@
                                         <label for="yearly_salary">Yearly salary:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="yearly_salary" value="yearly_salary"><br>
+                                        <input type="number" step="0.01" name="yearly_salary" placeholder="Yearly Salary"><br>
                                     </td>
                                 </tr>
                                 <td>
                                     <label for="Submit add button">
                                         <!-- Button to submit form -->
-                                        <input type="submit" name="submit" value="submit"></button>
+                                        <input type="submit" name="submit" placeholder="submit"></button>
                                     </label>
                                 </td>
                                 <td>

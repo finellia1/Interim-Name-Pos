@@ -9,7 +9,7 @@
         "Inventory" => array( //Done
             "user" => array(
                 "addToCart" => 0, 
-                "edit" => 0, 
+                "edit" => 1, 
                 "delete" => 0, 
                 "addItem" => 0, 
                 "search" => 1), 
@@ -33,7 +33,7 @@
                 "search" => 1)
             ),      
             
-        "shoppingCart" => array( //Done
+        "shoppingCart" => array( 
             "user" => array(
                 "viewShoppingCart" => 0), 
             "staff" => array(
@@ -118,11 +118,35 @@
                 "Access Z Report" => 0, 
                 "Access Profit Loss Report" => 0), 
             "manager" => array(
-                "Access Z Report" => 0, 
-                "Access Profit Loss Report" => 0), 
+                "Access Z Report" => 1, 
+                "Access Profit Loss Report" => 1), 
             "administrator" => array(
-                "Access Z Report" => 0, 
-                "Access Profit Loss Report" => 0), 
+                "Access Z Report" => 1, 
+                "Access Profit Loss Report" => 1), 
+            ),
+        "Shopping Cart" => array( 
+            "user" => array(
+                "Access shopping cart" => 0, 
+                "Place Order" => 0),
+            "staff" => array(
+                "Access shopping cart" => 0, 
+                "Place Order" => 0),
+            "manager" => array(
+                "Access shopping cart" => 0, 
+                "Place Order" => 0),
+            "administrator" => array(
+                "Access shopping cart" => 0, 
+                "Place Order" => 0),
+            ),
+        "EO" => array( 
+            "user" => array(
+                "Access EO Page" => 0), 
+            "staff" => array(
+                "Access EO Page" => 1), 
+            "manager" => array(
+                "Access EO Page" => 1), 
+            "administrator" => array(
+                "Access EO Page" => 1), 
             ),
         "Calendar" => array( //May have to change this name
             "user" => array(
@@ -163,11 +187,9 @@
                 "View Invoice" => 1), 
             "administrator" => array(
                 "View Invoice" => 1)
-                
             )
         );
-            //Unsure about cart
-            //Everyone should have access to Z Report
+
 
         function getPermissionArray(){
             return $this->permissionArray;
@@ -176,14 +198,28 @@
         function getPermissions(){
             require_once("classes/session.classes.php");
             session::start();
+            /*
             if (session::isSet("securityType") == false){
                 //Route to login page if there is no security type found
                     //No security type would be found if they bypassed login as security type is set on login
                 header('Location: ./index.php?invalidLogin'); //Make this dynamic 
-            } 
+            } */
                 return session::get("securityType");
                 //Returns security type  
             
+        }
+
+        function getPermissionsShoppingCart(){
+            require_once("../classes/session.classes.php");
+            session::start();
+            /*
+            if (session::isSet("securityType") == false){
+                //Route to login page if there is no security type found
+                    //No security type would be found if they bypassed login as security type is set on login
+                header('Location: ./index.php?invalidLogin'); //Make this dynamic 
+            } */
+                return session::get("securityType");
+                //Returns security type  
         }
         function checkLoggedIn(){
             require_once("classes/session.classes.php");
@@ -191,7 +227,28 @@
             if (session::isSet("securityType") == false){
                 //Route to login page if there is no security type found
                     //No security type would be found if they bypassed login as security type is set on login
-                header('Location: ./login.php?invalidLogin'); 
+                header('Location: ./login.php?invalidLogin');
+                //https://www.php.net/manual/en/function.header.php
+            } 
+
+        }
+        function checkLoggedInLogin(){
+            require_once("classes/session.classes.php");
+            session::start();
+            if (session::isSet("securityType") == true){
+                //Route to homepage if security type is found, therefore the user is already logged in
+                header('Location: ./homepage.php');
+                //https://www.php.net/manual/en/function.header.php
+            } 
+        }
+        function checkLoggedInShoppingCart(){
+            require_once("..\classes\session.classes.php");
+            session::start();
+            if (session::isSet("securityType") == false){
+                //Route to login page if there is no security type found
+                    //No security type would be found if they bypassed login as security type is set on login
+                header('Location: ../login.php?invalidLogin');
+                //https://www.php.net/manual/en/function.header.php
             } 
         }
     }

@@ -1,3 +1,10 @@
+<?php
+    include_once("classes\permissions.php");
+    $permissions = new permissions();
+    $permissions->checkLoggedIn();
+    //Reroute to login if not logged in
+?>
+
 <!DOCTYPE html>
 <html lang = "en">
 <head>
@@ -31,9 +38,9 @@
                     }
                 ?>
                     <?php 
-                        require './classes/session.classes.php';
+                        //require './classes/session.classes.php';
 
-                        session::start();
+                        //session::start();
                         // session_start();
                         ?>
                         <div id = "searchPopup" class = "popup">
@@ -97,7 +104,7 @@
                                             <label for="Company of Client">Company</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input  type="text" name="company_name" value="company name" id="company_name"><br>
+                                            <input  type="text" name="company_name" placeholder="Company Name" id="company_name" required><br>
                                         </td>
                                     </tr>
                                     <!-- Client Type: -->
@@ -106,7 +113,7 @@
                                             <label for="Type of Client">Client Type:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="client_type" value="client type" id="client_type"><br>
+                                            <input type="text" name="client_type" placeholder="Client Type" id="client_type" required><br>
                                         </td>
                                     </tr>
                                     <!-- First Name -->
@@ -115,7 +122,7 @@
                                             <label for="First Name of Client ">First Name:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="first_name" value="first name" id="first_name"><br>
+                                            <input type="text" name="first_name" placeholder="First Name" id="first_name" required><br>
                                         </td>
                                     </tr>
                                     <!-- Last Name: -->
@@ -124,7 +131,7 @@
                                             <label for="Last Name of Client">Last Name:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text"  name="last_name" value="last name" id="last_name"><br>
+                                            <input type="text"  name="last_name" placeholder="Last Name" id="last_name" required><br>
                                         </td>
                                     </tr>
                                     
@@ -134,7 +141,8 @@
                                             <label for="Email Address of Client">email:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="email" value="email adress" id="email"><br>
+                                            <input type="email" name="email" placeholder="Email Address" id="email" required><br>
+                                            <!-- Created using assistance from https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/email!-->
                                         </td>
                                     </tr>
                                     <!-- Address Line 1: -->
@@ -143,7 +151,7 @@
                                             <label for="Address Line 1 of Client">Address Line 1:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="address_line1" value="address line 1" id="address_line1"><br>
+                                            <input type="text" name="address_line1" placeholder="Address line 1" id="Address_line1" required><br>
                                         </td>
                                     </tr>
                                     <!-- Address Line 2 -->
@@ -152,7 +160,7 @@
                                             <label for="Address Line 2 of Client">Address Line 2:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="address_line2" value="address line 2" id="address_line2"><br>
+                                            <input type="text" name="address_line2" placeholder="Address line 2" id="Address_line2"><br>
                                         </td>
                                     </tr>
                                     <!-- City -->
@@ -161,16 +169,20 @@
                                             <label for="City of Client">City:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="city" value="City" id="city"><br>
+                                            <input type="text" name="city" placeholder="City" id="city"><br>
                                         </td>
                                     </tr>
                                     <!--State Abbreviation -->
                                     <tr>
                                         <td class="alignLeft">
                                             <label for="State Abbreviation of Client">State Abbreviation</label>
+                                            <dt> Enter the two digit abbreviation for your state </dt>
+
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="state_abbr" value="NY" id="state_abbr"><br>
+                                            
+                                            <input type="text" name="state_abbr" placeholder="State Abbreviation" id="state_abbr" pattern="[^0-9]{2}" required><br>
+                                            <!-- Used for help with upper and lowercase in regex https://helpx.adobe.com/coldfusion/developing-applications/the-cfml-programming-language/using-regular-expressions-in-functions/regular-expression-syntax.html-->
                                         </td>
                                     </tr>
                                     <!--Zip Code -->
@@ -179,16 +191,19 @@
                                             <label for="Zip Code of Client">Zip Code:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="zip_code" value="10541" id="zip_code"><br>
+                                            <input type="text" name="zip_code" placeholder="Zip Code" id="zip_code" required><br>
                                         </td>
                                     </tr>
                                     <tr>
                                     <!--Phone Number -->
                                         <td class="alignLeft">
                                             <label for="Phone Number of Client">Phone Number:</label>
+                                            <dt> Format: 123-456-7890 </dt>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="phone" value="845-745-2802" id="phone"><br>
+                                            <input type="tel" name="phone" placeholder="Phone Number" id="phone" 
+                                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required><br>
+                                            <!-- Made using assistance from https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/tel -->
                                         </td>
                                     </tr>
                                     <!-- Client Notes -->
@@ -197,14 +212,14 @@
                                             <label for="Notes for client">Client Notes</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="client_notes" value="client note" id="client_notes"><br>
+                                            <input type="text" name="client_notes" placeholder="Client Note" id="client_notes"><br>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <label for="Submit add button">
                                             <!-- Button to submit form -->
-                                                <input type="submit" name = "submit" value="submit"></button>
+                                                <input type="submit" name = "submit" placeholder="submit"></button>
                                             </label>
                                         </td>
                                         <td>
@@ -229,7 +244,7 @@
                                             <label for="Company of Client">Company</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="company_name" value="company name"><br>
+                                            <input type="text" name="company_name" placeholder="Company Name" required><br>
                                         </td>
                                     </tr>
                                     <!-- Client Type: -->
@@ -238,16 +253,16 @@
                                             <label for="Type of Client">Client Type:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="client_type" value="client type"><br>
+                                            <input type="text" name="client_type" placeholder="Client Type" required><br>
                                         </td>
                                     </tr>
                                     <!-- First Name -->
                                     <tr>
                                         <td class="alignLeft">
-                                            <label for="First Name of Client ">First Name:</label>
+                                            <label for="First Name of Client">First Name:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="first_name" value="first name"><br>
+                                            <input type="text" name="first_name" placeholder="First Name" required><br>
                                         </td>
                                     </tr>
                                     <!-- Last Name: -->
@@ -256,7 +271,7 @@
                                             <label for="Last Name of Client">Last Name:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text"  name="last_name" value="last name"><br>
+                                            <input type="text"  name="last_name" placeholder="Last Name" required><br>
                                         </td>
                                     </tr>
                                     
@@ -266,7 +281,7 @@
                                             <label for="Email Address of Client">email:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="email" value="email adress"><br>
+                                            <input type="email" name="email" placeholder="Email Address" required><br>
                                         </td>
                                     </tr>
                                     <!-- Address Line 1: -->
@@ -275,7 +290,7 @@
                                             <label for="Address Line 1 of Client">Address Line 1:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="address_line1" value="address line 1"><br>
+                                            <input type="text" name="address_line1" placeholder="Address Line 1" required><br>
                                         </td>
                                     </tr>
                                     <!-- Address Line 2 -->
@@ -284,7 +299,7 @@
                                             <label for="Address Line 2 of Client">Address Line 2:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="address_line2" value="address line 2"><br>
+                                            <input type="text" name="address_line2" placeholder="Address Line 2"><br>
                                         </td>
                                     </tr>
                                     <!-- City -->
@@ -293,16 +308,17 @@
                                             <label for="City of Client">City:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="city" value="City"><br>
+                                            <input type="text" name="city" placeholder="City" required><br>
                                         </td>
                                     </tr>
                                     <!--State Abbreviation -->
                                     <tr>
                                         <td class="alignLeft">
                                             <label for="State Abbreviation of Client">State Abbreviation</label>
+                                            <dt> Enter the two digit abbreviation for your state </dt>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="state_abbr" value="NY"><br>
+                                            <input type="text" name="state_abbr" placeholder="State Abbreviation" pattern=[^0-9]{2} required><br>
                                         </td>
                                     </tr>
                                     <!--Zip Code -->
@@ -311,16 +327,17 @@
                                             <label for="Zip Code of Client">Zip Code:</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="zip_code" value="10541"><br>
+                                            <input type="number" name="zip_code" placeholder="Zip Code" required><br>
                                         </td>
                                     </tr>
                                     <tr>
                                     <!--Phone Number -->
                                         <td class="alignLeft">
                                             <label for="Phone Number of Client">Phone Number:</label>
+                                            <dt> Format: 123-456-7890 </dt>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="phone" value="845-745-2802"><br>
+                                            <input type="tel" name="phone" placeholder="Phone Number"><br>
                                         </td>
                                     </tr>
                                     <!-- Client Notes -->
@@ -329,14 +346,14 @@
                                             <label for="Notes for client">Client Notes</label>
                                         </td>
                                         <td class="alignLeft">
-                                            <input type="text" name="client_notes" value="client note"><br>
+                                            <input type="text" name="client_notes" placeholder="Client Note"><br>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <label for="Submit add button">
                                             <!-- Button to submit form -->
-                                                <input type="submit" name = "submit" value="submit"></button>
+                                                <input type="submit" name = "submit" placeholder="submit"></button>
                                             </label>
                                         </td>
                                         <td>

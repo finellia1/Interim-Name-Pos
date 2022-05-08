@@ -1,3 +1,26 @@
+<?php 
+    require_once("classes\permissions.php");
+    $permissions = new permissions();
+    $permissions->checkLoggedIn();
+    //Pulled from permissions.php
+    //Checks for permissions, bounces to login if user is not logged in
+
+    //Pulled from permissions.php
+
+
+    require_once("classes\permissions.php");
+    $permissionsObj = new permissions();
+    if($permissionsObj->getPermissionArray()["EO"][$permissionsObj->getPermissions()]["Access EO Page"] == 0){
+        header('Location: ./homepage.php');
+        //If invalid login role, bounce back to homepage.php
+    }
+    //References from permissions.php
+       //Pulled from permissions.php
+       require_once("classes\permissions.php");
+       $permissions = new permissions();
+       $permissions->checkLoggedIn();
+       //Checks for permissions, bounces to login if user is not logged in
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

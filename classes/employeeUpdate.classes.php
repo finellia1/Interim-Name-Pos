@@ -18,7 +18,11 @@ class updateUser extends Dbh {
 
             if(!$stmt->execute()) {
                 $stmt = null;
-                header('location: ../index.php?error=stmtfailed');
+                require_once("session.classes.php");
+                session::start();
+                session::set("homepageErrorMessage", "ERROR: PLEASE CONTACT IT classes/employeeUpdate.classes.php line 24");
+                header('Location: ../homepage.php?failure');
+                //Code taken from classes/login.classes.php
                 exit();
             }
        }
@@ -27,7 +31,11 @@ class updateUser extends Dbh {
 
             if(!$stmt->execute()) {
                 $stmt = null;
-                header('location: ../index.php?error=stmtfailedemail');
+                require_once("session.classes.php");
+                session::start();
+                session::set("homepageErrorMessage", "ERROR: PLEASE CONTACT IT classes/employeeUpdate.classes.php line 36");
+                header('Location: ../homepage.php?failure');
+                //Code taken from classes/login.classes.php
                 exit();
             }
 
@@ -37,7 +45,11 @@ class updateUser extends Dbh {
 
             if(!$stmt->execute()) {
                 $stmt = null;
-                header('location: ../index.php?error=stmtfailedfirst_name');
+                require_once("session.classes.php");
+                session::start();
+                session::set("homepageErrorMessage", "ERROR: PLEASE CONTACT IT classes/employeeUpdate.classes.php line 50");
+                header('Location: ../homepage.php?failure');
+                //Code taken from classes/login.classes.php                
                 exit();
             }
 
@@ -47,7 +59,11 @@ class updateUser extends Dbh {
 
             if(!$stmt->execute()) {
                 $stmt = null;
-                header('location: ../index.php?error=stmtfailed');
+                require_once("session.classes.php");
+                session::start();
+                session::set("homepageErrorMessage", "ERROR: PLEASE CONTACT IT classes/employeeUpdate.classes.php line 64");
+                header('Location: ../homepage.php?failure');
+                //Code taken from classes/login.classes.php
                 exit();
             }
 
@@ -58,7 +74,11 @@ class updateUser extends Dbh {
 
             if(!$stmt->execute()) {
                 $stmt = null;
-                header('location: ../index.php?error=stmtfailed');
+                require_once("session.classes.php");
+                session::start();
+                session::set("homepageErrorMessage", "ERROR: PLEASE CONTACT IT classes/employeeUpdate.classes.php line 79");
+                header('Location: ../homepage.php?failure');
+                //Code taken from classes/login.classes.php                
                 exit();
             }
 
@@ -69,7 +89,11 @@ class updateUser extends Dbh {
 
             if(!$stmt->execute()) {
                 $stmt = null;
-                header('location: ../index.php?error=stmtfailed1');
+                require_once("session.classes.php");
+                session::start();
+                session::set("homepageErrorMessage", "ERROR: PLEASE CONTACT IT classes/employeeUpdate.classes.php line 94");
+                header('Location: ../homepage.php?failure');
+                //Code taken from classes/login.classes.php                
                 exit();
             }
 
@@ -80,7 +104,11 @@ class updateUser extends Dbh {
 
             if(!$stmt->execute()) {
                 $stmt = null;
-                header('location: ../index.php?error=stmtfailed1');
+                require_once("session.classes.php");
+                session::start();
+                session::set("homepageErrorMessage", "ERROR: PLEASE CONTACT IT classes/employeeUpdate.classes.php line 109");
+                header('Location: ../homepage.php?failure');
+                //Code taken from classes/login.classes.php                
                 exit();
             }
 
@@ -91,7 +119,11 @@ class updateUser extends Dbh {
 
             if(!$stmt->execute()) {
                 $stmt = null;
-                header('location: ../index.php?error=stmtfailed1');
+                require_once("session.classes.php");
+                session::start();
+                session::set("homepageErrorMessage", "ERROR: PLEASE CONTACT IT classes/employeeUpdate.classes.php line 124");
+                header('Location: ../homepage.php?failure');
+                //Code taken from classes/login.classes.php                
                 exit();
             }
 

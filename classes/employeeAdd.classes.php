@@ -14,7 +14,11 @@ class employeeAdd extends Dbh {
 
         if(!$stmt->execute(array($security_type, $hashedPwd, $job_title, $first_name, $last_name, $email, $hourly_salary, $yearly_salary))) {   
             $stmt = null;
-            header('location: ../index.php?error=stmtfailedemployeeAdd.classes ln 11');
+            require_once("session.classes.php");
+            session::start();
+            session::set("homepageErrorMessage", "ERROR: PLEASE CONTACT IT classes/employeeAdd.classes.php line 20");
+            header('Location: ../homepage.php?failure');
+            //Code taken from classes/login.classes.php
             exit();
         }
         $stmt = null;
@@ -25,7 +29,11 @@ class employeeAdd extends Dbh {
         $stmt = $this->connect()->prepare('SELECT employee_ID FROM employee WHERE employee_ID = ? OR email = ?;');
         if(!$stmt->execute(array($employee_ID, $email))) {
             $stmt = null;
-            header("location: ../index.php?error=stmtfailedemployeeAdd.classes line 23");
+            require_once("session.classes.php");
+            session::start();
+            session::set("homepageErrorMessage", "ERROR: PLEASE CONTACT IT classes/employeeAdd.classes.php line 35");
+            header('Location: ../login.php?failure');
+            //Code taken from classes/login.classes.php
             exit();
         }
 

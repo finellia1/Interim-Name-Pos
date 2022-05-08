@@ -1,3 +1,10 @@
+<?php 
+       //Pulled from permissions.php
+       require_once("classes\permissions.php");
+       $permissions = new permissions();
+       $permissions->checkLoggedIn();
+       //Checks for permissions, bounces to login if user is not logged in
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,9 +42,9 @@
                     }
                 ?>
                 <?php 
-                        require './classes/session.classes.php';
+                        //require './classes/session.classes.php';
 
-                        session::start();
+                        //session::start();
                         // session_start();
                         ?>
 
@@ -98,7 +105,7 @@
                                         <label for="company name">Company Name:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="companyName" name="company_name" value="companyName"><br>
+                                        <input type="text" id="companyName" name="company_name" placeholder="Company Name" required><br>
                                     </td>
                                 </tr>
                                 <!-- Website -->
@@ -107,7 +114,7 @@
                                         <label for="item name">Website:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="website" name="website" value="website"><br>
+                                        <input type="text" id="website" name="website" placeholder="Website"><br>
                                     </td>
                                 </tr>
                                 <!-- Sales Representative -->
@@ -116,7 +123,7 @@
                                         <label for="sales represenetative">Sales Representative:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="salesrep" name="salesrep" value="salesrep"><br>
+                                        <input type="text" id="salesrep" name="salesrep" placeholder="Sales Rep"><br>
                                     </td>
                                 </tr>
                                 <!-- Email -->
@@ -125,16 +132,17 @@
                                         <label for="Email">Email:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="email" name="email" value="email"><br>
+                                        <input type="email" id="email" name="email" placeholder="Email" required><br>
                                     </td>
                                 </tr>
                                 <!-- Phone -->
                                 <tr>
                                     <td class="alignLeft">
                                         <label for="phone">Phone:</label>
+                                        <dt> Format: 123-456-7890 </dt>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" id="phone" name="phone" value="phone"><br>
+                                        <input type="tel" id="phone" name="phone" placeholder="Phone Number"  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required><br>
                                     </td>
                                 </tr>
                                 <!-- Vendor Notes -->
@@ -144,12 +152,12 @@
                                     </td>
                                     <td class="alignLeft">
                                         <input type="text" id="vendorNotes" name="vendor_notes"
-                                            value="vendor notes"><br>
+                                        placeholder="vendor notes"><br>
                                     </td>
                                 </tr>
                                 <td>
                                     <label for="Submit edit button">
-                                        <input type="submit" value="Submit!"></button>
+                                        <input type="submit" value="Submit!" ></button>
                                     </label>
                                 </td>
                                 <!-- Button to close pane-->
@@ -176,7 +184,7 @@
                                         <label for="company name">Company Name:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="company_name" value="company name"><br>
+                                        <input type="text" name="company_name" placeholder="Company Name" required><br>
                                     </td>
                                 </tr>
                                 <!-- Website -->
@@ -185,7 +193,7 @@
                                         <label for="website">Website:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="website" value="website"><br>
+                                        <input type="text" name="website" placeholder="Website"><br>
                                     </td>
                                 </tr>
                                 <!-- Sales Representative -->
@@ -194,7 +202,7 @@
                                         <label for="sales representative">Sales Rep:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="salesrep" value="Sales Representative"><br>
+                                        <input type="text" name="salesrep" placeholder="Sales Representative"><br>
                                     </td>
                                 </tr>
 
@@ -204,16 +212,17 @@
                                         <label for="model">Email:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="email" value="email"><br>
+                                        <input type="email" name="email" placeholder="Email" required><br>
                                     </td>
                                 </tr>
                                 <!-- Phone -->
                                 <tr>
                                     <td class="alignLeft">
                                         <label for="quantity unit">Phone Number:</label>
+                                        <dt> Format: 123-456-7890 </dt>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="phone" value="phone"><br>
+                                        <input type="tel" name="phone" placeholder="Phone Number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required><br>
                                     </td>
                                 </tr>
                                 <!-- Vendor Notes -->
@@ -222,7 +231,7 @@
                                         <label for="vendor notes">Vendor Notes:</label>
                                     </td>
                                     <td class="alignLeft">
-                                        <input type="text" name="vendor_notes" value="Notes"><br>
+                                        <input type="text" name="vendor_notes" placeholder="Notes"><br>
                                     </td>
                                 </tr>
                                 <td>
