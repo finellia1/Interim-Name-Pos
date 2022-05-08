@@ -29,7 +29,7 @@
                     if(isset($_GET['skipnav'])){
                         if($_GET['skipnav'] == 'true'){
                             echo "<br>";
-                            echo '<a class = "skipNav" href="skipNav.html" alt = "Skip navigation link">Skip Navigation</a>';
+                            echo '<a class = "skipNav" href="skipNav.php" alt = "Skip navigation link">Skip Navigation</a>';
                         }
                     }
                 ?>
@@ -341,6 +341,14 @@
                             <th>Hourly Salary</th>
                             <th>Yearly Salary</th>
                         </tr>
+                        <?php
+                            require_once ("classes\session.classes.php");
+                            session::start();
+                            //Only display skipnav if ADA compliance is true.
+                            if(session::isSet("ADA")){
+                                echo '<a class = "skipNav" href="skipNav.php" alt = "Skip navigation link">Skip Navigation</a>';
+                            }
+                        ?>
                         <?php
                                 include "includes/employeeSearch.inc.php";
                             ?>

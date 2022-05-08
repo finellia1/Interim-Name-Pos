@@ -28,11 +28,17 @@
 </head>
 
 <body>
+    <?php
+        //Set the ADA flag to NULL so the skip nav will be not be generated on subpages
+        require_once ("classes\session.classes.php");
+        session::start();
+        session::set("ADA", NULL);
+    ?>
     <div class="wrap">
         <main title="main page content">
 
         <!--Example of skip nav https://webaim.org/techniques/skipnav/-->
-        <a class = "skipNav" href="skipNav.html" alt = "Skip navigation link">Skip Navigation</a>
+        <a class = "skipNav" href="skipNav.php" alt = "Skip navigation link">Skip Navigation</a>
             <div class="leftPanel">
                 <div class="nav-bar">
                     <ul>
